@@ -68,12 +68,32 @@
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestCell"];
     static NSString *CellIdentifier = @"QuestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     QSCQuest *quest = [self.quests objectAtIndex:indexPath.row];
-    cell.textLabel.text = quest.name;
+
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    nameLabel.text = quest.name;
+    
+    UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
+    gameLabel.text = @"stam";
+    
+    UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
+    ratingImageView.image = [self imageForRating:quest.rating];
+
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
     return cell;
     
+}
+
+- (UIImage *)imageForRating:(int)rating
+{
+    switch (rating) {
+        case 1: return [UIImage imageNamed:@"1StarSmall"];
+        case 2: return [UIImage imageNamed:@"2StarsSmall"];
+        case 3: return [UIImage imageNamed:@"3StarsSmall"];
+        case 4: return [UIImage imageNamed:@"4StarsSmall"];
+        case 5: return [UIImage imageNamed:@"5StarsSmall"];
+    }
+    return nil;
 }
 
 /*
