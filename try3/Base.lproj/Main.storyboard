@@ -4,6 +4,22 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller - All Quests-->
+        <scene sceneID="jWb-LO-4cT">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="7c2-dr-GLU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="All Quests" image="first" id="AxH-Gt-VBg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nad-Dn-zEC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GfD-mB-Jwr" kind="relationship" relationship="rootViewController" id="ofl-Fs-AY1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYo-im-D7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="619" y="-1186"/>
+        </scene>
         <!--All Quests View Controller - All Quests-->
         <scene sceneID="r9s-VO-DF3">
             <objects>
@@ -15,7 +31,7 @@
                         <color key="sectionIndexTrackingBackgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" textLabel="ekS-Cz-ixw" detailTextLabel="rdp-wu-bxM" style="IBUITableViewCellStyleSubtitle" id="BU4-ZG-0XA">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BU4-ZG-0XA" id="y2r-tL-NV2">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -46,10 +62,11 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Quests" image="first" id="Szw-5V-KG1"/>
+                    <navigationItem key="navigationItem" title="All Quests" id="uL4-A6-KaG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-eF-odU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="-563"/>
+            <point key="canvasLocation" x="1072" y="-1186"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -93,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="930"/>
+            <point key="canvasLocation" x="845" y="750"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
@@ -106,14 +123,30 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="GfD-mB-Jwr" kind="relationship" relationship="viewControllers" id="mI5-SI-x06"/>
-                        <segue destination="0HU-gw-h6O" kind="relationship" relationship="viewControllers" id="dRL-DZ-Zq6"/>
+                        <segue destination="7c2-dr-GLU" kind="relationship" relationship="viewControllers" id="FsU-Ba-BIn"/>
+                        <segue destination="co6-cg-UVJ" kind="relationship" relationship="viewControllers" id="e0m-cD-no4"/>
                         <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="M8t-EP-wfW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="82"/>
+        </scene>
+        <!--Navigation Controller - My Quests-->
+        <scene sceneID="IqU-LC-6mY">
+            <objects>
+                <navigationController title="My Quests" definesPresentationContext="YES" id="co6-cg-UVJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Quests" image="second" id="2If-eD-m2r"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfF-0V-yD4">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0HU-gw-h6O" kind="relationship" relationship="rootViewController" id="WDI-z5-xAM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nd6-0J-S95" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="619" y="-272"/>
         </scene>
         <!--My Quests - My Quests-->
         <scene sceneID="xoE-fC-gpX">
@@ -124,28 +157,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" rowHeight="55" id="Cum-KD-SmU">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" rowHeight="55" id="Cum-KD-SmU">
+                                <rect key="frame" x="0.0" y="86" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cum-KD-SmU" id="oJO-Ct-HoM">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gai-Pe-dwm">
-                                            <rect key="frame" x="20" y="6" width="126" height="21"/>
+                                            <rect key="frame" x="13" y="0.0" width="169" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szI-lO-IfS">
-                                            <rect key="frame" x="20" y="25" width="126" height="21"/>
+                                            <rect key="frame" x="13" y="28" width="169" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rag-tK-h47">
-                                            <rect key="frame" x="207" y="20" width="93" height="26"/>
+                                            <rect key="frame" x="193" y="14" width="93" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -158,10 +191,11 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="My Quests" image="second" id="Yxf-a4-Fu2"/>
+                    <navigationItem key="navigationItem" title="My Quests" id="ltb-ZC-nL5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1g-qc-RNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="154"/>
+            <point key="canvasLocation" x="1072" y="-272"/>
         </scene>
     </scenes>
     <resources>
