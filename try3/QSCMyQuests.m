@@ -44,6 +44,8 @@
     self.quests = [[NSMutableArray alloc] init];
     [self loadInitialData];
     
+    self.view.backgroundColor = [UIColor clearColor];
+
     //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     //    UINavigationController *navigationController = [tabBarController viewControllers][0];
     //    QSCAllQuestsViewController *questsViewController = [navigationController viewControllers][0];
@@ -86,6 +88,9 @@
     ratingImageView.image = [self imageForRating:quest.rating];
 
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
+    
+    cell.backgroundColor = [UIColor clearColor];
+
     return cell;
     
 }

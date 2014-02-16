@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QSCSecondViewController : UIViewController
+@interface QSCSecondViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (strong, nonatomic) NSArray *countryNames;
+//@property NSString *chosen;
+
+//- (void)reloadAllComponents;
+//- (void)reloadComponent:(NSInteger)component;
+//- (NSInteger)selectedRowInComponent:(NSInteger)component;
+//- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 
 @end

@@ -7,13 +7,22 @@
 //
 
 #import "QSCAppDelegate.h"
+#define kDEFAULT_BACKGROUND_GRADIENT    @"gradient5"
 
 @implementation QSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
+    //self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kDEFAULT_BACKGROUND_GRADIENT]];
+    
+    [self changeWindowColor:@"gradient5"];
+
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void) changeWindowColor:(NSString *)color {
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:color]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
