@@ -18,7 +18,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYo-im-D7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="-1186"/>
+            <point key="canvasLocation" x="269" y="-1160"/>
         </scene>
         <!--All Quests View Controller - All Quests-->
         <scene sceneID="r9s-VO-DF3">
@@ -53,6 +53,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Rew-Ut-LO7" kind="push" id="heo-Mh-z4C"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -66,7 +69,44 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-eF-odU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072" y="-1186"/>
+            <point key="canvasLocation" x="762" y="-1160"/>
+        </scene>
+        <!--Quest Info View Controller-->
+        <scene sceneID="Nv8-0k-gOu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYZ-Sc-a96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Rew-Ut-LO7" customClass="QSCQuestInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eMT-IS-mGP"/>
+                        <viewControllerLayoutGuide type="bottom" id="EsQ-Ca-kJI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dqc-fw-KpR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqI-6Q-hBz">
+                                <rect key="frame" x="0.0" y="64" width="320" height="214"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Rew-Ut-LO7" id="Omq-4N-2O2"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mqI-6Q-hBz" firstAttribute="top" secondItem="eMT-IS-mGP" secondAttribute="bottom" id="9X2-lU-fmV"/>
+                            <constraint firstItem="mqI-6Q-hBz" firstAttribute="leading" secondItem="Dqc-fw-KpR" secondAttribute="leading" id="OJp-9l-Jsp"/>
+                            <constraint firstItem="EsQ-Ca-kJI" firstAttribute="top" secondItem="mqI-6Q-hBz" secondAttribute="bottom" constant="241" id="V8k-4M-ZHj"/>
+                            <constraint firstAttribute="trailing" secondItem="mqI-6Q-hBz" secondAttribute="trailing" id="YVo-xD-edR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mgy-uL-kNr"/>
+                    <connections>
+                        <outlet property="scrollView" destination="mqI-6Q-hBz" id="dRu-VM-yaG"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1249" y="-1160"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">

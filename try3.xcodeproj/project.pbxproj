@@ -42,6 +42,9 @@
 		78BEDC8618ADAB7B004E9156 /* Gestures@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC6E18ADAB7B004E9156 /* Gestures@2x.png */; };
 		78BEDC8718ADAB7B004E9156 /* Players.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC6F18ADAB7B004E9156 /* Players.png */; };
 		78BEDC8818ADAB7B004E9156 /* Players@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC7018ADAB7B004E9156 /* Players@2x.png */; };
+		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
+		78EC8BD318B164F200901F4D /* pic1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78EC8BD118B164F200901F4D /* pic1.jpg */; };
+		78EC8BD418B164F200901F4D /* pic0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78EC8BD218B164F200901F4D /* pic0.jpg */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
 		78F0E84918AD79290034E3A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84818AD79290034E3A4 /* UIKit.framework */; };
@@ -108,6 +111,10 @@
 		78BEDC6E18ADAB7B004E9156 /* Gestures@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gestures@2x.png"; sourceTree = "<group>"; };
 		78BEDC6F18ADAB7B004E9156 /* Players.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Players.png; sourceTree = "<group>"; };
 		78BEDC7018ADAB7B004E9156 /* Players@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Players@2x.png"; sourceTree = "<group>"; };
+		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
+		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
+		78EC8BD118B164F200901F4D /* pic1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic1.jpg; sourceTree = "<group>"; };
+		78EC8BD218B164F200901F4D /* pic0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic0.jpg; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* try3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = try3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0E84418AD79290034E3A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F0E84618AD79290034E3A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -187,6 +194,8 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78EC8BD118B164F200901F4D /* pic1.jpg */,
+				78EC8BD218B164F200901F4D /* pic0.jpg */,
 				78BEDC5918ADAB7B004E9156 /* 1Star.png */,
 				78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */,
 				78BEDC5B18ADAB7B004E9156 /* 1StarSmall.png */,
@@ -254,6 +263,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */,
+				78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */,
 				78BEDC5518AD9FF2004E9156 /* QSCMyQuests.h */,
 				78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */,
 				78F0E87C18AD81B60034E3A4 /* QSCAllQuestsViewController.h */,
@@ -391,11 +402,13 @@
 				78F0E84F18AD79290034E3A4 /* InfoPlist.strings in Resources */,
 				78BEDC8618ADAB7B004E9156 /* Gestures@2x.png in Resources */,
 				78BEDC7918ADAB7B004E9156 /* 3Stars.png in Resources */,
+				78EC8BD418B164F200901F4D /* pic0.jpg in Resources */,
 				78BEDC8518ADAB7B004E9156 /* Gestures.png in Resources */,
 				78F0E85818AD79290034E3A4 /* Main.storyboard in Resources */,
 				782CE6FE18AF8D3F00D1A2FB /* gradient4@2x.png in Resources */,
 				78BEDC8718ADAB7B004E9156 /* Players.png in Resources */,
 				78BEDC7B18ADAB7B004E9156 /* 3StarsSmall.png in Resources */,
+				78EC8BD318B164F200901F4D /* pic1.jpg in Resources */,
 				78BEDC7518ADAB7B004E9156 /* 2Stars.png in Resources */,
 				78BEDC7C18ADAB7B004E9156 /* 3StarsSmall@2x.png in Resources */,
 				78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */,
@@ -434,6 +447,7 @@
 				78F0E88118AD82E30034E3A4 /* QSCQuest.m in Sources */,
 				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
+				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				78F0E87E18AD81B60034E3A4 /* QSCAllQuestsViewController.m in Sources */,
