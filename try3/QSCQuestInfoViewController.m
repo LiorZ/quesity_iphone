@@ -14,7 +14,8 @@
 
 @implementation QSCQuestInfoViewController
 @synthesize scrollView = _scrollView;
-@synthesize imageArray; 
+@synthesize imageArray;
+@synthesize pageControl = _pageControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +36,7 @@
         //We'll create an imageView object in every 'page' of our scrollView.
         CGRect frame;
         frame.origin.x = self.scrollView.frame.size.width * i;
-        frame.origin.y = 0;
+        frame.origin.y = self.scrollView.frame.origin.y;
         frame.size = self.scrollView.frame.size;
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
@@ -44,15 +45,17 @@
     }
     //Set the content size of our scrollview according to the total width of our imageView objects.
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.imageArray count], self.scrollView.frame.size.height);
+
+    [self.scrollView setMinimumZoomScale:1.0];
 }
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
     // Update the page when more than 50% of the previous/next page is visible
-    //CGFloat pageWidth = self.scrollView.frame.size.width;
-    //int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    //self.pageControl.currentPage = page;
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
 
 - (void)didReceiveMemoryWarning

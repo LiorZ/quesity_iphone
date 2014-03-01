@@ -17,6 +17,8 @@
 		782CE70118AF8D3F00D1A2FB /* gradient7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F718AF8D3F00D1A2FB /* gradient7@2x.png */; };
 		782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F818AF8D3F00D1A2FB /* gradient8@2x.png */; };
 		782CE70318AF8D3F00D1A2FB /* gradient9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */; };
+		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
+		7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */; };
 		78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */; };
 		78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5918ADAB7B004E9156 /* 1Star.png */; };
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
@@ -61,7 +63,6 @@
 		78F0E87118AD792A0034E3A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E86F18AD792A0034E3A4 /* InfoPlist.strings */; };
 		78F0E87318AD792A0034E3A4 /* try3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E87218AD792A0034E3A4 /* try3Tests.m */; };
 		78F0E87E18AD81B60034E3A4 /* QSCAllQuestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E87D18AD81B60034E3A4 /* QSCAllQuestsViewController.m */; };
-		78F0E88118AD82E30034E3A4 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E88018AD82E30034E3A4 /* QSCQuest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,10 @@
 		782CE6F718AF8D3F00D1A2FB /* gradient7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient7@2x.png"; sourceTree = "<group>"; };
 		782CE6F818AF8D3F00D1A2FB /* gradient8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient8@2x.png"; sourceTree = "<group>"; };
 		782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient9@2x.png"; sourceTree = "<group>"; };
+		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
+		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
+		7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCinfoViewController2.h; sourceTree = "<group>"; };
+		7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCinfoViewController2.m; sourceTree = "<group>"; };
 		78BEDC5518AD9FF2004E9156 /* QSCMyQuests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMyQuests.h; sourceTree = "<group>"; };
 		78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMyQuests.m; sourceTree = "<group>"; };
 		78BEDC5918ADAB7B004E9156 /* 1Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Star.png; sourceTree = "<group>"; };
@@ -138,8 +143,6 @@
 		78F0E87218AD792A0034E3A4 /* try3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = try3Tests.m; sourceTree = "<group>"; };
 		78F0E87C18AD81B60034E3A4 /* QSCAllQuestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCAllQuestsViewController.h; sourceTree = "<group>"; };
 		78F0E87D18AD81B60034E3A4 /* QSCAllQuestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCAllQuestsViewController.m; sourceTree = "<group>"; };
-		78F0E87F18AD82E30034E3A4 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
-		78F0E88018AD82E30034E3A4 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,16 +264,18 @@
 			children = (
 				782CE6EE18AF8D3F00D1A2FB /* Resources */,
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
+				786B35B018C11F29002DA234 /* QSCQuest.h */,
+				786B35B118C11F29002DA234 /* QSCQuest.m */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */,
+				7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */,
 				78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */,
 				78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */,
 				78BEDC5518AD9FF2004E9156 /* QSCMyQuests.h */,
 				78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */,
 				78F0E87C18AD81B60034E3A4 /* QSCAllQuestsViewController.h */,
 				78F0E87D18AD81B60034E3A4 /* QSCAllQuestsViewController.m */,
-				78F0E87F18AD82E30034E3A4 /* QSCQuest.h */,
-				78F0E88018AD82E30034E3A4 /* QSCQuest.m */,
 				78F0E85918AD79290034E3A4 /* QSCFirstViewController.h */,
 				78F0E85A18AD79290034E3A4 /* QSCFirstViewController.m */,
 				78F0E85C18AD79290034E3A4 /* QSCSecondViewController.h */,
@@ -444,12 +449,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78F0E88118AD82E30034E3A4 /* QSCQuest.m in Sources */,
+				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
+				7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */,
 				78F0E87E18AD81B60034E3A4 /* QSCAllQuestsViewController.m in Sources */,
 				78F0E85118AD79290034E3A4 /* main.m in Sources */,
 			);
@@ -582,8 +588,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "try3/try3-Prefix.pch";
 				INFOPLIST_FILE = "try3/try3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,8 +604,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "try3/try3-Prefix.pch";
 				INFOPLIST_FILE = "try3/try3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

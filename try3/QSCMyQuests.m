@@ -5,6 +5,8 @@
 //  Created by igor on 2/14/14.
 //  Copyright (c) 2014 igor. All rights reserved.
 //
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
+#define allQuestsURL [NSURL URLWithString:@"http://quesity.herokuapp.com/all_quests"] //2
 
 #import "QSCMyQuests.h"
 
@@ -24,27 +26,121 @@
 }
 
 - (void)loadInitialData {
-    QSCQuest *quest = [[QSCQuest alloc] init];
-    quest.name = @"Tel Aviv Magic";
-    //    quest.durationD = [NSNumber numberWithFloat:8.2];
-    //    quest.durationT = [NSNumber numberWithFloat:2.5];
-    quest.rating = 3;
-    [self.quests addObject:quest];
+
+    //loading quests
+    NSArray* json = [[NSUserDefaults standardUserDefaults] valueForKey: @"myData"];
+    [self parseJson2Quests:json];
     
-    QSCQuest *quest1 = [[QSCQuest alloc] init];
-    quest1.name = @"Jerusalem with Galila";
-    //    quest.durationD = [NSNumber numberWithFloat:6.2];
-    //    quest.durationT = [NSNumber numberWithFloat:3.4];
-    quest1.rating = 4;
-    [self.quests addObject:quest1];}
+
+//    QSCQuest *quest = [[QSCQuest alloc] init];
+//    quest.name = @"Tel Aviv Magic";
+//    //    quest.durationD = [NSNumber numberWithFloat:8.2];
+//    //    quest.durationT = [NSNumber numberWithFloat:2.5];
+//    quest.rating = 3;
+//    [self.quests addObject:quest];
+//    
+//    QSCQuest *quest1 = [[QSCQuest alloc] init];
+//    quest1.name = @"Jerusalem with Galila";
+//    //    quest.durationD = [NSNumber numberWithFloat:6.2];
+//    //    quest.durationT = [NSNumber numberWithFloat:3.4];
+//    quest1.rating = 4;
+//    [self.quests addObject:quest1];
+}
+
+- (NSString *) parseString2Hebrew:(NSString *)str2parse
+{
+    // will cause trouble if you have "abc\\\\uvw"
+    NSString* esc1 = [str2parse stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
+    NSString* esc2 = [esc1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    NSString* quoted = [[@"\"" stringByAppendingString:esc2] stringByAppendingString:@"\""];
+    NSData* data = [quoted dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* unesc = [NSPropertyListSerialization propertyListFromData:data
+                                                       mutabilityOption:NSPropertyListImmutable format:NULL
+                                                       errorDescription:NULL];
+    assert([unesc isKindOfClass:[NSString class]]);
+    return unesc;
+}
+
+- (void) parseJson2Quests:(NSArray *)json {
+    NSArray* titlesFromJson = [json valueForKey:@"title"];
+    NSArray* timesFromJson = [json valueForKey:@"time"];
+    NSArray* distsFromJson = [json valueForKey:@"distance"];
+    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
+    
+    //update quests:
+    self.quests = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i<titlesFromJson.count; i++) {
+        //parsing hebrew buisness
+        NSString* questTitle = [self parseString2Hebrew:titlesFromJson[i]];
+        
+        //NSLog(@"Output = %@", questTitle);
+        
+        QSCQuest *quest = [[QSCQuest alloc] init];
+        quest.name = questTitle.copy;
+        quest.durationD = distsFromJson[i];
+
+        int minutes = round([timesFromJson[i] intValue] / 60);
+        int seconds = round([timesFromJson[i] intValue] % 60);
+        
+        quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+        quest.rating = round(0.5 * [ratingsFromJson[i] floatValue]);
+        [self.quests addObject:quest];
+    }
+}
+
+- (void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSArray* json = [NSJSONSerialization
+                          JSONObjectWithData:responseData
+                          options:kNilOptions
+                          error:&error];
+   
+
+    [self parseJson2Quests:json];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:json forKey:@"myData"];
+}
+
+- (void)updateTable
+{
+    //self.quests = [[NSMutableArray alloc] init];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getJson
+{
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: allQuestsURL];
+        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+    });
+    
+    [self performSelector:@selector(updateTable)
+          withObject:nil
+          afterDelay:1];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.quests = [[NSMutableArray alloc] init];
+    
+    //pull to refresh stuff:
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    refresh.tintColor = [UIColor whiteColor];
+    [refresh addTarget:self
+                action:@selector(getJson)
+             forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    
     [self loadInitialData];
     
     self.view.backgroundColor = [UIColor clearColor];
+    
+
 
     //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     //    UINavigationController *navigationController = [tabBarController viewControllers][0];
@@ -82,7 +178,9 @@
     nameLabel.text = quest.name;
     
     UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
-    gameLabel.text = @"stam";
+    //quest.durationD = distsFromJson[i];
+    //quest.durationT = timesFromJson[i];
+    gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
     
     UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
     ratingImageView.image = [self imageForRating:quest.rating];

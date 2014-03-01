@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
+@property IBOutlet UIPageControl *pageControl;
 
 @end
