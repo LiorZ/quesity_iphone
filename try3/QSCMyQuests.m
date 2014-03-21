@@ -9,12 +9,14 @@
 #define allQuestsURL [NSURL URLWithString:@"http://quesity.herokuapp.com/all_quests"] //2
 
 #import "QSCMyQuests.h"
+#import "QSCQuestInfoViewController.h"
 
 @interface QSCMyQuests ()
 @property NSMutableArray *quests;
 @end
 
 @implementation QSCMyQuests
+//@synthesize tableView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -66,6 +68,7 @@
     NSArray* timesFromJson = [json valueForKey:@"time"];
     NSArray* distsFromJson = [json valueForKey:@"distance"];
     NSArray* ratingsFromJson = [json valueForKey:@"rating"];
+    NSArray* descriptionFromJson = [json valueForKey:@"description"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -73,11 +76,13 @@
     for (int i=0; i<titlesFromJson.count; i++) {
         //parsing hebrew buisness
         NSString* questTitle = [self parseString2Hebrew:titlesFromJson[i]];
-        
+        NSString* questDescription = [self parseString2Hebrew:descriptionFromJson[i]];
+
         //NSLog(@"Output = %@", questTitle);
         
         QSCQuest *quest = [[QSCQuest alloc] init];
         quest.name = questTitle.copy;
+        quest.description = questDescription.copy;
         quest.durationD = distsFromJson[i];
 
         int minutes = round([timesFromJson[i] intValue] / 60);
@@ -139,7 +144,6 @@
     [self loadInitialData];
     
     self.view.backgroundColor = [UIColor clearColor];
-    
 
 
     //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
@@ -244,16 +248,24 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
+/*
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+*/
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showQuest"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        QSCQuestInfoViewController *destViewController = segue.destinationViewController;
+        destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+    }
+}
 
- */
+
 
 @end

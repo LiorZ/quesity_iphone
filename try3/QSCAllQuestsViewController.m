@@ -55,6 +55,8 @@
     self.quests = [[NSMutableArray alloc] init];
     [self loadInitialData];
     
+    self.view.backgroundColor = [UIColor clearColor];
+
 //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
 //    UINavigationController *navigationController = [tabBarController viewControllers][0];
 //    QSCAllQuestsViewController *questsViewController = [navigationController viewControllers][0];
@@ -86,6 +88,8 @@
     
     QSCQuest *quest = [self.quests objectAtIndex:indexPath.row];
     cell.textLabel.text = quest.name;
+    cell.backgroundColor = [UIColor clearColor];
+
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
     return cell;
    

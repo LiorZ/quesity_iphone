@@ -29,9 +29,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexTrackingBackgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" textLabel="ekS-Cz-ixw" detailTextLabel="rdp-wu-bxM" style="IBUITableViewCellStyleSubtitle" id="BU4-ZG-0XA">
+                            <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell" textLabel="ekS-Cz-ixw" detailTextLabel="rdp-wu-bxM" style="IBUITableViewCellStyleSubtitle" id="BU4-ZG-0XA">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BU4-ZG-0XA" id="y2r-tL-NV2">
@@ -84,37 +83,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqI-6Q-hBz">
-                                <rect key="frame" x="0.0" y="64" width="320" height="214"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqI-6Q-hBz">
+                                <rect key="frame" x="0.0" y="63" width="320" height="214"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Rew-Ut-LO7" id="Omq-4N-2O2"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Qki-kn-qJE">
-                                <rect key="frame" x="141" y="292" width="39" height="37"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhN-0t-N7E">
+                                <rect key="frame" x="20" y="297" width="290" height="154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Qki-kn-qJE">
+                                <rect key="frame" x="141" y="265" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mqI-6Q-hBz" firstAttribute="top" secondItem="eMT-IS-mGP" secondAttribute="bottom" id="9X2-lU-fmV"/>
-                            <constraint firstItem="Qki-kn-qJE" firstAttribute="centerX" secondItem="mqI-6Q-hBz" secondAttribute="centerX" id="Agn-GU-0ql"/>
                             <constraint firstItem="mqI-6Q-hBz" firstAttribute="leading" secondItem="Dqc-fw-KpR" secondAttribute="leading" id="OJp-9l-Jsp"/>
                             <constraint firstItem="EsQ-Ca-kJI" firstAttribute="top" secondItem="mqI-6Q-hBz" secondAttribute="bottom" constant="241" id="V8k-4M-ZHj"/>
                             <constraint firstAttribute="trailing" secondItem="mqI-6Q-hBz" secondAttribute="trailing" id="YVo-xD-edR"/>
-                            <constraint firstItem="Qki-kn-qJE" firstAttribute="top" secondItem="mqI-6Q-hBz" secondAttribute="bottom" constant="14" id="kAR-V6-BUf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mgy-uL-kNr"/>
                     <connections>
                         <outlet property="pageControl" destination="Qki-kn-qJE" id="4fY-MI-hv6"/>
                         <outlet property="scrollView" destination="mqI-6Q-hBz" id="dRu-VM-yaG"/>
+                        <outlet property="textView" destination="IhN-0t-N7E" id="NDG-oJ-9sk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYZ-Sc-a96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="-1160"/>
+            <point key="canvasLocation" x="1553" y="-1096"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -233,7 +239,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szI-lO-IfS">
                                             <rect key="frame" x="11" y="28" width="169" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rag-tK-h47">
@@ -243,7 +249,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="2QS-fb-pEP" kind="push" id="X1P-pZ-44H"/>
+                                    <segue destination="Rew-Ut-LO7" kind="push" identifier="showQuest" id="nPk-Z0-zaq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -257,7 +263,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1g-qc-RNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072" y="-272"/>
+            <point key="canvasLocation" x="1108" y="-376"/>
         </scene>
         <!--Cinfo View Controller2-->
         <scene sceneID="zFS-9N-YXH">
@@ -288,4 +294,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="heo-Mh-z4C"/>
+    </inferredMetricsTieBreakers>
 </document>

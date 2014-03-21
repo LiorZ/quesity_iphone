@@ -22,7 +22,9 @@
 }
 
 - (void) changeWindowColor:(NSString *)color {
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:color]];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
+
+    //self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:color]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

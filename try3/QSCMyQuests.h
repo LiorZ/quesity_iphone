@@ -10,5 +10,5 @@
 #import "QSCQuest.h"
 
 @interface QSCMyQuests : UITableViewController
-
+//@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @end

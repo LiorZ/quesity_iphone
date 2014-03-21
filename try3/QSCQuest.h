@@ -13,6 +13,7 @@
 @property NSString *name;
 @property (nonatomic, copy) NSNumber *durationD;
 @property (nonatomic, copy) NSString *durationT;
+@property (nonatomic, copy) NSString *description;
 //@property int durationT;
 @property int rating;
 //@property NSString *title;

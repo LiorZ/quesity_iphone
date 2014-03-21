@@ -16,6 +16,7 @@
 @synthesize scrollView = _scrollView;
 @synthesize imageArray;
 @synthesize pageControl = _pageControl;
+@synthesize quest = _quest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
+    //DESCRIPTION:
+    self.textView.text = [NSString stringWithFormat:@"Description:\n %@", _quest.description];
+    self.textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+   
+    //IMAGES SCROLLVIEW
     //Put the names of our image files in our array.
     self.imageArray = [[NSMutableArray alloc] initWithObjects:@"pic0.jpg", @"pic1.jpg", nil];
     
@@ -49,6 +57,13 @@
     [self.scrollView setMinimumZoomScale:1.0];
 }
 
+- (void)viewDidUnload
+{
+    self.textView = nil;
+    [super viewDidUnload];
+}
+
+
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
@@ -63,5 +78,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

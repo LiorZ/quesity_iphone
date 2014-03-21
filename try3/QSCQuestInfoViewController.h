@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QSCQuest.h"
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property IBOutlet UIPageControl *pageControl;
-
+@property IBOutlet QSCQuest *quest;
+@property (nonatomic, retain) IBOutlet UITextView* textView;
 @end
