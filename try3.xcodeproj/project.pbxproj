@@ -21,6 +21,7 @@
 		786B35B418D4DAA1002DA234 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786B35B318D4DAA0002DA234 /* FacebookSDK.framework */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */; };
+		78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7624B18DDADD00098DDD8 /* QSCpage.m */; };
 		78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */; };
 		78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5918ADAB7B004E9156 /* 1Star.png */; };
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
@@ -94,6 +95,8 @@
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
 		7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCinfoViewController2.h; sourceTree = "<group>"; };
 		7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCinfoViewController2.m; sourceTree = "<group>"; };
+		78A7624A18DDADD00098DDD8 /* QSCpage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCpage.h; sourceTree = "<group>"; };
+		78A7624B18DDADD00098DDD8 /* QSCpage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCpage.m; sourceTree = "<group>"; };
 		78BEDC5518AD9FF2004E9156 /* QSCMyQuests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMyQuests.h; sourceTree = "<group>"; };
 		78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMyQuests.m; sourceTree = "<group>"; };
 		78BEDC5918ADAB7B004E9156 /* 1Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Star.png; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				786B35B118C11F29002DA234 /* QSCQuest.m */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
+				78A7624B18DDADD00098DDD8 /* QSCpage.m */,
 				7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */,
 				7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */,
 				78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */,
@@ -461,6 +466,7 @@
 				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
+				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */,

@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSArray *countryNames;
 //@property NSString *chosen;
+@property (weak, nonatomic) IBOutlet UIWebView *viewWeb;
 
 //- (void)reloadAllComponents;
 //- (void)reloadComponent:(NSInteger)component;

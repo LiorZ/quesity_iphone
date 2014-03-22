@@ -69,6 +69,7 @@
     NSArray* distsFromJson = [json valueForKey:@"distance"];
     NSArray* ratingsFromJson = [json valueForKey:@"rating"];
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
+    NSArray* idFromJson = [json valueForKey:@"_id"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -90,6 +91,9 @@
         
         quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
         quest.rating = round(0.5 * [ratingsFromJson[i] floatValue]);
+        
+        quest.questId = idFromJson[i];
+        
         [self.quests addObject:quest];
     }
 }

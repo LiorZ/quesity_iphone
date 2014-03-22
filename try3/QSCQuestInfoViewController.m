@@ -5,8 +5,11 @@
 //  Created by igor on 2/16/14.
 //  Copyright (c) 2014 igor. All rights reserved.
 //
+#define SITEURL @"http://quesity.herokuapp.com/quest/"
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
 #import "QSCQuestInfoViewController.h"
+#import "QSCpage.h"
 
 @interface QSCQuestInfoViewController ()
 
@@ -17,6 +20,8 @@
 @synthesize imageArray;
 @synthesize pageControl = _pageControl;
 @synthesize quest = _quest;
+@synthesize content;
+@synthesize is_first;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +32,47 @@
     return self;
 }
 
+
+- (void)getJson
+{
+    NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
+    
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: questURL];
+        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+    });
+    
+}
+
+- (void) parseJson2Quest:(NSArray *)json {
+    NSArray* contentFromJson = [json valueForKey:@"page_content"];
+    NSArray* isFirstFromJson = [json valueForKey:@"is_first"];
+    
+    self.content = [[NSArray alloc] init];
+    self.content = contentFromJson;
+
+    self.is_first = [[NSArray alloc] init];
+    self.is_first = isFirstFromJson;
+    
+}
+
+- (void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSArray* json = [NSJSONSerialization
+                     JSONObjectWithData:responseData
+                     options:kNilOptions
+                     error:&error];
+    
+    [self parseJson2Quest:json];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    [self getJson];
     
     //DESCRIPTION:
     self.textView.text = [NSString stringWithFormat:@"Description:\n %@", _quest.description];
@@ -77,6 +119,27 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)QSCpageDidSave:(QSCpage *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"goOnQuest"]) {
+        
+        UINavigationController *destViewController = segue.destinationViewController;
+        QSCpage *qscpage = [destViewController viewControllers][0];
+
+        qscpage.content = self.content;
+        qscpage.is_first = self.is_first;
+        qscpage.quest = self.quest;
+
+        qscpage.delegate = self;
+    }
 }
 
 

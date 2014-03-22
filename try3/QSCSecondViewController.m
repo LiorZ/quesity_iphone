@@ -21,6 +21,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _countryNames = @[@"Australia (AUD)", @"China (CNY)",
                       @"France (EUR)", @"Great Britain (GBP)", @"Japan (JPY)"];
+    
+    NSString *fullURL = @"http://quesity.herokuapp.com/home";
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [_viewWeb loadRequest:requestObj];
 }
 
 - (void)didReceiveMemoryWarning

@@ -111,16 +111,79 @@
                             <constraint firstAttribute="trailing" secondItem="mqI-6Q-hBz" secondAttribute="trailing" id="YVo-xD-edR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Mgy-uL-kNr"/>
+                    <navigationItem key="navigationItem" id="Mgy-uL-kNr">
+                        <barButtonItem key="rightBarButtonItem" title="Go on Quest!" id="StY-TM-aiC">
+                            <connections>
+                                <segue destination="dzC-aC-rCh" kind="modal" identifier="goOnQuest" modalTransitionStyle="crossDissolve" id="3XG-Pf-gsh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pageControl" destination="Qki-kn-qJE" id="4fY-MI-hv6"/>
                         <outlet property="scrollView" destination="mqI-6Q-hBz" id="dRu-VM-yaG"/>
                         <outlet property="textView" destination="IhN-0t-N7E" id="NDG-oJ-9sk"/>
+                        <outlet property="webStuff" destination="XCX-wn-S0n" id="FSD-Nd-FQp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYZ-Sc-a96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="-1096"/>
+            <point key="canvasLocation" x="1485" y="-1118"/>
+        </scene>
+        <!--Cpage - Quest-->
+        <scene sceneID="iec-Pr-ata">
+            <objects>
+                <viewController id="ejb-7o-8T1" customClass="QSCpage" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pIw-LZ-fPT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Og5-K7-6qw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zNW-Yj-X13">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCX-wn-S0n">
+                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XCX-wn-S0n" secondAttribute="bottom" id="37t-ha-vNr"/>
+                            <constraint firstAttribute="trailing" secondItem="XCX-wn-S0n" secondAttribute="trailing" id="CGU-ll-1QU"/>
+                            <constraint firstItem="XCX-wn-S0n" firstAttribute="top" secondItem="zNW-Yj-X13" secondAttribute="top" constant="63" id="eq9-hK-SHG"/>
+                            <constraint firstItem="XCX-wn-S0n" firstAttribute="leading" secondItem="zNW-Yj-X13" secondAttribute="leading" id="yBT-1L-9tR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quest" id="Ldm-fX-FLH">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="02a-gY-Pqs">
+                            <connections>
+                                <action selector="back:" destination="ejb-7o-8T1" id="YsJ-4i-dXt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webStuff2" destination="XCX-wn-S0n" id="RQD-Pu-eIM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="95o-nn-dea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2297" y="-1110"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dwL-K9-x1h">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="dzC-aC-rCh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sg8-EZ-BcZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ejb-7o-8T1" kind="relationship" relationship="rootViewController" id="KXQ-pB-zWX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5J0-qs-eck" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1863" y="-1110"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -157,21 +220,33 @@
                                     <outlet property="delegate" destination="QUy-BD-bpt" id="znc-SN-JKH"/>
                                 </connections>
                             </pickerView>
+                            <webView contentMode="center" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-pB-DZ4">
+                                <rect key="frame" x="0.0" y="20" width="320" height="502"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="29h-N2-YGT" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" constant="20" symbolic="YES" id="4te-rk-9Fp"/>
+                            <constraint firstItem="NFq-pB-DZ4" firstAttribute="trailing" secondItem="Fdk-LF-LfV" secondAttribute="trailing" id="6HJ-rd-dmX"/>
                             <constraint firstAttribute="trailing" secondItem="29h-N2-YGT" secondAttribute="trailing" constant="20" symbolic="YES" id="FIx-Zl-RBr"/>
                             <constraint firstItem="DcM-Fx-MKR" firstAttribute="top" secondItem="29h-N2-YGT" secondAttribute="bottom" constant="40" id="Gb1-a9-eY8"/>
                             <constraint firstAttribute="trailing" secondItem="DcM-Fx-MKR" secondAttribute="trailing" constant="20" symbolic="YES" id="XTh-ji-q0k"/>
+                            <constraint firstItem="NFq-pB-DZ4" firstAttribute="leading" secondItem="Fdk-LF-LfV" secondAttribute="leading" id="Zr1-t5-7eW"/>
                             <constraint firstItem="Fdk-LF-LfV" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" id="aMD-kS-Lwg"/>
+                            <constraint firstAttribute="bottom" secondItem="NFq-pB-DZ4" secondAttribute="bottom" constant="46" id="dTx-Sr-WQj"/>
                             <constraint firstItem="Fdk-LF-LfV" firstAttribute="centerX" secondItem="DcM-Fx-MKR" secondAttribute="centerX" id="gHA-fD-dbW"/>
                             <constraint firstItem="GLf-yP-IfD" firstAttribute="top" secondItem="Fdk-LF-LfV" secondAttribute="bottom" constant="51" id="isg-1m-Vqi"/>
                             <constraint firstItem="DcM-Fx-MKR" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" constant="20" symbolic="YES" id="l9f-S9-V20"/>
                             <constraint firstAttribute="centerY" secondItem="DcM-Fx-MKR" secondAttribute="centerY" id="lHZ-e8-ii2"/>
+                            <constraint firstItem="NFq-pB-DZ4" firstAttribute="top" secondItem="gMD-aP-Fq6" secondAttribute="top" constant="20" symbolic="YES" id="yny-ec-lq2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="Z7h-1E-pvt"/>
+                    <connections>
+                        <outlet property="viewWeb" destination="NFq-pB-DZ4" id="9pQ-q9-a17"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
@@ -282,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mch-Iv-zUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="-406"/>
+            <point key="canvasLocation" x="1503" y="145"/>
         </scene>
     </scenes>
     <resources>
