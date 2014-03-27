@@ -16,15 +16,6 @@
 
 @implementation QSCAllQuestsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)loadInitialData {
     QSCQuest *quest = [[QSCQuest alloc] init];
     quest.name = @"Tel Aviv Magic";
@@ -94,5 +85,31 @@
     return cell;
    
 }
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    NSLog(@"Going to details...");
+//    if ([segue.identifier isEqualToString:@"showQuest2"]) {
+//        ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mainStoryboard"];
+//        [self.navigationController pushViewController:vc animated:YES];
+//
+//        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        //ViewController *destViewController = segue.destinationViewController;
+//        //destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+//        //ViewController *itemDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+//        //[self.navigationController pushViewController:itemDetail animated:YES];
+//    }
+//}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"Going to details...");
+//    
+//    //ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mainStoryboard"];
+//    ViewController *vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+//
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//    
+//}
 
 @end

@@ -54,7 +54,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Rew-Ut-LO7" kind="push" id="heo-Mh-z4C"/>
+                                    <segue destination="B1H-Ue-GD9" kind="push" id="XVc-cg-k2K"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -90,14 +90,6 @@
                                     <outlet property="delegate" destination="Rew-Ut-LO7" id="Omq-4N-2O2"/>
                                 </connections>
                             </scrollView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhN-0t-N7E">
-                                <rect key="frame" x="20" y="297" width="290" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Qki-kn-qJE">
                                 <rect key="frame" x="141" y="265" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -121,7 +113,6 @@
                     <connections>
                         <outlet property="pageControl" destination="Qki-kn-qJE" id="4fY-MI-hv6"/>
                         <outlet property="scrollView" destination="mqI-6Q-hBz" id="dRu-VM-yaG"/>
-                        <outlet property="textView" destination="IhN-0t-N7E" id="NDG-oJ-9sk"/>
                         <outlet property="webStuff" destination="XCX-wn-S0n" id="FSD-Nd-FQp"/>
                     </connections>
                 </viewController>
@@ -252,6 +243,44 @@
             </objects>
             <point key="canvasLocation" x="936" y="414"/>
         </scene>
+        <!--Quest Info View Controller2-->
+        <scene sceneID="QhD-Q4-eU4">
+            <objects>
+                <viewController id="B1H-Ue-GD9" customClass="QSCQuestInfoViewController2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nUr-83-k4t"/>
+                        <viewControllerLayoutGuide type="bottom" id="jVQ-jw-BUI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bF-EK-ycb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="s2o-O1-zGM">
+                                <rect key="frame" x="0.0" y="265" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Description"/>
+                                    <segment title="Map"/>
+                                    <segment title="Reviews"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="s2o-O1-zGM" secondAttribute="trailing" id="TM8-EK-wAk"/>
+                            <constraint firstItem="s2o-O1-zGM" firstAttribute="top" secondItem="nUr-83-k4t" secondAttribute="bottom" constant="201" id="cmk-nR-XSY"/>
+                            <constraint firstItem="s2o-O1-zGM" firstAttribute="leading" secondItem="8bF-EK-ycb" secondAttribute="leading" id="hFB-vk-OVf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="szd-nl-eva"/>
+                    <connections>
+                        <outlet property="view" destination="8bF-EK-ycb" id="ZA0-hf-wha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6eo-23-ygn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1211" y="-1763"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
             <objects>
@@ -369,7 +398,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="heo-Mh-z4C"/>
-    </inferredMetricsTieBreakers>
 </document>
