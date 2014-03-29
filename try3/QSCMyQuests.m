@@ -276,15 +276,38 @@
 */
 
 
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    UIView *loadingVew = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 80, 80)];
+////    loadingVew.center = self.view.center;
+////    loadingVew.backgroundColor = [UIColor blackColor];
+////    [self.view addSubview:loadingVew];
+//    NSLog(@"adding view");
+//
+//    UIView *loadingVew = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 80, 80)];
+//    loadingVew.center = self.view.center;
+//    loadingVew.backgroundColor = [UIColor blackColor];
+//
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:1.0];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+//                           forView:loadingVew
+//                             cache:YES];
+//    
+//    [self.navigationController.view addSubview:loadingVew];
+//    [UIView commitAnimations];
+//}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showQuest"]) {
+        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;
         destViewController.quest = [self.quests objectAtIndex:indexPath.row];
-        
+
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = YES;
     }
 }
-
-
 
 @end

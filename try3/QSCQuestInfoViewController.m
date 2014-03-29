@@ -196,6 +196,8 @@
     NSString *stam = @"";
     list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
     [self.view addSubview:list];
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
 }
 
 
