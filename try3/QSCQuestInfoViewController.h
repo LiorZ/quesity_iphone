@@ -10,8 +10,13 @@
 #import "QSCQuest.h"
 #import "QSCpage.h"
 #import "HMSegmentedControl/HMSegmentedControl.h"
+#import <MapKit/MapKit.h>
+//#import <CoreLocation/CoreLocation.h>
 
-@interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate>
+@interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+    IBOutlet MKMapView *mapView;
+}
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
@@ -19,5 +24,8 @@
 @property IBOutlet QSCQuest *quest;
 @property (nonatomic, copy) NSArray *content;
 @property NSArray *is_first;
+
+@property (nonatomic,retain) IBOutlet MKMapView *mapView;
+
 
 @end

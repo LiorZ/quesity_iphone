@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Resources/QSCLocation.h"
 
 @interface QSCQuest : NSObject
 
@@ -15,11 +16,16 @@
 @property (nonatomic, copy) NSString *durationT;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *questId;
-//@property int durationT;
+
+//typedef struct {
+//    int *lng;
+//    int day;
+//    int year;
+//} Location;
+
+@property (nonatomic, retain) QSCLocation *startLoc;
+
 @property int rating;
-//@property NSString *title;
-//@property NSNumber *durationTime;
-//@property NSNumber *durationDistance;
 
 
 @end

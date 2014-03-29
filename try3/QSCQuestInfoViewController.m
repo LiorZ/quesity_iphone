@@ -11,10 +11,13 @@
 #import "QSCQuestInfoViewController.h"
 #import "QSCpage.h"
 #import "HMSegmentedControl/HMSegmentedControl.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl1;
+
 @end
 
 @implementation QSCQuestInfoViewController
@@ -24,6 +27,7 @@
 @synthesize quest = _quest;
 @synthesize content;
 @synthesize is_first;
+@synthesize mapView = _mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -86,6 +90,55 @@
     return ([NSLocale characterDirectionForLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]] == NSLocaleLanguageDirectionRightToLeft);
 }
 
+- (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    [mv setRegion:[mv regionThatFits:region] animated:YES];
+}
+
+
+- (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
+{
+    //MKAnnotationView *annotationView = [views objectAtIndex:0];
+    //id<MKAnnotation> mp = [annotationView annotation];
+    //[mv addAnnotation:startAnnotation];
+    [self zoomToFitMapAnnotations:mv];
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate] ,250,250);
+    //[mv setRegion:region animated:YES];
+}
+
+- (void)zoomToFitMapAnnotations:(MKMapView *)mv {
+    if ([mv.annotations count] == 0) return;
+    
+    CLLocationCoordinate2D topLeftCoord;
+    topLeftCoord.latitude = -90;
+    topLeftCoord.longitude = 180;
+    
+    CLLocationCoordinate2D bottomRightCoord;
+    bottomRightCoord.latitude = 90;
+    bottomRightCoord.longitude = -180;
+    
+    for(id<MKAnnotation> annotation in mv.annotations) {
+        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+    }
+    
+    MKCoordinateRegion region;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1;
+    
+    // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
+    
+    region = [mv regionThatFits:region];
+    [mv setRegion:region animated:YES];
+}
+
+
+
 
 - (void)viewDidLoad
 {
@@ -128,21 +181,45 @@
     [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, 200) animated:NO];
     [self.view addSubview:self.scrollView1];
     
-
+    //DESCRIPTION VIEW:
+    
     UITextView *textView1 = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
     textView1.text = [NSString stringWithFormat:@"\u202B%@", _quest.description]; //for right-to-left
     textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     textView1.scrollEnabled = true;
     textView1.textAlignment = NSTextAlignmentRight;
     
-    //[self setApperanceForLabel:label1];
-    //label1.text = @"Worldwide";
     [self.scrollView1 addSubview:textView1];
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(320, 0, 320, 210)];
-    [self setApperanceForLabel:label2];
-    label2.text = @"la la";
-    [self.scrollView1 addSubview:label2];
+    //MAP:
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, 210)];
+    self.mapView.delegate = self;
+
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDelegate:self];
+    
+    [locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.mapView setShowsUserLocation:YES];
+
+    double lat = [_quest.startLoc.lat doubleValue];
+    double lng = [_quest.startLoc.lng doubleValue];
+    //double rad = [_quest.startLoc.rad doubleValue];
+    
+    CLLocationCoordinate2D startPos = CLLocationCoordinate2DMake(lat, lng);
+    MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
+    startAnnotation.coordinate= startPos;
+    startAnnotation.title = [NSString stringWithFormat:@"%@",_quest.name];
+    startAnnotation.subtitle = [NSString stringWithFormat:@"%@",_quest.startLoc.street];
+    [self.mapView addAnnotation:startAnnotation];
+    
+    //MKUserLocation *userLocation = self.mapView.userLocation;
+    //NSLog(@"user loc:[%f,%f]",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+    //[self zoomToFitMapAnnotations:self.mapView];
+    
+    [self.scrollView1 addSubview:self.mapView];
+    
+    //REVIEWS:
     
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(640, 0, 320, 210)];
     [self setApperanceForLabel:label3];

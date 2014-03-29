@@ -70,6 +70,7 @@
     NSArray* ratingsFromJson = [json valueForKey:@"rating"];
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
     NSArray* idFromJson = [json valueForKey:@"_id"];
+    NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -93,6 +94,12 @@
         quest.rating = round(0.5 * [ratingsFromJson[i] floatValue]);
         
         quest.questId = idFromJson[i];
+        
+        quest.startLoc = [[QSCLocation alloc] init];
+        quest.startLoc.lat = [locationsFromJson[i] objectForKey:@"lat"];
+        quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
+        quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
+        quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
         
         [self.quests addObject:quest];
     }
