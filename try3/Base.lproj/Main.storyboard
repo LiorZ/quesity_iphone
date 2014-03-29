@@ -82,26 +82,7 @@
                     <view key="view" contentMode="scaleToFill" id="Dqc-fw-KpR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqI-6Q-hBz">
-                                <rect key="frame" x="0.0" y="63" width="320" height="214"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Rew-Ut-LO7" id="Omq-4N-2O2"/>
-                                </connections>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Qki-kn-qJE">
-                                <rect key="frame" x="141" y="265" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </pageControl>
-                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mqI-6Q-hBz" firstAttribute="top" secondItem="eMT-IS-mGP" secondAttribute="bottom" id="9X2-lU-fmV"/>
-                            <constraint firstItem="mqI-6Q-hBz" firstAttribute="leading" secondItem="Dqc-fw-KpR" secondAttribute="leading" id="OJp-9l-Jsp"/>
-                            <constraint firstItem="EsQ-Ca-kJI" firstAttribute="top" secondItem="mqI-6Q-hBz" secondAttribute="bottom" constant="241" id="V8k-4M-ZHj"/>
-                            <constraint firstAttribute="trailing" secondItem="mqI-6Q-hBz" secondAttribute="trailing" id="YVo-xD-edR"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mgy-uL-kNr">
                         <barButtonItem key="rightBarButtonItem" title="Go on Quest!" id="StY-TM-aiC">
@@ -111,8 +92,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="pageControl" destination="Qki-kn-qJE" id="4fY-MI-hv6"/>
-                        <outlet property="scrollView" destination="mqI-6Q-hBz" id="dRu-VM-yaG"/>
                         <outlet property="webStuff" destination="XCX-wn-S0n" id="FSD-Nd-FQp"/>
                     </connections>
                 </viewController>

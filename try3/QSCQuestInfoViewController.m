@@ -29,6 +29,7 @@
 @synthesize is_first;
 @synthesize mapView = _mapView;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -89,55 +90,6 @@
 - (BOOL)isRTL {
     return ([NSLocale characterDirectionForLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]] == NSLocaleLanguageDirectionRightToLeft);
 }
-
-- (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    [mv setRegion:[mv regionThatFits:region] animated:YES];
-}
-
-
-- (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
-{
-    //MKAnnotationView *annotationView = [views objectAtIndex:0];
-    //id<MKAnnotation> mp = [annotationView annotation];
-    //[mv addAnnotation:startAnnotation];
-    [self zoomToFitMapAnnotations:mv];
-    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate] ,250,250);
-    //[mv setRegion:region animated:YES];
-}
-
-- (void)zoomToFitMapAnnotations:(MKMapView *)mv {
-    if ([mv.annotations count] == 0) return;
-    
-    CLLocationCoordinate2D topLeftCoord;
-    topLeftCoord.latitude = -90;
-    topLeftCoord.longitude = 180;
-    
-    CLLocationCoordinate2D bottomRightCoord;
-    bottomRightCoord.latitude = 90;
-    bottomRightCoord.longitude = -180;
-    
-    for(id<MKAnnotation> annotation in mv.annotations) {
-        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
-        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
-        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
-        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
-    }
-    
-    MKCoordinateRegion region;
-    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
-    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1;
-    
-    // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
-    
-    region = [mv regionThatFits:region];
-    [mv setRegion:region animated:YES];
-}
-
-
 
 
 - (void)viewDidLoad
@@ -233,22 +185,32 @@
     //IMAGES SCROLLVIEW
     //Put the names of our image files in our array.
     self.imageArray = [[NSMutableArray alloc] initWithObjects:@"pic0.jpg", @"pic1.jpg", nil];
-    
+    picsList = [[NSMutableArray alloc] init];
     for (int i = 0; i < [self.imageArray count]; i++) {
-        //We'll create an imageView object in every 'page' of our scrollView.
-        CGRect frame;
-        frame.origin.x = self.scrollView.frame.size.width * i;
-        frame.origin.y = self.scrollView.frame.origin.y;
-        frame.size = self.scrollView.frame.size;
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:[self.imageArray objectAtIndex:i]];
-        [self.scrollView addSubview:imageView];
+        ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:[UIImage imageNamed:[self.imageArray objectAtIndex:i]] text:@""];
+        [picsList addObject:item];
     }
-    //Set the content size of our scrollview according to the total width of our imageView objects.
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.imageArray count], self.scrollView.frame.size.height);
+    
+    POHorizontalList *list;
+    NSString *stam = @"";
+    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
+    [self.view addSubview:list];
 
-    [self.scrollView setMinimumZoomScale:1.0];
+//    for (int i = 0; i < [self.imageArray count]; i++) {
+//        //We'll create an imageView object in every 'page' of our scrollView.
+//        CGRect frame;
+//        frame.origin.x = self.scrollView.frame.size.width * i;
+//        frame.origin.y = self.scrollView.frame.origin.y;
+//        frame.size = self.scrollView.frame.size;
+//        
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+//        imageView.image = [UIImage imageNamed:[self.imageArray objectAtIndex:i]];
+//        [self.scrollView addSubview:imageView];
+//    }
+//    //Set the content size of our scrollview according to the total width of our imageView objects.
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.imageArray count], self.scrollView.frame.size.height);
+//
+//    [self.scrollView setMinimumZoomScale:1.0];
 }
 
 - (void)setApperanceForLabel:(UILabel *)label {
@@ -312,5 +274,48 @@
     }
 }
 
+
+#pragma mark - map view delegate
+- (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    [mv setRegion:[mv regionThatFits:region] animated:YES];
+}
+
+
+- (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
+{
+    [self zoomToFitMapAnnotations:mv];
+}
+
+- (void)zoomToFitMapAnnotations:(MKMapView *)mv {
+    if ([mv.annotations count] == 0) return;
+    
+    CLLocationCoordinate2D topLeftCoord;
+    topLeftCoord.latitude = -90;
+    topLeftCoord.longitude = 180;
+    
+    CLLocationCoordinate2D bottomRightCoord;
+    bottomRightCoord.latitude = 90;
+    bottomRightCoord.longitude = -180;
+    
+    for(id<MKAnnotation> annotation in mv.annotations) {
+        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+    }
+    
+    MKCoordinateRegion region;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1;
+    
+    // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
+    
+    region = [mv regionThatFits:region];
+    [mv setRegion:region animated:YES];
+}
 
 @end

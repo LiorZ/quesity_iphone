@@ -12,10 +12,13 @@
 #import "HMSegmentedControl/HMSegmentedControl.h"
 #import <MapKit/MapKit.h>
 //#import <CoreLocation/CoreLocation.h>
+#import "POHorizontalList.h"
+
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
     CLLocationManager *locationManager;
     IBOutlet MKMapView *mapView;
+    NSMutableArray *picsList;
 }
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
