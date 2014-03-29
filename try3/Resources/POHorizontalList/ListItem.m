@@ -39,6 +39,7 @@
         
         //[title setFrame:textRect];
         [imageView setFrame:imageRect];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         //[self addSubview:title];
         [self addSubview:imageView];

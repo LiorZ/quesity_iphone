@@ -17,7 +17,9 @@
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl1;
-
+@property NSMutableArray *imgs;
+@property UIActivityIndicatorView *indicator;
+@property QSCQuest *questToShow;
 @end
 
 @implementation QSCQuestInfoViewController
@@ -28,16 +30,6 @@
 @synthesize content;
 @synthesize is_first;
 @synthesize mapView = _mapView;
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 
 - (void)getJson
@@ -82,10 +74,6 @@
 	NSLog(@"yo yo");
 }
 
--(void)loadSegmentedControl
-{
-    
-}
 
 - (BOOL)isRTL {
     return ([NSLocale characterDirectionForLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]] == NSLocaleLanguageDirectionRightToLeft);
@@ -180,37 +168,53 @@
     
     [self.segmentedControl1 setSelectedSegmentIndex:0 animated:YES];
     
-    //DESCRIPTION:
-   
-    //IMAGES SCROLLVIEW
-    //Put the names of our image files in our array.
-    self.imageArray = [[NSMutableArray alloc] initWithObjects:@"pic0.jpg", @"pic1.jpg", nil];
+    //IMAGES LOADING PROGRESS:
+    //draw progrees:
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _indicator.frame = CGRectMake(0.0, 0.0, 80, 80);;
+    _indicator.center = self.view.center;
+    [self.view addSubview:_indicator];
+    NSLog(@"ishidden: %d",_indicator.isHidden);
+    [_indicator startAnimating];
+    NSLog(@"started (%d)",_indicator.isHidden);
+    
+    //[self loadASyncImages];
+    
     picsList = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [self.imageArray count]; i++) {
-        ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:[UIImage imageNamed:[self.imageArray objectAtIndex:i]] text:@""];
+    for (int i = 0; i < [_quest.imagesLinks count]; i++) {
+//        UIImage *img = _imgs[i];//[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+        UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+
+        ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
         [picsList addObject:item];
     }
-    
+    NSLog(@"ishidden: %d",_indicator.isHidden);
+    [_indicator stopAnimating];
+    NSLog(@"stopped (%d)",_indicator.isHidden);
+
     POHorizontalList *list;
     NSString *stam = @"";
     list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
     [self.view addSubview:list];
+}
 
-//    for (int i = 0; i < [self.imageArray count]; i++) {
-//        //We'll create an imageView object in every 'page' of our scrollView.
-//        CGRect frame;
-//        frame.origin.x = self.scrollView.frame.size.width * i;
-//        frame.origin.y = self.scrollView.frame.origin.y;
-//        frame.size = self.scrollView.frame.size;
-//        
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-//        imageView.image = [UIImage imageNamed:[self.imageArray objectAtIndex:i]];
-//        [self.scrollView addSubview:imageView];
-//    }
-//    //Set the content size of our scrollview according to the total width of our imageView objects.
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.imageArray count], self.scrollView.frame.size.height);
-//
-//    [self.scrollView setMinimumZoomScale:1.0];
+
+- (void)setImg:(NSData *)data {
+    UIImage *img = [UIImage imageWithData:data];
+    [_imgs addObject:img];
+    
+    //if (_imgs.count==_quest.imagesLinks.count)
+    //    [_indicator stopAnimating];
+}
+
+
+- (void)loadASyncImages
+{
+    for (int i = 0; i < [self.questToShow.imagesLinks count]; i++) {
+        // Retrieve the remote image
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.questToShow.imagesLinks[i]]];
+        [self performSelectorOnMainThread:@selector(setImg:) withObject:data waitUntilDone:YES];
+    }
 }
 
 - (void)setApperanceForLabel:(UILabel *)label {

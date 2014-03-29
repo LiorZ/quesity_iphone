@@ -71,6 +71,7 @@
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
     NSArray* idFromJson = [json valueForKey:@"_id"];
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
+    NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -100,6 +101,10 @@
         quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
         quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
         quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
+        
+        quest.imagesLinks = [[NSArray alloc] init];
+        quest.imagesLinks  = imagesLinksFromJson[i];
+        //NSLog(@"some imgs:%d",quest.imagesLinks.count);
         
         [self.quests addObject:quest];
     }
@@ -269,11 +274,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showQuest"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;
         destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+        
     }
 }
 

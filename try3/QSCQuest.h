@@ -24,6 +24,7 @@
 //} Location;
 
 @property (nonatomic, retain) QSCLocation *startLoc;
+@property (nonatomic,copy) NSArray *imagesLinks;
 
 @property int rating;
 
