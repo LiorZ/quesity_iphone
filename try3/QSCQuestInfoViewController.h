@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "QSCQuest.h"
 #import "QSCpage.h"
-#import "HMSegmentedControl2/HMSegmentedControl.h"
 #import <MapKit/MapKit.h>
+#import "HMSegmentedControl2/HMSegmentedControl.h"
 //#import <CoreLocation/CoreLocation.h>
 #import "POHorizontalList.h"
 

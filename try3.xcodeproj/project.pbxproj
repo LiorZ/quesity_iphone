@@ -17,9 +17,11 @@
 		782CE70118AF8D3F00D1A2FB /* gradient7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F718AF8D3F00D1A2FB /* gradient7@2x.png */; };
 		782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F818AF8D3F00D1A2FB /* gradient8@2x.png */; };
 		782CE70318AF8D3F00D1A2FB /* gradient9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */; };
+		7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835423318E887E500EF6659 /* MBProgressHUD.m */; };
 		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */; };
+		788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 788B1B8318E77A86007F2789 /* HMSegmentedControl.m */; };
 		78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7624B18DDADD00098DDD8 /* QSCpage.m */; };
 		78A7625718E4CACE0098DDD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7625618E4CACE0098DDD8 /* QuartzCore.framework */; };
 		78A7626018E6E5A00098DDD8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7625F18E6E5A00098DDD8 /* MapKit.framework */; };
@@ -27,7 +29,6 @@
 		78A7626518E6F9160098DDD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7626418E6F9160098DDD8 /* CoreLocation.framework */; };
 		78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626818E7177A0098DDD8 /* ListItem.m */; };
 		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
-		78A7627118E771C60098DDD8 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7627018E771C60098DDD8 /* HMSegmentedControl.m */; };
 		78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */; };
 		78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5918ADAB7B004E9156 /* 1Star.png */; };
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
@@ -95,11 +96,15 @@
 		782CE6F718AF8D3F00D1A2FB /* gradient7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient7@2x.png"; sourceTree = "<group>"; };
 		782CE6F818AF8D3F00D1A2FB /* gradient8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient8@2x.png"; sourceTree = "<group>"; };
 		782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient9@2x.png"; sourceTree = "<group>"; };
+		7835423218E887E500EF6659 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		7835423318E887E500EF6659 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
 		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
 		7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCinfoViewController2.h; sourceTree = "<group>"; };
 		7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCinfoViewController2.m; sourceTree = "<group>"; };
+		788B1B8218E77A86007F2789 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		788B1B8318E77A86007F2789 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		78A7624A18DDADD00098DDD8 /* QSCpage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCpage.h; sourceTree = "<group>"; };
 		78A7624B18DDADD00098DDD8 /* QSCpage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCpage.m; sourceTree = "<group>"; };
 		78A7625618E4CACE0098DDD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -112,8 +117,6 @@
 		78A7626918E7177A0098DDD8 /* POHorizontalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalList.h; sourceTree = "<group>"; };
 		78A7626A18E7177A0098DDD8 /* POHorizontalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POHorizontalList.m; sourceTree = "<group>"; };
 		78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalListDelegate.h; sourceTree = "<group>"; };
-		78A7626F18E771C60098DDD8 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
-		78A7627018E771C60098DDD8 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		78BEDC5518AD9FF2004E9156 /* QSCMyQuests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMyQuests.h; sourceTree = "<group>"; };
 		78BEDC5618AD9FF2004E9156 /* QSCMyQuests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMyQuests.m; sourceTree = "<group>"; };
 		78BEDC5918ADAB7B004E9156 /* 1Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Star.png; sourceTree = "<group>"; };
@@ -199,11 +202,11 @@
 		782CE6EE18AF8D3F00D1A2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7835423118E887E500EF6659 /* MBProgressHUD */,
 				78A7626618E7177A0098DDD8 /* POHorizontalList */,
 				782CE6EF18AF8D3F00D1A2FB /* Gradients */,
 				78A7626118E6EAC20098DDD8 /* QSCLocation.h */,
 				78A7626218E6EAC20098DDD8 /* QSCLocation.m */,
-				78A7626E18E771C60098DDD8 /* HMSegmentedControl2 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -225,6 +228,25 @@
 			path = Gradients;
 			sourceTree = "<group>";
 		};
+		7835423118E887E500EF6659 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				7835423218E887E500EF6659 /* MBProgressHUD.h */,
+				7835423318E887E500EF6659 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		788B1B8118E77A86007F2789 /* HMSegmentedControl4 */ = {
+			isa = PBXGroup;
+			children = (
+				788B1B8218E77A86007F2789 /* HMSegmentedControl.h */,
+				788B1B8318E77A86007F2789 /* HMSegmentedControl.m */,
+			);
+			name = HMSegmentedControl4;
+			path = Resources/HMSegmentedControl3;
+			sourceTree = "<group>";
+		};
 		78A7626618E7177A0098DDD8 /* POHorizontalList */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,15 +257,6 @@
 				78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */,
 			);
 			path = POHorizontalList;
-			sourceTree = "<group>";
-		};
-		78A7626E18E771C60098DDD8 /* HMSegmentedControl2 */ = {
-			isa = PBXGroup;
-			children = (
-				78A7626F18E771C60098DDD8 /* HMSegmentedControl.h */,
-				78A7627018E771C60098DDD8 /* HMSegmentedControl.m */,
-			);
-			path = HMSegmentedControl2;
 			sourceTree = "<group>";
 		};
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
@@ -320,6 +333,7 @@
 			children = (
 				782CE6EE18AF8D3F00D1A2FB /* Resources */,
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
+				788B1B8118E77A86007F2789 /* HMSegmentedControl4 */,
 				786B35B018C11F29002DA234 /* QSCQuest.h */,
 				786B35B118C11F29002DA234 /* QSCQuest.m */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
@@ -511,10 +525,11 @@
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
-				78A7627118E771C60098DDD8 /* HMSegmentedControl.m in Sources */,
+				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
 				78A7626318E6EAC20098DDD8 /* QSCLocation.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
+				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,

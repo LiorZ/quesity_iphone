@@ -13,6 +13,7 @@
 #import "HMSegmentedControl2/HMSegmentedControl.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "MBProgressHUD.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
@@ -169,55 +170,41 @@
     [self.segmentedControl1 setSelectedSegmentIndex:0 animated:YES];
     
     //IMAGES LOADING PROGRESS:
+    
+    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
+
     //draw progrees:
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _indicator.frame = CGRectMake(0.0, 0.0, 80, 80);;
-    _indicator.center = self.view.center;
-    [self.view addSubview:_indicator];
-    NSLog(@"ishidden: %d",_indicator.isHidden);
-    [_indicator startAnimating];
-    NSLog(@"started (%d)",_indicator.isHidden);
-    
-    //[self loadASyncImages];
-    
-    picsList = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [_quest.imagesLinks count]; i++) {
-//        UIImage *img = _imgs[i];//[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
-        UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
-
-        ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
-        [picsList addObject:item];
-    }
-    NSLog(@"ishidden: %d",_indicator.isHidden);
-    [_indicator stopAnimating];
-    NSLog(@"stopped (%d)",_indicator.isHidden);
-
-    POHorizontalList *list;
-    NSString *stam = @"";
-    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
-    [self.view addSubview:list];
     UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = NO;
-}
+    app.networkActivityIndicatorVisible = YES;
 
-
-- (void)setImg:(NSData *)data {
-    UIImage *img = [UIImage imageWithData:data];
-    [_imgs addObject:img];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //hud.mode = MBProgressHUDModeDeterminate;
+    hud.labelText = @"Loading...";
     
-    //if (_imgs.count==_quest.imagesLinks.count)
-    //    [_indicator stopAnimating];
+    //load images async:
+    picsList = [[NSMutableArray alloc] init];
+    NSString *stam = @"";
+    
+    dispatch_async(imageLoadingQueue, ^{
+        for (int i = 0; i < [_quest.imagesLinks count]; i++) {
+            UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
+                [picsList addObject:item];
+                //hud.progress = picsList.count*1.0/_quest.imagesLinks.count;
+                if (picsList.count==_quest.imagesLinks.count) {
+                    POHorizontalList *list;
+                    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
+                    [self.view addSubview:list];
+
+                    app.networkActivityIndicatorVisible = NO;
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }
+            });
+        }
+    });
 }
 
-
-- (void)loadASyncImages
-{
-    for (int i = 0; i < [self.questToShow.imagesLinks count]; i++) {
-        // Retrieve the remote image
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.questToShow.imagesLinks[i]]];
-        [self performSelectorOnMainThread:@selector(setImg:) withObject:data waitUntilDone:YES];
-    }
-}
 
 - (void)setApperanceForLabel:(UILabel *)label {
     CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
