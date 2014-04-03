@@ -51,6 +51,10 @@
     return [self.is_first indexOfObjectIdenticalTo:@(YES)];
 }
 
+- (NSUInteger) findID: (NSString *)pageId {
+    return [self.pagesId indexOfObject:pageId];
+}
+
 
 - (void)viewDidLoad
 {
@@ -65,14 +69,23 @@
     [self createWebViewWithHTML];
     
     [super viewDidLoad];
-    
+}
+
+
+- (NSString *) parseJsonOfLinks:(NSArray *)links {
+    return [links valueForKey:@"links_to_page"];
 }
 
 - (IBAction)didPressButton2:(id)sender {
-    NSLog(@"yo1! %d",self.linksToOthers.count);
     NSArray *links = self.linksToOthers[self.currPage];
     NSLog(@"yo2! %d",links.count);
     NSLog(@"yo3! %@",links[0]);
+    for (int i=0; i<links.count; i++) {
+        NSUInteger nextPage = [self findID:[self parseJsonOfLinks:links[i]]];
+        NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:links[i]], nextPage);
+        self.currPage = nextPage;
+    }
+    [self createWebViewWithHTML];
 }
 
 

@@ -74,6 +74,7 @@
     NSArray* contentFromJson = [json valueForKey:@"page_content"];
     NSArray* isFirstFromJson = [json valueForKey:@"is_first"];
     NSArray* linksToOthersFromJson = [json valueForKey:@"links"];
+    NSArray* pagesIdFromJson = [json valueForKey:@"_id"];
     
     
     self.content = [[NSArray alloc] init];
@@ -84,6 +85,10 @@
     
     self.linksToOthers = [[NSArray alloc] init];
     self.linksToOthers = linksToOthersFromJson;
+    
+    self.pagesId = [[NSArray alloc] init];
+    self.pagesId = pagesIdFromJson;
+    
     
 }
 
@@ -293,6 +298,8 @@
         qscpage.content = self.content;
         qscpage.is_first = self.is_first;
         qscpage.linksToOthers = self.linksToOthers;
+        qscpage.pagesId = self.pagesId;
+        
         qscpage.quest = self.quest;
 
         qscpage.delegate = self;

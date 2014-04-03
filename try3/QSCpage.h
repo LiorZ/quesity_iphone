@@ -19,6 +19,7 @@
 @property IBOutlet NSArray *content;
 @property IBOutlet NSArray *is_first;
 @property IBOutlet NSArray *linksToOthers;
+@property IBOutlet NSArray *pagesId;
 @property NSUInteger currPage;
 @property (weak, nonatomic) IBOutlet UIButton *didPressButton2;
 
