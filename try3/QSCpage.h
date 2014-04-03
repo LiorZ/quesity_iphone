@@ -18,7 +18,9 @@
 @property IBOutlet QSCQuest *quest;
 @property IBOutlet NSArray *content;
 @property IBOutlet NSArray *is_first;
+@property IBOutlet NSArray *linksToOthers;
 @property NSUInteger currPage;
+@property (weak, nonatomic) IBOutlet UIButton *didPressButton2;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
 
@@ -26,5 +28,6 @@
 @property (nonatomic, weak) id <QSCpageDelegate> delegate;
 - (IBAction)back:(id)sender;
 
+@property UIWebView *webStuff3;
 
 @end

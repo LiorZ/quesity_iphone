@@ -12,6 +12,7 @@
 
 @implementation QSCpage
 @synthesize webStuff2;
+@synthesize webStuff3=_webStuff3;
 @synthesize quest = _quest;
 @synthesize content = _content;
 @synthesize is_first = _is_first;
@@ -19,7 +20,8 @@
 
 - (void) createWebViewWithHTML{
     //create the string
-    NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];
+    NSMutableString *html = [NSMutableString stringWithString: @"<html>"];
+//    NSMutableString *html = [NSMutableString stringWithString: @"<html><body style=\"background:transparent;\">"];
     
     //continue building the string
     if (self.content == Nil)
@@ -27,7 +29,9 @@
     else
         [html appendString:self.content[self.currPage]];
 
-    [html appendString:@"</body></html>"];
+    [html appendString:@"</html>"];
+    
+    NSLog(@"%@",html);
     
     //instantiate the web view
     //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
@@ -50,7 +54,6 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.title = _quest.name;
     //NSString *fullURL = @"http://quesity.herokuapp.com/home";
     //NSURL *url = [NSURL URLWithString:fullURL];
 //    NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
@@ -64,6 +67,14 @@
     [super viewDidLoad];
     
 }
+
+- (IBAction)didPressButton2:(id)sender {
+    NSLog(@"yo1! %d",self.linksToOthers.count);
+    NSArray *links = self.linksToOthers[self.currPage];
+    NSLog(@"yo2! %d",links.count);
+    NSLog(@"yo3! %@",links[0]);
+}
+
 
 - (IBAction)back:(id)sender
 {

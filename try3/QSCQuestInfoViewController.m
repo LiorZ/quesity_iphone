@@ -73,12 +73,17 @@
 - (void) parseJson2Quest:(NSArray *)json {
     NSArray* contentFromJson = [json valueForKey:@"page_content"];
     NSArray* isFirstFromJson = [json valueForKey:@"is_first"];
+    NSArray* linksToOthersFromJson = [json valueForKey:@"links"];
+    
     
     self.content = [[NSArray alloc] init];
     self.content = contentFromJson;
 
     self.is_first = [[NSArray alloc] init];
     self.is_first = isFirstFromJson;
+    
+    self.linksToOthers = [[NSArray alloc] init];
+    self.linksToOthers = linksToOthersFromJson;
     
 }
 
@@ -287,6 +292,7 @@
 
         qscpage.content = self.content;
         qscpage.is_first = self.is_first;
+        qscpage.linksToOthers = self.linksToOthers;
         qscpage.quest = self.quest;
 
         qscpage.delegate = self;

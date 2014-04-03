@@ -26,6 +26,7 @@
 @property IBOutlet UIPageControl *pageControl;
 @property IBOutlet QSCQuest *quest;
 @property (nonatomic, copy) NSArray *content;
+@property (nonatomic, copy) NSArray *linksToOthers;
 @property NSArray *is_first;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
