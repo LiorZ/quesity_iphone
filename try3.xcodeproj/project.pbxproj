@@ -18,6 +18,8 @@
 		782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F818AF8D3F00D1A2FB /* gradient8@2x.png */; };
 		782CE70318AF8D3F00D1A2FB /* gradient9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */; };
 		7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835423318E887E500EF6659 /* MBProgressHUD.m */; };
+		7835423618EDF3EE00EF6659 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7835423518EDF3EE00EF6659 /* Security.framework */; };
+		7835423918EDF47A00EF6659 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */; };
 		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877676718B2ACEC00B2AA28 /* QSCinfoViewController2.m */; };
@@ -98,6 +100,9 @@
 		782CE6F918AF8D3F00D1A2FB /* gradient9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient9@2x.png"; sourceTree = "<group>"; };
 		7835423218E887E500EF6659 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		7835423318E887E500EF6659 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		7835423518EDF3EE00EF6659 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7835423718EDF47A00EF6659 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
 		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7835423618EDF3EE00EF6659 /* Security.framework in Frameworks */,
 				78A7626518E6F9160098DDD8 /* CoreLocation.framework in Frameworks */,
 				78A7626018E6E5A00098DDD8 /* MapKit.framework in Frameworks */,
 				78A7625718E4CACE0098DDD8 /* QuartzCore.framework in Frameworks */,
@@ -317,6 +323,7 @@
 		78F0E84318AD79290034E3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7835423518EDF3EE00EF6659 /* Security.framework */,
 				78A7626418E6F9160098DDD8 /* CoreLocation.framework */,
 				78A7625F18E6E5A00098DDD8 /* MapKit.framework */,
 				78A7625618E4CACE0098DDD8 /* QuartzCore.framework */,
@@ -332,10 +339,12 @@
 			isa = PBXGroup;
 			children = (
 				782CE6EE18AF8D3F00D1A2FB /* Resources */,
-				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				788B1B8118E77A86007F2789 /* HMSegmentedControl4 */,
+				7835423718EDF47A00EF6659 /* KeychainItemWrapper.h */,
+				7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */,
 				786B35B018C11F29002DA234 /* QSCQuest.h */,
 				786B35B118C11F29002DA234 /* QSCQuest.m */,
+				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
@@ -534,6 +543,7 @@
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */,
+				7835423918EDF47A00EF6659 /* KeychainItemWrapper.m in Sources */,
 				7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */,
 				78F0E87E18AD81B60034E3A4 /* QSCAllQuestsViewController.m in Sources */,
 				78F0E85118AD79290034E3A4 /* main.m in Sources */,

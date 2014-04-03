@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Security;
 
 @interface QSCSecondViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSArray *countryNames;
 //@property NSString *chosen;
 @property (weak, nonatomic) IBOutlet UIWebView *viewWeb;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet UITextView *textToDisp;
+
 
 //- (void)reloadAllComponents;
 //- (void)reloadComponent:(NSInteger)component;

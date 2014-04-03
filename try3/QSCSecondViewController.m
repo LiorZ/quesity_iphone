@@ -8,6 +8,7 @@
 
 #import "QSCSecondViewController.h"
 #import "QSCMyQuests.h"
+#import "KeychainItemWrapper.h"
 
 @interface QSCSecondViewController ()
 
@@ -54,6 +55,65 @@ numberOfRowsInComponent:(NSInteger)component
             forComponent:(NSInteger)component
 {
     return _countryNames[row];
+}
+
+
+- (IBAction)didPOST:(id)sender {
+    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         @"tubis@nana.co.il", @"email",
+                         @"rocket", @"password",
+                         nil];
+    
+//    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"YourAppLogin" accessGroup:nil];
+//
+//    //setting user and password in keychain
+//    [keychainItem setObject:@"rocket" forKey:(__bridge id)(kSecValueData)];
+//    [keychainItem setObject:@"tubis@nana.co.il" forKey:(__bridge id)(kSecAttrAccount)];
+    
+    //retrieving from keyChain
+//    NSString *password = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
+//    NSString *username = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
+    //delete keyChainItem:
+    //[keychainItem resetKeychainItem];
+
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    NSError *error1;
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error1];
+    NSString *fullURL = @"http://quesity.herokuapp.com/login/local";
+    
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postdata];
+
+    NSHTTPURLResponse* response;
+    NSError* error = nil;
+
+    NSData* responseData = nil;
+    responseData = [NSMutableData data];
+    responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    int code = [response statusCode];
+    NSDictionary *fields = [response allHeaderFields];
+    
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+    self.textToDisp.text = responseString;
+    
+    NSHTTPCookie *cookie1;
+    NSHTTPCookieStorage *storage1 = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    NSLog(@"num of cookies: %d", storage1.cookies.count);
+//    NSString *cToSend = @"";
+    for (cookie1 in [storage1 cookies]) {
+//        NSLog(@"domain: %@",[cookie1 domain]);
+//        NSLog(@"stuff: %@",cookie1.value);
+//        //        if [cookie1 domain]==@"quesity.herokuapp.com"
+//        cToSend = cookie1.value;
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
+    }
+
 }
 
 #pragma mark -
