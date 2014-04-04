@@ -103,6 +103,7 @@
 		7835423518EDF3EE00EF6659 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7835423718EDF47A00EF6659 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		7835423A18EE383C00EF6659 /* myUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myUtilities.h; sourceTree = "<group>"; };
 		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
 		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 			children = (
 				782CE6EE18AF8D3F00D1A2FB /* Resources */,
 				788B1B8118E77A86007F2789 /* HMSegmentedControl4 */,
+				7835423A18EE383C00EF6659 /* myUtilities.h */,
 				7835423718EDF47A00EF6659 /* KeychainItemWrapper.h */,
 				7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */,
 				786B35B018C11F29002DA234 /* QSCQuest.h */,

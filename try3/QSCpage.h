@@ -21,6 +21,9 @@
 @property IBOutlet NSArray *linksToOthers;
 @property IBOutlet NSArray *pagesId;
 @property NSUInteger currPage;
+@property NSString *currType; //regular, answer
+@property NSString *currCorrectAnswer; 
+
 @property (weak, nonatomic) IBOutlet UIButton *didPressButton2;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
@@ -29,6 +32,6 @@
 @property (nonatomic, weak) id <QSCpageDelegate> delegate;
 - (IBAction)back:(id)sender;
 
-@property UIWebView *webStuff3;
+@property NSString *ans;
 
 @end

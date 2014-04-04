@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @import Security;
 
-@interface QSCSecondViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface QSCSecondViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *countryNames;
 //@property NSString *chosen;

@@ -19,9 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    _countryNames = @[@"Australia (AUD)", @"China (CNY)",
-                      @"France (EUR)", @"Great Britain (GBP)", @"Japan (JPY)"];
     
     NSString *fullURL = @"http://quesity.herokuapp.com/home";
     NSURL *url = [NSURL URLWithString:fullURL];
@@ -33,28 +30,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark PickerView DataSource
-
-- (NSInteger)numberOfComponentsInPickerView:
-(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView
-numberOfRowsInComponent:(NSInteger)component
-{
-    return _countryNames.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-    return _countryNames[row];
 }
 
 

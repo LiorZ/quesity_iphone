@@ -10,5 +10,7 @@
 #import "QSCQuest.h"
 
 @interface QSCMyQuests : UITableViewController
+- (NSString *) parseString2Hebrew:(NSString *)str2parse;
+
 //@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @end

@@ -9,10 +9,10 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
 #import "QSCpage.h"
+#import "myUtilities.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
-@synthesize webStuff3=_webStuff3;
 @synthesize quest = _quest;
 @synthesize content = _content;
 @synthesize is_first = _is_first;
@@ -66,6 +66,8 @@
 //    [webStuff2 loadRequest:requestObj];
 
     self.currPage = [self findFirst];
+    self.currType = @"regular";
+    
     [self createWebViewWithHTML];
     
     [super viewDidLoad];
@@ -76,16 +78,67 @@
     return [links valueForKey:@"links_to_page"];
 }
 
+- (NSString *) getTypeFromLink:(NSArray *)link {
+    return [link valueForKey:@"type"];
+}
+
+- (NSString *) getAnswerFromLink:(NSArray *)link {
+    return [link valueForKey:@"answer_txt"];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *ans1 = [[alertView textFieldAtIndex:0] text];
+    NSLog(@"Entered: %@",ans1);
+    if ([self.currCorrectAnswer isEqualToString:ans1]) {
+        NSLog(@"Correct");
+
+        NSArray *links = self.linksToOthers[self.currPage];
+        NSLog(@"yo! %@",links[0]);
+        NSUInteger nextPage = [self findID:[self parseJsonOfLinks:links[0]]];
+        NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:links[0]], nextPage);
+        self.currPage = nextPage;
+        
+        [self createWebViewWithHTML];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
+                                                        message:@"That's not the correct answer."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (IBAction)didPressButton2:(id)sender {
     NSArray *links = self.linksToOthers[self.currPage];
-    NSLog(@"yo2! %d",links.count);
-    NSLog(@"yo3! %@",links[0]);
+    NSLog(@"there are %d links from here",links.count);
     for (int i=0; i<links.count; i++) {
-        NSUInteger nextPage = [self findID:[self parseJsonOfLinks:links[i]]];
-        NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:links[i]], nextPage);
-        self.currPage = nextPage;
+        self.currType = [self getTypeFromLink:links[i]];
+        NSLog(@"type (next page): %@",self.currType);
+        if ([self.currType isEqualToString:@"answer"]) {
+            self.currCorrectAnswer = [self getAnswerFromLink:links[i]];
+            NSLog(@"(Correct Answer is:%@)",self.currCorrectAnswer);
+            //myUtilities *obj = [[myUtilities  alloc]init];
+            //self.currCorrectAnswer = [obj parseString2Hebrew:self.currCorrectAnswer];
+        }
     }
-    [self createWebViewWithHTML];
+    
+    if ([self.currType isEqualToString:@"answer"]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter the answer:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField * alertTextField = [alert textFieldAtIndex:0];
+        alertTextField.placeholder = @"answer";
+        [alert show];
+    } else {
+        NSArray *links = self.linksToOthers[self.currPage];
+        NSLog(@"yo! %@",links[0]);
+        NSUInteger nextPage = [self findID:[self parseJsonOfLinks:links[0]]];
+        NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:links[0]], nextPage);
+        self.currPage = nextPage;
+        
+        [self createWebViewWithHTML];
+    }
 }
 
 
