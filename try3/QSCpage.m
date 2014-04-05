@@ -31,7 +31,7 @@
 
     [html appendString:@"</html>"];
     
-    NSLog(@"%@",html);
+    //NSLog(@"%@",html);
     
     //instantiate the web view
     //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
@@ -65,6 +65,8 @@
 //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:questURL];
 //    [webStuff2 loadRequest:requestObj];
 
+    self.navigationItem.title = _quest.name;
+    
     self.currPage = [self findFirst];
     self.currType = @"regular";
     
@@ -115,7 +117,7 @@
     NSLog(@"there are %d links from here",links.count);
     for (int i=0; i<links.count; i++) {
         self.currType = [self getTypeFromLink:links[i]];
-        NSLog(@"type (next page): %@",self.currType);
+        NSLog(@"type (curr. page): %@",self.currType);
         if ([self.currType isEqualToString:@"answer"]) {
             self.currCorrectAnswer = [self getAnswerFromLink:links[i]];
             NSLog(@"(Correct Answer is:%@)",self.currCorrectAnswer);

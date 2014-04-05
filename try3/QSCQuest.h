@@ -26,7 +26,7 @@
 @property (nonatomic, retain) QSCLocation *startLoc;
 @property (nonatomic,copy) NSArray *imagesLinks;
 
-@property int rating;
+@property float rating;
 
 
 @end

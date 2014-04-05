@@ -10,6 +10,7 @@
 
 #import "QSCMyQuests.h"
 #import "QSCQuestInfoViewController.h"
+#import "TPFloatRatingView.h"
 
 @interface QSCMyQuests ()
 @property NSMutableArray *quests;
@@ -92,7 +93,7 @@
         int seconds = round([timesFromJson[i] intValue] % 60);
         
         quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-        quest.rating = round(0.5 * [ratingsFromJson[i] floatValue]);
+        quest.rating = [ratingsFromJson[i] floatValue];
         
         quest.questId = idFromJson[i];
         
@@ -202,8 +203,26 @@
     //quest.durationT = timesFromJson[i];
     gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
     
-    UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
-    ratingImageView.image = [self imageForRating:quest.rating];
+    //rating stuff:
+    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(210.0, 20.0, 80.0, 40.0)];
+    NSLog(@"x,y,w,h: %f %f %f %f",cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    //rv.delegate = self;
+//    rv.emptySelectedImage = [UIImage imageNamed:@"StarEmpty"];
+//    rv.fullSelectedImage = [UIImage imageNamed:@"StarFull"];
+    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+    rv.contentMode = UIViewContentModeScaleAspectFill;
+    rv.maxRating = 5;
+    rv.minRating = 1;
+    rv.rating = quest.rating;
+    rv.editable = NO;
+    rv.halfRatings = NO;
+    rv.floatRatings = YES;
+    
+    [cell addSubview:rv];
+        
+    //UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
+    //ratingImageView.image = [self imageForRating:quest.rating];
 
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
     

@@ -21,6 +21,7 @@
 @property NSMutableArray *imgs;
 @property UIActivityIndicatorView *indicator;
 @property QSCQuest *questToShow;
+@property BOOL gotJsonSuccefully;
 @end
 
 @implementation QSCQuestInfoViewController
@@ -35,20 +36,20 @@
 
 - (void)getJson
 {
-   
+//    NSString *cToSend;
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSLog(@"num of cookies: %d", cookieJar.cookies.count);
     for (cookie in [cookieJar cookies]) {
         NSLog(@"%@", cookie);
         NSLog(@"spesifically, the value is: %@",cookie.value);
+//        cToSend = cookie.value;
     }
     
     NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
-//    
-//    
+    
 //    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:questURL];
-//    [request addValue:cToSend forHTTPHeaderField:@"Set-Cookie"];
+//    [request addValue:cToSend forHTTPHeaderField:@"Cookie"];
 //    
 //    NSHTTPURLResponse* response;
 //    NSError* error = nil;
@@ -56,12 +57,12 @@
 //    NSData* responseData = nil;
 //    responseData = [NSMutableData data];
 //    responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//
 //    int code = [response statusCode];
 //    NSLog(@"response code: %d", code);
 //
 //    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 //    NSLog(@"Response: %@", responseString);
-//    NSLog(@"response code: %d", code);
 
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:questURL];
@@ -89,7 +90,7 @@
     self.pagesId = [[NSArray alloc] init];
     self.pagesId = pagesIdFromJson;
     
-    
+    self.gotJsonSuccefully = YES;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -100,6 +101,7 @@
                      options:kNilOptions
                      error:&error];
     
+    //if (error==nil)
     [self parseJson2Quest:json];
 }
 
@@ -121,8 +123,9 @@
 {
     [super viewDidLoad];
     
+    self.gotJsonSuccefully = NO;
     [self getJson];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     //SEGMENTED SELECTOR:
@@ -292,6 +295,10 @@
 {
     if ([segue.identifier isEqualToString:@"goOnQuest"]) {
         
+        //if (!self.gotJsonSuccefully)
+            //[self getJson];
+            //TODO: load json syncroneously (WITH block)
+
         UINavigationController *destViewController = segue.destinationViewController;
         QSCpage *qscpage = [destViewController viewControllers][0];
 
