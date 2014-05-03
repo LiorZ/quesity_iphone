@@ -28,6 +28,7 @@
 @property (nonatomic, copy) NSArray *content;
 @property (nonatomic, copy) NSArray *linksToOthers;
 @property (nonatomic, copy) NSArray *pagesId;
+@property (nonatomic, copy) NSArray *pagesQType;
 @property NSArray *is_first;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
