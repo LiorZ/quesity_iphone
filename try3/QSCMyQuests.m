@@ -205,10 +205,6 @@
     
     //rating stuff:
     TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(210.0, 20.0, 80.0, 40.0)];
-    NSLog(@"x,y,w,h: %f %f %f %f",cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-    //rv.delegate = self;
-//    rv.emptySelectedImage = [UIImage imageNamed:@"StarEmpty"];
-//    rv.fullSelectedImage = [UIImage imageNamed:@"StarFull"];
     rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
     rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
     rv.contentMode = UIViewContentModeScaleAspectFill;

@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "78F0E84018AD79290034E3A4"
                BuildableName = "try3.app"
-               BlueprintName = "try3"
-               ReferencedContainer = "container:try3.xcodeproj">
+               BlueprintName = "Quesity"
+               ReferencedContainer = "container:Quesity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "78F0E86418AD792A0034E3A4"
                BuildableName = "try3Tests.xctest"
-               BlueprintName = "try3Tests"
-               ReferencedContainer = "container:try3.xcodeproj">
+               BlueprintName = "QuesityTests"
+               ReferencedContainer = "container:Quesity.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
             BuildableName = "try3.app"
-            BlueprintName = "try3"
-            ReferencedContainer = "container:try3.xcodeproj">
+            BlueprintName = "Quesity"
+            ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
             BuildableName = "try3.app"
-            BlueprintName = "try3"
-            ReferencedContainer = "container:try3.xcodeproj">
+            BlueprintName = "Quesity"
+            ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
             BuildableName = "try3.app"
-            BlueprintName = "try3"
-            ReferencedContainer = "container:try3.xcodeproj">
+            BlueprintName = "Quesity"
+            ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

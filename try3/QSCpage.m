@@ -10,6 +10,9 @@
 
 #import "QSCpage.h"
 #import "myUtilities.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "QSCLocation.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -72,6 +75,11 @@
     
     [self createWebViewWithHTML];
     
+    locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;\
+    
     [super viewDidLoad];
 }
 
@@ -88,6 +96,23 @@
     return [link valueForKey:@"answer_txt"];
 }
 
+- (QSCLocation *) getLocFromLink:(NSArray *)link {
+    QSCLocation *loc = [[QSCLocation alloc] init];
+    loc.lat = [link valueForKey:@"lat"];
+    loc.lng = [link valueForKey:@"lng"];
+    loc.rad = [link valueForKey:@"radius"];
+    loc.street = [link valueForKey:@"txt_street"];
+    return loc;
+}
+
+
+- (void) goToNextPage {
+    NSUInteger nextPage = [self findID:[self parseJsonOfLinks:self.linkBeingProcessed]];
+    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
+    self.currPage = nextPage;
+    
+    [self createWebViewWithHTML];
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSString *ans1 = [[alertView textFieldAtIndex:0] text];
@@ -126,23 +151,70 @@
         }
     }
     
+    self.linkBeingProcessed = links[0];
+    NSLog(@"yo! %@",links[0]);
+    
     if ([self.currType isEqualToString:@"answer"]) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter the answer:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         alert.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField * alertTextField = [alert textFieldAtIndex:0];
         alertTextField.placeholder = @"answer";
         [alert show];
-    } else {
-        NSArray *links = self.linksToOthers[self.currPage];
-        NSLog(@"yo! %@",links[0]);
-        NSUInteger nextPage = [self findID:[self parseJsonOfLinks:links[0]]];
-        NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:links[0]], nextPage);
-        self.currPage = nextPage;
+    } else if ([self.currType isEqualToString:@"location"]) {
+        self.locCorrect = [self getLocFromLink:links[0]];
+        //Lunz: 32.069888, 34.779802
         
-        [self createWebViewWithHTML];
+        [locationManager startUpdatingLocation];
+        [self->locationManager startUpdatingLocation];
+
+        CLLocation *location = [locationManager location];
+        CLLocationCoordinate2D coordinate = [location coordinate];
+        NSString *latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
+        NSString *longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
+        NSLog(@"lat :%@, long:%@", latitude, longitude);
+        
+            
+    } else {
+        [self goToNextPage];
     }
 }
 
+#pragma mark CLLocationManager Delegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    currentLocation = [locations lastObject];
+    [locationManager stopUpdatingLocation];
+    
+    [self->locationManager stopUpdatingLocation];
+    
+    NSLog(@"Detected Location : %f, %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+
+    //comparing location:
+    double latCorrect = [self.locCorrect.lat doubleValue];
+    double lngCorrect = [self.locCorrect.lng doubleValue];
+    double radCorrect = [self.locCorrect.rad doubleValue];
+    CLLocation *locA = [[CLLocation alloc] initWithLatitude:latCorrect longitude:lngCorrect];
+    CLLocation *locB = [[CLLocation alloc] initWithLatitude:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude];
+    CLLocationDistance distance = [locA distanceFromLocation:locB];
+    NSLog(@"distance: %.2f [m]", distance);
+    
+    if (distance>radCorrect) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
+                                                        message:@"You're not in the correct location."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        [self goToNextPage];
+    }
+
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    currentLocation = newLocation;
+}
 
 - (IBAction)back:(id)sender
 {

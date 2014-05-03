@@ -116,14 +116,14 @@
 		78BEDC5C18ADAB7B004E9156 /* 1StarSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1StarSmall@2x.png"; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
-		78F0E84118AD79290034E3A4 /* try3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = try3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0E84418AD79290034E3A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F0E84618AD79290034E3A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		78F0E84818AD79290034E3A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		78F0E84C18AD79290034E3A4 /* try3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "try3-Info.plist"; sourceTree = "<group>"; };
+		78F0E84C18AD79290034E3A4 /* Quesity-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Quesity-Info.plist"; sourceTree = "<group>"; };
 		78F0E84E18AD79290034E3A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78F0E85018AD79290034E3A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		78F0E85218AD79290034E3A4 /* try3-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "try3-Prefix.pch"; sourceTree = "<group>"; };
+		78F0E85218AD79290034E3A4 /* Quesity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quesity-Prefix.pch"; sourceTree = "<group>"; };
 		78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCAppDelegate.h; sourceTree = "<group>"; };
 		78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCAppDelegate.m; sourceTree = "<group>"; };
 		78F0E85718AD79290034E3A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		78F0E85C18AD79290034E3A4 /* QSCSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCSecondViewController.h; sourceTree = "<group>"; };
 		78F0E85D18AD79290034E3A4 /* QSCSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCSecondViewController.m; sourceTree = "<group>"; };
 		78F0E85F18AD792A0034E3A4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		78F0E86518AD792A0034E3A4 /* try3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = try3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F0E86518AD792A0034E3A4 /* QuesityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuesityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0E86618AD792A0034E3A4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		78F0E86E18AD792A0034E3A4 /* try3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "try3Tests-Info.plist"; sourceTree = "<group>"; };
 		78F0E87018AD792A0034E3A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 		78F0E84218AD79290034E3A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78F0E84118AD79290034E3A4 /* try3.app */,
-				78F0E86518AD792A0034E3A4 /* try3Tests.xctest */,
+				78F0E84118AD79290034E3A4 /* Quesity.app */,
+				78F0E86518AD792A0034E3A4 /* QuesityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,10 +317,10 @@
 		78F0E84B18AD79290034E3A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				78F0E84C18AD79290034E3A4 /* try3-Info.plist */,
+				78F0E84C18AD79290034E3A4 /* Quesity-Info.plist */,
 				78F0E84D18AD79290034E3A4 /* InfoPlist.strings */,
 				78F0E85018AD79290034E3A4 /* main.m */,
-				78F0E85218AD79290034E3A4 /* try3-Prefix.pch */,
+				78F0E85218AD79290034E3A4 /* Quesity-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -346,9 +346,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		78F0E84018AD79290034E3A4 /* try3 */ = {
+		78F0E84018AD79290034E3A4 /* Quesity */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78F0E87618AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "try3" */;
+			buildConfigurationList = 78F0E87618AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "Quesity" */;
 			buildPhases = (
 				78F0E83D18AD79290034E3A4 /* Sources */,
 				78F0E83E18AD79290034E3A4 /* Frameworks */,
@@ -358,14 +358,14 @@
 			);
 			dependencies = (
 			);
-			name = try3;
+			name = Quesity;
 			productName = try3;
-			productReference = 78F0E84118AD79290034E3A4 /* try3.app */;
+			productReference = 78F0E84118AD79290034E3A4 /* Quesity.app */;
 			productType = "com.apple.product-type.application";
 		};
-		78F0E86418AD792A0034E3A4 /* try3Tests */ = {
+		78F0E86418AD792A0034E3A4 /* QuesityTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78F0E87918AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "try3Tests" */;
+			buildConfigurationList = 78F0E87918AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "QuesityTests" */;
 			buildPhases = (
 				78F0E86118AD792A0034E3A4 /* Sources */,
 				78F0E86218AD792A0034E3A4 /* Frameworks */,
@@ -376,9 +376,9 @@
 			dependencies = (
 				78F0E86B18AD792A0034E3A4 /* PBXTargetDependency */,
 			);
-			name = try3Tests;
+			name = QuesityTests;
 			productName = try3Tests;
-			productReference = 78F0E86518AD792A0034E3A4 /* try3Tests.xctest */;
+			productReference = 78F0E86518AD792A0034E3A4 /* QuesityTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -396,7 +396,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 78F0E83C18AD79290034E3A4 /* Build configuration list for PBXProject "try3" */;
+			buildConfigurationList = 78F0E83C18AD79290034E3A4 /* Build configuration list for PBXProject "Quesity" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -409,8 +409,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78F0E84018AD79290034E3A4 /* try3 */,
-				78F0E86418AD792A0034E3A4 /* try3Tests */,
+				78F0E84018AD79290034E3A4 /* Quesity */,
+				78F0E86418AD792A0034E3A4 /* QuesityTests */,
 			);
 		};
 /* End PBXProject section */
@@ -491,7 +491,7 @@
 /* Begin PBXTargetDependency section */
 		78F0E86B18AD792A0034E3A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 78F0E84018AD79290034E3A4 /* try3 */;
+			target = 78F0E84018AD79290034E3A4 /* Quesity */;
 			targetProxy = 78F0E86A18AD792A0034E3A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -607,10 +607,10 @@
 					"/Users/igor/Box\\ Sync/try1/try3",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "try3/try3-Prefix.pch";
-				INFOPLIST_FILE = "try3/try3-Info.plist";
+				GCC_PREFIX_HEADER = "try3/Quesity-Prefix.pch";
+				INFOPLIST_FILE = "try3/Quesity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Quesity;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -627,10 +627,10 @@
 					"/Users/igor/Box\\ Sync/try1/try3",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "try3/try3-Prefix.pch";
-				INFOPLIST_FILE = "try3/try3-Info.plist";
+				GCC_PREFIX_HEADER = "try3/Quesity-Prefix.pch";
+				INFOPLIST_FILE = "try3/Quesity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Quesity;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -653,7 +653,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "try3Tests/try3Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuesityTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -672,7 +672,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "try3/try3-Prefix.pch";
 				INFOPLIST_FILE = "try3Tests/try3Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuesityTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -681,7 +681,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		78F0E83C18AD79290034E3A4 /* Build configuration list for PBXProject "try3" */ = {
+		78F0E83C18AD79290034E3A4 /* Build configuration list for PBXProject "Quesity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78F0E87418AD792A0034E3A4 /* Debug */,
@@ -690,7 +690,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78F0E87618AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "try3" */ = {
+		78F0E87618AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "Quesity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78F0E87718AD792A0034E3A4 /* Debug */,
@@ -699,7 +699,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78F0E87918AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "try3Tests" */ = {
+		78F0E87918AD792A0034E3A4 /* Build configuration list for PBXNativeTarget "QuesityTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78F0E87A18AD792A0034E3A4 /* Debug */,
