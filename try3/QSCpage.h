@@ -38,17 +38,17 @@ typedef NS_ENUM(NSInteger, pageType) {
 
 @property NSUInteger currPage;
 @property pageType currQType; //location, open_question, question (multiple choice), static
-//@property NSString *currAType; //regular, answer, location, answer_txt
 @property NSArray *currCorrectAnswers;
-//@property QSCLocation *locCorrect;
 @property NSMutableArray *locsCorrect;
 @property NSArray *linkBeingProcessed;
 @property BOOL displayedNotCorrectMessages;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *didPressButton2;
 
+@property (weak, nonatomic) IBOutlet UIButton *didPressButtonMore;
+
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
+
 
 //sague back buisness
 @property (nonatomic, weak) id <QSCpageDelegate> delegate;

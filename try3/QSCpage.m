@@ -72,6 +72,7 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     //NSString *fullURL = @"http://quesity.herokuapp.com/home";
@@ -82,8 +83,34 @@
 //    [webStuff2 loadRequest:requestObj];
 
     self.navigationItem.title = _quest.name;
-    
+
     self.currPage = [self findFirst];
+
+    ////// maybe there is a saved state:
+    //path of quest state:
+    NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+    
+    //loading quest state:
+    NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
+    NSLog(@"loaded dict: %@",stateDict);
+    
+    //check whether exists
+    if (stateDict!=nil) {
+        //NSArray* hintsUsedJson = [stateJson valueForKey:@"hintsUsed"];
+        NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
+        
+        if (![self.pagesId[self.currPage] isEqualToString:continueOnPage]) {
+            self.currPage = [self findID:continueOnPage];
+            NSLog(@"what to do? resume. restart possible from more option or get from github a blocking alert view");
+        }
+    } else {
+        if (self.pagesId!=nil) {
+            NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsUsed" : [NSNumber numberWithInt:3]};
+            //saving stuff:
+            [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+        }
+    }
+
     
     NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
     self.currQType = [self string2PageType:currQTypeString];
@@ -151,38 +178,49 @@
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString *ans1 = [[alertView textFieldAtIndex:0] text];
-    NSLog(@"Entered: %@",ans1);
-    
-    NSInteger ans = -1;
-    for (int i=0; i<self.currCorrectAnswers.count; i++) {
-        NSString *possibleAnswer = [self.currCorrectAnswers objectAtIndex:i];
-        if ([possibleAnswer isEqualToString:ans1]) {
-            ans = i;
-        }
-    }
-    
-    if (ans>-1) {
-        NSArray *links = self.linksToOthers[self.currPage];
-        self.linkBeingProcessed = links[ans];
+
+    if (alertView.tag == 0) {
+        NSString *ans1 = [[alertView textFieldAtIndex:0] text];
+        NSLog(@"Entered: %@",ans1);
         
-        [self goToNextPage];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
-                                                        message:@"That's not a correct answer."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        NSInteger ans = -1;
+        for (int i=0; i<self.currCorrectAnswers.count; i++) {
+            NSString *possibleAnswer = [self.currCorrectAnswers objectAtIndex:i];
+            if ([possibleAnswer isEqualToString:ans1]) {
+                ans = i;
+            }
+        }
+        
+        if (ans>-1) {
+            NSArray *links = self.linksToOthers[self.currPage];
+            self.linkBeingProcessed = links[ans];
+            
+            [self goToNextPage];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
+                                                            message:@"That's not a correct answer."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else if (alertView.tag == 1) {
+
     }
 }
 
 - (void) askOpenQuestionAndCheckAnswer {
     //ask question (and check):
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter the answer:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!"
+                                                     message:@"Please enter the answer:"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Continue"
+                                           otherButtonTitles:nil];
+
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField * alertTextField = [alert textFieldAtIndex:0];
     alertTextField.placeholder = @"answer";
+    alert.tag = 0;
     [alert show];
 }
 
@@ -202,13 +240,25 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex>0) {
-        NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex-1]);
-        NSArray *links = self.linksToOthers[self.currPage];
-        self.linkBeingProcessed = links[buttonIndex-1];
-        [self goToNextPage];
-    }
+    if (popup.tag==1) {
+        if (buttonIndex>0) {
+            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex-1]);
+            NSArray *links = self.linksToOthers[self.currPage];
+            self.linkBeingProcessed = links[buttonIndex-1];
+            [self goToNextPage];
+        }
+    } else if (popup.tag==2) {
+        if (buttonIndex==0) {
+            NSLog(@"Restart quest!");
 
+            self.currPage = [self findFirst];
+
+            NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
+            self.currQType = [self string2PageType:currQTypeString];
+            
+            [self createWebViewWithHTML];
+        }
+    }
 }
 
 
@@ -327,8 +377,30 @@
 
 - (IBAction)back:(id)sender
 {
+    //saving quest state:
+    if (self.pagesId!=nil) {
+        //path of quest state:
+        NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+
+
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsUsed" : [NSNumber numberWithInt:3]};
+        [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+    }
+
     [self.delegate QSCpageDidSave:self];
 }
 
+- (IBAction)didPressButtonMore:(id)sender {
+
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: nil
+                                                       delegate: self
+                                              cancelButtonTitle: @"Cancel"
+                                         destructiveButtonTitle: nil
+                                              otherButtonTitles: @"Restart Quest", nil];
+    
+    //[popup addButtonWithTitle:@"Restart quest"];
+    popup.tag = 2;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+}
 
 @end

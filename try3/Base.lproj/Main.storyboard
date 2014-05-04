@@ -129,9 +129,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-GU-I2V">
                                 <rect key="frame" x="20" y="526" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button?">
+                                <state key="normal" title="More">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPressButtonMore:" destination="95o-nn-dea" eventType="touchUpInside" id="Fvk-5k-Tpu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqV-3l-zlT">
                                 <rect key="frame" x="227" y="526" width="73" height="30"/>
@@ -158,6 +161,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="didPressButton2" destination="Jc7-L8-igg" id="2Rc-FT-D6K"/>
+                        <outlet property="didPressButtonMore" destination="9JQ-GU-I2V" id="NYR-7i-rZp"/>
                         <outlet property="webStuff2" destination="XCX-wn-S0n" id="RQD-Pu-eIM"/>
                     </connections>
                 </viewController>
