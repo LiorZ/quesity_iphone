@@ -71,7 +71,31 @@
     return -1;
 }
 
+- (void) updateHintButtonStatus {
+    NSLog(@"hints num: %d",[self.pagesHints[self.currPage] count]);
+    if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1)
+        [self.hintButton setEnabled:FALSE];
+    else
+        [self.hintButton setEnabled:TRUE];
+}
 
+- (void) saveDefaultDict: (NSString *)questStatePath {
+    //only if logged in, got pagesId
+    if (self.pagesId!= nil && _quest!=nil) {
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : _quest.allowedHints};
+        //saving stuff:
+        [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+    }
+}
+
+- (void) saveDict: (NSString *)questStatePath {
+    //only if logged in, got pagesId
+    if (self.pagesId!= nil && _quest!=nil) {
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : [NSNumber numberWithInt:self.currHintsAvailable]};
+        //saving stuff:
+        [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -96,8 +120,17 @@
     
     //check whether exists
     if (stateDict!=nil) {
-        //NSArray* hintsUsedJson = [stateJson valueForKey:@"hintsUsed"];
         NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
+        NSString *hintsLeft = [stateDict objectForKey:@"hintsLeft"];
+
+        //check that the questState is "takin"
+        if (continueOnPage==nil || hintsLeft==nil) {
+            [self saveDefaultDict:questStatePath];
+            //reload:
+            stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
+        }
+        
+        self.currHintsAvailable = [[stateDict objectForKey:@"hintsLeft"] integerValue];
         
         if (![self.pagesId[self.currPage] isEqualToString:continueOnPage]) {
             self.currPage = [self findID:continueOnPage];
@@ -105,22 +138,23 @@
         }
     } else {
         if (self.pagesId!=nil) {
-            NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsUsed" : [NSNumber numberWithInt:3]};
-            //saving stuff:
-            [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+            [self saveDefaultDict:questStatePath];
         }
     }
 
-    
+    //pageType:
     NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
     self.currQType = [self string2PageType:currQTypeString];
        
     [self createWebViewWithHTML];
     
+    //if there's no hint on the page, or no hints left, it should be disabled.
+    [self updateHintButtonStatus];
+    
     locationManager = [[CLLocationManager alloc]init];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;\
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     [super viewDidLoad];
 }
@@ -173,6 +207,7 @@
     NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
     
     [self createWebViewWithHTML];
+    [self updateHintButtonStatus];
 }
 
 
@@ -252,11 +287,13 @@
             NSLog(@"Restart quest!");
 
             self.currPage = [self findFirst];
+            self.currHintsAvailable = [_quest.allowedHints integerValue];
 
             NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
             self.currQType = [self string2PageType:currQTypeString];
             
             [self createWebViewWithHTML];
+            [self updateHintButtonStatus];
         }
     }
 }
@@ -382,9 +419,7 @@
         //path of quest state:
         NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
 
-
-        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsUsed" : [NSNumber numberWithInt:3]};
-        [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+        [self saveDict:questStatePath];
     }
 
     [self.delegate QSCpageDidSave:self];
@@ -401,6 +436,25 @@
     //[popup addButtonWithTitle:@"Restart quest"];
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (IBAction)didPressButtonHint:(id)sender {
+    NSLog(@"here is a hint.");
+    NSLog(@"%@",self.pagesHints[self.currPage]);
+    NSArray *hintsForThisPage = self.pagesHints[self.currPage];
+
+    NSArray *hintsTitles = [hintsForThisPage valueForKey:@"hint_title"];
+    NSArray *hintsContents = [hintsForThisPage valueForKey:@"hint_txt"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:hintsTitles[0]
+                                                    message:hintsContents[0]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+    self.currHintsAvailable = self.currHintsAvailable - 1;
+    [self updateHintButtonStatus];
 }
 
 @end

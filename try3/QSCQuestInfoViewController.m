@@ -75,6 +75,7 @@
     NSArray* contentFromJson = [json valueForKey:@"page_content"];
     NSArray* isFirstFromJson = [json valueForKey:@"is_first"];
     NSArray* linksToOthersFromJson = [json valueForKey:@"links"];
+    NSArray* pagesHintsFromJson = [json valueForKey:@"hints"];
     NSArray* pagesIdFromJson = [json valueForKey:@"_id"];
     NSArray* pagesQTypeFromJson = [json valueForKey:@"page_type"];
     
@@ -87,6 +88,9 @@
     self.linksToOthers = [[NSArray alloc] init];
     self.linksToOthers = linksToOthersFromJson;
     
+    self.pagesHints = [[NSArray alloc] init];
+    self.pagesHints = pagesHintsFromJson;
+    
     self.pagesId = [[NSArray alloc] init];
     self.pagesId = pagesIdFromJson;
 
@@ -97,15 +101,17 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    //parse out the json data
-    NSError* error;
-    NSArray* json = [NSJSONSerialization
-                     JSONObjectWithData:responseData
-                     options:kNilOptions
-                     error:&error];
-    
-    //if (error==nil)
-    [self parseJson2Quest:json];
+    if (responseData!=nil) {
+        //parse out the json data
+        NSError* error;
+        NSArray* json = [NSJSONSerialization
+                         JSONObjectWithData:responseData
+                         options:kNilOptions
+                         error:&error];
+        
+        //if (error==nil)
+        [self parseJson2Quest:json];
+    }
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
@@ -171,6 +177,7 @@
     textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     textView1.scrollEnabled = true;
     textView1.textAlignment = NSTextAlignmentRight;
+    textView1.editable = FALSE;
     
     [self.scrollView1 addSubview:textView1];
     
@@ -308,6 +315,7 @@
         qscpage.content = self.content;
         qscpage.is_first = self.is_first;
         qscpage.linksToOthers = self.linksToOthers;
+        qscpage.pagesHints = self.pagesHints;
         qscpage.pagesId = self.pagesId;
         
         qscpage.quest = self.quest;

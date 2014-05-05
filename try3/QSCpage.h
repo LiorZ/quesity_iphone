@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBOutlet NSArray *content;
 @property IBOutlet NSArray *is_first;
 @property IBOutlet NSArray *linksToOthers;
+@property IBOutlet NSArray *pagesHints;
 @property IBOutlet NSArray *pagesId;
 @property IBOutlet NSArray *pagesQType;
 
@@ -42,10 +43,10 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property NSMutableArray *locsCorrect;
 @property NSArray *linkBeingProcessed;
 @property BOOL displayedNotCorrectMessages;
+@property NSUInteger currHintsAvailable;
 
-@property (weak, nonatomic) IBOutlet UIButton *didPressButton2;
 
-@property (weak, nonatomic) IBOutlet UIButton *didPressButtonMore;
+@property (weak, nonatomic) IBOutlet UIButton *hintButton;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
 

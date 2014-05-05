@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString *durationT;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *questId;
-
+@property (nonatomic, copy) NSNumber *allowedHints;
 //typedef struct {
 //    int *lng;
 //    int day;

@@ -73,6 +73,7 @@
     NSArray* idFromJson = [json valueForKey:@"_id"];
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
+    NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -105,7 +106,8 @@
         
         quest.imagesLinks = [[NSArray alloc] init];
         quest.imagesLinks  = imagesLinksFromJson[i];
-        //NSLog(@"some imgs:%d",quest.imagesLinks.count);
+
+        quest.allowedHints = allowedHintsFromJson[i];
         
         [self.quests addObject:quest];
     }
