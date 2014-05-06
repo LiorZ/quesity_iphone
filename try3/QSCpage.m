@@ -72,7 +72,7 @@
 }
 
 - (void) updateHintButtonStatus {
-    NSLog(@"hints num: %d",[self.pagesHints[self.currPage] count]);
+    NSLog(@"hints num on page: %d (hints left: %d)",[self.pagesHints[self.currPage] count],self.currHintsAvailable);
     if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1)
         [self.hintButton setEnabled:FALSE];
     else
@@ -262,7 +262,7 @@
 - (void) chooseMultChoice {
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: @"Here are some options:"
                                                        delegate: self
-                                              cancelButtonTitle: @"Cancel"
+                                              cancelButtonTitle: nil
                                          destructiveButtonTitle: nil
                                               otherButtonTitles: nil];
     
@@ -270,16 +270,19 @@
         [popup addButtonWithTitle:title];
     }
     
+    [popup addButtonWithTitle:@"Cancel"];
+    popup.cancelButtonIndex = self.currCorrectAnswers.count;
+    
     popup.tag = 1;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
-        if (buttonIndex>0) {
-            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex-1]);
+        if (buttonIndex!=self.linksToOthers.count) {
+            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex]);
             NSArray *links = self.linksToOthers[self.currPage];
-            self.linkBeingProcessed = links[buttonIndex-1];
+            self.linkBeingProcessed = links[buttonIndex];
             [self goToNextPage];
         }
     } else if (popup.tag==2) {
@@ -288,13 +291,33 @@
 
             self.currPage = [self findFirst];
             self.currHintsAvailable = [_quest.allowedHints integerValue];
-
+            NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+            [self saveDict:questStatePath];
+            
             NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
             self.currQType = [self string2PageType:currQTypeString];
             
             [self createWebViewWithHTML];
             [self updateHintButtonStatus];
         }
+    } else if (popup.tag==3) {
+        NSArray *hintsForThisPage = self.pagesHints[self.currPage];
+        
+        NSArray *hintsTitles = [hintsForThisPage valueForKey:@"hint_title"];
+        NSArray *hintsContents = [hintsForThisPage valueForKey:@"hint_txt"];
+        
+        if (buttonIndex!=hintsTitles.count) { //not "Cancel"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:hintsTitles[buttonIndex]
+                                                            message:hintsContents[buttonIndex]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            
+            self.currHintsAvailable = self.currHintsAvailable - 1;
+            [self updateHintButtonStatus];
+        }
+
     }
 }
 
@@ -433,7 +456,6 @@
                                          destructiveButtonTitle: nil
                                               otherButtonTitles: @"Restart Quest", nil];
     
-    //[popup addButtonWithTitle:@"Restart quest"];
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -442,19 +464,24 @@
     NSLog(@"here is a hint.");
     NSLog(@"%@",self.pagesHints[self.currPage]);
     NSArray *hintsForThisPage = self.pagesHints[self.currPage];
-
     NSArray *hintsTitles = [hintsForThisPage valueForKey:@"hint_title"];
-    NSArray *hintsContents = [hintsForThisPage valueForKey:@"hint_txt"];
+
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: @"Choose a hint:"
+                                                       delegate: self
+                                              cancelButtonTitle: nil
+                                         destructiveButtonTitle: nil
+                                              otherButtonTitles: nil];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:hintsTitles[0]
-                                                    message:hintsContents[0]
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    for (NSString * title in hintsTitles) {
+        [popup addButtonWithTitle:title];
+    }
     
-    self.currHintsAvailable = self.currHintsAvailable - 1;
-    [self updateHintButtonStatus];
+    [popup addButtonWithTitle:@"Cancel"];
+    popup.cancelButtonIndex = [hintsTitles count];
+    
+    popup.tag = 3;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    
 }
 
 @end
