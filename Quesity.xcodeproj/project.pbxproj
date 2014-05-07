@@ -39,6 +39,8 @@
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
 		78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5B18ADAB7B004E9156 /* 1StarSmall.png */; };
 		78BEDC7418ADAB7B004E9156 /* 1StarSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5C18ADAB7B004E9156 /* 1StarSmall@2x.png */; };
+		78D4ADF4191AED1D00821E9A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4ADF3191AED1D00821E9A /* logo.png */; };
+		78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -114,6 +116,9 @@
 		78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1Star@2x.png"; sourceTree = "<group>"; };
 		78BEDC5B18ADAB7B004E9156 /* 1StarSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1StarSmall.png; sourceTree = "<group>"; };
 		78BEDC5C18ADAB7B004E9156 /* 1StarSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1StarSmall@2x.png"; sourceTree = "<group>"; };
+		78D4ADF3191AED1D00821E9A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCLoginViewController.h; sourceTree = "<group>"; };
+		78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCLoginViewController.m; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +237,7 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78D4ADF3191AED1D00821E9A /* logo.png */,
 				7835424218F015F000EF6659 /* star-empty.png */,
 				7835424318F015F000EF6659 /* star-full.png */,
 				786B35B518D780B9002DA234 /* bg.png */,
@@ -294,6 +300,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */,
+				78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
 				78A7624B18DDADD00098DDD8 /* QSCpage.m */,
 				7877676618B2ACEC00B2AA28 /* QSCinfoViewController2.h */,
@@ -431,6 +439,7 @@
 				78F0E84F18AD79290034E3A4 /* InfoPlist.strings in Resources */,
 				7835424518F015F000EF6659 /* star-full.png in Resources */,
 				78F0E85818AD79290034E3A4 /* Main.storyboard in Resources */,
+				78D4ADF4191AED1D00821E9A /* logo.png in Resources */,
 				782CE6FE18AF8D3F00D1A2FB /* gradient4@2x.png in Resources */,
 				78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */,
 				782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */,
@@ -468,6 +477,7 @@
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
+				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
 				78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */,

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "78F0E84018AD79290034E3A4"
-               BuildableName = "try3.app"
+               BuildableName = "Quesity.app"
                BlueprintName = "Quesity"
                ReferencedContainer = "container:Quesity.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "78F0E86418AD792A0034E3A4"
-               BuildableName = "try3Tests.xctest"
+               BuildableName = "QuesityTests.xctest"
                BlueprintName = "QuesityTests"
                ReferencedContainer = "container:Quesity.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
-            BuildableName = "try3.app"
+            BuildableName = "Quesity.app"
             BlueprintName = "Quesity"
             ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
-            BuildableName = "try3.app"
+            BuildableName = "Quesity.app"
             BlueprintName = "Quesity"
             ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "78F0E84018AD79290034E3A4"
-            BuildableName = "try3.app"
+            BuildableName = "Quesity.app"
             BlueprintName = "Quesity"
             ReferencedContainer = "container:Quesity.xcodeproj">
          </BuildableReference>
