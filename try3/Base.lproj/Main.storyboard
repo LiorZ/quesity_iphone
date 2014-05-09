@@ -33,11 +33,11 @@
                                 <rect key="frame" x="31" y="74" width="259" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQ8-3I-SOf">
-                                <rect key="frame" x="117" y="275" width="87" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQ8-3I-SOf" customClass="BButton">
+                                <rect key="frame" x="96" y="280" width="128" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -45,10 +45,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ext-f1-bGU">
-                                <rect key="frame" x="31" y="333" width="60" height="30"/>
+                                <rect key="frame" x="38" y="333" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.044711969424450472" green="0.48056839923469385" blue="0.38511231540124252" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -58,8 +59,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bU-S3-YDn">
                                 <rect key="frame" x="158" y="333" width="142" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Forgot my password">
+                                    <color key="titleColor" red="0.044711969424450472" green="0.48056839923469385" blue="0.38511231540124252" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -69,8 +71,11 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="forgotButton" destination="7bU-S3-YDn" id="w71-zw-MUf"/>
+                        <outlet property="loginButton" destination="OQ8-3I-SOf" id="u1g-Bh-udf"/>
                         <outlet property="loginEmail" destination="Rbz-15-UeB" id="ydS-Ej-7FL"/>
                         <outlet property="loginPass" destination="o1x-HO-fiX" id="Rd4-P7-Vcg"/>
+                        <outlet property="registerButton" destination="ext-f1-bGU" id="wNu-ak-0XA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cxk-Qv-egp" userLabel="First Responder" sceneMemberID="firstResponder"/>

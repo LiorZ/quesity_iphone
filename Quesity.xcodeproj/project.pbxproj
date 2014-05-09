@@ -41,6 +41,10 @@
 		78BEDC7418ADAB7B004E9156 /* 1StarSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5C18ADAB7B004E9156 /* 1StarSmall@2x.png */; };
 		78D4ADF4191AED1D00821E9A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4ADF3191AED1D00821E9A /* logo.png */; };
 		78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */; };
+		78D4AE02191BDC4400821E9A /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADFB191BDC4300821E9A /* BButton.m */; };
+		78D4AE03191BDC4400821E9A /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADFD191BDC4300821E9A /* NSString+FontAwesome.m */; };
+		78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADFF191BDC4300821E9A /* UIColor+BButton.m */; };
+		78D4AE05191BDC4400821E9A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE01191BDC4300821E9A /* FontAwesome.ttf */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -119,6 +123,13 @@
 		78D4ADF3191AED1D00821E9A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCLoginViewController.h; sourceTree = "<group>"; };
 		78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCLoginViewController.m; sourceTree = "<group>"; };
+		78D4ADFA191BDC4300821E9A /* BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BButton.h; sourceTree = "<group>"; };
+		78D4ADFB191BDC4300821E9A /* BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BButton.m; sourceTree = "<group>"; };
+		78D4ADFC191BDC4300821E9A /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		78D4ADFD191BDC4300821E9A /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		78D4ADFE191BDC4300821E9A /* UIColor+BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BButton.h"; sourceTree = "<group>"; };
+		78D4ADFF191BDC4300821E9A /* UIColor+BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BButton.m"; sourceTree = "<group>"; };
+		78D4AE01191BDC4300821E9A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +188,7 @@
 		782CE6EE18AF8D3F00D1A2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78D4ADF8191BDC4300821E9A /* BButton */,
 				7835423118E887E500EF6659 /* MBProgressHUD */,
 				78A7626618E7177A0098DDD8 /* POHorizontalList */,
 				782CE6EF18AF8D3F00D1A2FB /* Gradients */,
@@ -248,6 +260,36 @@
 			);
 			name = Images;
 			path = try3/Images.xcassets/Images;
+			sourceTree = "<group>";
+		};
+		78D4ADF8191BDC4300821E9A /* BButton */ = {
+			isa = PBXGroup;
+			children = (
+				78D4ADF9191BDC4300821E9A /* Classes */,
+				78D4AE00191BDC4300821E9A /* resources */,
+			);
+			path = BButton;
+			sourceTree = "<group>";
+		};
+		78D4ADF9191BDC4300821E9A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				78D4ADFA191BDC4300821E9A /* BButton.h */,
+				78D4ADFB191BDC4300821E9A /* BButton.m */,
+				78D4ADFC191BDC4300821E9A /* NSString+FontAwesome.h */,
+				78D4ADFD191BDC4300821E9A /* NSString+FontAwesome.m */,
+				78D4ADFE191BDC4300821E9A /* UIColor+BButton.h */,
+				78D4ADFF191BDC4300821E9A /* UIColor+BButton.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		78D4AE00191BDC4300821E9A /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				78D4AE01191BDC4300821E9A /* FontAwesome.ttf */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		78F0E83818AD79290034E3A4 = {
@@ -429,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				782CE70018AF8D3F00D1A2FB /* gradient6@2x.png in Resources */,
+				78D4AE05191BDC4400821E9A /* FontAwesome.ttf in Resources */,
 				782CE6FD18AF8D3F00D1A2FB /* gradient3@2x.png in Resources */,
 				782CE6FA18AF8D3F00D1A2FB /* gradient0@2x.png in Resources */,
 				782CE6FF18AF8D3F00D1A2FB /* gradient5@2x.png in Resources */,
@@ -467,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D4AE03191BDC4400821E9A /* NSString+FontAwesome.m in Sources */,
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
@@ -475,6 +519,7 @@
 				78A7626318E6EAC20098DDD8 /* QSCLocation.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
+				78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
@@ -484,6 +529,7 @@
 				7835423918EDF47A00EF6659 /* KeychainItemWrapper.m in Sources */,
 				7877676818B2ACEC00B2AA28 /* QSCinfoViewController2.m in Sources */,
 				78F0E87E18AD81B60034E3A4 /* QSCAllQuestsViewController.m in Sources */,
+				78D4AE02191BDC4400821E9A /* BButton.m in Sources */,
 				78F0E85118AD79290034E3A4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

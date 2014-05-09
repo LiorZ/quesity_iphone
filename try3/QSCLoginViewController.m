@@ -7,6 +7,7 @@
 //
 
 #import "QSCLoginViewController.h"
+#import "BButton.h"
 
 @interface QSCLoginViewController ()
 
@@ -38,6 +39,28 @@
     [self.loginPass setDelegate:self];
     
     self.view.backgroundColor = [UIColor clearColor];
+    
+    UIColor *quesityColor = [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f];
+
+    //[[BButton appearance] setButtonCornerRadius:[NSNumber numberWithFloat:0.0f]];
+    //[self.loginButton setType:BButtonTypeSuccess];
+    [self.loginButton setColor:quesityColor];
+    
+    NSMutableAttributedString *commentString1 = [[NSMutableAttributedString alloc] initWithString:@"Register"];
+    NSRange range = NSMakeRange(0, [commentString1 length]);
+    [commentString1 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+    [commentString1 addAttribute:NSForegroundColorAttributeName value:quesityColor range:range];
+    
+    [self.registerButton setAttributedTitle:commentString1 forState:UIControlStateNormal];
+    
+    NSMutableAttributedString *commentString2 = [[NSMutableAttributedString alloc] initWithString:@"Forgot Password?"];
+    NSRange range2 = NSMakeRange(0, [commentString2 length]);
+    [commentString2 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range2];
+    [commentString2 addAttribute:NSForegroundColorAttributeName value:quesityColor range:range2];
+    
+    [self.forgotButton setAttributedTitle:commentString2 forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -74,7 +97,7 @@
     
     NSError *error1;
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error1];
-    NSString *fullURL = @"http://quesity.herokuapp.com/login/local";
+    NSString *fullURL = @"http://quesity.herokuapp.com/app/login/local";
     
     NSURL *url = [NSURL URLWithString:fullURL];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
@@ -90,9 +113,10 @@
     int code = [response statusCode];
     NSDictionary *fields = [response allHeaderFields];
     
-    //NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     
     NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+    NSLog(@"%@",responseString);
     //self.textToDisp.text = responseString;
     
     if (code==200) {
