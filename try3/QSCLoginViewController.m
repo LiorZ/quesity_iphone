@@ -32,13 +32,12 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 
     [self.loginEmail setDelegate:self];
     [self.loginPass setDelegate:self];
+    self.loginPass.secureTextEntry = YES;
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
     
     UIColor *quesityColor = [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f];
 
@@ -60,6 +59,8 @@
     
     [self.forgotButton setAttributedTitle:commentString2 forState:UIControlStateNormal];
     
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
     
 }
 
@@ -103,6 +104,7 @@
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postdata];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSHTTPURLResponse* response;
     NSError* error = nil;
@@ -113,10 +115,10 @@
     int code = [response statusCode];
     NSDictionary *fields = [response allHeaderFields];
     
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    
     NSLog(@"the response code is:%d, with %d headers",code, fields.count);
-    NSLog(@"%@",responseString);
+
+    //NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",responseString);
     //self.textToDisp.text = responseString;
     
     if (code==200) {
@@ -141,6 +143,7 @@
         [alert show];
     }
     
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

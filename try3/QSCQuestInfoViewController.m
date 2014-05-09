@@ -36,33 +36,15 @@
 
 - (void)getJson
 {
-//    NSString *cToSend;
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSLog(@"num of cookies: %d", cookieJar.cookies.count);
     for (cookie in [cookieJar cookies]) {
         NSLog(@"%@", cookie);
         NSLog(@"spesifically, the value is: %@",cookie.value);
-//        cToSend = cookie.value;
     }
     
     NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
-    
-//    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:questURL];
-//    [request addValue:cToSend forHTTPHeaderField:@"Cookie"];
-//    
-//    NSHTTPURLResponse* response;
-//    NSError* error = nil;
-//    
-//    NSData* responseData = nil;
-//    responseData = [NSMutableData data];
-//    responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//
-//    int code = [response statusCode];
-//    NSLog(@"response code: %d", code);
-//
-//    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//    NSLog(@"Response: %@", responseString);
 
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:questURL];

@@ -11,16 +11,4 @@
 
 @interface QSCSecondViewController : UIViewController
 
-@property (strong, nonatomic) NSArray *countryNames;
-//@property NSString *chosen;
-@property (weak, nonatomic) IBOutlet UIWebView *viewWeb;
-@property (weak, nonatomic) IBOutlet UIButton *postButton;
-@property (weak, nonatomic) IBOutlet UITextView *textToDisp;
-
-
-//- (void)reloadAllComponents;
-//- (void)reloadComponent:(NSInteger)component;
-//- (NSInteger)selectedRowInComponent:(NSInteger)component;
-//- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
-
 @end
