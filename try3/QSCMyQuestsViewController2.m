@@ -6,37 +6,18 @@
 //  Copyright (c) 2014 igor. All rights reserved.
 //
 
-#import "QSCAllQuestsViewController.h"
+#import "QSCMyQuestsViewController2.h"
+#import "QSCAllQuestsViewController2.h"
 
-@interface QSCAllQuestsViewController ()
+@interface QSCMyQuestsViewController2 ()
 
 @property NSMutableArray *quests;
 
 @end
 
-@implementation QSCAllQuestsViewController
+@implementation QSCMyQuestsViewController2
 
 - (void)loadInitialData {
-    QSCQuest *quest = [[QSCQuest alloc] init];
-    quest.name = @"Tel Aviv Magic";
-    //    quest.durationD = [NSNumber numberWithFloat:8.2];
-    //    quest.durationT = [NSNumber numberWithFloat:2.5];
-    quest.rating = 3;
-    [self.quests addObject:quest];
-    
-    QSCQuest *quest1 = [[QSCQuest alloc] init];
-    quest1.name = @"Jerusalem with Galila";
-    //    quest.durationD = [NSNumber numberWithFloat:6.2];
-    //    quest.durationT = [NSNumber numberWithFloat:3.4];
-    quest1.rating = 4;
-    [self.quests addObject:quest1];
-    
-    QSCQuest *quest2 = [[QSCQuest alloc] init];
-    quest2.name = @"Mini-Macro Israel";
-    //    quest.durationD = [NSNumber numberWithFloat:3];
-    //    quest.durationT = [NSNumber numberWithFloat:1.5];
-    quest2.rating = 2;
-    [self.quests addObject:quest2];
 
 }
 
@@ -47,12 +28,6 @@
     [self loadInitialData];
     
     self.view.backgroundColor = [UIColor clearColor];
-
-//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-//    UINavigationController *navigationController = [tabBarController viewControllers][0];
-//    QSCAllQuestsViewController *questsViewController = [navigationController viewControllers][0];
-//    questsViewController.quests = self.quests;
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,6 +48,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestCell"];
     static NSString *CellIdentifier = @"QuestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -82,6 +58,42 @@
     cell.backgroundColor = [UIColor clearColor];
 
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
+    return cell;
+    */
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestCell"];
+    static NSString *CellIdentifier = @"QuestCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    QSCQuest *quest = [self.quests objectAtIndex:indexPath.row];
+    
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    nameLabel.text = quest.name;
+    
+    UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
+    //quest.durationD = distsFromJson[i];
+    //quest.durationT = timesFromJson[i];
+    gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
+    
+    //rating stuff:
+    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(210.0, 20.0, 80.0, 40.0)];
+    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+    rv.contentMode = UIViewContentModeScaleAspectFill;
+    rv.maxRating = 5;
+    rv.minRating = 1;
+    rv.rating = quest.rating;
+    rv.editable = NO;
+    rv.halfRatings = NO;
+    rv.floatRatings = YES;
+    
+    [cell addSubview:rv];
+    
+    //UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
+    //ratingImageView.image = [self imageForRating:quest.rating];
+    
+    //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
    
 }

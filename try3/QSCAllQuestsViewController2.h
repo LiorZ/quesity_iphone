@@ -1,5 +1,5 @@
 //
-//  QSCMyQuests.h
+//  QSCAllQuestsViewController2.h
 //  try3
 //
 //  Created by igor on 2/14/14.
@@ -10,7 +10,7 @@
 #import "QSCQuest.h"
 #import "TPFloatRatingView.h"
 
-@interface QSCMyQuests : UITableViewController //<TPFloatRatingViewDelegate>
+@interface QSCAllQuestsViewController2 : UITableViewController //<TPFloatRatingViewDelegate>
 //- (NSString *) parseString2Hebrew:(NSString *)str2parse;
 
 //@property (weak, nonatomic) IBOutlet TPFloatRatingView *ratingViewFloat;

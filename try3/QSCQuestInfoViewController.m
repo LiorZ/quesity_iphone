@@ -40,7 +40,7 @@
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSLog(@"num of cookies: %d", cookieJar.cookies.count);
     for (cookie in [cookieJar cookies]) {
-        NSLog(@"%@", cookie);
+        //NSLog(@"%@", cookie);
         NSLog(@"spesifically, the value is: %@",cookie.value);
     }
     
@@ -117,20 +117,21 @@
     //user wasn't signed in. he logged in and got back to the view. need to retrive json.
     if (!self.gotJsonSuccefully) {
         [self getJson];
+    } else {
+        //user was signed in. he logged out and got back to the view. need to retrive json (in fact, deleting it)
+        myGlobalData *myGD = [[myGlobalData alloc] init];
+        if ((!myGD.isLoggedIn))
+            [self getJson];
     }
-
-    //user was signed in. he logged out and got back to the view. need to retrive json (in fact, deleting it)
-    myGlobalData *myGD = [[myGlobalData alloc] init];
-    if ((!myGD.isLoggedIn) & self.gotJsonSuccefully)
-        [self getJson];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.gotJsonSuccefully = NO;
-    [self getJson];
+    //done in viewDidAppear
+    //self.gotJsonSuccefully = NO;
+    //[self getJson];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -169,14 +170,30 @@
     
     //DESCRIPTION VIEW:
     
-    UITextView *textView1 = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
-    textView1.text = [NSString stringWithFormat:@"\u202B%@", _quest.description]; //for right-to-left
-    textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    textView1.scrollEnabled = true;
-    textView1.textAlignment = NSTextAlignmentRight;
-    textView1.editable = FALSE;
+    UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
+
+//    [NSString stringWithFormat:@"<span style=\"font-family: %@; color:#343434;font-size: %i\" **dir=\"rtl\"**>%@</span>",
+//     content];
     
-    [self.scrollView1 addSubview:textView1];
+    NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right>"];
+    [html appendString:_quest.description];
+    [html appendString:@"</html>"];
+
+    //make the background transparent
+    [webView1 setBackgroundColor:[UIColor clearColor]];
+    //pass the string to the webview
+    [webView1 loadHTMLString:[html description] baseURL:nil];
+    webView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.scrollView1 addSubview:webView1];
+
+    //UITextView *textView1 = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
+    //textView1.text = [NSString stringWithFormat:@"\u202B%@", _quest.description]; //for right-to-left
+//    textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//    textView1.scrollEnabled = true;
+//    textView1.textAlignment = NSTextAlignmentRight;
+//    textView1.editable = FALSE;
+//    
+//    [self.scrollView1 addSubview:textView1];
     
     //MAP:
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, 210)];
@@ -331,6 +348,26 @@
 }
 
 
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([[annotation title] isEqualToString:@"Current Location"]) {
+        return nil;
+    }
+    
+    MKAnnotationView *annotationView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
+
+    UIImage *img = [UIImage imageNamed:@"map-pin.png"];
+    //UIImage *imgResized = [ImageUtilities imageWithImage:img];
+    //CGImageRef imgRef = [img CGImage];
+
+    annotationView.image = img;
+    
+    annotationView.annotation = annotation;
+    
+    return annotationView;
+}
+
+
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
 {
     [self zoomToFitMapAnnotations:mv];
@@ -355,12 +392,12 @@
     }
     
     MKCoordinateRegion region;
-    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
-    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.4;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.4;
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.4;
     
     // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.4;
     
     region = [mv regionThatFits:region];
     [mv setRegion:region animated:YES];

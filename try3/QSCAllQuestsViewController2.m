@@ -1,5 +1,5 @@
 //
-//  QSCMyQuests.m
+//  QSCAllQuestsViewController2.m
 //  try3
 //
 //  Created by igor on 2/14/14.
@@ -7,17 +7,17 @@
 //
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
-#import "QSCMyQuests.h"
+#import "QSCAllQuestsViewController2.h"
 #import "QSCQuestInfoViewController.h"
 #import "TPFloatRatingView.h"
 #import "myUtilities.h"
 #import "myGlobalData.h"
 
-@interface QSCMyQuests ()
+@interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
 @end
 
-@implementation QSCMyQuests
+@implementation QSCAllQuestsViewController2
 //@synthesize tableView;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -152,13 +152,6 @@
     
     self.view.backgroundColor = [UIColor clearColor];
 
-
-    //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    //    UINavigationController *navigationController = [tabBarController viewControllers][0];
-    //    QSCAllQuestsViewController *questsViewController = [navigationController viewControllers][0];
-    //    questsViewController.quests = self.quests;
-//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    // Do any additional setup after loading the view.
 }
 
 
@@ -304,7 +297,7 @@
 //}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showQuest"]) {
+    if ([segue.identifier isEqualToString:@"showQuestAll"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;

@@ -1,5 +1,5 @@
 //
-//  QSCAllQuestsViewController.h
+//  QSCMyQuestsViewController2.h
 //  try3
 //
 //  Created by igor on 2/14/14.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "QSCQuest.h"
 
-@interface QSCAllQuestsViewController : UITableViewController
+@interface QSCMyQuestsViewController2 : UITableViewController
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "QSCSecondViewController.h"
-#import "QSCMyQuests.h"
 #import "KeychainItemWrapper.h"
 #import "myGlobalData.h"
 
