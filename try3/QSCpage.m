@@ -5,7 +5,6 @@
 //  Created by igor on 3/22/14.
 //  Copyright (c) 2014 igor. All rights reserved.
 //
-#define SITEURL @"http://quesity.herokuapp.com/quest/"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
 #import "QSCpage.h"
@@ -13,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "QSCLocation.h"
+#import "myGlobalData.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -99,13 +99,6 @@
 
 - (void)viewDidLoad
 {
-    //NSString *fullURL = @"http://quesity.herokuapp.com/home";
-    //NSURL *url = [NSURL URLWithString:fullURL];
-//    NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
-//    
-//    NSURLRequest *requestObj = [NSURLRequest requestWithURL:questURL];
-//    [webStuff2 loadRequest:requestObj];
-
     self.navigationItem.title = _quest.name;
 
     self.currPage = [self findFirst];

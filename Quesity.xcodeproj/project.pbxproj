@@ -45,6 +45,8 @@
 		78D4AE03191BDC4400821E9A /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADFD191BDC4300821E9A /* NSString+FontAwesome.m */; };
 		78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADFF191BDC4300821E9A /* UIColor+BButton.m */; };
 		78D4AE05191BDC4400821E9A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE01191BDC4300821E9A /* FontAwesome.ttf */; };
+		78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE09191D21D000821E9A /* myUtilities.m */; };
+		78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE0B191D23F800821E9A /* myGlobalData.m */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -130,6 +132,9 @@
 		78D4ADFE191BDC4300821E9A /* UIColor+BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BButton.h"; sourceTree = "<group>"; };
 		78D4ADFF191BDC4300821E9A /* UIColor+BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BButton.m"; sourceTree = "<group>"; };
 		78D4AE01191BDC4300821E9A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		78D4AE06191D169E00821E9A /* myGlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myGlobalData.h; sourceTree = "<group>"; };
+		78D4AE09191D21D000821E9A /* myUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUtilities.m; sourceTree = "<group>"; };
+		78D4AE0B191D23F800821E9A /* myGlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myGlobalData.m; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +338,9 @@
 				782CE6EE18AF8D3F00D1A2FB /* Resources */,
 				788B1B8118E77A86007F2789 /* HMSegmentedControl4 */,
 				7835423A18EE383C00EF6659 /* myUtilities.h */,
+				78D4AE09191D21D000821E9A /* myUtilities.m */,
+				78D4AE06191D169E00821E9A /* myGlobalData.h */,
+				78D4AE0B191D23F800821E9A /* myGlobalData.m */,
 				7835423B18EFFDAC00EF6659 /* TPFloatRatingView.h */,
 				7835423C18EFFDAC00EF6659 /* TPFloatRatingView.m */,
 				7835423718EDF47A00EF6659 /* KeychainItemWrapper.h */,
@@ -520,9 +528,11 @@
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */,
+				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCMyQuests.m in Sources */,
 				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
+				78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
 				78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "QSCLoginViewController.h"
 #import "BButton.h"
+#import "myGlobalData.h"
 
 @interface QSCLoginViewController ()
 
@@ -32,30 +33,29 @@
 
 - (void)viewDidLoad
 {
-
     [self.loginEmail setDelegate:self];
     [self.loginPass setDelegate:self];
     self.loginPass.secureTextEntry = YES;
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
     
-    UIColor *quesityColor = [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f];
+    //UIColor *quesityColor = [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f];
 
     //[[BButton appearance] setButtonCornerRadius:[NSNumber numberWithFloat:0.0f]];
     //[self.loginButton setType:BButtonTypeSuccess];
-    [self.loginButton setColor:quesityColor];
+    [self.loginButton setColor:QUESITY_COLOR];
     
     NSMutableAttributedString *commentString1 = [[NSMutableAttributedString alloc] initWithString:@"Register"];
     NSRange range = NSMakeRange(0, [commentString1 length]);
     [commentString1 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-    [commentString1 addAttribute:NSForegroundColorAttributeName value:quesityColor range:range];
+    [commentString1 addAttribute:NSForegroundColorAttributeName value:QUESITY_COLOR range:range];
     
     [self.registerButton setAttributedTitle:commentString1 forState:UIControlStateNormal];
     
     NSMutableAttributedString *commentString2 = [[NSMutableAttributedString alloc] initWithString:@"Forgot Password?"];
     NSRange range2 = NSMakeRange(0, [commentString2 length]);
     [commentString2 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range2];
-    [commentString2 addAttribute:NSForegroundColorAttributeName value:quesityColor range:range2];
+    [commentString2 addAttribute:NSForegroundColorAttributeName value:QUESITY_COLOR range:range2];
     
     [self.forgotButton setAttributedTitle:commentString2 forState:UIControlStateNormal];
     
@@ -98,7 +98,7 @@
     
     NSError *error1;
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error1];
-    NSString *fullURL = @"http://quesity.herokuapp.com/app/login/local";
+    NSString *fullURL = SITEURL_LOGIN;
     
     NSURL *url = [NSURL URLWithString:fullURL];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
@@ -124,15 +124,12 @@
     if (code==200) {
         NSHTTPCookie *cookie1;
         NSHTTPCookieStorage *storage1 = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        //    NSLog(@"num of cookies: %d", storage1.cookies.count);
-        //    NSString *cToSend = @"";
         for (cookie1 in [storage1 cookies]) {
-            //        NSLog(@"domain: %@",[cookie1 domain]);
-            //        NSLog(@"stuff: %@",cookie1.value);
-            //        //        if [cookie1 domain]==@"quesity.herokuapp.com"
-            //        cToSend = cookie1.value;
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
         }
+        
+        myGlobalData *myGD = [[myGlobalData alloc] init];
+        [myGD updateLoggedInStatus:TRUE];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry..."

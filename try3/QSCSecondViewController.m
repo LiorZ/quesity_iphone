@@ -9,6 +9,7 @@
 #import "QSCSecondViewController.h"
 #import "QSCMyQuests.h"
 #import "KeychainItemWrapper.h"
+#import "myGlobalData.h"
 
 @interface QSCSecondViewController ()
 
@@ -36,6 +37,11 @@
         [storage deleteCookie:cookie];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"Signed Out");
+
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    [myGD updateLoggedInStatus:FALSE];
     
 }
 @end

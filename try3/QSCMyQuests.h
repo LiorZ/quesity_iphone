@@ -11,7 +11,7 @@
 #import "TPFloatRatingView.h"
 
 @interface QSCMyQuests : UITableViewController //<TPFloatRatingViewDelegate>
-- (NSString *) parseString2Hebrew:(NSString *)str2parse;
+//- (NSString *) parseString2Hebrew:(NSString *)str2parse;
 
 //@property (weak, nonatomic) IBOutlet TPFloatRatingView *ratingViewFloat;
 //@property (weak, nonatomic) IBOutlet TPFloatRatingView *ratingView;

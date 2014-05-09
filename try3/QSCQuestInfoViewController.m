@@ -5,7 +5,6 @@
 //  Created by igor on 2/16/14.
 //  Copyright (c) 2014 igor. All rights reserved.
 //
-#define SITEURL @"http://quesity.herokuapp.com/quest/"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
 #import "QSCQuestInfoViewController.h"
@@ -14,6 +13,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
+#import "myGlobalData.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
@@ -44,7 +44,7 @@
         NSLog(@"spesifically, the value is: %@",cookie.value);
     }
     
-    NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL, _quest.questId]];
+    NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL_QUEST, _quest.questId]];
 
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:questURL];
@@ -79,7 +79,10 @@
     self.pagesQType = [[NSArray alloc] init];
     self.pagesQType = pagesQTypeFromJson;
     
-    self.gotJsonSuccefully = YES;
+    if (self.content!=nil) {
+        self.gotJsonSuccefully = YES;
+        NSLog(@"got json succefully: %d",self.gotJsonSuccefully);
+    }
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -109,6 +112,18 @@
     return ([NSLocale characterDirectionForLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]] == NSLocaleLanguageDirectionRightToLeft);
 }
 
+
+- (void)viewDidAppear:(BOOL)animated {
+    //user wasn't signed in. he logged in and got back to the view. need to retrive json.
+    if (!self.gotJsonSuccefully) {
+        [self getJson];
+    }
+
+    //user was signed in. he logged out and got back to the view. need to retrive json (in fact, deleting it)
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    if ((!myGD.isLoggedIn) & self.gotJsonSuccefully)
+        [self getJson];
+}
 
 - (void)viewDidLoad
 {
