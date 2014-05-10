@@ -30,25 +30,11 @@
 }
 
 - (void)loadInitialData {
-
+    
     //loading quests
     NSArray* json = [[NSUserDefaults standardUserDefaults] valueForKey: @"myData"];
     [self parseJson2Quests:json];
-    
 
-//    QSCQuest *quest = [[QSCQuest alloc] init];
-//    quest.name = @"Tel Aviv Magic";
-//    //    quest.durationD = [NSNumber numberWithFloat:8.2];
-//    //    quest.durationT = [NSNumber numberWithFloat:2.5];
-//    quest.rating = 3;
-//    [self.quests addObject:quest];
-//    
-//    QSCQuest *quest1 = [[QSCQuest alloc] init];
-//    quest1.name = @"Jerusalem with Galila";
-//    //    quest.durationD = [NSNumber numberWithFloat:6.2];
-//    //    quest.durationT = [NSNumber numberWithFloat:3.4];
-//    quest1.rating = 4;
-//    [self.quests addObject:quest1];
 }
 
 - (void) parseJson2Quests:(NSArray *)json {

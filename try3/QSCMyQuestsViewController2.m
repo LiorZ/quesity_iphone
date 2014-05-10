@@ -26,8 +26,10 @@
     [super viewDidLoad];
     self.quests = [[NSMutableArray alloc] init];
     [self loadInitialData];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
+
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedImagesDict"];
 }
 
 - (void)didReceiveMemoryWarning

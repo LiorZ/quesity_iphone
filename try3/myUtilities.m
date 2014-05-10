@@ -24,4 +24,134 @@
     return unesc;
 }
 
+
+/* Images Stuff */
+
+/* Get image from url */
+-(UIImage *) getImageFromURL:(NSString *)fileURL {
+    UIImage * result;
+    
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
+    result = [UIImage imageWithData:data];
+    
+    return result;
+}
+
+/* Save Image */
+-(void) saveImage:(UIImage *)image withFileName:(NSString *)imageName inDirectory:(NSString *)directoryPath {
+    //NSString *fn = [self getFileWOExtension:imageName];
+    NSString *extension = [imageName pathExtension];
+    
+    if ([[extension lowercaseString] isEqualToString:@"png"]) {
+        [UIImagePNGRepresentation(image) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",imageName]] options:NSAtomicWrite error:nil];
+    } else if ([[extension lowercaseString] isEqualToString:@"jpg"] || [[extension lowercaseString] isEqualToString:@"jpeg"]) {
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", imageName]] options:NSAtomicWrite error:nil];
+    } else {
+        NSLog(@"Image Save Failed\nExtension: (%@) is not recognized, use (PNG/JPG)", extension);
+    }
+}
+
+/* Load Image */
+-(UIImage *) loadImage:(NSString *)fileName inDirectory:(NSString *)directoryPath {
+    UIImage * result = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", directoryPath, fileName]];
+    
+    return result;
+}
+
+- (NSString *) getPathForSavedImage: (NSString *)imgName withQuestId:(NSString *)questId {
+    //for each quest id, there is a dictionary of images with paths
+    
+    NSString *savedImagesDict = @"savedImagesDict";
+    
+    //try to load dict:
+    NSDictionary* imagesDict = [[NSUserDefaults standardUserDefaults] objectForKey:savedImagesDict];
+    NSLog(@"loaded dict: %@",imagesDict);
+    
+    //check whether exists
+    if (imagesDict!=nil) {
+        NSDictionary *questImages = [imagesDict objectForKey:questId];
+        
+        //maybe the images for this quest haven't been cached yet.
+        
+        //check that the questImages is "takin"
+        if (questImages!=nil) {
+            NSString *imagePath = [questImages valueForKey:imgName];
+            
+            return imagePath;
+        }
+    }
+    
+    return nil;
+}
+
+- (void) addPathForSavedImage: (NSString *)imgName withQuestId:(NSString *)questId {
+    //for each quest id, there is a dictionary of images with paths
+    
+    NSString *savedImagesDict = @"savedImagesDict";
+    
+    //try to load dict:
+    NSMutableDictionary *imagesDict = [[[NSUserDefaults standardUserDefaults] objectForKey:savedImagesDict] mutableCopy];
+    
+    NSLog(@"loaded imagesDict: %@",imagesDict);
+    
+    NSString *imgPath = [NSString stringWithFormat:@"%@_%@", questId, imgName];
+    
+    if (imagesDict==nil) {
+        //create the dict that we are going to save:
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setValue:imgPath forKey:imgName];
+        
+        imagesDict = [[NSMutableDictionary alloc] init];
+        [imagesDict setObject:dict forKey:questId];
+        
+        //saving stuff:
+        [[NSUserDefaults standardUserDefaults] setObject:imagesDict forKey:savedImagesDict];
+    } else {
+        // the dictionary exists, but the quest might not be cached
+        NSMutableDictionary *questImagesDict = [[imagesDict objectForKey:questId] mutableCopy];
+        
+        //maybe the images for this quest haven't been cached yet.
+        if (questImagesDict==nil) {
+
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            [dict setValue:imgPath forKey:imgName];
+
+            [imagesDict setObject:dict forKey:questId];
+            
+            //saving stuff:
+            [[NSUserDefaults standardUserDefaults] setObject:imagesDict forKey:savedImagesDict];
+        } else {
+            NSLog(@"before: questImagesDict: %@",questImagesDict);
+
+            //the quest exists in the existing dictionary
+            NSString *imagePath = [questImagesDict objectForKey:imgName];
+            
+            //if the image is there, no need adding it
+            if (imagePath==nil) {
+                [questImagesDict setValue:imgPath forKey:imgName];
+                [imagesDict setObject:questImagesDict forKey:questId];
+
+                //saving stuff:
+                [[NSUserDefaults standardUserDefaults] setObject:imagesDict forKey:savedImagesDict];
+            }
+            NSLog(@"after: questImagesDict: %@",questImagesDict);
+        }
+        
+    }
+    
+    NSLog(@"updated dict: %@",imagesDict);
+    
+}
+
+- (NSString *) getFileFromPath: (NSString *)path {
+    NSArray *parts = [path componentsSeparatedByString:@"/"];
+    return [parts objectAtIndex:[parts count]-1];
+}
+
+- (NSString *) getFileWOExtension: (NSString *)fn {
+    NSArray *parts = [fn componentsSeparatedByString:@"."];
+    return [parts firstObject];
+}
+
+
 @end

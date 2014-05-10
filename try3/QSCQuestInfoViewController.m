@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
 #import "myGlobalData.h"
+#import "myUtilities.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
@@ -250,7 +251,31 @@
     
     dispatch_async(imageLoadingQueue, ^{
         for (int i = 0; i < [_quest.imagesLinks count]; i++) {
-            UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+            myUtilities *myUtils = [[myUtilities alloc] init];
+            NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
+            NSLog(@"fileName: %@",imgName);
+            
+            NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
+            NSLog(@"path: %@",pathForImg);
+
+            UIImage *img;
+            NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            if (pathForImg!=nil) {
+                img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                
+                //img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+            } else {
+                img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+                //NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
+
+                [myUtils saveImage:img
+                      withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
+                       inDirectory:documentsDirectoryPath];
+
+                [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
+            }
+                
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
                 [picsList addObject:item];
@@ -348,7 +373,7 @@
 }
 
 
-- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+/*- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
     if ([[annotation title] isEqualToString:@"Current Location"]) {
         return nil;
@@ -365,7 +390,7 @@
     annotationView.annotation = annotation;
     
     return annotationView;
-}
+}*/
 
 
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
@@ -392,12 +417,12 @@
     }
     
     MKCoordinateRegion region;
-    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.4;
-    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.4;
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.4;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.4; //1.1
     
     // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.4;
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.4; //1.1
     
     region = [mv regionThatFits:region];
     [mv setRegion:region animated:YES];
