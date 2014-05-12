@@ -339,6 +339,9 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)didGoingOnAQuest:(id)sender {
+    [self performSegueWithIdentifier:@"goOnQuest" sender:sender];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -348,8 +351,11 @@
             //[self getJson];
             //TODO: load json syncroneously (WITH block)
 
-        UINavigationController *destViewController = segue.destinationViewController;
-        QSCpage *qscpage = [destViewController viewControllers][0];
+        //QSCpage *qscpage = [[QSCpage alloc] init];
+        //[self presentViewController:qscpage animated:YES completion:^{}];
+
+        QSCpage *destViewController = [segue destinationViewController];
+        QSCpage *qscpage = destViewController;
 
         qscpage.content = self.content;
         qscpage.is_first = self.is_first;

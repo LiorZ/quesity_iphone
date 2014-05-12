@@ -103,7 +103,7 @@
             <objects>
                 <tableViewController id="GfD-mB-Jwr" customClass="QSCAllQuestsViewController2" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="22" sectionFooterHeight="22" id="7dZ-7m-9qm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -156,19 +156,20 @@
                         <viewControllerLayoutGuide type="bottom" id="EsQ-Ca-kJI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dqc-fw-KpR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Mgy-uL-kNr">
                         <barButtonItem key="rightBarButtonItem" title="Go on Quest!" id="StY-TM-aiC">
                             <connections>
-                                <segue destination="dzC-aC-rCh" kind="modal" identifier="goOnQuest" modalTransitionStyle="crossDissolve" id="3XG-Pf-gsh"/>
+                                <action selector="didGoingOnAQuest:" destination="Rew-Ut-LO7" id="xoN-RP-eLl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="webStuff" destination="XCX-wn-S0n" id="FSD-Nd-FQp"/>
+                        <segue destination="ejb-7o-8T1" kind="modal" identifier="goOnQuest" modalTransitionStyle="crossDissolve" id="bZE-Oh-Euk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYZ-Sc-a96" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,18 +188,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HkY-SL-l4w">
+                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.16828639986500563" green="0.62082452966152046" blue="0.67404735331632648" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCX-wn-S0n">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+                                <rect key="frame" x="0.0" y="59" width="320" height="450"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="hhB-y4-rIs"/>
+                                </constraints>
                             </webView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok4-vW-ctA">
+                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.10102818702140726" green="0.27945631377551017" blue="0.15419931314084218" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XCX-wn-S0n" secondAttribute="bottom" constant="60" id="JOC-bi-eJu"/>
-                            <constraint firstAttribute="trailing" secondItem="XCX-wn-S0n" secondAttribute="trailing" id="OSf-us-DXM"/>
-                            <constraint firstItem="XCX-wn-S0n" firstAttribute="top" secondItem="zNW-Yj-X13" secondAttribute="top" id="nIg-11-Qgp"/>
-                            <constraint firstItem="XCX-wn-S0n" firstAttribute="leading" secondItem="zNW-Yj-X13" secondAttribute="leading" id="wEt-KX-mFc"/>
+                            <constraint firstItem="Og5-K7-6qw" firstAttribute="top" secondItem="XCX-wn-S0n" secondAttribute="bottom" constant="59" id="4tg-eN-73z"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="trailing" secondItem="HkY-SL-l4w" secondAttribute="trailing" id="FoN-Mm-PRf"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="trailing" secondItem="XCX-wn-S0n" secondAttribute="trailing" id="GYF-Mv-yR3"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="top" secondItem="HkY-SL-l4w" secondAttribute="top" id="J5M-6c-6kd"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="bottom" secondItem="HkY-SL-l4w" secondAttribute="bottom" id="LSa-hT-FmI"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="leading" secondItem="XCX-wn-S0n" secondAttribute="leading" id="NQp-sP-XEx"/>
+                            <constraint firstItem="XCX-wn-S0n" firstAttribute="leading" secondItem="zNW-Yj-X13" secondAttribute="leading" id="TLM-lc-fvK"/>
+                            <constraint firstItem="Og5-K7-6qw" firstAttribute="top" secondItem="ok4-vW-ctA" secondAttribute="bottom" constant="508" id="TmY-b8-Q3L"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="top" secondItem="zNW-Yj-X13" secondAttribute="top" constant="20" symbolic="YES" id="X7S-a3-GET"/>
+                            <constraint firstItem="ok4-vW-ctA" firstAttribute="leading" secondItem="HkY-SL-l4w" secondAttribute="leading" id="YOF-zp-42Z"/>
+                            <constraint firstAttribute="trailing" secondItem="XCX-wn-S0n" secondAttribute="trailing" id="l8Q-vO-lE6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Quest" id="Ldm-fX-FLH">
@@ -209,27 +232,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="questTitle" destination="ok4-vW-ctA" id="d1M-qS-UPW"/>
+                        <outlet property="questTitleImg" destination="HkY-SL-l4w" id="ztf-Dm-UZy"/>
                         <outlet property="webStuff2" destination="XCX-wn-S0n" id="RQD-Pu-eIM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95o-nn-dea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="-1110"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dwL-K9-x1h">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="dzC-aC-rCh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sg8-EZ-BcZ">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="ejb-7o-8T1" kind="relationship" relationship="rootViewController" id="KXQ-pB-zWX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5J0-qs-eck" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1783" y="-1110"/>
+            <point key="canvasLocation" x="1899" y="-1104"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -240,7 +250,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GLf-yP-IfD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gMD-aP-Fq6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rl7-AG-6Qg">
@@ -277,11 +287,12 @@
             <objects>
                 <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="H0e-9k-jPk"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="JQR-rB-NYL">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.48235297203063965" green="0.79607850313186646" blue="0.48627454042434692" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="7c2-dr-GLU" kind="relationship" relationship="viewControllers" id="FsU-Ba-BIn"/>
@@ -291,7 +302,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-140" y="-706"/>
+            <point key="canvasLocation" x="-48" y="-706"/>
         </scene>
         <!--Navigation Controller - My Quests-->
         <scene sceneID="IqU-LC-6mY">
@@ -300,6 +311,7 @@
                     <tabBarItem key="tabBarItem" title="My Quests" image="second" id="2If-eD-m2r"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfF-0V-yD4">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.38039215686274508" green="0.63529411764705879" blue="0.74509803921568629" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="0HU-gw-h6O" kind="relationship" relationship="rootViewController" id="WDI-z5-xAM"/>
@@ -314,7 +326,7 @@
             <objects>
                 <tableViewController title="My Quests" id="0HU-gw-h6O" customClass="QSCMyQuestsViewController2" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="dkc-4E-zWU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -352,6 +364,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="My Quests" image="second" id="Yxf-a4-Fu2"/>
                     <navigationItem key="navigationItem" title="My Quests" id="ltb-ZC-nL5"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1g-qc-RNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

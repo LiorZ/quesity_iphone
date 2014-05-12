@@ -184,6 +184,12 @@
     rv.halfRatings = NO;
     rv.floatRatings = YES;
     
+    if (indexPath.row % 2 ==0) {
+        cell.backgroundColor = QUESITY_COLOR_TABLE_EVEN;
+    } else {
+        cell.backgroundColor = QUESITY_COLOR_TABLE_ODD;
+    }
+    
     [cell addSubview:rv];
         
     //UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
@@ -191,7 +197,7 @@
 
     //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
     
-    cell.backgroundColor = [UIColor clearColor];
+    //cell.backgroundColor = [UIColor clearColor];
 
     return cell;
     

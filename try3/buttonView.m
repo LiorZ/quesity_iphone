@@ -7,6 +7,7 @@
 //
 
 #import "buttonView.h"
+#import "myGlobalData.h"
 
 @implementation buttonView
 
@@ -16,6 +17,39 @@
     if (self) {
         // Initialization code
     }
+    return self;
+}
+
+
+- (id) initWithBorders: (BOOL)borders {
+    self.backgroundColor = QUESITY_COLOR_BG;
+    [self.buttonText setTextColor:QUESITY_COLOR_FONT];
+
+    //adding borders on sides and top:
+    CGSize mainViewSize = self.bounds.size;
+    CGFloat borderWidth = 1.f;
+    UIColor *borderColor = QUESITY_COLOR_FONT;
+
+    if (borders) {
+        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, borderWidth, mainViewSize.height)];
+        leftView.opaque = YES;
+        leftView.backgroundColor = borderColor;
+        leftView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+        [self addSubview:leftView];
+        
+        UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(mainViewSize.width - borderWidth, 0, borderWidth, mainViewSize.height)];
+        rightView.opaque = YES;
+        rightView.backgroundColor = borderColor;
+        rightView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
+        [self addSubview:rightView];
+    }
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mainViewSize.width, borderWidth)];
+    topView.opaque = YES;
+    topView.backgroundColor = borderColor;
+    topView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
+    [self addSubview:topView];
+    
     return self;
 }
 

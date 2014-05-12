@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *buttonText;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 
+- (id) initWithBorders: (BOOL)borders;
 + (id)buttonView;
 
 @end

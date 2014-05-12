@@ -38,6 +38,9 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBOutlet NSArray *pagesId;
 @property IBOutlet NSArray *pagesQType;
 
+@property (weak, nonatomic) IBOutlet UILabel *questTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *questTitleImg;
+
 @property NSUInteger currPage;
 @property pageType currQType; //location, open_question, question (multiple choice), static
 @property NSArray *currCorrectAnswers;

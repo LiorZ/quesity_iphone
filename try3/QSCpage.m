@@ -52,7 +52,7 @@
     //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
     
     //make the background transparent
-    [webStuff2 setBackgroundColor:[UIColor clearColor]];
+    [webStuff2 setBackgroundColor:QUESITY_COLOR_BG];
     
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
@@ -114,7 +114,7 @@
 - (void) createButtons {
     
     // left button:
-    self.buttonLeft = [buttonView buttonView];
+    self.buttonLeft = [[buttonView buttonView] initWithBorders:FALSE];
     self.buttonLeft.frame = CGRectMake(0.f, 508.f, 106.66f, 60.f);
     self.buttonLeft.buttonText.text = @"תפריט";
     [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
@@ -127,7 +127,7 @@
     [self.view addSubview:self.buttonLeft];
     
     // got it button:
-    self.buttonMiddle = [buttonView buttonView];
+    self.buttonMiddle = [[buttonView buttonView] initWithBorders:TRUE];
     self.buttonMiddle.frame = CGRectMake(106.66f, 508.f, 106.66f, 60.f);
     self.buttonMiddle.buttonText.text = @"המשך";
     [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
@@ -140,7 +140,7 @@
     [self.view addSubview:self.buttonMiddle];
     
     // right button
-    self.buttonRight = [buttonView buttonView];
+    self.buttonRight = [[buttonView buttonView] initWithBorders:FALSE];
     self.buttonRight.frame = CGRectMake(213.33f, 508.f, 106.66f, 60.f);
     self.buttonRight.buttonText.text = @"גלגל הצלה";
     [self.buttonRight.img setImage:[UIImage imageNamed:@"tactics.png"]];
@@ -156,7 +156,11 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.title = _quest.name;
+    self.questTitle.text = _quest.name;
+    [self.questTitle setTextColor:QUESITY_COLOR_FONT];
+    [self.questTitleImg setBackgroundColor:QUESITY_COLOR_BG];
+
+    self.view.backgroundColor = QUESITY_COLOR_BG;
 
     self.currPage = [self findFirst];
 
@@ -352,6 +356,10 @@
             
             [self createWebViewWithHTML];
             [self updateHintButtonStatus];
+        } else if (buttonIndex==1){
+            NSLog(@"Exit quest!");
+            
+            [self back:nil];
         }
     } else if (popup.tag==3) {
         NSArray *hintsForThisPage = self.pagesHints[self.currPage];
@@ -507,7 +515,7 @@
                                                        delegate: self
                                               cancelButtonTitle: @"Cancel"
                                          destructiveButtonTitle: nil
-                                              otherButtonTitles: @"Restart Quest", nil];
+                                              otherButtonTitles: @"התחל מחדש", @"צא מהקווסט", nil];
     
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];

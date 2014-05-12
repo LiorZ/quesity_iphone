@@ -55,6 +55,7 @@
 		78D4AE1B192154F400821E9A /* arrived.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1A192154F400821E9A /* arrived.png */; };
 		78D4AE1D1921563500821E9A /* enter-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1C1921563500821E9A /* enter-text.png */; };
 		78D4AE1F1921566500821E9A /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1E1921566500821E9A /* options.png */; };
+		78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2119217C0800821E9A /* QSCMainVC.m */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -63,7 +64,6 @@
 		78F0E85118AD79290034E3A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E85018AD79290034E3A4 /* main.m */; };
 		78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */; };
 		78F0E85818AD79290034E3A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E85618AD79290034E3A4 /* Main.storyboard */; };
-		78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E85A18AD79290034E3A4 /* QSCFirstViewController.m */; };
 		78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F0E85D18AD79290034E3A4 /* QSCSecondViewController.m */; };
 		78F0E86018AD792A0034E3A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E85F18AD792A0034E3A4 /* Images.xcassets */; };
 		78F0E86718AD792A0034E3A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E86618AD792A0034E3A4 /* XCTest.framework */; };
@@ -151,6 +151,8 @@
 		78D4AE1A192154F400821E9A /* arrived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrived.png; sourceTree = "<group>"; };
 		78D4AE1C1921563500821E9A /* enter-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-text.png"; sourceTree = "<group>"; };
 		78D4AE1E1921566500821E9A /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
+		78D4AE2019217C0800821E9A /* QSCMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMainVC.h; sourceTree = "<group>"; };
+		78D4AE2119217C0800821E9A /* QSCMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMainVC.m; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,8 +166,6 @@
 		78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCAppDelegate.h; sourceTree = "<group>"; };
 		78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCAppDelegate.m; sourceTree = "<group>"; };
 		78F0E85718AD79290034E3A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		78F0E85918AD79290034E3A4 /* QSCFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCFirstViewController.h; sourceTree = "<group>"; };
-		78F0E85A18AD79290034E3A4 /* QSCFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCFirstViewController.m; sourceTree = "<group>"; };
 		78F0E85C18AD79290034E3A4 /* QSCSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCSecondViewController.h; sourceTree = "<group>"; };
 		78F0E85D18AD79290034E3A4 /* QSCSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCSecondViewController.m; sourceTree = "<group>"; };
 		78F0E85F18AD792A0034E3A4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -373,6 +373,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78D4AE2019217C0800821E9A /* QSCMainVC.h */,
+				78D4AE2119217C0800821E9A /* QSCMainVC.m */,
 				78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */,
 				78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
@@ -386,8 +388,6 @@
 				78BEDC5618AD9FF2004E9156 /* QSCAllQuestsViewController2.m */,
 				78F0E87C18AD81B60034E3A4 /* QSCMyQuestsViewController2.h */,
 				78F0E87D18AD81B60034E3A4 /* QSCMyQuestsViewController2.m */,
-				78F0E85918AD79290034E3A4 /* QSCFirstViewController.h */,
-				78F0E85A18AD79290034E3A4 /* QSCFirstViewController.m */,
 				78F0E85C18AD79290034E3A4 /* QSCSecondViewController.h */,
 				78F0E85D18AD79290034E3A4 /* QSCSecondViewController.m */,
 				78F0E85F18AD792A0034E3A4 /* Images.xcassets */,
@@ -552,7 +552,6 @@
 			files = (
 				78D4AE03191BDC4400821E9A /* NSString+FontAwesome.m in Sources */,
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
-				78F0E85B18AD79290034E3A4 /* QSCFirstViewController.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
 				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
@@ -560,6 +559,7 @@
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */,
+				78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */,
