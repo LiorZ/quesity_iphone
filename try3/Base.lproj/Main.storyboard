@@ -188,44 +188,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCX-wn-S0n">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc7-L8-igg">
-                                <rect key="frame" x="116" y="526" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Got it!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressButton2:" destination="95o-nn-dea" eventType="touchUpInside" id="P2y-Fp-lgl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JQ-GU-I2V">
-                                <rect key="frame" x="20" y="526" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="More">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressButtonMore:" destination="95o-nn-dea" eventType="touchUpInside" id="Fvk-5k-Tpu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqV-3l-zlT">
-                                <rect key="frame" x="227" y="526" width="73" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Hint?">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressButtonHint:" destination="95o-nn-dea" eventType="touchUpInside" id="QPd-mv-UUa"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XCX-wn-S0n" secondAttribute="bottom" constant="50" id="JOC-bi-eJu"/>
+                            <constraint firstAttribute="bottom" secondItem="XCX-wn-S0n" secondAttribute="bottom" constant="60" id="JOC-bi-eJu"/>
                             <constraint firstAttribute="trailing" secondItem="XCX-wn-S0n" secondAttribute="trailing" id="OSf-us-DXM"/>
                             <constraint firstItem="XCX-wn-S0n" firstAttribute="top" secondItem="zNW-Yj-X13" secondAttribute="top" id="nIg-11-Qgp"/>
                             <constraint firstItem="XCX-wn-S0n" firstAttribute="leading" secondItem="zNW-Yj-X13" secondAttribute="leading" id="wEt-KX-mFc"/>
@@ -239,7 +209,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="hintButton" destination="rqV-3l-zlT" id="15P-G2-Ksc"/>
                         <outlet property="webStuff2" destination="XCX-wn-S0n" id="RQD-Pu-eIM"/>
                     </connections>
                 </viewController>

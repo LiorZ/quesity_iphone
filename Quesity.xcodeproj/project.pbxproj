@@ -47,6 +47,14 @@
 		78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE09191D21D000821E9A /* myUtilities.m */; };
 		78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE0B191D23F800821E9A /* myGlobalData.m */; };
 		78D4AE0E191D488E00821E9A /* map-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE0D191D488D00821E9A /* map-pin.png */; };
+		78D4AE1019203DDD00821E9A /* tactics.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE0F19203DDC00821E9A /* tactics.png */; };
+		78D4AE12192144DF00821E9A /* buttonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE11192144DE00821E9A /* buttonView.xib */; };
+		78D4AE151921462A00821E9A /* buttonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE141921462A00821E9A /* buttonView.m */; };
+		78D4AE17192152BC00821E9A /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE16192152BC00821E9A /* menu.png */; };
+		78D4AE191921531800821E9A /* continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE181921531800821E9A /* continue.png */; };
+		78D4AE1B192154F400821E9A /* arrived.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1A192154F400821E9A /* arrived.png */; };
+		78D4AE1D1921563500821E9A /* enter-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1C1921563500821E9A /* enter-text.png */; };
+		78D4AE1F1921566500821E9A /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1E1921566500821E9A /* options.png */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -134,6 +142,15 @@
 		78D4AE09191D21D000821E9A /* myUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUtilities.m; sourceTree = "<group>"; };
 		78D4AE0B191D23F800821E9A /* myGlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myGlobalData.m; sourceTree = "<group>"; };
 		78D4AE0D191D488D00821E9A /* map-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-pin.png"; sourceTree = "<group>"; };
+		78D4AE0F19203DDC00821E9A /* tactics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tactics.png; sourceTree = "<group>"; };
+		78D4AE11192144DE00821E9A /* buttonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = buttonView.xib; sourceTree = "<group>"; };
+		78D4AE131921462A00821E9A /* buttonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonView.h; sourceTree = "<group>"; };
+		78D4AE141921462A00821E9A /* buttonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonView.m; sourceTree = "<group>"; };
+		78D4AE16192152BC00821E9A /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		78D4AE181921531800821E9A /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
+		78D4AE1A192154F400821E9A /* arrived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrived.png; sourceTree = "<group>"; };
+		78D4AE1C1921563500821E9A /* enter-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-text.png"; sourceTree = "<group>"; };
+		78D4AE1E1921566500821E9A /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +270,12 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78D4AE1E1921566500821E9A /* options.png */,
+				78D4AE1C1921563500821E9A /* enter-text.png */,
+				78D4AE1A192154F400821E9A /* arrived.png */,
+				78D4AE181921531800821E9A /* continue.png */,
+				78D4AE16192152BC00821E9A /* menu.png */,
+				78D4AE0F19203DDC00821E9A /* tactics.png */,
 				78D4AE0D191D488D00821E9A /* map-pin.png */,
 				78D4ADF3191AED1D00821E9A /* logo.png */,
 				7835424218F015F000EF6659 /* star-empty.png */,
@@ -354,6 +377,9 @@
 				78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
 				78A7624B18DDADD00098DDD8 /* QSCpage.m */,
+				78D4AE11192144DE00821E9A /* buttonView.xib */,
+				78D4AE131921462A00821E9A /* buttonView.h */,
+				78D4AE141921462A00821E9A /* buttonView.m */,
 				78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */,
 				78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */,
 				78BEDC5518AD9FF2004E9156 /* QSCAllQuestsViewController2.h */,
@@ -477,6 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				782CE70018AF8D3F00D1A2FB /* gradient6@2x.png in Resources */,
+				78D4AE191921531800821E9A /* continue.png in Resources */,
+				78D4AE1F1921566500821E9A /* options.png in Resources */,
 				78D4AE05191BDC4400821E9A /* FontAwesome.ttf in Resources */,
 				78D4AE0E191D488E00821E9A /* map-pin.png in Resources */,
 				782CE6FD18AF8D3F00D1A2FB /* gradient3@2x.png in Resources */,
@@ -489,16 +517,21 @@
 				78F0E84F18AD79290034E3A4 /* InfoPlist.strings in Resources */,
 				7835424518F015F000EF6659 /* star-full.png in Resources */,
 				78F0E85818AD79290034E3A4 /* Main.storyboard in Resources */,
+				78D4AE12192144DF00821E9A /* buttonView.xib in Resources */,
 				78D4ADF4191AED1D00821E9A /* logo.png in Resources */,
 				782CE6FE18AF8D3F00D1A2FB /* gradient4@2x.png in Resources */,
+				78D4AE17192152BC00821E9A /* menu.png in Resources */,
 				78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */,
 				782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */,
+				78D4AE1019203DDD00821E9A /* tactics.png in Resources */,
 				7835424418F015F000EF6659 /* star-empty.png in Resources */,
 				782CE70118AF8D3F00D1A2FB /* gradient7@2x.png in Resources */,
 				78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */,
 				782CE70318AF8D3F00D1A2FB /* gradient9@2x.png in Resources */,
 				78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */,
 				782CE6FC18AF8D3F00D1A2FB /* gradient2@2x.png in Resources */,
+				78D4AE1B192154F400821E9A /* arrived.png in Resources */,
+				78D4AE1D1921563500821E9A /* enter-text.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +564,7 @@
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */,
 				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
+				78D4AE151921462A00821E9A /* buttonView.m in Sources */,
 				78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,

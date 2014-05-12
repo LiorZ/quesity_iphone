@@ -13,6 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "QSCLocation.h"
 #import "myGlobalData.h"
+#import "buttonView.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -20,6 +21,17 @@
 @synthesize content = _content;
 @synthesize is_first = _is_first;
 
+- (void) updateButtonMiddleImage {
+    if (self.currQType==page_STATIC) {
+        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
+    } else if (self.currQType==page_LOCATION) {
+        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"arrived.png"]];
+    } else if (self.currQType==page_OPEN_QUESTION) {
+        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"enter-text.png"]];
+    } else if (self.currQType==page_QUESTION) {
+        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"options.png"]];
+    }
+}
 
 - (void) createWebViewWithHTML{
     //create the string
@@ -45,6 +57,8 @@
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
     
+    [self updateButtonMiddleImage];
+
     //add it to the subview
     //[self.view addSubview:webView2];
     
@@ -74,9 +88,9 @@
 - (void) updateHintButtonStatus {
     NSLog(@"hints num on page: %d (hints left: %d)",[self.pagesHints[self.currPage] count],self.currHintsAvailable);
     if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1)
-        [self.hintButton setEnabled:FALSE];
+        [self.buttonRight.buttonText setEnabled:FALSE];
     else
-        [self.hintButton setEnabled:TRUE];
+        [self.buttonRight.buttonText setEnabled:TRUE];
 }
 
 - (void) saveDefaultDict: (NSString *)questStatePath {
@@ -97,12 +111,57 @@
     }
 }
 
+- (void) createButtons {
+    
+    // left button:
+    self.buttonLeft = [buttonView buttonView];
+    self.buttonLeft.frame = CGRectMake(0.f, 508.f, 106.66f, 60.f);
+    self.buttonLeft.buttonText.text = @"תפריט";
+    [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
+    
+    UITapGestureRecognizer *singleFingerTapLeft =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(didPressButtonMore:)];
+    [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
+    
+    [self.view addSubview:self.buttonLeft];
+    
+    // got it button:
+    self.buttonMiddle = [buttonView buttonView];
+    self.buttonMiddle.frame = CGRectMake(106.66f, 508.f, 106.66f, 60.f);
+    self.buttonMiddle.buttonText.text = @"המשך";
+    [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
+    
+    UITapGestureRecognizer *singleFingerTapMiddle =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(didPressButton2:)];
+    [self.buttonMiddle addGestureRecognizer:singleFingerTapMiddle];
+    
+    [self.view addSubview:self.buttonMiddle];
+    
+    // right button
+    self.buttonRight = [buttonView buttonView];
+    self.buttonRight.frame = CGRectMake(213.33f, 508.f, 106.66f, 60.f);
+    self.buttonRight.buttonText.text = @"גלגל הצלה";
+    [self.buttonRight.img setImage:[UIImage imageNamed:@"tactics.png"]];
+    
+    UITapGestureRecognizer *singleFingerTapRight =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(didPressButtonHint:)];
+    [self.buttonRight addGestureRecognizer:singleFingerTapRight];
+    
+    [self.view addSubview:self.buttonRight];
+    
+}
+
 - (void)viewDidLoad
 {
     self.navigationItem.title = _quest.name;
 
     self.currPage = [self findFirst];
 
+    [self createButtons];
+    
     ////// maybe there is a saved state:
     //path of quest state:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
@@ -148,8 +207,9 @@
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
+
     [super viewDidLoad];
+    
 }
 
 

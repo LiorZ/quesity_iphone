@@ -10,6 +10,7 @@
 #import "QSCQuest.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "buttonView.h"
 
 @class QSCpage;
 @protocol QSCpageDelegate <NSObject>
@@ -46,9 +47,11 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property NSUInteger currHintsAvailable;
 
 
-@property (weak, nonatomic) IBOutlet UIButton *hintButton;
-
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
+
+@property buttonView *buttonLeft;
+@property buttonView *buttonMiddle;
+@property buttonView *buttonRight;
 
 
 //sague back buisness

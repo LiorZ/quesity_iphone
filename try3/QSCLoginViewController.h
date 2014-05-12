@@ -17,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotButton;
 
+@property (nonatomic, weak) IBOutlet UIView *main;
+
 @end
