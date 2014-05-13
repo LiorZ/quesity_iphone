@@ -56,6 +56,11 @@
 		78D4AE1D1921563500821E9A /* enter-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1C1921563500821E9A /* enter-text.png */; };
 		78D4AE1F1921566500821E9A /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1E1921566500821E9A /* options.png */; };
 		78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2119217C0800821E9A /* QSCMainVC.m */; };
+		78D4AE241921865400821E9A /* UI-4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE231921865400821E9A /* UI-4-2.png */; };
+		78D4AE261921885900821E9A /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE251921885900821E9A /* search.png */; };
+		78D4AE28192188DF00821E9A /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE27192188DF00821E9A /* favorites.png */; };
+		78D4AE2A1921895800821E9A /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE291921895800821E9A /* about.png */; };
+		78D4AE2D19218A4900821E9A /* QSCopeningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -153,6 +158,12 @@
 		78D4AE1E1921566500821E9A /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
 		78D4AE2019217C0800821E9A /* QSCMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMainVC.h; sourceTree = "<group>"; };
 		78D4AE2119217C0800821E9A /* QSCMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMainVC.m; sourceTree = "<group>"; };
+		78D4AE231921865400821E9A /* UI-4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI-4-2.png"; sourceTree = "<group>"; };
+		78D4AE251921885900821E9A /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		78D4AE27192188DF00821E9A /* favorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites.png; sourceTree = "<group>"; };
+		78D4AE291921895800821E9A /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCopeningScreen.h; sourceTree = "<group>"; };
+		78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCopeningScreen.m; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +281,10 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78D4AE27192188DF00821E9A /* favorites.png */,
+				78D4AE291921895800821E9A /* about.png */,
+				78D4AE251921885900821E9A /* search.png */,
+				78D4AE231921865400821E9A /* UI-4-2.png */,
 				78D4AE1E1921566500821E9A /* options.png */,
 				78D4AE1C1921563500821E9A /* enter-text.png */,
 				78D4AE1A192154F400821E9A /* arrived.png */,
@@ -373,6 +388,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */,
+				78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */,
 				78D4AE2019217C0800821E9A /* QSCMainVC.h */,
 				78D4AE2119217C0800821E9A /* QSCMainVC.m */,
 				78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */,
@@ -512,6 +529,7 @@
 				782CE6FF18AF8D3F00D1A2FB /* gradient5@2x.png in Resources */,
 				78BEDC7418ADAB7B004E9156 /* 1StarSmall@2x.png in Resources */,
 				78F0E86018AD792A0034E3A4 /* Images.xcassets in Resources */,
+				78D4AE241921865400821E9A /* UI-4-2.png in Resources */,
 				786B35B618D780B9002DA234 /* bg.png in Resources */,
 				782CE6FB18AF8D3F00D1A2FB /* gradient1@2x.png in Resources */,
 				78F0E84F18AD79290034E3A4 /* InfoPlist.strings in Resources */,
@@ -520,8 +538,11 @@
 				78D4AE12192144DF00821E9A /* buttonView.xib in Resources */,
 				78D4ADF4191AED1D00821E9A /* logo.png in Resources */,
 				782CE6FE18AF8D3F00D1A2FB /* gradient4@2x.png in Resources */,
+				78D4AE28192188DF00821E9A /* favorites.png in Resources */,
+				78D4AE261921885900821E9A /* search.png in Resources */,
 				78D4AE17192152BC00821E9A /* menu.png in Resources */,
 				78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */,
+				78D4AE2A1921895800821E9A /* about.png in Resources */,
 				782CE70218AF8D3F00D1A2FB /* gradient8@2x.png in Resources */,
 				78D4AE1019203DDD00821E9A /* tactics.png in Resources */,
 				7835424418F015F000EF6659 /* star-empty.png in Resources */,
@@ -562,6 +583,7 @@
 				78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
+				78D4AE2D19218A4900821E9A /* QSCopeningScreen.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */,
 				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
 				78D4AE151921462A00821E9A /* buttonView.m in Sources */,

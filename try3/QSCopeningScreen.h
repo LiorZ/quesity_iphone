@@ -1,5 +1,5 @@
 //
-//  QSCMainVC.h
+//  QSCopeningScreen.h
 //  Quesity
 //
 //  Created by igor on 5/13/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QSCMainVC : UITabBarController
+@interface QSCopeningScreen : UIViewController
 
 @end

@@ -14,15 +14,6 @@
 
 @implementation QSCMainVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,6 +21,7 @@
     //UITabBarItem *tabBarItem = [self.tabBarController.tabBar objectAtIndex:0];
     
     // Do any additional setup after loading the view.
+    [self.tabBarController.delegate tabBarController:self.tabBarController shouldSelectViewController:[[self viewControllers] objectAtIndex:1]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,5 +29,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    NSLog(@"ha?");
+    return TRUE;
+}
+
+
 
 @end

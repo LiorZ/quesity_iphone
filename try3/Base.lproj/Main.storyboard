@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6t2-9W-VNP">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -141,7 +141,13 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Quests" image="first" id="Szw-5V-KG1"/>
-                    <navigationItem key="navigationItem" title="All Quests" id="uL4-A6-KaG"/>
+                    <navigationItem key="navigationItem" title="All Quests" id="uL4-A6-KaG">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="9cC-8N-KYi">
+                            <connections>
+                                <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="crossDissolve" id="36X-5Y-mwK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-eF-odU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -282,10 +288,131 @@
             </objects>
             <point key="canvasLocation" x="381" y="30"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Copening Screen-->
+        <scene sceneID="aHv-xo-0HC">
+            <objects>
+                <viewController id="b9B-yk-kIY" customClass="QSCopeningScreen" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fd5-Sd-o2c"/>
+                        <viewControllerLayoutGuide type="bottom" id="QDE-d8-sEx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x2G-wf-J3P">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gf0-Vf-iJI">
+                                <rect key="frame" x="42" y="151" width="236" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioQ-PO-5K5">
+                                <rect key="frame" x="42" y="261" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="       Find Quests">
+                                    <color key="titleColor" red="0.062745098040000002" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N04-QI-w45">
+                                <rect key="frame" x="42" y="355" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="         Favorite Quests">
+                                    <color key="titleColor" red="0.062745098040000002" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4w-Os-L0X">
+                                <rect key="frame" x="42" y="448" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="        About Quesity">
+                                    <color key="titleColor" red="0.062745098039215685" green="0.24313725490196078" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search.png" translatesAutoresizingMaskIntoConstraints="NO" id="BkN-oj-8Cv">
+                                <rect key="frame" x="55" y="275" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="about.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fm1-T1-vYE">
+                                <rect key="frame" x="55" y="463" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favorites.png" translatesAutoresizingMaskIntoConstraints="NO" id="mT1-3L-NfH">
+                                <rect key="frame" x="62" y="369" width="20" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyA-yE-o5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-447" y="-1420"/>
+        </scene>
+        <!--Copening Screen-->
+        <scene sceneID="mJX-6g-Ih0">
+            <objects>
+                <viewController id="6t2-9W-VNP" customClass="QSCopeningScreen" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dE7-0u-rNw"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZDe-z5-eLZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IBr-MK-bZP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="UI-4-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-Mn-I0S">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQk-0O-JeD">
+                                <rect key="frame" x="42" y="261" width="237" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8YX-ce-x5E" kind="modal" identifier="goFindQuests" modalTransitionStyle="crossDissolve" id="MxQ-ey-BHe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP3-YY-Itn">
+                                <rect key="frame" x="42" y="356" width="237" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8YX-ce-x5E" kind="modal" identifier="goMyQuests" modalTransitionStyle="crossDissolve" id="AQ6-OI-liE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rti-Mn-KuH">
+                                <rect key="frame" x="42" y="449" width="237" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8YX-ce-x5E" kind="modal" identifier="goAbout" modalTransitionStyle="crossDissolve" id="ZOX-i2-Hql"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zqB-3D-ODV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgh-RI-Ldh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594" y="-706"/>
+        </scene>
+        <!--MainVC-->
         <scene sceneID="Vex-rW-GRa">
             <objects>
-                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                <tabBarController id="8YX-ce-x5E" customClass="QSCMainVC" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="H0e-9k-jPk"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -363,17 +490,93 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="My Quests" image="second" id="Yxf-a4-Fu2"/>
-                    <navigationItem key="navigationItem" title="My Quests" id="ltb-ZC-nL5"/>
+                    <navigationItem key="navigationItem" title="My Quests" id="ltb-ZC-nL5">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="nHp-vB-Y45">
+                            <connections>
+                                <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="crossDissolve" id="Ugv-JC-5eV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1g-qc-RNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826" y="-716"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="KkW-a0-zJW">
+            <objects>
+                <viewController id="law-vc-0aw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6pq-8y-VOy"/>
+                        <viewControllerLayoutGuide type="bottom" id="RF8-sj-W8M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wRI-Nt-0XH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="WG4-0u-AW5">
+                                <rect key="frame" x="42" y="151" width="236" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQf-SZ-bsz">
+                                <rect key="frame" x="42" y="261" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="       Find Quests">
+                                    <color key="titleColor" red="0.062745098040000002" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-A7-Gvd">
+                                <rect key="frame" x="42" y="355" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="         Favorite Quests">
+                                    <color key="titleColor" red="0.062745098040000002" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-BC-gz5">
+                                <rect key="frame" x="42" y="448" width="236" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="        About Quesity">
+                                    <color key="titleColor" red="0.062745098040000002" green="0.24313725489999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search.png" translatesAutoresizingMaskIntoConstraints="NO" id="CWh-Lf-MRr">
+                                <rect key="frame" x="55" y="275" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="about.png" translatesAutoresizingMaskIntoConstraints="NO" id="CLf-f7-dP1">
+                                <rect key="frame" x="55" y="463" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favorites.png" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-aC-vHL">
+                                <rect key="frame" x="62" y="369" width="20" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WIx-Vc-4Hu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-447" y="-1420"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="UI-4-2.png" width="1080" height="1920"/>
+        <image name="about.png" width="110" height="110"/>
+        <image name="favorites.png" width="60" height="111"/>
         <image name="first" width="30" height="30"/>
         <image name="logo.png" width="802" height="232"/>
+        <image name="search.png" width="110" height="110"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -383,5 +586,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="nPk-Z0-zaq"/>
+        <segue reference="ZOX-i2-Hql"/>
+        <segue reference="36X-5Y-mwK"/>
     </inferredMetricsTieBreakers>
 </document>
