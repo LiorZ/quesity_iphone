@@ -61,6 +61,7 @@
 		78D4AE28192188DF00821E9A /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE27192188DF00821E9A /* favorites.png */; };
 		78D4AE2A1921895800821E9A /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE291921895800821E9A /* about.png */; };
 		78D4AE2D19218A4900821E9A /* QSCopeningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */; };
+		78D4AE301923F98A00821E9A /* QSCFinishPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -164,6 +165,8 @@
 		78D4AE291921895800821E9A /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCopeningScreen.h; sourceTree = "<group>"; };
 		78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCopeningScreen.m; sourceTree = "<group>"; };
+		78D4AE2E1923F98900821E9A /* QSCFinishPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCFinishPageVC.h; sourceTree = "<group>"; };
+		78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCFinishPageVC.m; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,6 +391,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78D4AE2E1923F98900821E9A /* QSCFinishPageVC.h */,
+				78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */,
 				78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */,
 				78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */,
 				78D4AE2019217C0800821E9A /* QSCMainVC.h */,
@@ -575,6 +580,7 @@
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
 				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,
+				78D4AE301923F98A00821E9A /* QSCFinishPageVC.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
 				78A7626318E6EAC20098DDD8 /* QSCLocation.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,

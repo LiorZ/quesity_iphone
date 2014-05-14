@@ -44,15 +44,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"goFindQuests"]) {
-        
-        UITabBarController *destViewController = segue.destinationViewController;
-        [destViewController setSelectedIndex:0];
-
+        NSLog(@"go to find quests");
     } else if ([segue.identifier isEqualToString:@"goMyQuests"]) {
-        
-        UITabBarController *destViewController = segue.destinationViewController;
-        [destViewController setSelectedIndex:1];
-        
+        NSLog(@"show my quests");
     }
 }
 

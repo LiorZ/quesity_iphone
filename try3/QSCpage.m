@@ -14,6 +14,7 @@
 #import "QSCLocation.h"
 #import "myGlobalData.h"
 #import "buttonView.h"
+#import "QSCFinishPageVC.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -157,6 +158,7 @@
 - (void)viewDidLoad
 {
     self.questTitle.text = _quest.name;
+    //self. = _quest.name;
     [self.questTitle setTextColor:QUESITY_COLOR_FONT];
     [self.questTitleImg setBackgroundColor:QUESITY_COLOR_BG];
 
@@ -382,6 +384,15 @@
     }
 }
 
+- (IBAction)segueToFinish
+{
+
+    QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
+    NSLog(@"passing title: %@",self.questTitle.text);
+    vc.questTitle = self.questTitle.text;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 
 
@@ -392,8 +403,12 @@
     NSLog(@"yo! %@",links);
     
     if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
-        self.linkBeingProcessed = links[0];
-        [self goToNextPage];
+        if ([links count]==0) {
+            [self segueToFinish];
+        } else {
+            self.linkBeingProcessed = links[0];
+            [self goToNextPage];
+        }
     } else {
         //get (and print, ha ha ha) correct answers
         for (int i=0; i<links.count; i++) {
