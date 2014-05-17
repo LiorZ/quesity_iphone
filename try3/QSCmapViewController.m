@@ -29,6 +29,10 @@
     // Do any additional setup after loading the view.
     
     self.myMAp.delegate = self;
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.myMAp.userLocation.coordinate, 800, 800);
+
+    [self.myMAp setRegion:[self.myMAp regionThatFits:region] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,25 +47,7 @@
 }
 
 - (IBAction)back:(id)sender {
-//    [self performSegueWithIdentifier:@"UnwindSegueIdentifier" sender:self];
-    
-    
-    
-    //[self performSegueWithIdentifier:@"showMapSegue" sender:self];
-    //[self dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:@"returnToStepOne" sender:self];
-
-    
-    
-    //[self.navigationController pre]
-    //    [self.navigationController popToRootViewControllerAnimated:YES];
-    //QSCpage *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
-    
-    //NSLog(@"passing title: %@",self.questTitle.text);
-    //vc.questTitle = self.questTitle.text;
-    //vc.quest = self.quest;
-    
-    //[self presentViewController:self.page animated:YES completion:nil];
 }
 
 
