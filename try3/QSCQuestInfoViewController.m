@@ -15,6 +15,8 @@
 #import "MBProgressHUD.h"
 #import "myGlobalData.h"
 #import "myUtilities.h"
+#import "AMTagListView.h"
+#import "TPFloatRatingView.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView1;
@@ -134,23 +136,55 @@
     //self.gotJsonSuccefully = NO;
     //[self getJson];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
     
     //SEGMENTED SELECTOR:
     
     CGFloat yDelta;
     
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
-        yDelta = 20.0f;
+        yDelta = 20.0f+48.f;
     } else {
-        yDelta = 0.0f;
+        yDelta = 0.0f+48.f;
     }
+    
+    //TAGS and quest stat:
+    AMTagListView *tagListView = [[AMTagListView alloc] initWithFrame:CGRectMake(0, 250 + yDelta - 58.f, 200.f, 60.f)];
+    
+    [tagListView addTags:_quest.tags];
+    [self.view addSubview:tagListView];
+    
+    UILabel *distLabel = (UILabel *)[self.view viewWithTag:210];
+    distLabel.text = [NSString stringWithFormat:@"%@ km / %@ hr",_quest.durationD, _quest.durationT];
+    
+    UILabel *gamesPlayedLabel = (UILabel *)[self.view viewWithTag:220];
+    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ כבר שיחקו",_quest.gamesPlayed];
+
+    UILabel *ratingLabel = (UILabel *)[self.view viewWithTag:230];
+    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",_quest.rating];
+
+    //rating stuff:
+    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(230.0, 260.0, 80.0, 40.0)];
+    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+    rv.contentMode = UIViewContentModeScaleAspectFill;
+    rv.maxRating = 5;
+    rv.minRating = 1;
+    rv.rating = _quest.rating;
+    rv.editable = NO;
+    rv.halfRatings = NO;
+    rv.floatRatings = YES;
+    [self.view addSubview:rv];
+    
+    //SEGMENTED CONTROL
     
     // Minimum code required to use the segmented control with the default styling.
     self.segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Description", @"Map", @"Reviews"]];
     self.segmentedControl1.frame = CGRectMake(0, 250 + yDelta, 320, 40);
     self.segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     self.segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    self.segmentedControl1.backgroundColor = [UIColor clearColor];
     self.segmentedControl1.tag = 3;
     
     __weak typeof(self) weakSelf = self;
@@ -161,7 +195,8 @@
     [self.view addSubview:self.segmentedControl1];
     
     self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 290 + yDelta, 320, 210)];
-    self.scrollView1.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    //self.scrollView1.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    self.scrollView1.backgroundColor = [UIColor clearColor];
     self.scrollView1.pagingEnabled = YES;
     self.scrollView1.showsHorizontalScrollIndicator = NO;
     self.scrollView1.contentSize = CGSizeMake(960, 200);
@@ -176,12 +211,13 @@
     //    [NSString stringWithFormat:@"<span style=\"font-family: %@; color:#343434;font-size: %i\" **dir=\"rtl\"**>%@</span>",
     //     content];
     
-    NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right>"];
+    NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right background-color: transparent;>"];
     [html appendString:_quest.description];
     [html appendString:@"</html>"];
     
     //make the background transparent
     [webView1 setBackgroundColor:[UIColor clearColor]];
+    [webView1 setOpaque:NO];
     //pass the string to the webview
     [webView1 loadHTMLString:[html description] baseURL:nil];
     webView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -283,7 +319,7 @@
                 //hud.progress = picsList.count*1.0/_quest.imagesLinks.count;
                 if (picsList.count==_quest.imagesLinks.count) {
                     POHorizontalList *list;
-                    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
+                    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 35.0, 320.0, 180.0) title:stam items:picsList];
                     [self.view addSubview:list];
                     
                     app.networkActivityIndicatorVisible = NO;

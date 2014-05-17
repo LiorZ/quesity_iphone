@@ -49,6 +49,7 @@
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
     NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
+    NSArray* tagsFromJson = [json valueForKey:@"tags"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -98,6 +99,8 @@
                 quest.imagesLinks  = imagesLinksFromJson[i];
                 
                 quest.allowedHints = allowedHintsFromJson[i];
+
+                quest.tags = tagsFromJson[i];
                 
                 //LOADING IMAGE:
                 NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];

@@ -34,6 +34,8 @@
 		78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626818E7177A0098DDD8 /* ListItem.m */; };
 		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
 		78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */; };
+		78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC11927DD6100713EBB /* AMTagListView.m */; };
+		78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC31927DD6100713EBB /* AMTagView.m */; };
 		78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEDC5618AD9FF2004E9156 /* QSCAllQuestsViewController2.m */; };
 		78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5918ADAB7B004E9156 /* 1Star.png */; };
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
@@ -131,6 +133,10 @@
 		78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalListDelegate.h; sourceTree = "<group>"; };
 		78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCmapViewController.h; sourceTree = "<group>"; };
 		78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCmapViewController.m; sourceTree = "<group>"; };
+		78BB4EC01927DD6100713EBB /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
+		78BB4EC11927DD6100713EBB /* AMTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagListView.m; sourceTree = "<group>"; };
+		78BB4EC21927DD6100713EBB /* AMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagView.h; sourceTree = "<group>"; };
+		78BB4EC31927DD6100713EBB /* AMTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagView.m; sourceTree = "<group>"; };
 		78BEDC5518AD9FF2004E9156 /* QSCAllQuestsViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCAllQuestsViewController2.h; sourceTree = "<group>"; };
 		78BEDC5618AD9FF2004E9156 /* QSCAllQuestsViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCAllQuestsViewController2.m; sourceTree = "<group>"; };
 		78BEDC5918ADAB7B004E9156 /* 1Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Star.png; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 		782CE6EE18AF8D3F00D1A2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78BB4EBF1927DD6100713EBB /* AMTagListView */,
 				78D4ADF8191BDC4300821E9A /* BButton */,
 				7835423118E887E500EF6659 /* MBProgressHUD */,
 				78A7626618E7177A0098DDD8 /* POHorizontalList */,
@@ -282,6 +289,17 @@
 				78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */,
 			);
 			path = POHorizontalList;
+			sourceTree = "<group>";
+		};
+		78BB4EBF1927DD6100713EBB /* AMTagListView */ = {
+			isa = PBXGroup;
+			children = (
+				78BB4EC01927DD6100713EBB /* AMTagListView.h */,
+				78BB4EC11927DD6100713EBB /* AMTagListView.m */,
+				78BB4EC21927DD6100713EBB /* AMTagView.h */,
+				78BB4EC31927DD6100713EBB /* AMTagView.m */,
+			);
+			path = AMTagListView;
 			sourceTree = "<group>";
 		};
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
@@ -595,6 +613,7 @@
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */,
+				78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */,
 				78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
@@ -602,6 +621,7 @@
 				78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */,
 				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
 				78D4AE151921462A00821E9A /* buttonView.m in Sources */,
+				78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */,
 				78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,

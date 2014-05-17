@@ -31,7 +31,6 @@
     self.myMAp.delegate = self;
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.myMAp.userLocation.coordinate, 800, 800);
-
     [self.myMAp setRegion:[self.myMAp regionThatFits:region] animated:YES];
 }
 

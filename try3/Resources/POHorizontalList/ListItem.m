@@ -34,7 +34,7 @@
 //        [title setOpaque: NO];
 //        [title setText:imageTitle];
         
-        imageRect = CGRectMake(0.0, 0.0, 280.0, 190.0);
+        imageRect = CGRectMake(0.0, 0.0, 270.0, 180.0);
         //textRect = CGRectMake(0.0, imageRect.origin.y + imageRect.size.height + 10.0, 80.0, 20.0);
         
         //[title setFrame:textRect];
