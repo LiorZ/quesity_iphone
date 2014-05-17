@@ -13,6 +13,7 @@
 
 @property NSString *name;
 @property (nonatomic, copy) NSNumber *durationD;
+@property (nonatomic, copy) NSNumber *gamesPlayed;
 @property (nonatomic, copy) NSString *durationT;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *questId;
@@ -24,6 +25,9 @@
 //} Location;
 
 @property (nonatomic, retain) QSCLocation *startLoc;
+
+@property (nonatomic, copy) UIImage *img;
+
 @property (nonatomic,copy) NSArray *imagesLinks;
 
 @property float rating;

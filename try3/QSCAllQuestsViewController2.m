@@ -12,6 +12,7 @@
 #import "TPFloatRatingView.h"
 #import "myUtilities.h"
 #import "myGlobalData.h"
+#import "MBProgressHUD.h"
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
@@ -47,43 +48,86 @@
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
+    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
     
-    for (int i=0; i<titlesFromJson.count; i++) {
-        //parsing hebrew buisness
-        myUtilities *myUtils = [[myUtilities alloc] init];
-        NSString* questTitle = [myUtils parseString2Hebrew:titlesFromJson[i]];
-        NSString* questDescription = [myUtils parseString2Hebrew:descriptionFromJson[i]];
-
-        //NSLog(@"Output = %@", questTitle);
+    if (titlesFromJson.count>0) {
+        //draw progrees:
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = YES;
         
-        QSCQuest *quest = [[QSCQuest alloc] init];
-        quest.name = questTitle.copy;
-        quest.description = questDescription.copy;
-        quest.durationD = distsFromJson[i];
-
-        int minutes = round([timesFromJson[i] intValue] / 60);
-        int seconds = round([timesFromJson[i] intValue] % 60);
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"Loading...";
         
-        quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-        quest.rating = [ratingsFromJson[i] floatValue];
+        dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
         
-        quest.questId = idFromJson[i];
-        
-        quest.startLoc = [[QSCLocation alloc] init];
-        quest.startLoc.lat = [locationsFromJson[i] objectForKey:@"lat"];
-        quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
-        quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
-        quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
-        
-        quest.imagesLinks = [[NSArray alloc] init];
-        quest.imagesLinks  = imagesLinksFromJson[i];
-
-        quest.allowedHints = allowedHintsFromJson[i];
-        
-        [self.quests addObject:quest];
+        dispatch_async(imageLoadingQueue, ^{
+            myUtilities *myUtils = [[myUtilities alloc] init];
+            NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            
+            for (int i=0; i<titlesFromJson.count; i++) {
+                //parsing hebrew buisness
+                NSString* questTitle = [myUtils parseString2Hebrew:titlesFromJson[i]];
+                NSString* questDescription = [myUtils parseString2Hebrew:descriptionFromJson[i]];
+                
+                //NSLog(@"Output = %@", questTitle);
+                
+                QSCQuest *quest = [[QSCQuest alloc] init];
+                quest.name = questTitle.copy;
+                quest.description = questDescription.copy;
+                quest.durationD = distsFromJson[i];
+                quest.gamesPlayed = gamesPlayedFromJson[i];
+                
+                int minutes = round([timesFromJson[i] intValue] / 60);
+                int seconds = round([timesFromJson[i] intValue] % 60);
+                
+                quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+                quest.rating = [ratingsFromJson[i] floatValue];
+                
+                quest.questId = idFromJson[i];
+                
+                quest.startLoc = [[QSCLocation alloc] init];
+                quest.startLoc.lat = [locationsFromJson[i] objectForKey:@"lat"];
+                quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
+                quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
+                quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
+                
+                quest.imagesLinks = [[NSArray alloc] init];
+                quest.imagesLinks  = imagesLinksFromJson[i];
+                
+                quest.allowedHints = allowedHintsFromJson[i];
+                
+                //LOADING IMAGE:
+                NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
+                NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
+                
+                UIImage *img;
+                if (pathForImg!=nil) {
+                    img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                } else {
+                    img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:quest.imagesLinks[0]]]];
+                    
+                    [myUtils saveImage:img
+                          withFileName:[NSString stringWithFormat:@"%@_%@", quest.questId, imgName]
+                           inDirectory:documentsDirectoryPath];
+                    
+                    [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    quest.img = img;
+                    [self.quests addObject:quest];
+                    
+                    if (titlesFromJson.count==self.quests.count) {
+                        app.networkActivityIndicatorVisible = NO;
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self updateTable];
+                    }
+                });
+            }
+        });
     }
 }
 
@@ -167,13 +211,22 @@
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
     nameLabel.text = quest.name;
     
-    UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
-    //quest.durationD = distsFromJson[i];
-    //quest.durationT = timesFromJson[i];
-    gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
+//    UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
+//    //quest.durationD = distsFromJson[i];
+//    //quest.durationT = timesFromJson[i];
+//    gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
+    
+    UILabel *distLabel = (UILabel *)[cell viewWithTag:110];
+    distLabel.text = [NSString stringWithFormat:@"%@",quest.durationD];
+
+    UILabel *durLabel = (UILabel *)[cell viewWithTag:120];
+    durLabel.text = [NSString stringWithFormat:@"%@",quest.durationT];
+    
+    UILabel *gamesPlayedLabel = (UILabel *)[cell viewWithTag:130];
+    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@",quest.gamesPlayed];
     
     //rating stuff:
-    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(210.0, 20.0, 80.0, 40.0)];
+    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(80.0, 30.0, 80.0, 40.0)];
     rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
     rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
     rv.contentMode = UIViewContentModeScaleAspectFill;
@@ -191,7 +244,25 @@
     }
     
     [cell addSubview:rv];
-        
+
+    UILabel *ratingLabel = (UILabel *)[cell viewWithTag:140];
+    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",quest.rating];
+
+    [cell addSubview:ratingLabel];
+    
+    UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 20.0, 60.0, 60.0)];
+    questImg.image = quest.img;   
+    questImg.layer.cornerRadius = 30.0f;
+    questImg.clipsToBounds = YES;
+
+    [cell addSubview:questImg];
+    
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
+    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
+    
+    
+
     //UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
     //ratingImageView.image = [self imageForRating:quest.rating];
 

@@ -250,8 +250,10 @@
     NSString *stam = @"";
     
     dispatch_async(imageLoadingQueue, ^{
+        myUtilities *myUtils = [[myUtilities alloc] init];
+        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        
         for (int i = 0; i < [_quest.imagesLinks count]; i++) {
-            myUtilities *myUtils = [[myUtilities alloc] init];
             NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
             NSLog(@"fileName: %@",imgName);
             
@@ -259,7 +261,6 @@
             NSLog(@"path: %@",pathForImg);
 
             UIImage *img;
-            NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
             if (pathForImg!=nil) {
                 img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
                 

@@ -111,7 +111,7 @@
     NSError* error = nil;
     
     NSData* responseData = nil;
-    responseData = [NSMutableData data];
+    //responseData = [NSMutableData data];
     responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     int code = [response statusCode];
     NSDictionary *fields = [response allHeaderFields];

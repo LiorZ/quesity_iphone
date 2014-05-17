@@ -43,4 +43,16 @@
     [myGD updateLoggedInStatus:FALSE];
     
 }
+
+
+- (IBAction)didPressEraseAllQuestsJson:(id)sender {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myData"];
+}
+
+- (IBAction)didPressEraseSavedImagesDict:(id)sender {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedImagesDict"];
+}
+
+
+
 @end

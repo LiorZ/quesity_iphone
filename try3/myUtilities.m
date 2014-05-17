@@ -153,5 +153,13 @@
     return [parts firstObject];
 }
 
+- (UIView *) drawLine: (CGRect)rect {
+    UIView *v = [[UIView alloc] initWithFrame:rect];
+    v.opaque = YES;
+    v.backgroundColor = [UIColor colorWithRed:16/255.0f green:62/255.0f blue:65/255.0f alpha:1.0f];
+    v.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+    return v;
+}
+
 
 @end

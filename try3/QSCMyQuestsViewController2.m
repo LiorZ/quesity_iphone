@@ -28,8 +28,6 @@
     [self loadInitialData];
 
     self.view.backgroundColor = [UIColor clearColor];
-
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedImagesDict"];
 }
 
 - (void)didReceiveMemoryWarning

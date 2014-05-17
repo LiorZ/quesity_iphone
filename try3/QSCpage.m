@@ -386,10 +386,10 @@
 
 - (IBAction)segueToFinish
 {
-
     QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
-    NSLog(@"passing title: %@",self.questTitle.text);
-    vc.questTitle = self.questTitle.text;
+    //NSLog(@"passing title: %@",self.questTitle.text);
+    //vc.questTitle = self.questTitle.text;
+    vc.quest = self.quest;
     
     [self presentViewController:vc animated:YES completion:nil];
 }

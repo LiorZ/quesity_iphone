@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QSCQuest.h"
 
 @interface QSCFinishPageVC : UIViewController
 
-@property IBOutlet NSString *questTitle;
+//@property IBOutlet NSString *questTitle;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property IBOutlet QSCQuest *quest;
 
 @end
