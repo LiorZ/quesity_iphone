@@ -38,9 +38,21 @@
 }
 
 
+- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+}
+
 - (IBAction)back:(id)sender {
 //    [self performSegueWithIdentifier:@"UnwindSegueIdentifier" sender:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    
+    //[self performSegueWithIdentifier:@"showMapSegue" sender:self];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"returnToStepOne" sender:self];
+
+    
+    
     //[self.navigationController pre]
     //    [self.navigationController popToRootViewControllerAnimated:YES];
     //QSCpage *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
