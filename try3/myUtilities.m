@@ -65,7 +65,7 @@
     
     //try to load dict:
     NSDictionary* imagesDict = [[NSUserDefaults standardUserDefaults] objectForKey:savedImagesDict];
-    NSLog(@"loaded dict: %@",imagesDict);
+    //NSLog(@"loaded dict: %@",imagesDict);
     
     //check whether exists
     if (imagesDict!=nil) {
@@ -92,7 +92,7 @@
     //try to load dict:
     NSMutableDictionary *imagesDict = [[[NSUserDefaults standardUserDefaults] objectForKey:savedImagesDict] mutableCopy];
     
-    NSLog(@"loaded imagesDict: %@",imagesDict);
+    //NSLog(@"loaded imagesDict: %@",imagesDict);
     
     NSString *imgPath = [NSString stringWithFormat:@"%@_%@", questId, imgName];
     
@@ -121,7 +121,7 @@
             //saving stuff:
             [[NSUserDefaults standardUserDefaults] setObject:imagesDict forKey:savedImagesDict];
         } else {
-            NSLog(@"before: questImagesDict: %@",questImagesDict);
+            //NSLog(@"before: questImagesDict: %@",questImagesDict);
 
             //the quest exists in the existing dictionary
             NSString *imagePath = [questImagesDict objectForKey:imgName];
@@ -134,12 +134,12 @@
                 //saving stuff:
                 [[NSUserDefaults standardUserDefaults] setObject:imagesDict forKey:savedImagesDict];
             }
-            NSLog(@"after: questImagesDict: %@",questImagesDict);
+            //NSLog(@"after: questImagesDict: %@",questImagesDict);
         }
         
     }
     
-    NSLog(@"updated dict: %@",imagesDict);
+    //NSLog(@"updated dict: %@",imagesDict);
     
 }
 

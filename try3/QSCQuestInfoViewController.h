@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property IBOutlet UIPageControl *pageControl;
 @property IBOutlet QSCQuest *quest;
+//@property IBOutlet NSString *GoStraightToQuest;
 @property (nonatomic, copy) NSArray *content;
 @property (nonatomic, copy) NSArray *linksToOthers;
 @property (nonatomic, copy) NSArray *pagesHints;

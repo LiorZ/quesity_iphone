@@ -33,6 +33,7 @@
 		78A7626518E6F9160098DDD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7626418E6F9160098DDD8 /* CoreLocation.framework */; };
 		78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626818E7177A0098DDD8 /* ListItem.m */; };
 		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
+		78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */; };
 		78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEDC5618AD9FF2004E9156 /* QSCAllQuestsViewController2.m */; };
 		78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5918ADAB7B004E9156 /* 1Star.png */; };
 		78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEDC5A18ADAB7B004E9156 /* 1Star@2x.png */; };
@@ -128,6 +129,8 @@
 		78A7626918E7177A0098DDD8 /* POHorizontalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalList.h; sourceTree = "<group>"; };
 		78A7626A18E7177A0098DDD8 /* POHorizontalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POHorizontalList.m; sourceTree = "<group>"; };
 		78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalListDelegate.h; sourceTree = "<group>"; };
+		78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCmapViewController.h; sourceTree = "<group>"; };
+		78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCmapViewController.m; sourceTree = "<group>"; };
 		78BEDC5518AD9FF2004E9156 /* QSCAllQuestsViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCAllQuestsViewController2.h; sourceTree = "<group>"; };
 		78BEDC5618AD9FF2004E9156 /* QSCAllQuestsViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCAllQuestsViewController2.m; sourceTree = "<group>"; };
 		78BEDC5918ADAB7B004E9156 /* 1Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Star.png; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
+				78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */,
+				78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */,
 				78D4AE2E1923F98900821E9A /* QSCFinishPageVC.h */,
 				78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */,
 				78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */,
@@ -580,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78D4AE03191BDC4400821E9A /* NSString+FontAwesome.m in Sources */,
+				78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */,
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
 				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,

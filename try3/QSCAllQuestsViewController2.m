@@ -365,6 +365,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;
         destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+        //destViewController.GoStraightToQuest = @"no";
 
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;

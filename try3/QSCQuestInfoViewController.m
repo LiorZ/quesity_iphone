@@ -137,7 +137,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //SEGMENTED SELECTOR:
-
+    
     CGFloat yDelta;
     
     if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
@@ -157,7 +157,7 @@
     [self.segmentedControl1 setIndexChangeBlock:^(NSInteger index) {
         [weakSelf.scrollView1 scrollRectToVisible:CGRectMake(320 * index, 0, 320, 200) animated:YES];
     }];
-
+    
     [self.view addSubview:self.segmentedControl1];
     
     self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 290 + yDelta, 320, 210)];
@@ -172,41 +172,41 @@
     //DESCRIPTION VIEW:
     
     UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
-
-//    [NSString stringWithFormat:@"<span style=\"font-family: %@; color:#343434;font-size: %i\" **dir=\"rtl\"**>%@</span>",
-//     content];
+    
+    //    [NSString stringWithFormat:@"<span style=\"font-family: %@; color:#343434;font-size: %i\" **dir=\"rtl\"**>%@</span>",
+    //     content];
     
     NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right>"];
     [html appendString:_quest.description];
     [html appendString:@"</html>"];
-
+    
     //make the background transparent
     [webView1 setBackgroundColor:[UIColor clearColor]];
     //pass the string to the webview
     [webView1 loadHTMLString:[html description] baseURL:nil];
     webView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.scrollView1 addSubview:webView1];
-
+    
     //UITextView *textView1 = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
     //textView1.text = [NSString stringWithFormat:@"\u202B%@", _quest.description]; //for right-to-left
-//    textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    textView1.scrollEnabled = true;
-//    textView1.textAlignment = NSTextAlignmentRight;
-//    textView1.editable = FALSE;
-//    
-//    [self.scrollView1 addSubview:textView1];
+    //    textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    //    textView1.scrollEnabled = true;
+    //    textView1.textAlignment = NSTextAlignmentRight;
+    //    textView1.editable = FALSE;
+    //
+    //    [self.scrollView1 addSubview:textView1];
     
     //MAP:
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, 210)];
     self.mapView.delegate = self;
-
+    
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDelegate:self];
     
     [locationManager setDistanceFilter:kCLDistanceFilterNone];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.mapView setShowsUserLocation:YES];
-
+    
     double lat = [_quest.startLoc.lat doubleValue];
     double lng = [_quest.startLoc.lng doubleValue];
     //double rad = [_quest.startLoc.rad doubleValue];
@@ -236,11 +236,11 @@
     //IMAGES LOADING PROGRESS:
     
     dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
-
+    
     //draw progrees:
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
-
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //hud.mode = MBProgressHUDModeDeterminate;
     hud.labelText = @"Loading...";
@@ -255,11 +255,11 @@
         
         for (int i = 0; i < [_quest.imagesLinks count]; i++) {
             NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
-            NSLog(@"fileName: %@",imgName);
+            //NSLog(@"fileName: %@",imgName);
             
             NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
-            NSLog(@"path: %@",pathForImg);
-
+            //NSLog(@"path: %@",pathForImg);
+            
             UIImage *img;
             if (pathForImg!=nil) {
                 img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
@@ -268,15 +268,15 @@
             } else {
                 img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
                 //NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
-
+                
                 [myUtils saveImage:img
                       withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
                        inDirectory:documentsDirectoryPath];
-
+                
                 [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
             }
-                
-
+            
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
                 [picsList addObject:item];
@@ -285,7 +285,7 @@
                     POHorizontalList *list;
                     list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 40.0, 320.0, 210.0) title:stam items:picsList];
                     [self.view addSubview:list];
-
+                    
                     app.networkActivityIndicatorVisible = NO;
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                 }
@@ -375,8 +375,9 @@
 #pragma mark - map view delegate
 - (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    [mv setRegion:[mv regionThatFits:region] animated:YES];
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    //[mv setRegion:[mv regionThatFits:region] animated:YES];
+    [self zoomToFitMapAnnotations:mv];
 }
 
 

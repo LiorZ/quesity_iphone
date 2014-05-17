@@ -15,6 +15,7 @@
 #import "myGlobalData.h"
 #import "buttonView.h"
 #import "QSCFinishPageVC.h"
+#import "QSCmapViewController.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -157,6 +158,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationItem.hidesBackButton = YES;
+    
     self.questTitle.text = _quest.name;
     //self. = _quest.name;
     [self.questTitle setTextColor:QUESITY_COLOR_FONT];
@@ -174,7 +177,7 @@
     
     //loading quest state:
     NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-    NSLog(@"loaded dict: %@",stateDict);
+    NSLog(@"loaded state dict: %@",stateDict);
     
     //check whether exists
     if (stateDict!=nil) {
@@ -214,8 +217,11 @@
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
+//    [locationManager startUpdatingLocation];
+//    [self->locationManager startUpdatingLocation];
+
     [super viewDidLoad];
-    
+        
 }
 
 
@@ -345,7 +351,14 @@
             [self goToNextPage];
         }
     } else if (popup.tag==2) {
+//        NSString *opt1 =  @"הצג מפה";
+//        NSString *opt2 =  @"התחל מחדש";
+//        NSString *opt3 =  @"צא מהקווסט";
+
         if (buttonIndex==0) {
+            NSLog(@"Show map!");
+            [self segueToMap:nil];
+        } else if (buttonIndex==1) {
             NSLog(@"Restart quest!");
 
             self.currPage = [self findFirst];
@@ -358,7 +371,7 @@
             
             [self createWebViewWithHTML];
             [self updateHintButtonStatus];
-        } else if (buttonIndex==1){
+        } else if (buttonIndex==2){
             NSLog(@"Exit quest!");
             
             [self back:nil];
@@ -384,6 +397,18 @@
     }
 }
 
+- (IBAction)segueToMap: (id)sender
+{
+    QSCmapViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapView"];
+    //NSLog(@"passing title: %@",self.questTitle.text);
+    //vc.questTitle = self.questTitle.text;
+    //vc.page = self;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+    //[self performSegueWithIdentifier:@"showMapSegue" sender:sender];
+}
+
 - (IBAction)segueToFinish
 {
     QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
@@ -394,7 +419,13 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showMapSegue"]) {
+        QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapView"];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
 
 - (IBAction)didPressButton2:(id)sender {
     
@@ -526,11 +557,15 @@
 
 - (IBAction)didPressButtonMore:(id)sender {
 
+    NSString *opt1 =  @"הצג מפה";
+    NSString *opt2 =  @"התחל מחדש";
+    NSString *opt3 =  @"צא מהקווסט";
+    
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: nil
                                                        delegate: self
                                               cancelButtonTitle: @"Cancel"
                                          destructiveButtonTitle: nil
-                                              otherButtonTitles: @"התחל מחדש", @"צא מהקווסט", nil];
+                                              otherButtonTitles: opt1, opt2, opt3, nil];
     
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
