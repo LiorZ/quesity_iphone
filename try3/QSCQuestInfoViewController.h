@@ -13,6 +13,7 @@
 #import "HMSegmentedControl2/HMSegmentedControl.h"
 //#import <CoreLocation/CoreLocation.h>
 #import "POHorizontalList.h"
+#import "Resources/MBProgressHUD/MBProgressHUD.h"
 
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
@@ -32,8 +33,11 @@
 @property (nonatomic, copy) NSArray *pagesId;
 @property (nonatomic, copy) NSArray *pagesQType;
 @property NSArray *is_first;
+@property MBProgressHUD *hud;
+@property BOOL loadedAllImages;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *goOnQuestButton;
 
 @end

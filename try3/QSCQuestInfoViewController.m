@@ -85,6 +85,13 @@
     if (self.content!=nil) {
         self.gotJsonSuccefully = YES;
         NSLog(@"got json succefully: %d",self.gotJsonSuccefully);
+        self.goOnQuestButton.enabled = YES;
+
+        if (self.loadedAllImages) {
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = NO;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
     }
 }
 
@@ -131,6 +138,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.goOnQuestButton.enabled = NO;
+    self.loadedAllImages = NO;
     
     //done in viewDidAppear
     //self.gotJsonSuccefully = NO;
@@ -277,9 +287,10 @@
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     //hud.mode = MBProgressHUDModeDeterminate;
-    hud.labelText = @"Loading...";
+    self.hud.labelText = @"Loading...";
     
     //load images async:
     picsList = [[NSMutableArray alloc] init];
@@ -321,9 +332,17 @@
                     POHorizontalList *list;
                     list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 35.0, 320.0, 180.0) title:stam items:picsList];
                     [self.view addSubview:list];
+//                    [self.view sendSubviewToBack:list];
+
+//                    UIWindow *appDelegateWindow = [[[UIApplication sharedApplication] delegate] window];
+//                    [appDelegateWindow bringSubviewToFront:self.hud];
+                    [self.view bringSubviewToFront:self.hud];
                     
-                    app.networkActivityIndicatorVisible = NO;
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    self.loadedAllImages = YES;
+                    if (self.gotJsonSuccefully) {
+                        app.networkActivityIndicatorVisible = NO;
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    }
                 }
             });
         }

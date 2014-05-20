@@ -235,6 +235,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="goOnQuestButton" destination="StY-TM-aiC" id="LIf-Xn-cUS"/>
                         <outlet property="webStuff" destination="XCX-wn-S0n" id="FSD-Nd-FQp"/>
                         <segue destination="ejb-7o-8T1" kind="modal" identifier="goOnQuest" modalTransitionStyle="crossDissolve" id="bZE-Oh-Euk"/>
                     </connections>
