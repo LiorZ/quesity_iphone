@@ -17,16 +17,6 @@
 
 @implementation TPFloatRatingView
 
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *hitView = [super hitTest:point withEvent:event];
-    if (hitView == self) {
-        return nil;
-    } else {
-        return hitView;
-    }
-}
-
 - (void)baseInit
 {
     _emptySelectedImage = nil;
@@ -224,7 +214,7 @@
     // Update masks for next refresh
     for (int i = 0; i < self.fullImageViews.count; ++i) {
         UIImageView *imageView = [self.fullImageViews objectAtIndex:i];
-
+        
         if (self.rating >= i+1) {
             imageView.layer.mask.frame = imageView.layer.bounds;
         }

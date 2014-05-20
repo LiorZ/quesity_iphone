@@ -10,6 +10,7 @@
 #import "myGlobalData.h"
 #import "myUtilities.h"
 #import "TPFloatRatingView.h"
+#import "QSCratingViewController.h"
 
 @interface QSCFinishPageVC ()
 
@@ -37,23 +38,82 @@
     questImg.clipsToBounds = YES;
     [self.view addSubview:questImg];
     
-    //rating stuff:
-    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, 465.0, 120.f, 60.f)];
-    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
-    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
-    rv.contentMode = UIViewContentModeScaleAspectFill;
-    rv.maxRating = 5;
-    rv.minRating = 1;
-    rv.rating = 0;
-    rv.editable = NO;
-    rv.halfRatings = NO;
-    rv.floatRatings = YES;
-    [self.view addSubview:rv];
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+    //rating stuff:
+    self.rv  =[[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, 465.0, 120.f, 60.f)];
+    self.rv.delegate = self;
+    self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+    self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+    self.rv.contentMode = UIViewContentModeScaleAspectFill;
+    self.rv.maxRating = 5;
+    self.rv.minRating = 1;
+    self.rv.rating = 2.5;
+    self.rv.editable = YES;
+    self.rv.halfRatings = YES;
+    self.rv.floatRatings = NO;
+    
+    [self.view addSubview:self.rv];
+    
+    self.opinion = @"";
+//    
+//    self.rv.delegate = self;
+//    self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+//    self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+//    self.rv.contentMode = UIViewContentModeScaleAspectFill;
+//    self.rv.maxRating = 5;
+//    self.rv.minRating = 1;
+//    self.rv.rating = 2.5;
+//    self.rv.editable = YES;
+//    self.rv.halfRatings = YES;
+//    self.rv.floatRatings = NO;
+
+    
     
 }
+
+//- (IBAction)didPressRatingView:(id)sender {
+//    [self segueToRatingView: sender];
+//}
+
+//- (IBAction)segueToRatingView: (id)sender
+//{
+//    [self performSegueWithIdentifier:@"showRatingView" sender:self];
+//}
+
+- (IBAction)returnToFinishPage:(UIStoryboardSegue *)segue {
+    QSCratingViewController* sourceViewController = segue.sourceViewController;
+
+    self.rv.rating = sourceViewController.rv.rating;
+    self.opinion = sourceViewController.opinion.text;
+    
+    NSLog(@"And now we are again on finish page.");
+}
+
+#pragma mark - TPFloatRatingViewDelegate
+- (void)floatRatingView:(TPFloatRatingView *)ratingView ratingDidChange:(CGFloat)rating
+{
+    [self performSegueWithIdentifier:@"showRatingView" sender:self];
+
+    NSLog(@"open rating view.");
+    
+}
+
+- (void)floatRatingView:(TPFloatRatingView *)ratingView continuousRating:(CGFloat)rating
+{
+    NSLog(@"%@",[NSString stringWithFormat:@"%.2f", rating]);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"showRatingView"]) {
+        QSCratingViewController *destViewController = [[segue.destinationViewController viewControllers] firstObject];
+        destViewController.startWithOpinion = self.opinion;
+        destViewController.startWithRating = [NSNumber numberWithFloat:self.rv.rating];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

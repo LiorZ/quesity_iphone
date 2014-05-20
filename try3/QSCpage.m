@@ -399,13 +399,6 @@
 
 - (IBAction)segueToMap: (id)sender
 {
-    //QSCmapViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapView"];
-    //NSLog(@"passing title: %@",self.questTitle.text);
-    //vc.questTitle = self.questTitle.text;
-    //vc.page = self;
-    
-    //[self presentViewController:vc animated:YES completion:nil];
-
     [self performSegueWithIdentifier:@"showMapSegue" sender:self];
 }
 
@@ -416,8 +409,6 @@
 - (IBAction)segueToFinish
 {
     QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FinishPage"];
-    //NSLog(@"passing title: %@",self.questTitle.text);
-    //vc.questTitle = self.questTitle.text;
     vc.quest = self.quest;
     
     [self presentViewController:vc animated:YES completion:nil];
