@@ -372,7 +372,7 @@
     }
     
     [newPopup addButtonWithTitle:@"Cancel"];
-    newPopup.cancelButtonIndex = self.currCorrectAnswers.count;
+    newPopup.cancelButtonIndex = links.count;
     
     newPopup.tag = 4;
     [newPopup showInView:[UIApplication sharedApplication].keyWindow];

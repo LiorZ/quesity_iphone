@@ -133,7 +133,7 @@
                     }
                     self.howManyParsed = self.howManyParsed+1;
                     
-                    NSLog(@"titles: %d, parsed: %d",titlesFromJson.count,self.howManyParsed);
+                    //NSLog(@"titles: %d, parsed: %d",titlesFromJson.count,self.howManyParsed);
                     
                     if (titlesFromJson.count==self.howManyParsed) {
                         app.networkActivityIndicatorVisible = NO;
