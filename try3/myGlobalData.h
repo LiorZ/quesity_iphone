@@ -16,6 +16,7 @@
 #define QUESITY_COLOR_TABLE_EVEN [UIColor colorWithRed:169/255.0f green:199/255.0f blue:203/255.0f alpha:.4f];
 #define QUESITY_COLOR_TABLE_ODD  [UIColor colorWithRed:201/255.0f green:217/255.0f blue:220/255.0f alpha:.4f];
 #define QUESITY_COLOR_NONACTIVE [UIColor colorWithRed:169/255.0f green:199/255.0f blue:203/255.0f alpha:1.f];
+#define QUESITY_COLOR_BG_IMG [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]
 
 #import <Foundation/Foundation.h>
 

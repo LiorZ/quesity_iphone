@@ -25,6 +25,13 @@
     
 //    self.titleLabel.text = self.quest.name;
     
+    //CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    //    if (screenBounds.size.height == 568) {
+    //        // code for 4-inch screen
+    //    } else {
+    //        // code for 3.5-inch screen
+    //    }
+    
     myUtilities *myUtils = [[myUtilities alloc] init];
     [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, 430.f, 300.f, 0.5f)]];
     [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, 495.f, 300.f, 0.5f)]];

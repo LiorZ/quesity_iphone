@@ -8,34 +8,27 @@
 
 #import "QSCAppDelegate.h"
 #import "myGlobalData.h"
-#define kDEFAULT_BACKGROUND_GRADIENT    @"gradient5"
 
 @implementation QSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
-    //self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:kDEFAULT_BACKGROUND_GRADIENT]];
+    self.window.backgroundColor = QUESITY_COLOR_BG_IMG;
     
-    [self changeWindowColor:@"gradient5"];
-    //[[UIApplication sharedApplication] keyWindow].tintColor = [UIColor orangeColor];
+    [self changeWindowColor:@"the usual"];
 
     // Override point for customization after application launch.
     return YES;
 }
 
 - (void) changeWindowColor:(NSString *)color {
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
+    self.window.backgroundColor = QUESITY_COLOR_BG_IMG;
 
     [[UITabBar appearance] setTintColor:QUESITY_COLOR_FONT];
-    //[[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:QUESITY_COLOR_BG];
     
     [[UINavigationBar appearance] setTintColor:QUESITY_COLOR_FONT];
     [[UINavigationBar appearance] setBarTintColor:QUESITY_COLOR_BG];
-    
-    //[[UITabBar appearance] setAlpha:1.f];
-    //[[UITabBar appearance] setTranslucent:FALSE];
-    //self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:color]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
