@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QSCQuest.h"
 
 @interface QSCMyQuestsViewController2 : UITableViewController
 

@@ -188,6 +188,8 @@
     [self.view addSubview:rv];
     
     //SEGMENTED CONTROL
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    float lowerPartHeight = screenBounds.size.height-(290+yDelta);
     
     // Minimum code required to use the segmented control with the default styling.
     self.segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Description", @"Map", @"Reviews"]];
@@ -199,27 +201,24 @@
     
     __weak typeof(self) weakSelf = self;
     [self.segmentedControl1 setIndexChangeBlock:^(NSInteger index) {
-        [weakSelf.scrollView1 scrollRectToVisible:CGRectMake(320 * index, 0, 320, 200) animated:YES];
+        [weakSelf.scrollView1 scrollRectToVisible:CGRectMake(320 * index, 0, 320, lowerPartHeight + 40) animated:YES];
     }];
     
     [self.view addSubview:self.segmentedControl1];
     
-    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 290 + yDelta, 320, 210)];
+    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 290 + yDelta, 320, lowerPartHeight)];
     //self.scrollView1.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
     self.scrollView1.backgroundColor = [UIColor clearColor];
     self.scrollView1.pagingEnabled = YES;
     self.scrollView1.showsHorizontalScrollIndicator = NO;
-    self.scrollView1.contentSize = CGSizeMake(960, 200);
+    self.scrollView1.contentSize = CGSizeMake(960, screenBounds.size.height-(290+yDelta));
     self.scrollView1.delegate = self;
-    [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, 200) animated:NO];
+    [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, lowerPartHeight) animated:NO];
     [self.view addSubview:self.scrollView1];
     
     //DESCRIPTION VIEW:
     
-    UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
-    
-    //    [NSString stringWithFormat:@"<span style=\"font-family: %@; color:#343434;font-size: %i\" **dir=\"rtl\"**>%@</span>",
-    //     content];
+    UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, lowerPartHeight)];
     
     NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right background-color: transparent;>"];
     [html appendString:_quest.description];
@@ -233,17 +232,8 @@
     webView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.scrollView1 addSubview:webView1];
     
-    //UITextView *textView1 = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
-    //textView1.text = [NSString stringWithFormat:@"\u202B%@", _quest.description]; //for right-to-left
-    //    textView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    //    textView1.scrollEnabled = true;
-    //    textView1.textAlignment = NSTextAlignmentRight;
-    //    textView1.editable = FALSE;
-    //
-    //    [self.scrollView1 addSubview:textView1];
-    
     //MAP:
-    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, 210)];
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, lowerPartHeight)];
     self.mapView.delegate = self;
     
     locationManager = [[CLLocationManager alloc] init];
@@ -272,7 +262,7 @@
     
     //REVIEWS:
     
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(640, 0, 320, 210)];
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(640, 0, 320, lowerPartHeight)];
     [self setApperanceForLabel:label3];
     label3.text = @"yo yo!";
     [self.scrollView1 addSubview:label3];
@@ -300,7 +290,8 @@
         myUtilities *myUtils = [[myUtilities alloc] init];
         NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
-        for (int i = 0; i < [_quest.imagesLinks count]; i++) {
+        //we start from 1 instead of 0 because the first image is for the "quest icon"
+        for (int i = 1; i < [_quest.imagesLinks count]; i++) {
             NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
             //NSLog(@"fileName: %@",imgName);
             
@@ -310,11 +301,8 @@
             UIImage *img;
             if (pathForImg!=nil) {
                 img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
-                
-                //img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
             } else {
                 img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
-                //NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
                 
                 [myUtils saveImage:img
                       withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
@@ -328,14 +316,12 @@
                 ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
                 [picsList addObject:item];
                 //hud.progress = picsList.count*1.0/_quest.imagesLinks.count;
-                if (picsList.count==_quest.imagesLinks.count) {
+                if (picsList.count==_quest.imagesLinks.count-1) {
                     POHorizontalList *list;
                     list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 35.0, 320.0, 180.0) title:stam items:picsList];
                     [self.view addSubview:list];
-//                    [self.view sendSubviewToBack:list];
 
-//                    UIWindow *appDelegateWindow = [[[UIApplication sharedApplication] delegate] window];
-//                    [appDelegateWindow bringSubviewToFront:self.hud];
+                    //keep the hud on top
                     [self.view bringSubviewToFront:self.hud];
                     
                     self.loadedAllImages = YES;

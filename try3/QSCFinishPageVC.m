@@ -49,7 +49,7 @@
     self.rv.contentMode = UIViewContentModeScaleAspectFill;
     self.rv.maxRating = 5;
     self.rv.minRating = 1;
-    self.rv.rating = 2.5;
+    self.rv.rating = 0;
     self.rv.editable = YES;
     self.rv.halfRatings = YES;
     self.rv.floatRatings = NO;
@@ -57,7 +57,13 @@
     [self.view addSubview:self.rv];
     
     self.opinion = @"";
-//    
+    
+    //remove the hints number and page number dictionary:
+    //path of quest state:
+    NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",self.quest.questId];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:questStatePath];
+    
+//
 //    self.rv.delegate = self;
 //    self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
 //    self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];

@@ -13,6 +13,7 @@
 #import "myUtilities.h"
 #import "myGlobalData.h"
 #import "MBProgressHUD.h"
+#import "QSCQuest.h"
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
@@ -172,7 +173,7 @@
 {
     [super viewDidLoad];
     
-    //pull to refresh stuff:
+    //pull to refresh control:
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     refresh.tintColor = [UIColor whiteColor];
@@ -263,112 +264,19 @@
     myUtilities *myUtils = [[myUtilities alloc] init];
     [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
     [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
-    
-    
-
-    //UIImageView *ratingImageView = (UIImageView *)[cell viewWithTag:102];
-    //ratingImageView.image = [self imageForRating:quest.rating];
-
-    //cell.detailTextLabel.text = [@"D:" stringByAppendingString:[NSString stringWithFormat:@"%@", quest.durationD]];
-    
-    //cell.backgroundColor = [UIColor clearColor];
 
     return cell;
     
 }
 
-- (UIImage *)imageForRating:(int)rating
-{
-    switch (rating) {
-        case 1: return [UIImage imageNamed:@"1StarSmall"];
-        case 2: return [UIImage imageNamed:@"2StarsSmall"];
-        case 3: return [UIImage imageNamed:@"3StarsSmall"];
-        case 4: return [UIImage imageNamed:@"4StarsSmall"];
-        case 5: return [UIImage imageNamed:@"5StarsSmall"];
-    }
-    return nil;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
-/*
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////    UIView *loadingVew = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 80, 80)];
-////    loadingVew.center = self.view.center;
-////    loadingVew.backgroundColor = [UIColor blackColor];
-////    [self.view addSubview:loadingVew];
-//    NSLog(@"adding view");
-//
-//    UIView *loadingVew = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 80, 80)];
-//    loadingVew.center = self.view.center;
-//    loadingVew.backgroundColor = [UIColor blackColor];
-//
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:1.0];
-//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-//                           forView:loadingVew
-//                             cache:YES];
-//    
-//    [self.navigationController.view addSubview:loadingVew];
-//    [UIView commitAnimations];
-//}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showQuestAll"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;
         destViewController.quest = [self.quests objectAtIndex:indexPath.row];
-        //destViewController.GoStraightToQuest = @"no";
 
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;

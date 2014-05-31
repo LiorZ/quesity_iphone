@@ -115,9 +115,16 @@
 
 - (void) createButtons {
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    if (screenBounds.size.height == 568) {
+//        // code for 4-inch screen
+//    } else {
+//        // code for 3.5-inch screen
+//    }
+    
     // left button:
     self.buttonLeft = [[buttonView buttonView] initWithBorders:FALSE];
-    self.buttonLeft.frame = CGRectMake(0.f, 508.f, 106.66f, 60.f);
+    self.buttonLeft.frame = CGRectMake(0.f, screenBounds.size.height - 60, 106.66f, 60.f);
     self.buttonLeft.buttonText.text = @"תפריט";
     [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
     
@@ -130,7 +137,7 @@
     
     // got it button:
     self.buttonMiddle = [[buttonView buttonView] initWithBorders:TRUE];
-    self.buttonMiddle.frame = CGRectMake(106.66f, 508.f, 106.66f, 60.f);
+    self.buttonMiddle.frame = CGRectMake(106.66f, screenBounds.size.height - 60, 106.66f, 60.f);
     self.buttonMiddle.buttonText.text = @"המשך";
     [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
     
@@ -143,7 +150,7 @@
     
     // right button
     self.buttonRight = [[buttonView buttonView] initWithBorders:FALSE];
-    self.buttonRight.frame = CGRectMake(213.33f, 508.f, 106.66f, 60.f);
+    self.buttonRight.frame = CGRectMake(213.33f, screenBounds.size.height - 60, 106.66f, 60.f);
     self.buttonRight.buttonText.text = @"גלגל הצלה";
     [self.buttonRight.img setImage:[UIImage imageNamed:@"tactics.png"]];
     
