@@ -21,25 +21,24 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = [UIColor clearColor];
-//    self.view.backgroundColor = QUESITY_COLOR_BG;
-    
-//    self.titleLabel.text = self.quest.name;
-    
-    //CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    //    if (screenBounds.size.height == 568) {
-    //        // code for 4-inch screen
-    //    } else {
-    //        // code for 3.5-inch screen
-    //    }
+
+    //robustness for iphone 4 & 5
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    float pushUp = 0.f;
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+    } else {
+        pushUp = 480-568;
+    }
     
     myUtilities *myUtils = [[myUtilities alloc] init];
-    [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, 430.f, 300.f, 0.5f)]];
-    [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, 495.f, 300.f, 0.5f)]];
+    [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, pushUp + 430.f, 300.f, 0.5f)]];
+    [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, pushUp + 495.f, 300.f, 0.5f)]];
     
     UILabel *questNameLabel = (UILabel *)[self.view viewWithTag:105];
     questNameLabel.text = self.quest.name;
 
-    UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 180.0, 200.0, 200.0)];
+    UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 180.0 + pushUp/2, 200.0, 200.0)];
     questImg.image = self.quest.img;
     questImg.layer.cornerRadius = 100.0f;
     questImg.clipsToBounds = YES;
@@ -49,7 +48,7 @@
 	// Do any additional setup after loading the view.
 
     //rating stuff:
-    self.rv  =[[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, 465.0, 120.f, 60.f)];
+    self.rv  =[[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, pushUp + 465.0, 120.f, 60.f)];
     self.rv.delegate = self;
     self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
     self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
@@ -70,30 +69,8 @@
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",self.quest.questId];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:questStatePath];
     
-//
-//    self.rv.delegate = self;
-//    self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
-//    self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
-//    self.rv.contentMode = UIViewContentModeScaleAspectFill;
-//    self.rv.maxRating = 5;
-//    self.rv.minRating = 1;
-//    self.rv.rating = 2.5;
-//    self.rv.editable = YES;
-//    self.rv.halfRatings = YES;
-//    self.rv.floatRatings = NO;
-
-    
     
 }
-
-//- (IBAction)didPressRatingView:(id)sender {
-//    [self segueToRatingView: sender];
-//}
-
-//- (IBAction)segueToRatingView: (id)sender
-//{
-//    [self performSegueWithIdentifier:@"showRatingView" sender:self];
-//}
 
 - (IBAction)returnToFinishPage:(UIStoryboardSegue *)segue {
     QSCratingViewController* sourceViewController = segue.sourceViewController;
@@ -134,9 +111,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (IBAction)didPressFinish:(id)sender {
-//
-//
-//}
 
 @end

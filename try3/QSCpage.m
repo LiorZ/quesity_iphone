@@ -58,6 +58,11 @@
     
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
+
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    //[detailsWebView setFrame:CGRectMake(detailsWebView.frame.origin.x, detailsWebView.frame.origin.y, 300.0, detailsWebView.frame.size.height)];
+    [webStuff2 setFrame:CGRectMake(0.f, 60.f, 320.f , screenBounds.size.height-120.f)];
+    webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);;
     
     [self updateButtonMiddleImage];
 
@@ -241,7 +246,10 @@
 }
 
 - (NSString *) getAnswerFromLink:(NSArray *)link {
-    return [link valueForKey:@"answer_txt"];
+    NSString *ans = [link valueForKey:@"answer_txt"];
+    if (ans==nil)
+        return [link valueForKey:@"txt_street"];
+    return ans;
 }
 
 - (NSMutableArray *) getLocsFromLinks:(NSArray *)links {
@@ -349,6 +357,27 @@
     [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
+- (void) popToCheat {
+    NSArray *links = self.linksToOthers[self.currPage];
+    NSLog(@"%@",links);
+
+    UIActionSheet *newPopup = [[UIActionSheet alloc] initWithTitle: @"Here are some links:"
+                                                          delegate: self
+                                                 cancelButtonTitle: nil
+                                            destructiveButtonTitle: nil
+                                                 otherButtonTitles: nil];
+    
+    for (NSArray * link in links) {
+        [newPopup addButtonWithTitle:[self getAnswerFromLink:link]];
+    }
+    
+    [newPopup addButtonWithTitle:@"Cancel"];
+    newPopup.cancelButtonIndex = self.currCorrectAnswers.count;
+    
+    newPopup.tag = 4;
+    [newPopup showInView:[UIApplication sharedApplication].keyWindow];
+}
+
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
         if (buttonIndex!=self.linksToOthers.count) {
@@ -361,6 +390,8 @@
 //        NSString *opt1 =  @"הצג מפה";
 //        NSString *opt2 =  @"התחל מחדש";
 //        NSString *opt3 =  @"צא מהקווסט";
+//        NSString *opt4 =  @"cheat and skip page. ha!";
+//        NSString *opt5 =  @"cheat and go to the end. ha ha!";
 
         if (buttonIndex==0) {
             NSLog(@"Show map!");
@@ -382,6 +413,29 @@
             NSLog(@"Exit quest!");
             
             [self back:nil];
+        }  else if (buttonIndex==3){
+            NSLog(@"go to next page!");
+
+            //there might be more than one link...
+            NSArray *links = self.linksToOthers[self.currPage];
+            
+            if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
+                if ([links count]==0) {
+                    [self segueToFinish];
+                }
+            }
+            
+            if (links.count==1) {
+                self.linkBeingProcessed = links[0];
+                [self goToNextPage];
+            } else if (links.count!=0){
+                [self popToCheat];
+            }
+            
+        } else if (buttonIndex==4){
+            NSLog(@"Finish quest!");
+            
+            [self segueToFinish];
         }
     } else if (popup.tag==3) {
         NSArray *hintsForThisPage = self.pagesHints[self.currPage];
@@ -400,7 +454,13 @@
             self.currHintsAvailable = self.currHintsAvailable - 1;
             [self updateHintButtonStatus];
         }
-
+    } else if (popup.tag==4) {
+        NSArray *links = self.linksToOthers[self.currPage];
+        if (buttonIndex!=links.count) {
+            NSLog(@"Chose: %@",links[buttonIndex]);
+            self.linkBeingProcessed = links[buttonIndex];
+            [self goToNextPage];
+        }
     }
 }
 
@@ -562,12 +622,14 @@
     NSString *opt1 =  @"הצג מפה";
     NSString *opt2 =  @"התחל מחדש";
     NSString *opt3 =  @"צא מהקווסט";
+    NSString *opt4 =  @"דלג לעמוד הבא. הא!";
+    NSString *opt5 =  @"דלג לסוף. הא הא!";
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: nil
                                                        delegate: self
                                               cancelButtonTitle: @"Cancel"
                                          destructiveButtonTitle: nil
-                                              otherButtonTitles: opt1, opt2, opt3, nil];
+                                              otherButtonTitles: opt1, opt2, opt3, opt4, opt5, nil];
     
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];

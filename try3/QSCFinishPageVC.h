@@ -14,6 +14,10 @@
 
 //@property IBOutlet NSString *questTitle;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *finishButton;
+@property (weak, nonatomic) IBOutlet UILabel *howWasItLabel;
+
+
 
 @property IBOutlet QSCQuest *quest;
 @property (strong, nonatomic) IBOutlet TPFloatRatingView *rv;
