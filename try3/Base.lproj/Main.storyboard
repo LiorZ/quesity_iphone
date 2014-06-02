@@ -357,15 +357,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0CG-yz-rn1">
-                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36136464169999999" green="0.6025113809" blue="0.78627232140000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="כל הכבוד !" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-FO-y3q">
-                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="35" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -416,13 +411,11 @@
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="mVM-2W-DWX" secondAttribute="centerX" id="Dau-wl-d7M"/>
                             <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="JR3-1b-sTk" secondAttribute="leading" id="FZO-zS-WWz"/>
                             <constraint firstAttribute="bottom" secondItem="Fup-rb-VUo" secondAttribute="bottom" constant="20" symbolic="YES" id="G0S-jV-gBZ"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="0CG-yz-rn1" secondAttribute="leading" id="G1q-BS-xmX"/>
                             <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="WOh-FO-y3q" secondAttribute="leading" id="GUe-fm-7ba"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="WOh-FO-y3q" secondAttribute="centerX" id="XIS-Wo-WlN"/>
                             <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" id="XZN-YV-VJO"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="KUL-Pu-chG" secondAttribute="centerX" id="eF4-cp-VUe"/>
                             <constraint firstItem="KUL-Pu-chG" firstAttribute="trailing" secondItem="ApE-4y-ctX" secondAttribute="trailing" id="nZl-6e-CmI"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="0CG-yz-rn1" secondAttribute="centerX" id="pTj-CE-xMa"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" constant="60" id="rqH-49-scr"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="top" secondItem="KUL-Pu-chG" secondAttribute="bottom" constant="38" id="xXv-Va-hKc"/>
                         </constraints>

@@ -17,7 +17,7 @@
 - (void)QSCpageDidSave:(QSCpage *)controller;
 @end
 
-@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate>
+@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate>
 {
     CLLocationManager *locationManager;
     CLLocation *currentLocation;

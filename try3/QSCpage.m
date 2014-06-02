@@ -37,8 +37,9 @@
 
 - (void) createWebViewWithHTML{
     //create the string
-    NSMutableString *html = [NSMutableString stringWithString: @"<html>"];
-//    NSMutableString *html = [NSMutableString stringWithString: @"<html><body style=\"background:transparent;\">"];
+    NSMutableString *html = [NSMutableString stringWithString: @"<html><body style='padding:0; margin:0'>"];
+
+    //    NSMutableString *html = [NSMutableString stringWithString: @"<html><body style=\"background:transparent;\">"];
     
     //continue building the string
     if (self.content == Nil)
@@ -46,7 +47,7 @@
     else
         [html appendString:self.content[self.currPage]];
 
-    [html appendString:@"</html>"];
+    [html appendString:@"</body></html>"];
     
     //NSLog(@"%@",html);
     
@@ -56,20 +57,60 @@
     //make the background transparent
     [webStuff2 setBackgroundColor:QUESITY_COLOR_BG];
     
+    webStuff2.delegate = self;
+    
+    NSLog(@"1. contentSize: %f",webStuff2.scrollView.contentSize.height);
+
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
 
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     //[detailsWebView setFrame:CGRectMake(detailsWebView.frame.origin.x, detailsWebView.frame.origin.y, 300.0, detailsWebView.frame.size.height)];
     [webStuff2 setFrame:CGRectMake(0.f, 60.f, 320.f , screenBounds.size.height-120.f)];
-    webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);;
+    //webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
+
+//    [webStuff2 sizeToFit];
+    NSLog(@"2. contentSize: %f",webStuff2.scrollView.contentSize.height);
     
     [self updateButtonMiddleImage];
+    
+    //save progress:
+    NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+    [self saveDict:questStatePath];
+
 
     //add it to the subview
     //[self.view addSubview:webView2];
     
 }
+
+- (void)webViewDidFinishLoad:(UIWebView *)theWebView
+{
+//    NSLog(@"3. contentSize: %f",webStuff2.scrollView.contentSize.height);
+    
+//    [webStuff2 sizeToFit];
+
+//    NSLog(@"4. contentSize: %f",webStuff2.scrollView.contentSize.height);
+
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
+
+    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
+    
+//    CGRect frame = webStuff2.frame;
+//    frame.size.height = 1;
+//    webStuff2.frame = frame;
+//    CGSize fittingSize = [webStuff2 sizeThatFits:CGSizeZero];
+//    frame.size = fittingSize;
+//    webStuff2.frame = frame;
+//    
+//    NSLog(@"size: %f, %f", fittingSize.width, fittingSize.height);
+//    
+//    NSLog(@"6. contentSize: %f",webStuff2.scrollView.contentSize.height);
+    
+
+}
+
 
 - (NSUInteger) findFirst {
     return [self.is_first indexOfObjectIdenticalTo:@(YES)];
@@ -380,7 +421,7 @@
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
-        if (buttonIndex!=self.linksToOthers.count) {
+        if (buttonIndex!=[self.linksToOthers[self.currPage] count]) {
             NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex]);
             NSArray *links = self.linksToOthers[self.currPage];
             self.linkBeingProcessed = links[buttonIndex];
@@ -453,6 +494,10 @@
             
             self.currHintsAvailable = self.currHintsAvailable - 1;
             [self updateHintButtonStatus];
+
+            //save progress (hints taken):
+            NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+            [self saveDict:questStatePath];
         }
     } else if (popup.tag==4) {
         NSArray *links = self.linksToOthers[self.currPage];
