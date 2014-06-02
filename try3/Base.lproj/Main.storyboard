@@ -357,7 +357,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="כל הכבוד !" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-FO-y3q">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כל הכבוד !" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-FO-y3q">
                                 <rect key="frame" x="0.0" y="35" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -379,16 +379,22 @@
                                     <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="crossDissolve" id="VNK-a2-lyD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="סיימתם את" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-1b-sTk">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="סיימתם את" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-1b-sTk">
                                 <rect key="frame" x="0.0" y="74" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MQH-za-esA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="סיימתם את" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApE-4y-ctX">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="סיימתם את" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApE-4y-ctX">
                                 <rect key="frame" x="0.0" y="99" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2Tl-nX-5qZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -406,17 +412,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="JR3-1b-sTk" secondAttribute="centerX" id="4CL-MS-fqB"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="ApE-4y-ctX" secondAttribute="leading" id="85x-Hy-597"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="trailing" secondItem="JR3-1b-sTk" secondAttribute="trailing" id="4X1-En-Zns"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="top" secondItem="plS-S5-ddX" secondAttribute="bottom" constant="15" id="91d-P9-86Z"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="mVM-2W-DWX" secondAttribute="centerX" id="Dau-wl-d7M"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="JR3-1b-sTk" secondAttribute="leading" id="FZO-zS-WWz"/>
                             <constraint firstAttribute="bottom" secondItem="Fup-rb-VUo" secondAttribute="bottom" constant="20" symbolic="YES" id="G0S-jV-gBZ"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="WOh-FO-y3q" secondAttribute="leading" id="GUe-fm-7ba"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="WOh-FO-y3q" secondAttribute="centerX" id="XIS-Wo-WlN"/>
+                            <constraint firstItem="ApE-4y-ctX" firstAttribute="top" secondItem="WOh-FO-y3q" secondAttribute="bottom" constant="24" id="QuD-bn-oeP"/>
+                            <constraint firstItem="ApE-4y-ctX" firstAttribute="top" secondItem="mVM-2W-DWX" secondAttribute="top" constant="99" id="VeV-VG-neF"/>
+                            <constraint firstItem="JR3-1b-sTk" firstAttribute="leading" secondItem="ApE-4y-ctX" secondAttribute="leading" id="WWJ-27-vpV"/>
                             <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" id="XZN-YV-VJO"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="KUL-Pu-chG" secondAttribute="centerX" id="eF4-cp-VUe"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="trailing" secondItem="ApE-4y-ctX" secondAttribute="trailing" id="nZl-6e-CmI"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="leading" secondItem="JR3-1b-sTk" secondAttribute="leading" id="eYs-N9-5ow"/>
+                            <constraint firstItem="JR3-1b-sTk" firstAttribute="top" secondItem="plS-S5-ddX" secondAttribute="bottom" constant="54" id="elE-uL-afo"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="leading" secondItem="KUL-Pu-chG" secondAttribute="leading" id="nmT-vz-9KS"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" constant="60" id="rqH-49-scr"/>
+                            <constraint firstItem="JR3-1b-sTk" firstAttribute="trailing" secondItem="ApE-4y-ctX" secondAttribute="trailing" id="tST-In-P7P"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="trailing" secondItem="KUL-Pu-chG" secondAttribute="trailing" id="wMz-gS-mlg"/>
                             <constraint firstItem="Fup-rb-VUo" firstAttribute="top" secondItem="KUL-Pu-chG" secondAttribute="bottom" constant="38" id="xXv-Va-hKc"/>
                         </constraints>
                     </view>
