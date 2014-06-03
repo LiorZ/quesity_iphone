@@ -713,44 +713,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="UI-4-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-Mn-I0S">
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UI-4-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-Mn-I0S">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQk-0O-JeD">
-                                <rect key="frame" x="42" y="261" width="237" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="7c2-dr-GLU" kind="modal" identifier="goFindQuest" modalTransitionStyle="flipHorizontal" id="SgL-j7-Sd0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP3-YY-Itn">
-                                <rect key="frame" x="42" y="356" width="237" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="co6-cg-UVJ" kind="modal" identifier="goMyQuests" modalTransitionStyle="flipHorizontal" id="1VK-Gg-QJf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rti-Mn-KuH">
-                                <rect key="frame" x="42" y="449" width="237" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="nVY-c0-ifk" kind="modal" identifier="goAbout" modalTransitionStyle="flipHorizontal" id="Cbo-24-pJg"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qyj-Mn-I0S" firstAttribute="leading" secondItem="IBr-MK-bZP" secondAttribute="leading" id="QXh-Mi-AId"/>
+                            <constraint firstAttribute="bottom" secondItem="qyj-Mn-I0S" secondAttribute="bottom" id="R3t-hf-NBb"/>
+                            <constraint firstItem="qyj-Mn-I0S" firstAttribute="top" secondItem="IBr-MK-bZP" secondAttribute="top" id="nys-PB-Ah6"/>
+                            <constraint firstAttribute="trailing" secondItem="qyj-Mn-I0S" secondAttribute="trailing" id="zUz-38-iMX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zqB-3D-ODV"/>
+                    <connections>
+                        <outlet property="bgImg" destination="qyj-Mn-I0S" id="aMp-Nq-pdX"/>
+                        <segue destination="7c2-dr-GLU" kind="modal" identifier="goFindQuest1" modalTransitionStyle="flipHorizontal" id="fVP-Nf-coM"/>
+                        <segue destination="co6-cg-UVJ" kind="modal" identifier="goMyQuests1" modalTransitionStyle="flipHorizontal" id="Ce5-2p-V5D"/>
+                        <segue destination="nVY-c0-ifk" kind="modal" identifier="goAbout1" modalTransitionStyle="flipHorizontal" id="34O-iY-9cj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgh-RI-Ldh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

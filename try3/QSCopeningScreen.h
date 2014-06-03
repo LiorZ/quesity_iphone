@@ -10,4 +10,10 @@
 
 @interface QSCopeningScreen : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
+
+//@property (weak, nonatomic) IBOutlet UIButton *btnFind;
+//@property (weak, nonatomic) IBOutlet UIButton *btnMy;
+//@property (weak, nonatomic) IBOutlet UIButton *btnAbout;
+
 @end
