@@ -24,14 +24,24 @@
 @synthesize is_first = _is_first;
 
 - (void) updateButtonMiddleImage {
+
     if (self.currQType==page_STATIC) {
         [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
+        self.buttonMiddle.buttonText.text = NSLocalizedString(@"Continue", nil);
+        
     } else if (self.currQType==page_LOCATION) {
         [self.buttonMiddle.img setImage:[UIImage imageNamed:@"arrived.png"]];
+        self.buttonMiddle.buttonText.text = NSLocalizedString(@"Arrived", nil);
+        
     } else if (self.currQType==page_OPEN_QUESTION) {
         [self.buttonMiddle.img setImage:[UIImage imageNamed:@"enter-text.png"]];
+        self.buttonMiddle.buttonText.text = NSLocalizedString(@"Enter Text", nil);
+        
+       
     } else if (self.currQType==page_QUESTION) {
         [self.buttonMiddle.img setImage:[UIImage imageNamed:@"options.png"]];
+        self.buttonMiddle.buttonText.text = NSLocalizedString(@"Choose", nil);
+        
     }
 }
 
@@ -64,9 +74,9 @@
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
 
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    //CGRect screenBounds = [[UIScreen mainScreen] bounds];
     //[detailsWebView setFrame:CGRectMake(detailsWebView.frame.origin.x, detailsWebView.frame.origin.y, 300.0, detailsWebView.frame.size.height)];
-    [webStuff2 setFrame:CGRectMake(0.f, 60.f, 320.f , screenBounds.size.height-120.f)];
+    //[webStuff2 setFrame:CGRectMake(0.f, 60.f, 320.f , screenBounds.size.height-120.f)];
     //webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
 
 //    [webStuff2 sizeToFit];
@@ -171,7 +181,10 @@
     // left button:
     self.buttonLeft = [[buttonView buttonView] initWithBorders:FALSE];
     self.buttonLeft.frame = CGRectMake(0.f, screenBounds.size.height - 60, 106.66f, 60.f);
-    self.buttonLeft.buttonText.text = @"תפריט";
+
+    self.buttonLeft.buttonText.text = NSLocalizedString(@"Menu", nil);
+    self.buttonLeft.buttonText.font = [UIFont fontWithName:NSLocalizedString(@"Andada-Regular",nil) size:18];
+
     [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
     
     UITapGestureRecognizer *singleFingerTapLeft =
@@ -184,7 +197,9 @@
     // got it button:
     self.buttonMiddle = [[buttonView buttonView] initWithBorders:TRUE];
     self.buttonMiddle.frame = CGRectMake(106.66f, screenBounds.size.height - 60, 106.66f, 60.f);
-    self.buttonMiddle.buttonText.text = @"המשך";
+    self.buttonMiddle.buttonText.text = NSLocalizedString(@"Continue", nil);
+    self.buttonMiddle.buttonText.font = [UIFont fontWithName:NSLocalizedString(@"Andada-Regular",nil) size:18];
+         
     [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
     
     UITapGestureRecognizer *singleFingerTapMiddle =
@@ -197,7 +212,10 @@
     // right button
     self.buttonRight = [[buttonView buttonView] initWithBorders:FALSE];
     self.buttonRight.frame = CGRectMake(213.33f, screenBounds.size.height - 60, 106.66f, 60.f);
-    self.buttonRight.buttonText.text = @"גלגל הצלה";
+    self.buttonRight.buttonText.text = NSLocalizedString(@"Tactics", nil);
+
+    self.buttonRight.buttonText.font = [UIFont fontWithName:NSLocalizedString(@"Andada-Regular",nil) size:18];
+    
     [self.buttonRight.img setImage:[UIImage imageNamed:@"tactics.png"]];
     
     UITapGestureRecognizer *singleFingerTapRight =
@@ -213,10 +231,10 @@
 {
     self.navigationItem.hidesBackButton = YES;
     
-    self.questTitle.text = _quest.name;
+    //self.questTitle.text = _quest.name;
     //self. = _quest.name;
-    [self.questTitle setTextColor:QUESITY_COLOR_FONT];
-    [self.questTitleImg setBackgroundColor:QUESITY_COLOR_BG];
+    //[self.questTitle setTextColor:QUESITY_COLOR_FONT];
+    //[self.questTitleImg setBackgroundColor:QUESITY_COLOR_BG];
 
     self.view.backgroundColor = QUESITY_COLOR_BG;
 
@@ -353,10 +371,10 @@
             
             [self goToNextPage];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
-                                                            message:@"That's not a correct answer."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong answer",nil)
+                                                            message:NSLocalizedString(@"Wrong answer! :( try again.", nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -367,21 +385,21 @@
 
 - (void) askOpenQuestionAndCheckAnswer {
     //ask question (and check):
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!"
-                                                     message:@"Please enter the answer:"
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Answer",nil)
+                                                     message:NSLocalizedString(@"Enter the answer:", nil)
                                                     delegate:self
-                                           cancelButtonTitle:@"Continue"
+                                           cancelButtonTitle:NSLocalizedString(@"Continue",nil)
                                            otherButtonTitles:nil];
 
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField * alertTextField = [alert textFieldAtIndex:0];
-    alertTextField.placeholder = @"answer";
+    alertTextField.placeholder = NSLocalizedString(@"answer",nil);
     alert.tag = 0;
     [alert show];
 }
 
 - (void) chooseMultChoice {
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: @"Here are some options:"
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Choose:", nil)
                                                        delegate: self
                                               cancelButtonTitle: nil
                                          destructiveButtonTitle: nil
@@ -391,7 +409,7 @@
         [popup addButtonWithTitle:title];
     }
     
-    [popup addButtonWithTitle:@"Cancel"];
+    [popup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     popup.cancelButtonIndex = self.currCorrectAnswers.count;
     
     popup.tag = 1;
@@ -412,7 +430,7 @@
         [newPopup addButtonWithTitle:[self getAnswerFromLink:link]];
     }
     
-    [newPopup addButtonWithTitle:@"Cancel"];
+    [newPopup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     newPopup.cancelButtonIndex = links.count;
     
     newPopup.tag = 4;
@@ -488,7 +506,7 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:hintsTitles[buttonIndex]
                                                             message:hintsContents[buttonIndex]
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -626,10 +644,10 @@
     
     if (ans<0) {
         if (!self.displayedNotCorrectMessages) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nope, sorry"
-                                                            message:@"You're not in the correct location."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong answer", nil)
+                                                            message:NSLocalizedString(@"You are not at the right location... Try again.",nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                   otherButtonTitles:nil];
             [alert show];
             self.displayedNotCorrectMessages = TRUE;
@@ -663,16 +681,16 @@
 }
 
 - (IBAction)didPressButtonMore:(id)sender {
-
-    NSString *opt1 =  @"הצג מפה";
-    NSString *opt2 =  @"התחל מחדש";
-    NSString *opt3 =  @"צא מהקווסט";
-    NSString *opt4 =  @"דלג לעמוד הבא. הא!";
-    NSString *opt5 =  @"דלג לסוף. הא הא!";
+    
+    NSString *opt1 = NSLocalizedString(@"Show Map",nil);
+    NSString *opt2 = NSLocalizedString(@"Start Over", nil);
+    NSString *opt3 = NSLocalizedString(@"Leave Quest",nil);
+    NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
+    NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: nil
                                                        delegate: self
-                                              cancelButtonTitle: @"Cancel"
+                                              cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
                                          destructiveButtonTitle: nil
                                               otherButtonTitles: opt1, opt2, opt3, opt4, opt5, nil];
     
@@ -686,7 +704,14 @@
     NSArray *hintsForThisPage = self.pagesHints[self.currPage];
     NSArray *hintsTitles = [hintsForThisPage valueForKey:@"hint_title"];
 
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: @"Choose a hint:"
+    NSMutableString *hintsTitle = [NSMutableString stringWithFormat:@"You have %d hints left", self.currHintsAvailable];
+
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([language isEqualToString:@"he"]) {
+        hintsTitle = [NSMutableString stringWithFormat:@"נותרו עוד %d רמזים", self.currHintsAvailable];
+    }
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: hintsTitle
                                                        delegate: self
                                               cancelButtonTitle: nil
                                          destructiveButtonTitle: nil
@@ -696,7 +721,7 @@
         [popup addButtonWithTitle:title];
     }
     
-    [popup addButtonWithTitle:@"Cancel"];
+    [popup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     popup.cancelButtonIndex = [hintsTitles count];
     
     popup.tag = 3;

@@ -146,6 +146,11 @@
     //self.gotJsonSuccefully = NO;
     //[self getJson];
     
+    //cancel the swipe gesture that pops to the previous view...
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     //self.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
     
@@ -165,11 +170,16 @@
     [tagListView addTags:_quest.tags];
     [self.view addSubview:tagListView];
     
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
     UILabel *distLabel = (UILabel *)[self.view viewWithTag:210];
     distLabel.text = [NSString stringWithFormat:@"%@ km / %@ hr",_quest.durationD, _quest.durationT];
     
     UILabel *gamesPlayedLabel = (UILabel *)[self.view viewWithTag:220];
-    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ כבר שיחקו",_quest.gamesPlayed];
+    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ played",_quest.gamesPlayed];
+    if ([language isEqualToString:@"he"]) {
+        gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ כבר שיחקו",_quest.gamesPlayed];
+    }
 
     UILabel *ratingLabel = (UILabel *)[self.view viewWithTag:230];
     ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",_quest.rating];
@@ -192,7 +202,7 @@
     float lowerPartHeight = screenBounds.size.height-(290+yDelta);
     
     // Minimum code required to use the segmented control with the default styling.
-    self.segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Description", @"Map", @"Reviews"]];
+    self.segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"Description", nil), NSLocalizedString(@"Map", nil),  NSLocalizedString(@"Reviews", nil)]];
     self.segmentedControl1.frame = CGRectMake(0, 250 + yDelta, 320, 40);
     self.segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     self.segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;

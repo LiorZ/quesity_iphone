@@ -26,11 +26,21 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Andada-Regular.ttf</string>
+		<string>Old-Rubber-Stamp.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-thin.ttf</string>
 		<string>FontAwesome.ttf
 
 FontAwesome.ttf
 
 FontAwesome.ttf</string>
+		<string>Alef-bold.ttf</string>
+		<string>Alef-regular.ttf</string>
+		<string>hadasimclm-regular-webfont.ttf</string>
+		<string>yehudaclm-bold-webfont.ttf</string>
+		<string>yehudaclm-light-webfont.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

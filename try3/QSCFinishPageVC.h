@@ -18,10 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *howWasItLabel;
 
 
-
 @property IBOutlet QSCQuest *quest;
 @property (strong, nonatomic) IBOutlet TPFloatRatingView *rv;
-//@property (strong, nonatomic) IBOutlet TPFloatRatingView *ratingView;
 @property (nonatomic, copy) NSString *opinion;
 
 @end

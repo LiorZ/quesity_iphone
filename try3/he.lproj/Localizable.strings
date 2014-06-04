@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  Quesity
+
+  Created by igor on 6/4/14.
+  Copyright (c) 2014 igor. All rights reserved.
+*/
+
+//buttons:
+"Continue" = "המשך";
+"Arrived" = "הגעתי";
+"Enter Text" = "הכנס טקסט";
+"Choose" = "אפשרויות";
+"Menu" = "תפריט";
+"Tactics" = "גלגלי הצלה";
+
+//dialog boxes and responses
+"Wrong answer" = "";
+"Wrong answer! :( try again." = "התשובה שגויה :( נסו שנית.";
+"Answer" = "";
+"Enter the answer:" = "הזינו את התשובה:";
+"Choose:" = "בחרו";
+"OK" = "אישור";
+"answer"= "";
+"Cancel"= "ביטול";
+"You are not at the right location... Try again."= "!אינכם נמצאים במקום הנכון. נסו שוב";
+
+//menu:
+"Show Map" = "הצג מפה";
+"Start Over" = "התחל מחדש";
+"Leave Quest" = "צא מהקווסט";
+"Skip to the next page. Ha!" = "דלג לעמוד הבא. הא!";
+"Skip to the the end. Ha Ha!" = "דלג לסוף. הא הא!";
+
+//info controller
+"Description" = "תיאור";
+"Map" = "מפה";
+"Reviews" = "ביקורות";
+
+//Font names:
+"Roboto-Light"= "Alef-Regular";
+"Roboto-Thin"= "Alef-Regular";
+"Roboto-Regular"= "Alef-Regular";
+"Andada-Regular"= "Alef-Bold";

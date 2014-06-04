@@ -14,6 +14,7 @@
 #import "myGlobalData.h"
 #import "MBProgressHUD.h"
 #import "QSCQuest.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
@@ -36,7 +37,16 @@
     //loading quests
     NSArray* json = [[NSUserDefaults standardUserDefaults] valueForKey: @"myData"];
     [self parseJson2Quests:json];
-
+    
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//        NSLog(@"%@", family);
+//        
+//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//        {
+//            NSLog(@"  %@", name);
+//        }
+//    }
 }
 
 - (void) parseJson2Quests:(NSArray *)json {
@@ -262,9 +272,12 @@
     [cell addSubview:questImg];
     
     myUtilities *myUtils = [[myUtilities alloc] init];
-    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
-    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
+//    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
+//    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
 
+    [myUtils drawLine1:CGRectMake(150.f, 50.f, 1.f, 40.f) toView:cell];
+    [myUtils drawLine1:CGRectMake(210.f, 50.f, 1.f, 40.f) toView:cell];
+    
     return cell;
     
 }

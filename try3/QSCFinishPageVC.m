@@ -48,7 +48,7 @@
 	// Do any additional setup after loading the view.
 
     //rating stuff:
-    self.rv  =[[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, pushUp + 465.0, 120.f, 60.f)];
+    self.rv  =[[TPFloatRatingView alloc] initWithFrame:CGRectMake(100.f, pushUp + 465.0, 120.f, 30.f)];
     self.rv.delegate = self;
     self.rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
     self.rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];

@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  Quesity
+
+  Created by igor on 6/4/14.
+  Copyright (c) 2014 igor. All rights reserved.
+*/
+
+//buttons:
+"Continue" = "Continue";
+"Arrived" = "Arrived";
+"Enter Text" = "Enter Text";
+"Choose" = "Choose";
+"Menu" = "Menu";
+"Tactics" = "Tactics";
+
+//dialog boxes and responses
+"Wrong answer" = "";
+"Wrong answer! :( try again." = "Wrong answer :( try again.";
+"Answer" = "";
+"Enter the answer:" = "Enter the answer:";
+"Choose:" = "Choose:";
+"OK" = "OK";
+"answer" = "";
+"Cancel"= "Cancel";
+"You are not at the right location... Try again."= "You are not at the right location... Try again.";
+
+//menu:
+"Show Map" = "Show Map";
+"Start Over" = "Start Over";
+"Leave Quest" = "Leave Quest";
+"Skip to the next page. Ha!" = "Skip to the next page. Ha!";
+"Skip to the the end. Ha Ha!" = "Skip to the the end. Ha Ha!";
+
+//info controller
+"Description" = "Description";
+"Map" = "Map";
+"Reviews" = "Reviews";
+
+//Font names:
+"Roboto-Light"= "Roboto-Light";
+"Roboto-Thin"= "Roboto-Thin";
+"Roboto-Regular"= "Roboto-Regular";
+"Andada-Regular"= "Andada-Regular";

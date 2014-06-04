@@ -7,6 +7,7 @@
 //
 
 #import "myUtilities.h"
+#import "myGlobalData.h"
 
 @implementation myUtilities
 
@@ -160,6 +161,31 @@
     v.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
     return v;
 }
+
+- (void) drawLine1: (CGRect)rect toView: (UIView *)v {
+    CAShapeLayer *lineShape = nil;
+    CGMutablePathRef linePath = nil;
+    linePath = CGPathCreateMutable();
+    lineShape = [CAShapeLayer layer];
+    
+    lineShape.lineWidth = 1.f;
+    lineShape.lineCap = kCALineCapSquare;
+    lineShape.strokeColor = [[UIColor grayColor] CGColor];
+    
+    int x = rect.origin.x;
+    int y = rect.origin.y;
+    int toX = rect.origin.x+rect.size.width;
+    int toY = rect.origin.y+rect.size.height;
+    
+    CGPathMoveToPoint(linePath, NULL, x, y);
+    CGPathAddLineToPoint(linePath, NULL, toX, toY);
+    
+    lineShape.path = linePath;
+    CGPathRelease(linePath);
+    [v.layer addSublayer:lineShape];
+}
+
+
 
 
 @end

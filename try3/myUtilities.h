@@ -22,6 +22,7 @@
 - (NSString *) getFileFromPath: (NSString *)path;
 
 - (UIView *) drawLine: (CGRect)rect;
+- (void) drawLine1: (CGRect)rect toView: (UIView *)v;
 
 
 @end

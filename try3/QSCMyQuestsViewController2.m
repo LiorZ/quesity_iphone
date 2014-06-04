@@ -229,9 +229,11 @@
     [cell addSubview:questImg];
     
     myUtilities *myUtils = [[myUtilities alloc] init];
-    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
-    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
+    //    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
+    //    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
     
+    [myUtils drawLine1:CGRectMake(150.f, 50.f, 1.f, 40.f) toView:cell];
+    [myUtils drawLine1:CGRectMake(210.f, 50.f, 1.f, 40.f) toView:cell];
     return cell;
     
 }
