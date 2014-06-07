@@ -21,9 +21,6 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     //decide which main VC to show:
-    NSLog(@"AppDelegate: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
-
-    
     myGlobalData *myGD = [[myGlobalData alloc] init];
     if ([myGD isLoggedInStatus]) {
         UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainAfterLogin"];

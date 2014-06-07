@@ -118,11 +118,6 @@
 }
 
 
-- (BOOL)isRTL {
-    return ([NSLocale characterDirectionForLanguage:[[NSLocale preferredLanguages] objectAtIndex:0]] == NSLocaleLanguageDirectionRightToLeft);
-}
-
-
 - (void)viewDidAppear:(BOOL)animated {
     //user wasn't signed in. he logged in and got back to the view. need to retrive json.
     if (!self.gotJsonSuccefully) {
@@ -226,11 +221,18 @@
     [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, lowerPartHeight) animated:NO];
     [self.view addSubview:self.scrollView1];
     
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    
     //DESCRIPTION VIEW:
     
     UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, lowerPartHeight)];
     
-    NSMutableString *html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right background-color: transparent;>"];
+    NSMutableString *html;
+    if ([myUtils isRTL:_quest.description])
+        html = [NSMutableString stringWithString: @"<html dir=\"rtl\" lang=\"he\" align=right background-color: transparent;>"];
+    else
+        html = [NSMutableString stringWithString: @"<html lang=\"en\" align=left background-color: transparent;>"];
+    
     [html appendString:_quest.description];
     [html appendString:@"</html>"];
     
@@ -297,7 +299,6 @@
     NSString *stam = @"";
     
     dispatch_async(imageLoadingQueue, ^{
-        myUtilities *myUtils = [[myUtilities alloc] init];
         NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
         //we start from 1 instead of 0 because the first image is for the "quest icon"

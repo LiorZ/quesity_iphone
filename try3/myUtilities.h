@@ -24,5 +24,7 @@
 - (UIView *) drawLine: (CGRect)rect;
 - (void) drawLine1: (CGRect)rect toView: (UIView *)v;
 
+- (BOOL)isRTL: (NSString *)str;
+
 
 @end

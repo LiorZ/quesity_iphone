@@ -117,8 +117,7 @@
                     NSString *str = tags1[j];
                     tags1[j] = [str stringByReplacingOccurrencesOfString:@"_" withString:@" "];
                 }
-                NSLog(@"%@",tags1);
-                quest.tags = tags1;
+                quest.tags = [NSArray arrayWithArray:tags1];
                 
                 //LOADING IMAGE:
                 NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];

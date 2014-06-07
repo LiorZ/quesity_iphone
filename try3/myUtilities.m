@@ -185,7 +185,17 @@
     [v.layer addSublayer:lineShape];
 }
 
-
+- (BOOL)isRTL: (NSString *)str {
+    int c = [[str lowercaseString] characterAtIndex:0];
+    
+    if (c>=97 && c<=122) {
+        NSLog(@"English");
+        return NO;
+    } else {
+        NSLog(@"Not English");
+        return YES;
+    }
+}
 
 
 @end
