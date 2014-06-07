@@ -114,7 +114,10 @@
 "eIf-ej-Hq1.text" = "(4.8)";
 
 /* Class = "IBUIButton"; normalTitle = "Register"; ObjectID = "ext-f1-bGU"; */
-"ext-f1-bGU.normalTitle" = "הרשם";
+"ext-f1-bGU.normalTitle" = "רישום";
+
+/* Class = "IBUIButton"; normalTitle = "Register"; ObjectID = "U2f-eB-lPN"; */
+"U2f-eB-lPN.normalTitle" = "רישום";
 
 /* Class = "IBUITextField"; placeholder = "נשמח לשמוע את דעתכם"; ObjectID = "fwY-ey-jla"; */
 "fwY-ey-jla.placeholder" = "נשמח לשמוע את דעתכם";
@@ -159,7 +162,13 @@
 "o1x-HO-fiX.placeholder" = "סיסמא";
 
 /* Class = "IBUIButton"; normalTitle = "Sign In"; ObjectID = "rl7-AG-6Qg"; */
-"rl7-AG-6Qg.normalTitle" = "התחבר";
+"rl7-AG-6Qg.normalTitle" = "התחברות";
+
+/* Class = "IBUIButton"; normalTitle = "Sign in"; ObjectID = "9Av-UR-6fv"; */
+"9Av-UR-6fv.normalTitle" = "התחברות";
+
+/* Class = "IBUIButton"; normalTitle = "Sign In"; ObjectID = "ecp-ge-qJB"; */
+"ecp-ge-qJB.normalTitle" = "התחברות";
 
 /* Class = "IBUINavigationItem"; title = "All Quests"; ObjectID = "uL4-A6-KaG"; */
 "uL4-A6-KaG.title" = "מצא קווסט";
@@ -169,3 +178,30 @@
 
 /* Class = "IBUILabel"; text = "מרחק"; ObjectID = "wqE-U3-wdb"; */
 "wqE-U3-wdb.text" = "מרחק";
+
+/* Class = "IBUIButton"; normalTitle = "Register with email"; ObjectID = "JVt-Bl-9Uz"; */
+"JVt-Bl-9Uz.normalTitle" = "רישום עם אימייל";
+
+/* Class = "IBUIButton"; normalTitle = "Login"; ObjectID = "9Av-UR-6fv"; */
+"9Av-UR-6fv.normalTitle" = "התחברות";
+
+/* Class = "IBUITextField"; placeholder = "Email"; ObjectID = "Rbz-15-UeB"; */
+"Rbz-15-UeB.placeholder" = "כתובת אימייל";
+
+/* Class = "IBUITextField"; placeholder = "Email"; ObjectID = "mK8-uV-GM0"; */
+"mK8-uV-GM0.placeholder" = "כתובת אימייל";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "ReH-VO-aOx"; */
+"ReH-VO-aOx.placeholder" = "סיסמא";
+
+/* Class = "IBUITextField"; placeholder = "First Name"; ObjectID = "STt-Rj-M7c"; */
+"STt-Rj-M7c.placeholder" = "שם פרטי";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "sHR-DJ-ijz"; */
+"sHR-DJ-ijz.normalTitle" = "ביטול";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "lcH-8a-gbU"; */
+"lcH-8a-gbU.normalTitle" = "ביטול";
+
+/* Class = "IBUITextField"; placeholder = "Last Name"; ObjectID = "sdb-hz-4em"; */
+"sdb-hz-4em.placeholder" = "שם משפחה";

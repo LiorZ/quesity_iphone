@@ -13,10 +13,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *loginEmail;
 @property (weak, nonatomic) IBOutlet UITextField *loginPass;
-@property (weak, nonatomic) IBOutlet BButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *registerButton;
-@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
+//@property (weak, nonatomic) IBOutlet BButton *loginButton;
 
 @property (nonatomic, weak) IBOutlet UIView *main;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 
 @end

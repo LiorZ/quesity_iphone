@@ -43,14 +43,14 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     
     //iphone 4 frame:
-    UIButton *btnFind  = [[UIButton alloc] initWithFrame:CGRectMake(42.f, 222.f, 237.f, 50.f)];
-    UIButton *btnMy    = [[UIButton alloc] initWithFrame:CGRectMake(42.f, 300.f, 237.f, 50.f)];
-    UIButton *btnAbout = [[UIButton alloc] initWithFrame:CGRectMake(42.f, 380.f, 237.f, 50.f)];
+    UIButton *btnFind  = [[UIButton alloc] initWithFrame:CGRectMake(38.f, 220.f, 244.f, 52.f)];
+    UIButton *btnMy    = [[UIButton alloc] initWithFrame:CGRectMake(38.f, 299.5f, 244.f, 52.f)];
+    UIButton *btnAbout = [[UIButton alloc] initWithFrame:CGRectMake(38.f, 379.f, 244.f, 52.f)];
 
     if (screenBounds.size.height==568) {
-        btnFind.frame  = CGRectMake(42.f, 261.f, 237.f, 61.f);
-        btnMy.frame    = CGRectMake(42.f, 356.f, 237.f, 61.f);
-        btnAbout.frame = CGRectMake(42.f, 449.f, 237.f, 61.f);
+        btnFind.frame  = CGRectMake(38.f, 260.f, 244.f, 62.f);
+        btnMy.frame    = CGRectMake(38.f, 356.f, 244.f, 62.f);
+        btnAbout.frame = CGRectMake(38.f, 449.f, 244.f, 62.f);
     }
     
     UITapGestureRecognizer *singleFingerTapFind = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -63,6 +63,14 @@
     [btnFind  addGestureRecognizer:singleFingerTapFind];
     [btnMy    addGestureRecognizer:singleFingerTapMy];
     [btnAbout addGestureRecognizer:singleFingerTapAbout];
+    
+    [btnFind  setImage:[UIImage imageNamed:NSLocalizedString(@"btnFind",nil)]  forState:UIControlStateNormal];
+    [btnMy    setImage:[UIImage imageNamed:NSLocalizedString(@"btnMy",nil)]    forState:UIControlStateNormal];
+    [btnAbout setImage:[UIImage imageNamed:NSLocalizedString(@"btnAbout",nil)] forState:UIControlStateNormal];
+
+    [btnFind  setImage:[UIImage imageNamed:NSLocalizedString(@"btnFindPressed",nil)]  forState:UIControlStateHighlighted];
+    [btnMy    setImage:[UIImage imageNamed:NSLocalizedString(@"btnMyPressed",nil)]    forState:UIControlStateHighlighted];
+    [btnAbout setImage:[UIImage imageNamed:NSLocalizedString(@"btnAboutPressed",nil)] forState:UIControlStateHighlighted];
     
     [self.view addSubview:btnFind];
     [self.view addSubview:btnMy];

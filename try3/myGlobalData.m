@@ -29,6 +29,16 @@ static myGlobalData *instance = nil;
     _isLoggedIn = stat;
     //saving stuff:
     [[NSUserDefaults standardUserDefaults] setBool:stat forKey:@"isLoggedIn"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"%hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
+
+}
+
+- (BOOL) isLoggedInStatus{
+    _isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"];
+    NSLog(@"%hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
+    return _isLoggedIn;
 }
 
 @end

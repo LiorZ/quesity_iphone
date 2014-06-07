@@ -42,8 +42,6 @@ FontAwesome.ttf</string>
 		<string>yehudaclm-bold-webfont.ttf</string>
 		<string>yehudaclm-light-webfont.ttf</string>
 	</array>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

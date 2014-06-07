@@ -16,15 +16,6 @@
 
 @implementation QSCLoginViewController
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     [self didPressButtonLogin:nil];
@@ -40,26 +31,11 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
     
-    //UIColor *quesityColor = [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f];
-
-    //[[BButton appearance] setButtonCornerRadius:[NSNumber numberWithFloat:0.0f]];
-    //[self.loginButton setType:BButtonTypeSuccess];
-    [self.loginButton setColor:QUESITY_COLOR];
+    self.btnLogin.layer.cornerRadius = 5;
+    self.btnLogin.clipsToBounds = YES;
     
-    NSMutableAttributedString *commentString1 = [[NSMutableAttributedString alloc] initWithString:@"Register"];
-    NSRange range = NSMakeRange(0, [commentString1 length]);
-    [commentString1 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-    [commentString1 addAttribute:NSForegroundColorAttributeName value:QUESITY_COLOR range:range];
-    
-    [self.registerButton setAttributedTitle:commentString1 forState:UIControlStateNormal];
-    
-    NSMutableAttributedString *commentString2 = [[NSMutableAttributedString alloc] initWithString:@"Forgot Password?"];
-    NSRange range2 = NSMakeRange(0, [commentString2 length]);
-    [commentString2 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range2];
-    [commentString2 addAttribute:NSForegroundColorAttributeName value:QUESITY_COLOR range:range2];
-    
-    [self.forgotButton setAttributedTitle:commentString2 forState:UIControlStateNormal];
-    
+    self.btnCancel.layer.cornerRadius = 5;
+    self.btnCancel.clipsToBounds = YES;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -131,6 +107,8 @@
         
         myGlobalData *myGD = [[myGlobalData alloc] init];
         [myGD updateLoggedInStatus:TRUE];
+        
+        [self performSegueWithIdentifier:@"segueAfterLogin" sender:self];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry..."
@@ -141,18 +119,11 @@
         [alert show];
     }
     
+}
+
+- (IBAction)didPressButtonCancelLogin:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
-
-- (IBAction)didPressButtonRegister:(id)sender {
-    NSLog(@"Pressed Register.");
-}
-
-- (IBAction)didPressButtonForgot:(id)sender {
-    NSLog(@"Pressed Forgot.");
-}
-
 
 - (void)didReceiveMemoryWarning
 {

@@ -42,3 +42,11 @@
 "Roboto-Thin"= "Alef-Regular";
 "Roboto-Regular"= "Alef-Regular";
 "Andada-Regular"= "Alef-Bold";
+
+//main button images:
+"btnFind" = "button_find_quest.png";
+"btnMy" = "button_my_quests.png";
+"btnAbout" = "button_about.png";
+"btnFindPressed" = "button_find_quest_pressed.png";
+"btnMyPressed" = "button_my_quests_pressed.png";
+"btnAboutPressed" = "button_about_pressed.png";
