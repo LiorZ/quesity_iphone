@@ -18,5 +18,6 @@
 @property (nonatomic, weak) IBOutlet UIView *main;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scv;
 
 @end

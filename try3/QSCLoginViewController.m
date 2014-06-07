@@ -23,6 +23,86 @@
     return YES;
 }
 
+-(void)keyboardWillShow {
+
+}
+
+-(void)keyboardWillHide {
+    if (self.scv.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.scv.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    if  (self.scv.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+}
+
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    if (movedUp)
+    {
+        //Keyboard becomes visible
+        self.scv.frame = CGRectOffset(self.scv.frame, 0, -80);
+    }
+    else
+    {
+        // revert back to the normal state.
+        self.scv.frame = CGRectOffset(self.scv.frame, 0, 80);
+        
+    }
+    
+    [UIView commitAnimations];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+
+-(void)hideKeyboard
+{
+    [self.view endEditing:YES];
+}
+
+
 - (void)viewDidLoad
 {
     [self.loginEmail setDelegate:self];
@@ -36,9 +116,17 @@
     
     self.btnCancel.layer.cornerRadius = 5;
     self.btnCancel.clipsToBounds = YES;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //for hiding the keyboard when pressing on the scrollview
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    
+    // prevents the scroll view from swallowing up the touch event of child buttons
+    tapGesture.cancelsTouchesInView = NO;
+    
+    [self.scv addGestureRecognizer:tapGesture];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
