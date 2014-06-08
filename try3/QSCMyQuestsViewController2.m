@@ -98,8 +98,14 @@
                 
                 quest.allowedHints = allowedHintsFromJson[i];
                 
-                quest.tags = tagsFromJson[i];
-                
+                //remove '_'from tags:
+                NSMutableArray *tags1 =[NSMutableArray arrayWithArray:tagsFromJson[i]];
+                for (int j=0; j< tags1.count; j++) {
+                    NSString *str = tags1[j];
+                    tags1[j] = [str stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+                }
+                quest.tags = [NSArray arrayWithArray:tags1];
+                                
                 //LOADING IMAGE:
                 NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
                 NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
