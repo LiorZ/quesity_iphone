@@ -24,6 +24,10 @@
 "answer" = "";
 "Cancel"= "Cancel";
 "You are not at the right location... Try again."= "You are not at the right location... Try again.";
+"resume or start over?" = "You have started playing this quest before. Would you like to resume or start over?";
+"Start Over" = "Start Over";
+"Resume" = "Resume";
+
 
 //menu:
 "Show Map" = "Show Map";

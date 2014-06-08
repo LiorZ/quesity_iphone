@@ -25,6 +25,7 @@
 @property UIActivityIndicatorView *indicator;
 @property QSCQuest *questToShow;
 @property BOOL gotJsonSuccefully;
+@property BOOL isStartOver;
 @end
 
 @implementation QSCQuestInfoViewController
@@ -134,6 +135,7 @@
 {
     [super viewDidLoad];
 
+    self.isStartOver = YES;
     self.goOnQuestButton.enabled = NO;
     self.loadedAllImages = NO;
     
@@ -394,8 +396,76 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 0) {
+        if (buttonIndex ==0) {
+            self.isStartOver = YES;
+            NSLog(@"button: %d = Start Over",buttonIndex);
+            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        } else {
+            self.isStartOver = NO;
+            NSLog(@"button: %d = Resume",buttonIndex);
+            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        }
+    }
+}
+
+- (NSUInteger) findFirst {
+    return [self.is_first indexOfObjectIdenticalTo:@(YES)];
+}
+
+
+
 - (IBAction)didGoingOnAQuest:(id)sender {
-    [self performSegueWithIdentifier:@"goOnQuest" sender:sender];
+    
+    ////// maybe there is a saved state:
+    //path of quest state:
+    NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+    
+    //loading quest state:
+    NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
+    NSLog(@"loaded state dict: %@",stateDict);
+    
+    //check whether exists
+    if (stateDict!=nil) {
+        NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
+        NSString *hintsLeft = [stateDict objectForKey:@"hintsLeft"];
+        
+        //check that the questState is "takin"
+        if (continueOnPage!=nil && hintsLeft!=nil) {
+            
+            NSUInteger currPage = [self findFirst];
+
+            if (![self.pagesId[currPage] isEqualToString:continueOnPage]) {
+
+                //ask question (and check):
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                 message:NSLocalizedString(@"resume or start over?", nil)
+                                                                delegate:self
+                                                       cancelButtonTitle:NSLocalizedString(@"Start Over",nil)
+                                                       otherButtonTitles:NSLocalizedString(@"Resume",nil), nil];
+                
+                alert.alertViewStyle = UIAlertViewStyleDefault;
+                alert.tag = 0;
+                [alert show];
+                
+                NSLog(@"what to do?");
+            } else {
+                self.isStartOver = YES;
+                [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+            }
+        } else {
+            self.isStartOver = YES;
+            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        }
+    } else {
+        self.isStartOver = YES;
+        [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+    }
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -420,6 +490,8 @@
         
         qscpage.quest = self.quest;
         qscpage.pagesQType = self.pagesQType;
+
+        qscpage.isStartOver = self.isStartOver;
 
         qscpage.delegate = self;
     }

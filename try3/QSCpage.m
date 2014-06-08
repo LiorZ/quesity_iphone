@@ -157,6 +157,8 @@
         NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : _quest.allowedHints};
         //saving stuff:
         [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
+        
+        self.currHintsAvailable = [_quest.allowedHints integerValue];
     }
 }
 
@@ -245,28 +247,33 @@
     ////// maybe there is a saved state:
     //path of quest state:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
-    
-    //loading quest state:
-    NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-    NSLog(@"loaded state dict: %@",stateDict);
-    
-    //check whether exists
-    if (stateDict!=nil) {
-        NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
-        NSString *hintsLeft = [stateDict objectForKey:@"hintsLeft"];
 
-        //check that the questState is "takin"
-        if (continueOnPage==nil || hintsLeft==nil) {
-            [self saveDefaultDict:questStatePath];
-            //reload:
-            stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-        }
+    if (!self.isStartOver) {
+        //loading quest state:
+        NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
+        NSLog(@"loaded state dict: %@",stateDict);
         
-        self.currHintsAvailable = [[stateDict objectForKey:@"hintsLeft"] integerValue];
-        
-        if (![self.pagesId[self.currPage] isEqualToString:continueOnPage]) {
-            self.currPage = [self findID:continueOnPage];
-            NSLog(@"what to do? resume. restart possible from more option or get from github a blocking alert view");
+        //check whether exists
+        if (stateDict!=nil) {
+            NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
+            NSString *hintsLeft = [stateDict objectForKey:@"hintsLeft"];
+            
+            //check that the questState is "takin"
+            if (continueOnPage==nil || hintsLeft==nil) {
+                [self saveDefaultDict:questStatePath];
+                //reload:
+                stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
+            }
+            
+            self.currHintsAvailable = [[stateDict objectForKey:@"hintsLeft"] integerValue];
+            
+            if (![self.pagesId[self.currPage] isEqualToString:continueOnPage]) {
+                self.currPage = [self findID:continueOnPage];
+            }
+        } else {
+            if (self.pagesId!=nil) {
+                [self saveDefaultDict:questStatePath];
+            }
         }
     } else {
         if (self.pagesId!=nil) {
@@ -447,7 +454,6 @@
         }
     } else if (popup.tag==2) {
 //        NSString *opt1 =  @"הצג מפה";
-//        NSString *opt2 =  @"התחל מחדש";
 //        NSString *opt3 =  @"צא מהקווסט";
 //        NSString *opt4 =  @"cheat and skip page. ha!";
 //        NSString *opt5 =  @"cheat and go to the end. ha ha!";
@@ -455,24 +461,24 @@
         if (buttonIndex==0) {
             NSLog(@"Show map!");
             [self segueToMap:nil];
-        } else if (buttonIndex==1) {
-            NSLog(@"Restart quest!");
-
-            self.currPage = [self findFirst];
-            self.currHintsAvailable = [_quest.allowedHints integerValue];
-            NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
-            [self saveDict:questStatePath];
-            
-            NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
-            self.currQType = [self string2PageType:currQTypeString];
-            
-            [self createWebViewWithHTML];
-            [self updateHintButtonStatus];
-        } else if (buttonIndex==2){
+//        } else if (buttonIndex==1) {
+//            NSLog(@"Restart quest!");
+//
+//            self.currPage = [self findFirst];
+//            self.currHintsAvailable = [_quest.allowedHints integerValue];
+//            NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
+//            [self saveDict:questStatePath];
+//            
+//            NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
+//            self.currQType = [self string2PageType:currQTypeString];
+//            
+//            [self createWebViewWithHTML];
+//            [self updateHintButtonStatus];
+        } else if (buttonIndex==1){
             NSLog(@"Exit quest!");
             
             [self back:nil];
-        }  else if (buttonIndex==3){
+        }  else if (buttonIndex==2){
             NSLog(@"go to next page!");
 
             //there might be more than one link...
@@ -491,7 +497,7 @@
                 [self popToCheat];
             }
             
-        } else if (buttonIndex==4){
+        } else if (buttonIndex==3){
             NSLog(@"Finish quest!");
             
             [self segueToFinish];
@@ -683,7 +689,7 @@
 - (IBAction)didPressButtonMore:(id)sender {
     
     NSString *opt1 = NSLocalizedString(@"Show Map",nil);
-    NSString *opt2 = NSLocalizedString(@"Start Over", nil);
+//    NSString *opt2 = NSLocalizedString(@"Start Over", nil);
     NSString *opt3 = NSLocalizedString(@"Leave Quest",nil);
     NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
     NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
@@ -692,7 +698,7 @@
                                                        delegate: self
                                               cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
                                          destructiveButtonTitle: nil
-                                              otherButtonTitles: opt1, opt2, opt3, opt4, opt5, nil];
+                                              otherButtonTitles: opt1, opt3, opt4, opt5, nil];
     
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];

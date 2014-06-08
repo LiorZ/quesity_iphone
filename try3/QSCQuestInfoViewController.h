@@ -16,7 +16,7 @@
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
 
 
-@interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
+@interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate> {
     CLLocationManager *locationManager;
     IBOutlet MKMapView *mapView;
     NSMutableArray *picsList;
