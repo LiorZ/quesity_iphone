@@ -50,50 +50,62 @@
 //method to move the view up/down whenever the keyboard is shown/dismissed
 -(void)setViewMovedUp:(BOOL)movedUp
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-    
-    if (movedUp)
-    {
-        //Keyboard becomes visible
-        self.scv.frame = CGRectOffset(self.scv.frame, 0, -80);
-    }
-    else
-    {
-        // revert back to the normal state.
-        self.scv.frame = CGRectOffset(self.scv.frame, 0, 80);
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height==480) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3]; // if you want to slide up the view
         
+        //    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        //    float deltaToShiftKeyboard = 120 - (480 - screenBounds.size.height);
+        
+        if (movedUp)
+        {
+            //Keyboard becomes visible
+            self.scv.frame = CGRectOffset(self.scv.frame, 0, -80);
+        }
+        else
+        {
+            // revert back to the normal state.
+            self.scv.frame = CGRectOffset(self.scv.frame, 0, 80);
+            
+        }
+        
+        [UIView commitAnimations];
     }
-    
-    [UIView commitAnimations];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height==480) {
+        [super viewWillAppear:animated];
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height==480) {
+        [super viewWillDisappear:animated];
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillShowNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+    }
 }
 
 
@@ -199,10 +211,10 @@
         [self performSegueWithIdentifier:@"segueAfterLogin" sender:self];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry..."
-                                                        message:@"Are you sure you have the right password?"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+                                                        message:NSLocalizedString(@"Wrong email or password", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                               otherButtonTitles:nil];
         [alert show];
     }

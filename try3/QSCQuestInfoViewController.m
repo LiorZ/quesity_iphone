@@ -160,9 +160,11 @@
     }
     
     //TAGS and quest stat:
+    //[[AMTagListView appearance] setTagColor:QUESITY_COLOR_TAGS];
     AMTagListView *tagListView = [[AMTagListView alloc] initWithFrame:CGRectMake(0, 250 + yDelta - 58.f, 200.f, 60.f)];
-    
+
     [tagListView addTags:_quest.tags];
+
     [self.view addSubview:tagListView];
     
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];

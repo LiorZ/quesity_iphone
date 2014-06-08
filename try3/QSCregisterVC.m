@@ -80,19 +80,22 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    float deltaToShiftKeyboard = 120 + (480 - screenBounds.size.height);
+    
     if (movedUp)
     {
         // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
         // 2. increase the size of the view so that the area behind the keyboard is covered up.
         //Keyboard becomes visible
-        self.scv.frame = CGRectOffset(self.scv.frame, 0, -120);
+        self.scv.frame = CGRectOffset(self.scv.frame, 0, -deltaToShiftKeyboard);
 //        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
 //        rect.size.height += kOFFSET_FOR_KEYBOARD;
     }
     else
     {
         // revert back to the normal state.
-        self.scv.frame = CGRectOffset(self.scv.frame, 0, 120);
+        self.scv.frame = CGRectOffset(self.scv.frame, 0, deltaToShiftKeyboard);
 
 //        rect.origin.y = 0.f;
 //        CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -258,19 +261,19 @@
             
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry..."
-                                                            message:@"Something is wrong. Unable to connect."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+                                                            message:NSLocalizedString(@"Something is wrong. Unable to connect.",nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                   otherButtonTitles:nil];
             [alert show];
         }
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry..."
-                                                        message:@"Please enter a valid email"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+                                                        message:NSLocalizedString(@"Please enter a valid email", nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                               otherButtonTitles:nil];
         [alert show];
         

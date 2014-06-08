@@ -50,3 +50,9 @@
 "btnFindPressed" = "button_find_quest_eng_pressed.png";
 "btnMyPressed" = "button_my_quests_eng_pressed.png";
 "btnAboutPressed" = "button_about_eng_pressed.png";
+
+//error messages:
+"Sorry..." = "Sorry...";
+"Something is wrong. Unable to connect." = "Something is wrong. Unable to connect.";
+"Please enter a valid email" = "Please enter a valid email address";
+"Wrong email or password" = "Wrong email or password";

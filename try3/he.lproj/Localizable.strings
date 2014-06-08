@@ -50,3 +50,10 @@
 "btnFindPressed" = "button_find_quest_pressed.png";
 "btnMyPressed" = "button_my_quests_pressed.png";
 "btnAboutPressed" = "button_about_pressed.png";
+
+//error messages:
+"Sorry..." = "אופס...";
+"Something is wrong. Unable to connect." = "ארעה שגיאה. לא ניתן להתחבר";
+"Please enter a valid email" = "אנא הכניסו כתובת אימייל תקינה";
+"Wrong email or password" = "סיסמא או אימייל שגויים";
+

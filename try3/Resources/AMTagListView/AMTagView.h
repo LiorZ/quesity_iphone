@@ -7,6 +7,7 @@
 //
 
 #define DEGREES_TO_RADIANS(degrees)  ((3.14159265359 * degrees)/ 180)
+#import "myGlobalData.h"
 
 #define kDefaultInnerPadding	3
 #define kDefaultHoleRadius		4
@@ -15,8 +16,8 @@
 #define kDefaultRadius			8
 #define kDefaultTextColor		[UIColor whiteColor]
 #define kDefaultFont			[UIFont systemFontOfSize:14]
-#define kDefaultTagColor		[UIColor redColor]
-#define kDefaultInnerTagColor	[UIColor colorWithWhite:1 alpha:0.3]
+#define kDefaultTagColor		QUESITY_COLOR_TAGS //[UIColor redColor]
+#define kDefaultInnerTagColor	QUESITY_COLOR_TAGS //[UIColor colorWithWhite:1 alpha:0.3]
 
 extern NSString * const AMTagViewNotification;
 
