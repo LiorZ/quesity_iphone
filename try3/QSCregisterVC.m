@@ -192,7 +192,14 @@
     
     NSLog(@"Pressed Register.");
     
-    if ([self isValidEmail:self.txtEmail.text Strict:NO]) {
+    if ([self.txtFirstName.text isEqualToString:@""] || [self.txtLastName.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:NSLocalizedString(@"Please enter a name.", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else if ([self isValidEmail:self.txtEmail.text Strict:NO]) {
         
         NSDictionary *nameDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                                   self.txtFirstName.text, @"first",
@@ -260,7 +267,14 @@
             //[self dismissViewControllerAnimated:YES completion:nil];
             
         }
-        else {
+        else if (code==401) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+                                                            message:NSLocalizedString(@"A user with this email already exists.",nil)
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
                                                             message:NSLocalizedString(@"Something is wrong. Unable to connect.",nil)
                                                            delegate:nil
@@ -270,7 +284,7 @@
         }
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                         message:NSLocalizedString(@"Please enter a valid email", nil)
                                                        delegate:nil
                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)

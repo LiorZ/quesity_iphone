@@ -59,7 +59,7 @@
 
     [html appendString:@"</body></html>"];
     
-    //NSLog(@"%@",html);
+    NSLog(@"%@",html);
     
     //instantiate the web view
     //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
@@ -81,7 +81,7 @@
 
 //    [webStuff2 sizeToFit];
     NSLog(@"2. contentSize: %f",webStuff2.scrollView.contentSize.height);
-    
+
     [self updateButtonMiddleImage];
     
     //save progress:
@@ -232,6 +232,9 @@
 - (void)viewDidLoad
 {
     self.navigationItem.hidesBackButton = YES;
+    
+    //remove margin at bottom
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     
     //self.questTitle.text = _quest.name;
     //self. = _quest.name;

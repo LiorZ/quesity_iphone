@@ -58,5 +58,7 @@
 //error messages:
 "Sorry..." = "Sorry...";
 "Something is wrong. Unable to connect." = "Something is wrong. Unable to connect.";
-"Please enter a valid email" = "Please enter a valid email address";
-"Wrong email or password" = "Wrong email or password";
+"Please enter a valid email" = "Please enter a valid email address.";
+"Wrong email or password" = "Wrong email or password.";
+"Please enter a name." = "Please enter a name.";
+"A user with this email already exists."= "A user with this email already exists.";

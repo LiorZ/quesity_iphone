@@ -59,4 +59,5 @@
 "Something is wrong. Unable to connect." = "ארעה שגיאה. לא ניתן להתחבר";
 "Please enter a valid email" = "אנא הכניסו כתובת אימייל תקינה";
 "Wrong email or password" = "סיסמא או אימייל שגויים";
-
+"Please enter a name." = "אנא מלאו את כל השדות.";
+"A user with this email already exists."= "אימייל זה קיים כבר במערכת";
