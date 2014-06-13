@@ -10,7 +10,7 @@
 #import "QSCQuest.h"
 #import "QSCpage.h"
 #import <MapKit/MapKit.h>
-#import "HMSegmentedControl2/HMSegmentedControl.h"
+#import "HMSegmentedControl.h"
 //#import <CoreLocation/CoreLocation.h>
 #import "POHorizontalList.h"
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
