@@ -59,6 +59,8 @@
 		78A7626518E6F9160098DDD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7626418E6F9160098DDD8 /* CoreLocation.framework */; };
 		78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626818E7177A0098DDD8 /* ListItem.m */; };
 		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
+		78B563FB194B33BB007B2A32 /* multiQuestion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B563FA194B33BB007B2A32 /* multiQuestion.xib */; };
+		78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B563FD194B3587007B2A32 /* multiQuestion.m */; };
 		78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */; };
 		78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC11927DD6100713EBB /* AMTagListView.m */; };
 		78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC31927DD6100713EBB /* AMTagView.m */; };
@@ -190,6 +192,9 @@
 		78A7626918E7177A0098DDD8 /* POHorizontalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalList.h; sourceTree = "<group>"; };
 		78A7626A18E7177A0098DDD8 /* POHorizontalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POHorizontalList.m; sourceTree = "<group>"; };
 		78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalListDelegate.h; sourceTree = "<group>"; };
+		78B563FA194B33BB007B2A32 /* multiQuestion.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = multiQuestion.xib; sourceTree = "<group>"; };
+		78B563FC194B3587007B2A32 /* multiQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multiQuestion.h; sourceTree = "<group>"; };
+		78B563FD194B3587007B2A32 /* multiQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = multiQuestion.m; sourceTree = "<group>"; };
 		78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCmapViewController.h; sourceTree = "<group>"; };
 		78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCmapViewController.m; sourceTree = "<group>"; };
 		78BB4EC01927DD6100713EBB /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
@@ -558,6 +563,9 @@
 				78D4AE11192144DE00821E9A /* buttonView.xib */,
 				78D4AE131921462A00821E9A /* buttonView.h */,
 				78D4AE141921462A00821E9A /* buttonView.m */,
+				78B563FA194B33BB007B2A32 /* multiQuestion.xib */,
+				78B563FC194B3587007B2A32 /* multiQuestion.h */,
+				78B563FD194B3587007B2A32 /* multiQuestion.m */,
 				78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */,
 				78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */,
 				78BEDC5518AD9FF2004E9156 /* QSCAllQuestsViewController2.h */,
@@ -728,6 +736,7 @@
 				783759D7193F5DD5007C0BB9 /* Roboto-Light.ttf in Resources */,
 				783759D8193F5DD5007C0BB9 /* Roboto-Regular.ttf in Resources */,
 				783759D3193F5DD5007C0BB9 /* hadasimclm-regular-webfont.ttf in Resources */,
+				78B563FB194B33BB007B2A32 /* multiQuestion.xib in Resources */,
 				783759F11943213D007C0BB9 /* button_my_quests_eng_pressed.png in Resources */,
 				78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */,
 				782CE70318AF8D3F00D1A2FB /* gradient9@2x.png in Resources */,
@@ -771,6 +780,7 @@
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78D4AE04191BDC4400821E9A /* UIColor+BButton.m in Sources */,
 				78375A0119432C1B007C0BB9 /* QSCbeforeLogin.m in Sources */,
+				78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */,
 				78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */,
 				78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,

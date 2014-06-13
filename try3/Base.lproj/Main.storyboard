@@ -1053,8 +1053,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="d8h-8f-v33"/>
-        <segue reference="JUo-wQ-ufp"/>
+        <segue reference="VNK-a2-lyD"/>
         <segue reference="pOB-Zh-P2E"/>
+        <segue reference="JUo-wQ-ufp"/>
     </inferredMetricsTieBreakers>
 </document>

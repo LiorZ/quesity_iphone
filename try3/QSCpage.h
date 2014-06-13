@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "buttonView.h"
+#import "multiQuestion.h"
 
 @class QSCpage;
 @protocol QSCpageDelegate <NSObject>
@@ -54,6 +55,8 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property buttonView *buttonLeft;
 @property buttonView *buttonMiddle;
 @property buttonView *buttonRight;
+
+@property multiQuestion *mqv;
 
 
 //sague back buisness

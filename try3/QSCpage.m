@@ -16,6 +16,7 @@
 #import "buttonView.h"
 #import "QSCFinishPageVC.h"
 #import "QSCmapViewController.h"
+#import "multiQuestion.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -60,7 +61,7 @@
     [html appendString:@"</body></html>"];
     
     NSLog(@"%@",html);
-    
+
     //instantiate the web view
     //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
     
@@ -94,6 +95,7 @@
     
 }
 
+
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
 //    NSLog(@"3. contentSize: %f",webStuff2.scrollView.contentSize.height);
@@ -104,7 +106,7 @@
 
 //    CGRect screenBounds = [[UIScreen mainScreen] bounds];
 //    webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
-
+    
     NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
     
 //    CGRect frame = webStuff2.frame;
@@ -169,6 +171,21 @@
         //saving stuff:
         [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
     }
+}
+
+- (void) initMultiQuestionView: (NSArray *)links {
+
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+
+    self.mqv = [[multiQuestion multiQuestionView] initWithlinks:links];
+    self.mqv.center = self.view.center;
+    
+//    UITapGestureRecognizer *singleFingerTapLeft =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                            action:@selector(didPressButtonMore:)];
+//    [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
+    
+    [self.view addSubview:self.mqv];
 }
 
 - (void) createButtons {
@@ -360,6 +377,17 @@
 }
 
 
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+    [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
+        if ([_currentView isKindOfClass:[UIButton class]]) {
+            [((UIButton *)_currentView).titleLabel setFont:[UIFont boldSystemFontOfSize:15.f]];
+            NSLog(@"str: %@",((UIButton *)_currentView).titleLabel.text);
+            // OR
+            //[((UIButton *)_currentView).titleLabel setFont:[UIFont fontWithName:@"Exo2-SemiBold" size:17]];
+        }
+    }];
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
@@ -409,21 +437,24 @@
 }
 
 - (void) chooseMultChoice {
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Choose:", nil)
-                                                       delegate: self
-                                              cancelButtonTitle: nil
-                                         destructiveButtonTitle: nil
-                                              otherButtonTitles: nil];
+
+    [self initMultiQuestionView: self.currCorrectAnswers];
     
-    for (NSString * title in self.currCorrectAnswers) {
-        [popup addButtonWithTitle:title];
-    }
-    
-    [popup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-    popup.cancelButtonIndex = self.currCorrectAnswers.count;
-    
-    popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];
+//    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Choose:", nil)
+//                                                       delegate: self
+//                                              cancelButtonTitle: nil
+//                                         destructiveButtonTitle: nil
+//                                              otherButtonTitles: nil];
+//    
+//    for (NSString * title in self.currCorrectAnswers) {
+//        [popup addButtonWithTitle:title];
+//    }
+//    
+//    [popup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+//    popup.cancelButtonIndex = self.currCorrectAnswers.count;
+//    
+//    popup.tag = 1;
+//    [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void) popToCheat {
