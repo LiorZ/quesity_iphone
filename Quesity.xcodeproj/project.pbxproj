@@ -74,7 +74,6 @@
 		78D4AE1B192154F400821E9A /* arrived.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1A192154F400821E9A /* arrived.png */; };
 		78D4AE1D1921563500821E9A /* enter-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1C1921563500821E9A /* enter-text.png */; };
 		78D4AE1F1921566500821E9A /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE1E1921566500821E9A /* options.png */; };
-		78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2119217C0800821E9A /* QSCMainVC.m */; };
 		78D4AE241921865400821E9A /* UI-4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE231921865400821E9A /* UI-4-2.png */; };
 		78D4AE261921885900821E9A /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE251921885900821E9A /* search.png */; };
 		78D4AE28192188DF00821E9A /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE27192188DF00821E9A /* favorites.png */; };
@@ -204,8 +203,6 @@
 		78D4AE1A192154F400821E9A /* arrived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrived.png; sourceTree = "<group>"; };
 		78D4AE1C1921563500821E9A /* enter-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-text.png"; sourceTree = "<group>"; };
 		78D4AE1E1921566500821E9A /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
-		78D4AE2019217C0800821E9A /* QSCMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCMainVC.h; sourceTree = "<group>"; };
-		78D4AE2119217C0800821E9A /* QSCMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCMainVC.m; sourceTree = "<group>"; };
 		78D4AE231921865400821E9A /* UI-4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI-4-2.png"; sourceTree = "<group>"; };
 		78D4AE251921885900821E9A /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		78D4AE27192188DF00821E9A /* favorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites.png; sourceTree = "<group>"; };
@@ -506,8 +503,6 @@
 				78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */,
 				78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */,
 				78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */,
-				78D4AE2019217C0800821E9A /* QSCMainVC.h */,
-				78D4AE2119217C0800821E9A /* QSCMainVC.m */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
 				78A7624B18DDADD00098DDD8 /* QSCpage.m */,
 				78D4AE11192144DE00821E9A /* buttonView.xib */,
@@ -719,7 +714,6 @@
 				78375A0119432C1B007C0BB9 /* QSCbeforeLogin.m in Sources */,
 				78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */,
 				78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */,
-				78D4AE2219217C0800821E9A /* QSCMainVC.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
 				78375A0619433DC7007C0BB9 /* QSCregisterVC.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
