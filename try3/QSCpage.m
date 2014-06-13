@@ -17,6 +17,7 @@
 #import "QSCFinishPageVC.h"
 #import "QSCmapViewController.h"
 #import "multiQuestion.h"
+#import "IBActionSheet.h"
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -173,20 +174,20 @@
     }
 }
 
-- (void) initMultiQuestionView: (NSArray *)links {
-
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-
-    self.mqv = [[multiQuestion multiQuestionView] initWithlinks:links];
-    self.mqv.center = self.view.center;
-    
-//    UITapGestureRecognizer *singleFingerTapLeft =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                            action:@selector(didPressButtonMore:)];
-//    [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
-    
-    [self.view addSubview:self.mqv];
-}
+//- (void) initMultiQuestionView: (NSArray *)links {
+//
+////    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//
+//    self.mqv = [[multiQuestion multiQuestionView] initWithlinks:links];
+//    self.mqv.center = self.view.center;
+//    
+////    UITapGestureRecognizer *singleFingerTapLeft =
+////    [[UITapGestureRecognizer alloc] initWithTarget:self
+////                                            action:@selector(didPressButtonMore:)];
+////    [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
+//    
+//    [self.view addSubview:self.mqv];
+//}
 
 - (void) createButtons {
     
@@ -339,10 +340,6 @@
 }
 
 - (NSMutableArray *) getLocsFromLinks:(NSArray *)links {
-//    NSArray *lats = [links valueForKey:@"lat"];
-//    NSArray *lngs = [links valueForKey:@"lng"];
-//    NSArray *rads = [links valueForKey:@"radius"];
-//    NSArray *streets = [links valueForKey:@"txt_street"];
 
     NSMutableArray *locs = [[NSMutableArray alloc] init];
     for (int i=0; i<links.count; i++) {
@@ -374,18 +371,6 @@
     
     [self createWebViewWithHTML];
     [self updateHintButtonStatus];
-}
-
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
-        if ([_currentView isKindOfClass:[UIButton class]]) {
-            [((UIButton *)_currentView).titleLabel setFont:[UIFont boldSystemFontOfSize:15.f]];
-            NSLog(@"str: %@",((UIButton *)_currentView).titleLabel.text);
-            // OR
-            //[((UIButton *)_currentView).titleLabel setFont:[UIFont fontWithName:@"Exo2-SemiBold" size:17]];
-        }
-    }];
 }
 
 
@@ -438,23 +423,22 @@
 
 - (void) chooseMultChoice {
 
-    [self initMultiQuestionView: self.currCorrectAnswers];
+//    [self initMultiQuestionView: self.currCorrectAnswers];
     
-//    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Choose:", nil)
-//                                                       delegate: self
-//                                              cancelButtonTitle: nil
-//                                         destructiveButtonTitle: nil
-//                                              otherButtonTitles: nil];
-//    
-//    for (NSString * title in self.currCorrectAnswers) {
-//        [popup addButtonWithTitle:title];
-//    }
-//    
-//    [popup addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-//    popup.cancelButtonIndex = self.currCorrectAnswers.count;
-//    
-//    popup.tag = 1;
-//    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    IBActionSheet *popup = [[IBActionSheet alloc] initWithTitle: NSLocalizedString(@"Choose:", nil)
+                                                       delegate: self
+                                              cancelButtonTitle: NSLocalizedString(@"Cancel",nil)
+                                         destructiveButtonTitle: nil
+                                        otherButtonTitlesArray: self.currCorrectAnswers];
+    
+    for (int i=0; i<self.currCorrectAnswers.count; i++) {
+        if ([self.currCorrectAnswers[i] length]>40)
+            [popup setFont:[UIFont boldSystemFontOfSize:14] forButtonAtIndex:i];
+    }
+
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+
 }
 
 - (void) popToCheat {

@@ -12,13 +12,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import "buttonView.h"
 #import "multiQuestion.h"
+#import "IBActionSheet.h"
 
 @class QSCpage;
 @protocol QSCpageDelegate <NSObject>
 - (void)QSCpageDidSave:(QSCpage *)controller;
 @end
 
-@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate>
+@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate, IBActionSheetDelegate>
 {
     CLLocationManager *locationManager;
     CLLocation *currentLocation;
@@ -56,7 +57,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property buttonView *buttonMiddle;
 @property buttonView *buttonRight;
 
-@property multiQuestion *mqv;
+//@property multiQuestion *mqv;
 
 
 //sague back buisness

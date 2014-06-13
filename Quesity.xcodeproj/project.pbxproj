@@ -61,6 +61,7 @@
 		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
 		78B563FB194B33BB007B2A32 /* multiQuestion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B563FA194B33BB007B2A32 /* multiQuestion.xib */; };
 		78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B563FD194B3587007B2A32 /* multiQuestion.m */; };
+		78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B56401194BB396007B2A32 /* IBActionSheet.m */; };
 		78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */; };
 		78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC11927DD6100713EBB /* AMTagListView.m */; };
 		78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC31927DD6100713EBB /* AMTagView.m */; };
@@ -195,6 +196,8 @@
 		78B563FA194B33BB007B2A32 /* multiQuestion.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = multiQuestion.xib; sourceTree = "<group>"; };
 		78B563FC194B3587007B2A32 /* multiQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multiQuestion.h; sourceTree = "<group>"; };
 		78B563FD194B3587007B2A32 /* multiQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = multiQuestion.m; sourceTree = "<group>"; };
+		78B56400194BB396007B2A32 /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
+		78B56401194BB396007B2A32 /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
 		78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCmapViewController.h; sourceTree = "<group>"; };
 		78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCmapViewController.m; sourceTree = "<group>"; };
 		78BB4EC01927DD6100713EBB /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 		782CE6EE18AF8D3F00D1A2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78B563FF194BB396007B2A32 /* IBActionSheet */,
 				783759C4193F5DD5007C0BB9 /* fonts */,
 				78BB4EBF1927DD6100713EBB /* AMTagListView */,
 				78D4ADF8191BDC4300821E9A /* BButton */,
@@ -420,6 +424,16 @@
 				78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */,
 			);
 			path = POHorizontalList;
+			sourceTree = "<group>";
+		};
+		78B563FF194BB396007B2A32 /* IBActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				78B56400194BB396007B2A32 /* IBActionSheet.h */,
+				78B56401194BB396007B2A32 /* IBActionSheet.m */,
+			);
+			name = IBActionSheet;
+			path = ../../../../../Desktop/IBActionSheet;
 			sourceTree = "<group>";
 		};
 		78BB4EBF1927DD6100713EBB /* AMTagListView */ = {
@@ -795,6 +809,7 @@
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
 				78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */,
+				78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */,
 				7835423918EDF47A00EF6659 /* KeychainItemWrapper.m in Sources */,
 				78F0E87E18AD81B60034E3A4 /* QSCMyQuestsViewController2.m in Sources */,
 				78D4AE02191BDC4400821E9A /* BButton.m in Sources */,

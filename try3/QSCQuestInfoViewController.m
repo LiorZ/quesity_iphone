@@ -207,7 +207,7 @@
     self.segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     self.segmentedControl1.backgroundColor = [UIColor clearColor];
     self.segmentedControl1.tag = 3;
-    
+
     __weak typeof(self) weakSelf = self;
     [self.segmentedControl1 setIndexChangeBlock:^(NSInteger index) {
         [weakSelf.scrollView1 scrollRectToVisible:CGRectMake(320 * index, 0, 320, lowerPartHeight + 40) animated:YES];
@@ -223,6 +223,8 @@
     self.scrollView1.contentSize = CGSizeMake(960, screenBounds.size.height-(290+yDelta));
     self.scrollView1.delegate = self;
     [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, lowerPartHeight) animated:NO];
+    self.scrollView1.scrollEnabled = NO;
+
     [self.view addSubview:self.scrollView1];
     
     myUtilities *myUtils = [[myUtilities alloc] init];
