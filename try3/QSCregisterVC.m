@@ -7,7 +7,6 @@
 //
 
 #import "QSCregisterVC.h"
-#import "BButton.h"
 #import "myGlobalData.h"
 
 #define kOFFSET_FOR_KEYBOARD 80.0

@@ -28,8 +28,9 @@
 - (void) updateButtonMiddleImage {
 
     if (self.currQType==page_STATIC) {
-        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
+        [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];        
         self.buttonMiddle.buttonText.text = NSLocalizedString(@"Continue", nil);
+        //[self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue_img_pressed.png"]];
         
     } else if (self.currQType==page_LOCATION) {
         [self.buttonMiddle.img setImage:[UIImage imageNamed:@"arrived.png"]];
@@ -60,6 +61,10 @@
         [html appendString:self.content[self.currPage]];
 
     [html appendString:@"</body></html>"];
+    
+    html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"<p>" withString:@""]];
+    html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"</p>" withString:@""]];
+
     
     NSLog(@"%@",html);
 
@@ -496,7 +501,7 @@
             NSLog(@"Exit quest!");
             
             [self back:nil];
-        }  else if (buttonIndex==2){
+        }  else if ((buttonIndex==2) && isDbgMode) {
             NSLog(@"go to next page!");
 
             //there might be more than one link...
@@ -515,7 +520,7 @@
                 [self popToCheat];
             }
             
-        } else if (buttonIndex==3){
+        } else if ((buttonIndex==3) && isDbgMode) {
             NSLog(@"Finish quest!");
             
             [self segueToFinish];
@@ -572,12 +577,12 @@
     
     if ([segue.identifier isEqualToString:@"showMapSegue"]) {
         QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapView"];
-        [self presentViewController:vc animated:YES completion:nil];
+       [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
+
 - (IBAction)didPressButton2:(id)sender {
-    
     NSArray *links = self.linksToOthers[self.currPage];
     NSLog(@"there are %d links from here",links.count);
     NSLog(@"yo! %@",links);
@@ -712,11 +717,20 @@
     NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
     NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
     
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: nil
-                                                       delegate: self
-                                              cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                                         destructiveButtonTitle: nil
-                                              otherButtonTitles: opt1, opt3, opt4, opt5, nil];
+    UIActionSheet *popup;
+    if (isDbgMode) {
+        popup = [[UIActionSheet alloc] initWithTitle: nil
+                                            delegate: self
+                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                              destructiveButtonTitle: nil
+                                   otherButtonTitles: opt1, opt3, opt4, opt5, nil];
+    } else {
+        popup = [[UIActionSheet alloc] initWithTitle: nil
+                                            delegate: self
+                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                              destructiveButtonTitle: nil
+                                   otherButtonTitles: opt1, opt3, nil];
+    }
     
     popup.tag = 2;
     [popup showInView:[UIApplication sharedApplication].keyWindow];

@@ -730,7 +730,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UI-4-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-Mn-I0S">
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_screen_iphone5 (1).png" translatesAutoresizingMaskIntoConstraints="NO" id="qyj-Mn-I0S">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -749,6 +749,7 @@
                         <segue destination="7c2-dr-GLU" kind="modal" identifier="goFindQuest1" modalTransitionStyle="flipHorizontal" id="fVP-Nf-coM"/>
                         <segue destination="co6-cg-UVJ" kind="modal" identifier="goMyQuests1" modalTransitionStyle="flipHorizontal" id="Ce5-2p-V5D"/>
                         <segue destination="nVY-c0-ifk" kind="modal" identifier="goAbout1" modalTransitionStyle="flipHorizontal" id="34O-iY-9cj"/>
+                        <segue destination="YtI-MU-6co" kind="modal" identifier="goAbout" modalTransitionStyle="flipHorizontal" id="jD5-9B-d2P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgh-RI-Ldh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -826,6 +827,66 @@
             <point key="canvasLocation" x="406" y="894"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="tEX-J6-l0i">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="YtI-MU-6co" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cvf-AG-dYw">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="USs-uE-aef" kind="relationship" relationship="rootViewController" id="oje-XE-YwT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5Z-fI-WcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1438" y="54"/>
+        </scene>
+        <!--AboutVC-->
+        <scene sceneID="RGX-bI-1cZ">
+            <objects>
+                <viewController id="USs-uE-aef" customClass="QSCAboutVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="772-Br-OLi"/>
+                        <viewControllerLayoutGuide type="bottom" id="tqG-WL-UIs"/>
+                    </layoutGuides>
+                    <view key="view" alpha="0.59999999999999998" contentMode="scaleToFill" id="6vD-K8-tbg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="UI-4-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="4eo-tq-xU0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <webView alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULi-sq-a5P">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ULi-sq-a5P" secondAttribute="trailing" id="8K4-3V-CGr"/>
+                            <constraint firstItem="ULi-sq-a5P" firstAttribute="top" secondItem="772-Br-OLi" secondAttribute="bottom" constant="1" id="ib3-wP-aXe"/>
+                            <constraint firstAttribute="bottom" secondItem="ULi-sq-a5P" secondAttribute="bottom" id="ouw-PS-O0M"/>
+                            <constraint firstItem="ULi-sq-a5P" firstAttribute="leading" secondItem="6vD-K8-tbg" secondAttribute="leading" id="syX-DM-62W"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vy6-ci-IxX">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Wu2-Xu-xTR">
+                            <connections>
+                                <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="flipHorizontal" id="vDQ-V8-Khv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="wv" destination="ULi-sq-a5P" id="1qe-Sj-0Ys"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fie-55-j2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1072" y="54"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="inb-kP-vFx">
             <objects>
                 <navigationController definesPresentationContext="YES" id="nVY-c0-ifk" sceneMemberID="viewController">
@@ -868,7 +929,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell1" rowHeight="100" id="W5j-Dj-4ew">
-                                <rect key="frame" x="0.0" y="86" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W5j-Dj-4ew" id="w5K-1m-00g">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
@@ -956,9 +1017,9 @@
     </scenes>
     <resources>
         <image name="UI-4-1.png" width="1080" height="1920"/>
-        <image name="UI-4-2.png" width="1080" height="1920"/>
         <image name="first" width="30" height="30"/>
         <image name="logo.png" width="802" height="232"/>
+        <image name="main_screen_iphone5 (1).png" width="1280" height="2272"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -967,8 +1028,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pOB-Zh-P2E"/>
-        <segue reference="d8h-8f-v33"/>
         <segue reference="JUo-wQ-ufp"/>
+        <segue reference="pOB-Zh-P2E"/>
+        <segue reference="vDQ-V8-Khv"/>
     </inferredMetricsTieBreakers>
 </document>

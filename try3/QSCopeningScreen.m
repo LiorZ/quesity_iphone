@@ -9,6 +9,7 @@
 #import "QSCopeningScreen.h"
 #import "QSCAllQuestsViewController2.h"
 #import "QSCMyQuestsViewController2.h"
+#import "myGlobalData.h"
 
 @interface QSCopeningScreen ()
 
@@ -85,7 +86,11 @@
     [self performSegueWithIdentifier:@"goMyQuests1" sender:self];
 }
 - (IBAction)didPressButtonAbout:(id)sender {
-    [self performSegueWithIdentifier:@"goAbout1" sender:self];
+
+    if (isDbgMode)
+        [self performSegueWithIdentifier:@"goAbout1" sender:self];
+    else
+        [self performSegueWithIdentifier:@"goAbout" sender:self];
 }
 
 

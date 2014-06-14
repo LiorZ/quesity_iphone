@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BButton.h"
 
 @interface QSCLoginViewController : UIViewController <UITextFieldDelegate>
 

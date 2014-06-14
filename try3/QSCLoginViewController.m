@@ -7,7 +7,6 @@
 //
 
 #import "QSCLoginViewController.h"
-#import "BButton.h"
 #import "myGlobalData.h"
 
 @interface QSCLoginViewController ()

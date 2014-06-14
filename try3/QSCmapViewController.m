@@ -64,8 +64,8 @@
 #pragma mark - map view delegate
 - (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    [mv setRegion:[mv regionThatFits:region] animated:YES];
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    //[mv setRegion:[mv regionThatFits:region] animated:YES];
 }
 
 @end

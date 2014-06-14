@@ -259,7 +259,7 @@
     
     [locationManager setDistanceFilter:kCLDistanceFilterNone];
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.mapView setShowsUserLocation:YES];
+    //[self.mapView setShowsUserLocation:YES];
     
     double lat = [_quest.startLoc.lat doubleValue];
     double lng = [_quest.startLoc.lng doubleValue];
@@ -274,7 +274,7 @@
     
     //MKUserLocation *userLocation = self.mapView.userLocation;
     //NSLog(@"user loc:[%f,%f]",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-    //[self zoomToFitMapAnnotations:self.mapView];
+    [self zoomToFitMapAnnotations:self.mapView];
     
     [self.scrollView1 addSubview:self.mapView];
     

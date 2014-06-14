@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface buttonView : UIView
+@interface buttonView : UIButton
 
 @property (weak, nonatomic) IBOutlet UILabel *buttonText;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
