@@ -35,6 +35,7 @@
 @property NSArray *is_first;
 @property MBProgressHUD *hud;
 @property BOOL loadedAllImages;
+@property NSTimer *timer;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
 

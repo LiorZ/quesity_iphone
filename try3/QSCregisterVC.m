@@ -185,11 +185,13 @@
     
 }
 
+
 - (IBAction)didPressButtonRegister:(id)sender {
+    
     
     [self.view endEditing:YES];
     
-    NSLog(@"Pressed Register.");
+//    NSLog(@"Pressed Register.");
     
     if ([self.txtFirstName.text isEqualToString:@""] || [self.txtLastName.text isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
@@ -239,13 +241,14 @@
         NSHTTPURLResponse* response;
         NSError* error = nil;
         
-        NSData* responseData = nil;
+        //NSData* responseData = nil;
         //responseData = [NSMutableData data];
-        responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        int code = [response statusCode];
-        NSDictionary *fields = [response allHeaderFields];
+        //responseData =
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        int code = (int)[response statusCode];
+//        NSDictionary *fields = [response allHeaderFields];
         
-        NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+//        NSLog(@"the response code is:%d, with %d headers",code, fields.count);
         
 //        NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 //        NSLog(@"%@",responseString);

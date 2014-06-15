@@ -37,7 +37,7 @@
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"Signed Out");
+//    NSLog(@"Signed Out");
 
     myGlobalData *myGD = [[myGlobalData alloc] init];
     [myGD updateLoggedInStatus:FALSE];

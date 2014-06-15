@@ -150,7 +150,7 @@
 
     [self.view endEditing:YES];
 
-    NSLog(@"Pressed Login.");
+//    NSLog(@"Pressed Login.");
     
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
                          self.loginEmail.text, @"email",
@@ -185,13 +185,14 @@
     NSHTTPURLResponse* response;
     NSError* error = nil;
     
-    NSData* responseData = nil;
+    //NSData* responseData = nil;
     //responseData = [NSMutableData data];
-    responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    int code = [response statusCode];
-    NSDictionary *fields = [response allHeaderFields];
+    //responseData =
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    int code = (int)[response statusCode];
+//    NSDictionary *fields = [response allHeaderFields];
     
-    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+//    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
 
     //NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     //NSLog(@"%@",responseString);

@@ -64,69 +64,26 @@
     
     html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"<p>" withString:@""]];
     html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"</p>" withString:@""]];
-
-    
-    NSLog(@"%@",html);
-
-    //instantiate the web view
-    //UIWebView *webView2 = [[UIWebView alloc] initWithFrame:self.view.frame];
-    
+   
     //make the background transparent
     [webStuff2 setBackgroundColor:QUESITY_COLOR_BG];
     
     webStuff2.delegate = self;
     
-    NSLog(@"1. contentSize: %f",webStuff2.scrollView.contentSize.height);
-
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
-
-    //CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    //[detailsWebView setFrame:CGRectMake(detailsWebView.frame.origin.x, detailsWebView.frame.origin.y, 300.0, detailsWebView.frame.size.height)];
-    //[webStuff2 setFrame:CGRectMake(0.f, 60.f, 320.f , screenBounds.size.height-120.f)];
-    //webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
-
-//    [webStuff2 sizeToFit];
-    NSLog(@"2. contentSize: %f",webStuff2.scrollView.contentSize.height);
 
     [self updateButtonMiddleImage];
     
     //save progress:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
     [self saveDict:questStatePath];
-
-
-    //add it to the subview
-    //[self.view addSubview:webView2];
-    
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
-//    NSLog(@"3. contentSize: %f",webStuff2.scrollView.contentSize.height);
-    
-//    [webStuff2 sizeToFit];
-
-//    NSLog(@"4. contentSize: %f",webStuff2.scrollView.contentSize.height);
-
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    webStuff2.scrollView.contentSize = CGSizeMake(320, screenBounds.size.height-120.f);
-    
-    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
-    
-//    CGRect frame = webStuff2.frame;
-//    frame.size.height = 1;
-//    webStuff2.frame = frame;
-//    CGSize fittingSize = [webStuff2 sizeThatFits:CGSizeZero];
-//    frame.size = fittingSize;
-//    webStuff2.frame = frame;
-//    
-//    NSLog(@"size: %f, %f", fittingSize.width, fittingSize.height);
-//    
-//    NSLog(@"6. contentSize: %f",webStuff2.scrollView.contentSize.height);
-    
-
+//    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
 }
 
 
@@ -152,11 +109,14 @@
 }
 
 - (void) updateHintButtonStatus {
-    NSLog(@"hints num on page: %d (hints left: %d)",[self.pagesHints[self.currPage] count],self.currHintsAvailable);
-    if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1)
+//    NSLog(@"hints num on page: %d (hints left: %d)",[self.pagesHints[self.currPage] count],self.currHintsAvailable);
+    if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1) {
         [self.buttonRight.buttonText setEnabled:FALSE];
-    else
+        [self.buttonRight setUserInteractionEnabled:NO];
+    } else {
         [self.buttonRight.buttonText setEnabled:TRUE];
+        [self.buttonRight setUserInteractionEnabled:YES];
+    }
 }
 
 - (void) saveDefaultDict: (NSString *)questStatePath {
@@ -173,7 +133,7 @@
 - (void) saveDict: (NSString *)questStatePath {
     //only if logged in, got pagesId
     if (self.pagesId!= nil && _quest!=nil) {
-        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : [NSNumber numberWithInt:self.currHintsAvailable]};
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : [NSNumber numberWithInt:(int)self.currHintsAvailable]};
         //saving stuff:
         [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
     }
@@ -277,7 +237,7 @@
     if (!self.isStartOver) {
         //loading quest state:
         NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-        NSLog(@"loaded state dict: %@",stateDict);
+//        NSLog(@"loaded state dict: %@",stateDict);
         
         //check whether exists
         if (stateDict!=nil) {
@@ -372,7 +332,7 @@
     self.currQType = [self string2PageType:currQTypeString];
     
     //NSLog(@"link to next page %@",self.linkBeingProcessed);
-    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
+//    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
     
     [self createWebViewWithHTML];
     [self updateHintButtonStatus];
@@ -383,7 +343,7 @@
 
     if (alertView.tag == 0) {
         NSString *ans1 = [[alertView textFieldAtIndex:0] text];
-        NSLog(@"Entered: %@",ans1);
+//        NSLog(@"Entered: %@",ans1);
         
         NSInteger ans = -1;
         for (int i=0; i<self.currCorrectAnswers.count; i++) {
@@ -448,7 +408,7 @@
 
 - (void) popToCheat {
     NSArray *links = self.linksToOthers[self.currPage];
-    NSLog(@"%@",links);
+//    NSLog(@"%@",links);
 
     UIActionSheet *newPopup = [[UIActionSheet alloc] initWithTitle: @"Here are some links:"
                                                           delegate: self
@@ -470,7 +430,7 @@
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
         if (buttonIndex!=[self.linksToOthers[self.currPage] count]) {
-            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex]);
+//            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex]);
             NSArray *links = self.linksToOthers[self.currPage];
             self.linkBeingProcessed = links[buttonIndex];
             [self goToNextPage];
@@ -482,7 +442,7 @@
 //        NSString *opt5 =  @"cheat and go to the end. ha ha!";
 
         if (buttonIndex==0) {
-            NSLog(@"Show map!");
+//            NSLog(@"Show map!");
             [self segueToMap:nil];
 //        } else if (buttonIndex==1) {
 //            NSLog(@"Restart quest!");
@@ -498,11 +458,11 @@
 //            [self createWebViewWithHTML];
 //            [self updateHintButtonStatus];
         } else if (buttonIndex==1){
-            NSLog(@"Exit quest!");
+//            NSLog(@"Exit quest!");
             
             [self back:nil];
         }  else if ((buttonIndex==2) && isDbgMode) {
-            NSLog(@"go to next page!");
+//            NSLog(@"go to next page!");
 
             //there might be more than one link...
             NSArray *links = self.linksToOthers[self.currPage];
@@ -521,7 +481,7 @@
             }
             
         } else if ((buttonIndex==3) && isDbgMode) {
-            NSLog(@"Finish quest!");
+//            NSLog(@"Finish quest!");
             
             [self segueToFinish];
         }
@@ -549,7 +509,7 @@
     } else if (popup.tag==4) {
         NSArray *links = self.linksToOthers[self.currPage];
         if (buttonIndex!=links.count) {
-            NSLog(@"Chose: %@",links[buttonIndex]);
+//            NSLog(@"Chose: %@",links[buttonIndex]);
             self.linkBeingProcessed = links[buttonIndex];
             [self goToNextPage];
         }
@@ -562,7 +522,7 @@
 }
 
 - (IBAction)returnToStepOne:(UIStoryboardSegue *)segue {
-    NSLog(@"And now we are back.");
+//    NSLog(@"And now we are back.");
 }
 
 - (IBAction)segueToFinish
@@ -584,8 +544,8 @@
 
 - (IBAction)didPressButton2:(id)sender {
     NSArray *links = self.linksToOthers[self.currPage];
-    NSLog(@"there are %d links from here",links.count);
-    NSLog(@"yo! %@",links);
+//    NSLog(@"there are %d links from here",links.count);
+//    NSLog(@"yo! %@",links);
     
     if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
         if ([links count]==0) {
@@ -596,14 +556,14 @@
         }
     } else {
         //get (and print, ha ha ha) correct answers
-        for (int i=0; i<links.count; i++) {
-            NSString *ansType = [self getTypeFromLink:links[i]];
-            NSLog(@"type (curr. page): %@",ansType);
-            if ([ansType isEqualToString:@"answer"]) {
-                NSString *correctAnswers = [self getAnswerFromLink:links[i]];
-                NSLog(@"(Correct Answer is:%@)",correctAnswers);
-            }
-        }
+//        for (int i=0; i<links.count; i++) {
+//            NSString *ansType = [self getTypeFromLink:links[i]];
+//            NSLog(@"type (curr. page): %@",ansType);
+//            if ([ansType isEqualToString:@"answer"]) {
+//                NSString *correctAnswers = [self getAnswerFromLink:links[i]];
+//                NSLog(@"(Correct Answer is:%@)",correctAnswers);
+//            }
+//        }
         switch (self.currQType) {
             case page_OPEN_QUESTION:
                 self.currCorrectAnswers = [links valueForKey:@"answer_txt"];
@@ -647,7 +607,7 @@
     
     [self->locationManager stopUpdatingLocation];
     
-    NSLog(@"Detected Location : %f, %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+//    NSLog(@"Detected Location : %f, %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
 
     float minDistance = 10000;
     NSInteger ans = -1;
@@ -661,7 +621,7 @@
         CLLocation *locA = [[CLLocation alloc] initWithLatitude:latCorrect longitude:lngCorrect];
         CLLocation *locB = [[CLLocation alloc] initWithLatitude:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude];
         CLLocationDistance distance = [locA distanceFromLocation:locB];
-        NSLog(@"distance: %.2f [m]", distance);
+//        NSLog(@"distance: %.2f [m]", distance);
 
         if (distance<minDistance) {
             minDistance = distance;
@@ -692,7 +652,7 @@
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation: %@", newLocation);
+//    NSLog(@"didUpdateToLocation: %@", newLocation);
     currentLocation = newLocation;
 }
 
@@ -737,16 +697,16 @@
 }
 
 - (IBAction)didPressButtonHint:(id)sender {
-    NSLog(@"here is a hint.");
-    NSLog(@"%@",self.pagesHints[self.currPage]);
+//    NSLog(@"here is a hint.");
+//    NSLog(@"%@",self.pagesHints[self.currPage]);
     NSArray *hintsForThisPage = self.pagesHints[self.currPage];
     NSArray *hintsTitles = [hintsForThisPage valueForKey:@"hint_title"];
 
-    NSMutableString *hintsTitle = [NSMutableString stringWithFormat:@"You have %d hints left", self.currHintsAvailable];
+    NSMutableString *hintsTitle = [NSMutableString stringWithFormat:@"You have %d hints left", (int)self.currHintsAvailable];
 
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     if ([language isEqualToString:@"he"]) {
-        hintsTitle = [NSMutableString stringWithFormat:@"נותרו עוד %d רמזים", self.currHintsAvailable];
+        hintsTitle = [NSMutableString stringWithFormat:@"נותרו עוד %d רמזים", (int)self.currHintsAvailable];
     }
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle: hintsTitle

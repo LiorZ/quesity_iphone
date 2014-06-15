@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBOutlet NSArray *pagesQType;
 @property BOOL isStartOver;
 
+//@property NSTimer *timer;
 
 @property NSUInteger currPage;
 @property pageType currQType; //location, open_question, question (multiple choice), static

@@ -62,3 +62,7 @@
 "Wrong email or password" = "Wrong email or password.";
 "Please enter a name." = "Please enter a name.";
 "A user with this email already exists."= "A user with this email already exists.";
+"Please try again with an active internet connection." = "Please try again with an active internet connection.";
+"Error connecting to network" = "Error connecting to network";
+
+"No reviews yet ..." = "No reviews yet ...";

@@ -82,6 +82,7 @@
 - (IBAction)didPressButtonFind:(id)sender {
     [self performSegueWithIdentifier:@"goFindQuest1" sender:self];
 }
+
 - (IBAction)didPressButtonMy:(id)sender {
     [self performSegueWithIdentifier:@"goMyQuests1" sender:self];
 }
@@ -104,9 +105,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"goFindQuests"]) {
-        NSLog(@"go to find quests");
+//        NSLog(@"go to find quests");
     } else if ([segue.identifier isEqualToString:@"goMyQuests"]) {
-        NSLog(@"show my quests");
+//        NSLog(@"show my quests");
     }
 }
 

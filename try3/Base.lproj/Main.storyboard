@@ -929,7 +929,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestCell1" rowHeight="100" id="W5j-Dj-4ew">
-                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W5j-Dj-4ew" id="w5K-1m-00g">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
@@ -1030,6 +1030,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="JUo-wQ-ufp"/>
         <segue reference="pOB-Zh-P2E"/>
-        <segue reference="vDQ-V8-Khv"/>
+        <segue reference="VNK-a2-lyD"/>
     </inferredMetricsTieBreakers>
 </document>

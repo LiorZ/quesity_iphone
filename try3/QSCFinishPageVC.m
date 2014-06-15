@@ -78,7 +78,7 @@
     self.rv.rating = sourceViewController.rv.rating;
     self.opinion = sourceViewController.opinion.text;
     
-    NSLog(@"And now we are again on finish page.");
+//    NSLog(@"And now we are again on finish page.");
 }
 
 #pragma mark - TPFloatRatingViewDelegate
@@ -86,13 +86,13 @@
 {
     [self performSegueWithIdentifier:@"showRatingView" sender:self];
 
-    NSLog(@"open rating view.");
+//    NSLog(@"open rating view.");
     
 }
 
 - (void)floatRatingView:(TPFloatRatingView *)ratingView continuousRating:(CGFloat)rating
 {
-    NSLog(@"%@",[NSString stringWithFormat:@"%.2f", rating]);
+//    NSLog(@"%@",[NSString stringWithFormat:@"%.2f", rating]);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

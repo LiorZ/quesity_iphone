@@ -48,7 +48,7 @@
     } else if ([[extension lowercaseString] isEqualToString:@"jpg"] || [[extension lowercaseString] isEqualToString:@"jpeg"]) {
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", imageName]] options:NSAtomicWrite error:nil];
     } else {
-        NSLog(@"Image Save Failed\nExtension: (%@) is not recognized, use (PNG/JPG)", extension);
+//        NSLog(@"Image Save Failed\nExtension: (%@) is not recognized, use (PNG/JPG)", extension);
     }
 }
 
@@ -189,10 +189,10 @@
     int c = [[str lowercaseString] characterAtIndex:0];
     
     if (c>=97 && c<=122) {
-        NSLog(@"English");
+//        NSLog(@"English");
         return NO;
     } else {
-        NSLog(@"Not English");
+//        NSLog(@"Not English");
         return YES;
     }
 }

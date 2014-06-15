@@ -31,13 +31,13 @@ static myGlobalData *instance = nil;
     [[NSUserDefaults standardUserDefaults] setBool:stat forKey:@"isLoggedIn"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"isLoggedIn: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
+//    NSLog(@"isLoggedIn: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
 
 }
 
 - (BOOL) isLoggedInStatus{
     _isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"];
-    NSLog(@"isLoggedIn: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
+//    NSLog(@"isLoggedIn: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
     return _isLoggedIn;
 }
 

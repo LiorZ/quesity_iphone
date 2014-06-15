@@ -40,13 +40,13 @@
 
 - (void)getJson
 {
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSLog(@"num of cookies: %d", cookieJar.cookies.count);
-    for (cookie in [cookieJar cookies]) {
+//    NSHTTPCookie *cookie;
+//    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    NSLog(@"num of cookies: %d", cookieJar.cookies.count);
+//    for (cookie in [cookieJar cookies]) {
         //NSLog(@"%@", cookie);
-        NSLog(@"spesifically, the value is: %@",cookie.value);
-    }
+//        NSLog(@"spesifically, the value is: %@",cookie.value);
+//    }
     
     NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL_QUEST, _quest.questId]];
 
@@ -85,13 +85,14 @@
     
     if (self.content!=nil) {
         self.gotJsonSuccefully = YES;
-        NSLog(@"got json succefully: %d",self.gotJsonSuccefully);
+//        NSLog(@"got json succefully: %d",self.gotJsonSuccefully);
         self.goOnQuestButton.enabled = YES;
 
         if (self.loadedAllImages) {
             UIApplication* app = [UIApplication sharedApplication];
             app.networkActivityIndicatorVisible = NO;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.timer invalidate];
         }
     }
 }
@@ -111,11 +112,11 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-	NSLog(@"yo");
+//	NSLog(@"yo");
 }
 
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
-	NSLog(@"yo yo");
+//	NSLog(@"yo yo");
 }
 
 
@@ -282,7 +283,7 @@
     
     UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(640, 0, 320, lowerPartHeight)];
     [self setApperanceForLabel:label3];
-    label3.text = @"yo yo!";
+    label3.text = NSLocalizedString(@"No reviews yet ...", nil);
     [self.scrollView1 addSubview:label3];
     
     [self.segmentedControl1 setSelectedSegmentIndex:0 animated:YES];
@@ -299,6 +300,7 @@
 
     //hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Loading...";
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(showMsgAndGoBack) userInfo:nil repeats:NO];
     
     //load images async:
     picsList = [[NSMutableArray alloc] init];
@@ -342,7 +344,9 @@
                     [self.view bringSubviewToFront:self.hud];
                     
                     self.loadedAllImages = YES;
+
                     if (self.gotJsonSuccefully) {
+                        [self.timer invalidate];
                         app.networkActivityIndicatorVisible = NO;
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     }
@@ -353,13 +357,32 @@
 }
 
 
+- (void) showMsgAndGoBack {
+
+    [self.timer invalidate];
+
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error connecting to network", nil)
+                                                    message:NSLocalizedString(@"Please try again with an active internet connection.",nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          otherButtonTitles:nil];
+    alert.tag = 42;
+//    NSLog(@"tag: %d",alert.tag);
+    [alert show];
+}
+
+
 - (void)setApperanceForLabel:(UILabel *)label {
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
-    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-    label.backgroundColor = color;
-    label.textColor = [UIColor whiteColor];
+//    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
+//    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
+//    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+//    UIColor *color = [UIColor clearColor];//[UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = QUESITY_COLOR_FONT;//[UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:21.0f];
     label.textAlignment = NSTextAlignmentCenter;
 }
@@ -400,18 +423,20 @@
 }
 
 
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 0) {
         if (buttonIndex ==0) {
             self.isStartOver = YES;
-            NSLog(@"button: %d = Start Over",buttonIndex);
+//            NSLog(@"button: %d = Start Over",buttonIndex);
             [self performSegueWithIdentifier:@"goOnQuest" sender:self];
         } else {
             self.isStartOver = NO;
-            NSLog(@"button: %d = Resume",buttonIndex);
+//            NSLog(@"button: %d = Resume",buttonIndex);
             [self performSegueWithIdentifier:@"goOnQuest" sender:self];
         }
+    } else if (alertView.tag == 42) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        //[self popViewControllerAnimated:YES];
     }
 }
 
@@ -429,7 +454,7 @@
     
     //loading quest state:
     NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-    NSLog(@"loaded state dict: %@",stateDict);
+//    NSLog(@"loaded state dict: %@",stateDict);
     
     //check whether exists
     if (stateDict!=nil) {
@@ -454,7 +479,7 @@
                 alert.tag = 0;
                 [alert show];
                 
-                NSLog(@"what to do?");
+//                NSLog(@"what to do?");
             } else {
                 self.isStartOver = YES;
                 [self performSegueWithIdentifier:@"goOnQuest" sender:self];

@@ -81,7 +81,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@ was chosen", indexPath);
+//    NSLog(@"%@ was chosen", indexPath);
 }
 
 /*

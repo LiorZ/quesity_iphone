@@ -61,3 +61,7 @@
 "Wrong email or password" = "סיסמא או אימייל שגויים";
 "Please enter a name." = "אנא מלאו את כל השדות.";
 "A user with this email already exists."= "אימייל זה קיים כבר במערכת";
+"Please try again with an active internet connection." = "לאפליקציה דרוש חיבור אינטרנט פעיל";
+"Error connecting to network" = "שגיאה בעת החיבור לרשת";
+
+"No reviews yet ..." = "אין ביקורות עדיין ...";

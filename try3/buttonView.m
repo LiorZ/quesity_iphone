@@ -22,6 +22,9 @@
 
 
 - (id) initWithBorders: (BOOL)borders {
+
+    self = [super init];
+
     self.backgroundColor = QUESITY_COLOR_BG;
     [self.buttonText setTextColor:QUESITY_COLOR_FONT];
 

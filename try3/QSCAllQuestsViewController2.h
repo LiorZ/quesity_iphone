@@ -10,4 +10,6 @@
 
 @interface QSCAllQuestsViewController2 : UITableViewController 
 
+@property NSTimer *timer;
+
 @end
