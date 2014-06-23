@@ -148,14 +148,27 @@
                 });
             }
         });
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Pull down to refresh the list"
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+        alert.tag = 42;
+        [alert show];
+//        self.emptyHud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+//        [self.emptyHud setMode:MBProgressHUDModeText];
+//        self.emptyHud.labelText = @"Pull down to refresh";
     }
 }
 
+
 - (void)fetchedData:(NSData *)responseData {
+    [self.timer invalidate];
+
     //parse out the json data
     NSError* error;
     if (responseData!=nil) {
-        [self.timer invalidate];
 
         NSArray* json = [NSJSONSerialization
                          JSONObjectWithData:responseData
@@ -174,6 +187,9 @@
     //self.quests = [[NSMutableArray alloc] init];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+
+//    if (self.isEmptyList)
+//        [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self.emptyHud];
 }
 
 - (void)getJson
@@ -193,6 +209,15 @@
 - (void) stopSpinning {
     [self.timer invalidate];
     [self.refreshControl endRefreshing];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error connecting to network", nil)
+                                                    message:NSLocalizedString(@"Please try again with an active internet connection.",nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          otherButtonTitles:nil];
+    alert.tag = 442;
+    //    NSLog(@"tag: %d",alert.tag);
+    [alert show];
 }
 
 
@@ -210,7 +235,7 @@
     self.refreshControl = refresh;
     
     [self loadInitialData];
-    
+        
     self.view.backgroundColor = [UIColor clearColor];
 
 }
