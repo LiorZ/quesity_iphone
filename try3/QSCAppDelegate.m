@@ -22,7 +22,7 @@
     
     //decide which main VC to show:
     myGlobalData *myGD = [[myGlobalData alloc] init];
-    if ([myGD isLoggedInStatus]) {
+    if (![myGD isAskToLoginRegisterStatus]) {
         UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainAfterLogin"];
         self.window.rootViewController = viewController;
     } else {

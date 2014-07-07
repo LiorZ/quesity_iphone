@@ -263,6 +263,7 @@
             
             myGlobalData *myGD = [[myGlobalData alloc] init];
             [myGD updateLoggedInStatus:YES];
+            [myGD updateAskToLoginRegisterStatus:FALSE];
 
             [self performSegueWithIdentifier:@"segueAfterRegister" sender:self];
             

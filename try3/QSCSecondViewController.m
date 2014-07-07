@@ -45,6 +45,13 @@
 }
 
 
+- (IBAction)didPressAskMeRegisterLogin:(id)sender {
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    [myGD updateAskToLoginRegisterStatus:TRUE];
+}
+
+
+
 - (IBAction)didPressEraseAllQuestsJson:(id)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myData"];
 }

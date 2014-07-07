@@ -8,6 +8,7 @@
 
 #import "QSCbeforeLogin.h"
 #import <QuartzCore/QuartzCore.h>
+#import "myGlobalData.h"
 
 
 @interface QSCbeforeLogin ()
@@ -37,9 +38,13 @@
 
     self.btnLogin.layer.cornerRadius = 5;
     self.btnLogin.clipsToBounds = YES;
-    
-    [super viewDidLoad];
 
+    self.btnSkip.layer.cornerRadius = 5;
+    self.btnSkip.clipsToBounds = YES;
+    
+    [self.btnSkip setTitle:NSLocalizedString(@"Not now",nil) forState:UIControlStateNormal];
+
+    [super viewDidLoad];
     
 }
 
@@ -48,6 +53,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (IBAction)didPressButtonSkip:(id)sender {
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    [myGD updateAskToLoginRegisterStatus:FALSE];
+    
+    [self performSegueWithIdentifier:@"skipRegisterLogin" sender:self];
+}
+
+
 
 
 @end

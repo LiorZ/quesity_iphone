@@ -10,6 +10,7 @@
 
 @implementation myGlobalData
 @synthesize isLoggedIn = _isLoggedIn;
+@synthesize isAskToLoginRegister = _isAskToLoginRegister;
 
 static myGlobalData *instance = nil;
 
@@ -39,6 +40,23 @@ static myGlobalData *instance = nil;
     _isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"];
 //    NSLog(@"isLoggedIn: %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"isLoggedIn"]);
     return _isLoggedIn;
+}
+
+- (void) updateAskToLoginRegisterStatus: (BOOL)stat {
+    _isAskToLoginRegister = stat;
+    //saving stuff:
+    [[NSUserDefaults standardUserDefaults] setBool:stat forKey:@"isAskToLoginRegister"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL) isAskToLoginRegisterStatus {
+    _isAskToLoginRegister = [[NSUserDefaults standardUserDefaults] boolForKey:@"isAskToLoginRegister"];
+
+    //check whether it exists
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isAskToLoginRegister"]!=nil)
+        return _isAskToLoginRegister;
+    else
+        return TRUE;
 }
 
 @end

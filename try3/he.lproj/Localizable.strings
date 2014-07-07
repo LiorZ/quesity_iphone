@@ -14,6 +14,8 @@
 "Menu" = "תפריט";
 "Tactics" = "גלגלי הצלה";
 
+"Not now" = "בפעם אחרת";
+
 //dialog boxes and responses
 "Wrong answer" = "";
 "Wrong answer! :( try again." = "התשובה שגויה :( נסו שנית.";

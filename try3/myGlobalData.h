@@ -34,12 +34,16 @@
 
 @interface myGlobalData : NSObject {
     BOOL isLoggedIn;
+    BOOL isAskToLoginRegister;
 }
 
 @property BOOL isLoggedIn;
+@property BOOL isAskToLoginRegister;
 
 +(myGlobalData*)getInstance;
 - (void) updateLoggedInStatus: (BOOL)stat;
 - (BOOL) isLoggedInStatus;
+- (void) updateAskToLoginRegisterStatus: (BOOL)stat;
+- (BOOL) isAskToLoginRegisterStatus;
 
 @end

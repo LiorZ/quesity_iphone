@@ -306,6 +306,10 @@
     picsList = [[NSMutableArray alloc] init];
     NSString *stam = @"";
     
+    //in case there's no images (except for the quest image) then duplicate it for the quest info
+    if ([_quest.imagesLinks count]==1)
+        _quest.imagesLinks = [[NSArray alloc] initWithObjects:_quest.imagesLinks[0],_quest.imagesLinks[0],nil];
+    
     dispatch_async(imageLoadingQueue, ^{
         NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
