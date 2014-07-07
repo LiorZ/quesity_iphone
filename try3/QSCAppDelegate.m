@@ -8,7 +8,6 @@
 
 #import "QSCAppDelegate.h"
 #import "myGlobalData.h"
-#import "myGlobalData.h"
 
 @implementation QSCAppDelegate
 
@@ -19,16 +18,18 @@
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    //decide which main VC to show:
-    myGlobalData *myGD = [[myGlobalData alloc] init];
-    if (![myGD isAskToLoginRegisterStatus]) {
-        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainAfterLogin"];
-        self.window.rootViewController = viewController;
-    } else {
-        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainBeforeLogin"];
-        self.window.rootViewController = viewController;
-    }
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainAfterLogin"];
+    self.window.rootViewController = viewController;
+
+    //    //decide which main VC to show:
+//    myGlobalData *myGD = [[myGlobalData alloc] init];
+//    if (![myGD isAskToLoginRegisterStatus]) {
+//        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainAfterLogin"];
+//        self.window.rootViewController = viewController;
+//    } else {
+//        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"mainBeforeLogin"];
+//        self.window.rootViewController = viewController;
+//    }
 
     [self changeWindowColor:@"the usual"];
     

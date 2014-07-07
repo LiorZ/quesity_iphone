@@ -11,5 +11,6 @@
 @interface QSCAllQuestsViewController2 : UITableViewController 
 
 @property NSTimer *timer;
+//@property UIRefreshControl *rc;
 
 @end

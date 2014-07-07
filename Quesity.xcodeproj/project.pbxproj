@@ -36,9 +36,7 @@
 		783759FC1943216B007C0BB9 /* button_find_quest_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 783759F61943216B007C0BB9 /* button_find_quest_pressed.png */; };
 		783759FD1943216B007C0BB9 /* button_my_quests.png in Resources */ = {isa = PBXBuildFile; fileRef = 783759F71943216B007C0BB9 /* button_my_quests.png */; };
 		783759FE1943216B007C0BB9 /* button_my_quests_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 783759F81943216B007C0BB9 /* button_my_quests_pressed.png */; };
-		78375A0119432C1B007C0BB9 /* QSCbeforeLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 78375A0019432C1B007C0BB9 /* QSCbeforeLogin.m */; };
 		78375A0319432C95007C0BB9 /* UI-4-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78375A0219432C95007C0BB9 /* UI-4-1.png */; };
-		78375A0619433DC7007C0BB9 /* QSCregisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78375A0519433DC7007C0BB9 /* QSCregisterVC.m */; };
 		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 788B1B8318E77A86007F2789 /* HMSegmentedControl.m */; };
@@ -69,7 +67,6 @@
 		78C24F6F194C7CFC00CD3A44 /* QSCAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C24F6E194C7CFC00CD3A44 /* QSCAboutVC.m */; };
 		78C24F73194C84CA00CD3A44 /* about (1).html in Resources */ = {isa = PBXBuildFile; fileRef = 78C24F72194C84CA00CD3A44 /* about (1).html */; };
 		78D4ADF4191AED1D00821E9A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4ADF3191AED1D00821E9A /* logo.png */; };
-		78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */; };
 		78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE09191D21D000821E9A /* myUtilities.m */; };
 		78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE0B191D23F800821E9A /* myGlobalData.m */; };
 		78D4AE0E191D488E00821E9A /* map-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE0D191D488D00821E9A /* map-pin.png */; };
@@ -153,11 +150,7 @@
 		783759F61943216B007C0BB9 /* button_find_quest_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_find_quest_pressed.png; sourceTree = "<group>"; };
 		783759F71943216B007C0BB9 /* button_my_quests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_my_quests.png; sourceTree = "<group>"; };
 		783759F81943216B007C0BB9 /* button_my_quests_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_my_quests_pressed.png; sourceTree = "<group>"; };
-		783759FF19432C1B007C0BB9 /* QSCbeforeLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCbeforeLogin.h; sourceTree = "<group>"; };
-		78375A0019432C1B007C0BB9 /* QSCbeforeLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCbeforeLogin.m; sourceTree = "<group>"; };
 		78375A0219432C95007C0BB9 /* UI-4-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI-4-1.png"; sourceTree = "<group>"; };
-		78375A0419433DC7007C0BB9 /* QSCregisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCregisterVC.h; sourceTree = "<group>"; };
-		78375A0519433DC7007C0BB9 /* QSCregisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCregisterVC.m; sourceTree = "<group>"; };
 		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
 		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
@@ -203,8 +196,6 @@
 		78C24F6E194C7CFC00CD3A44 /* QSCAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCAboutVC.m; sourceTree = "<group>"; };
 		78C24F72194C84CA00CD3A44 /* about (1).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about (1).html"; sourceTree = "<group>"; };
 		78D4ADF3191AED1D00821E9A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCLoginViewController.h; sourceTree = "<group>"; };
-		78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCLoginViewController.m; sourceTree = "<group>"; };
 		78D4AE06191D169E00821E9A /* myGlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myGlobalData.h; sourceTree = "<group>"; };
 		78D4AE09191D21D000821E9A /* myUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUtilities.m; sourceTree = "<group>"; };
 		78D4AE0B191D23F800821E9A /* myGlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myGlobalData.m; sourceTree = "<group>"; };
@@ -354,19 +345,6 @@
 				783759F81943216B007C0BB9 /* button_my_quests_pressed.png */,
 			);
 			path = mainButtonsHeb;
-			sourceTree = "<group>";
-		};
-		78375A0719433E22007C0BB9 /* loginStuff */ = {
-			isa = PBXGroup;
-			children = (
-				78375A0419433DC7007C0BB9 /* QSCregisterVC.h */,
-				78375A0519433DC7007C0BB9 /* QSCregisterVC.m */,
-				783759FF19432C1B007C0BB9 /* QSCbeforeLogin.h */,
-				78375A0019432C1B007C0BB9 /* QSCbeforeLogin.m */,
-				78D4ADF5191AEDAD00821E9A /* QSCLoginViewController.h */,
-				78D4ADF6191AEDAD00821E9A /* QSCLoginViewController.m */,
-			);
-			name = loginStuff;
 			sourceTree = "<group>";
 		};
 		788B1B8118E77A86007F2789 /* HMSegmentedControl4 */ = {
@@ -520,7 +498,6 @@
 				78C24F6D194C7CFC00CD3A44 /* QSCAboutVC.h */,
 				78C24F6E194C7CFC00CD3A44 /* QSCAboutVC.m */,
 				783759E3193F6C01007C0BB9 /* Localizable.strings */,
-				78375A0719433E22007C0BB9 /* loginStuff */,
 				78B56403194BC026007B2A32 /* finishStuff */,
 				78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */,
 				78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */,
@@ -740,15 +717,12 @@
 				78BB4EC8192950EA00713EBB /* QSCratingViewController.m in Sources */,
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
-				78375A0119432C1B007C0BB9 /* QSCbeforeLogin.m in Sources */,
 				78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */,
 				78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
-				78375A0619433DC7007C0BB9 /* QSCregisterVC.m in Sources */,
 				78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */,
 				78D4AE2D19218A4900821E9A /* QSCopeningScreen.m in Sources */,
 				78BEDC5718AD9FF2004E9156 /* QSCAllQuestsViewController2.m in Sources */,
-				78D4ADF7191AEDAD00821E9A /* QSCLoginViewController.m in Sources */,
 				78D4AE151921462A00821E9A /* buttonView.m in Sources */,
 				78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */,
 				78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */,

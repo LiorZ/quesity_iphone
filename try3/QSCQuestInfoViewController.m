@@ -126,9 +126,9 @@
         [self getJson];
     } else {
         //user was signed in. he logged out and got back to the view. need to retrive json (in fact, deleting it)
-        myGlobalData *myGD = [[myGlobalData alloc] init];
-        if ((!myGD.isLoggedIn))
-            [self getJson];
+//        myGlobalData *myGD = [[myGlobalData alloc] init];
+//        if ((!myGD.isLoggedIn))
+        [self getJson];
     }
 }
 
@@ -299,7 +299,7 @@
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     //hud.mode = MBProgressHUDModeDeterminate;
-    self.hud.labelText = @"Loading...";
+    self.hud.labelText = @"Loading Quest ...";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(showMsgAndGoBack) userInfo:nil repeats:NO];
     
     //load images async:

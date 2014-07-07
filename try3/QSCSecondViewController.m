@@ -39,15 +39,15 @@
     
 //    NSLog(@"Signed Out");
 
-    myGlobalData *myGD = [[myGlobalData alloc] init];
-    [myGD updateLoggedInStatus:FALSE];
-    
+//    myGlobalData *myGD = [[myGlobalData alloc] init];
+//    [myGD updateLoggedInStatus:FALSE];
+
 }
 
 
 - (IBAction)didPressAskMeRegisterLogin:(id)sender {
-    myGlobalData *myGD = [[myGlobalData alloc] init];
-    [myGD updateAskToLoginRegisterStatus:TRUE];
+//    myGlobalData *myGD = [[myGlobalData alloc] init];
+//    [myGD updateAskToLoginRegisterStatus:TRUE];
 }
 
 

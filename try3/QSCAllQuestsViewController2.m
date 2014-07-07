@@ -70,8 +70,8 @@
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;
         
-        //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        //hud.labelText = @"Loading...";
+//        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        self.hud.labelText = @"Loading...";
         
         dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
         
@@ -142,7 +142,7 @@
                     
                     if (titlesFromJson.count==self.quests.count) {
                         app.networkActivityIndicatorVisible = NO;
-                        //[MBProgressHUD hideHUDForView:self.view animated:YES];
+//                        [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self updateTable];
                     }
                 });
@@ -164,11 +164,11 @@
 
 
 - (void)fetchedData:(NSData *)responseData {
-    [self.timer invalidate];
-
     //parse out the json data
     NSError* error;
     if (responseData!=nil) {
+
+        [self.timer invalidate];
 
         NSArray* json = [NSJSONSerialization
                          JSONObjectWithData:responseData
@@ -186,6 +186,8 @@
 {
     //self.quests = [[NSMutableArray alloc] init];
     [self.tableView reloadData];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+
     [self.refreshControl endRefreshing];
 
 //    if (self.isEmptyList)
@@ -194,6 +196,8 @@
 
 - (void)getJson
 {
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(stopSpinning) userInfo:nil repeats:NO];
     
     dispatch_async(kBgQueue, ^{
@@ -203,7 +207,7 @@
     
     [self performSelector:@selector(updateTable)
           withObject:nil
-          afterDelay:1];
+          afterDelay:TIMEOUT_FOR_CONNECTION];
 }
 
 - (void) stopSpinning {
