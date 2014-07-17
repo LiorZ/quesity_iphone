@@ -10,9 +10,8 @@
 #import "QSCpage.h"
 #import <MapKit/MapKit.h>
 
-@interface QSCmapViewController : UIViewController <MKMapViewDelegate>
+@interface QSCmapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-//@property IBOutlet QSCpage *page;
 @property (weak, nonatomic) IBOutlet MKMapView *myMAp;
 
 @end

@@ -9,7 +9,7 @@
 #import "QSCmapViewController.h"
 
 @interface QSCmapViewController ()
-
+@property BOOL isCenterd;
 @end
 
 @implementation QSCmapViewController
@@ -29,9 +29,8 @@
     // Do any additional setup after loading the view.
     
     self.myMAp.delegate = self;
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.myMAp.userLocation.coordinate, 800, 800);
-    [self.myMAp setRegion:[self.myMAp regionThatFits:region] animated:YES];
+    self.isCenterd = NO;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,8 +63,12 @@
 #pragma mark - map view delegate
 - (void)mapView:(MKMapView *)mv didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    //[mv setRegion:[mv regionThatFits:region] animated:YES];
+    if (!self.isCenterd) {
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 250, 250);
+        [mv setRegion:[mv regionThatFits:region] animated:YES];
+        self.isCenterd = YES;
+    }
 }
+
 
 @end

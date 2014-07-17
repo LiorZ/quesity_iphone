@@ -397,7 +397,7 @@
                                         otherButtonTitlesArray: self.currCorrectAnswers];
     
     for (int i=0; i<self.currCorrectAnswers.count; i++) {
-        if ([self.currCorrectAnswers[i] length]>40)
+        if ([self.currCorrectAnswers[i] length]>33)
             [popup setFont:[UIFont boldSystemFontOfSize:14] forButtonAtIndex:i];
     }
 
