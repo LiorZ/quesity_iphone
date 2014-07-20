@@ -45,5 +45,6 @@
 //- (BOOL) isLoggedInStatus;
 //- (void) updateAskToLoginRegisterStatus: (BOOL)stat;
 //- (BOOL) isAskToLoginRegisterStatus;
+- (BOOL) isDbg;
 
 @end

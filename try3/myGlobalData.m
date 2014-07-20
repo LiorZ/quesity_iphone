@@ -23,6 +23,7 @@ static myGlobalData *instance = nil;
             instance= [myGlobalData new];
         }
     }
+
     return instance;
 }
 
@@ -58,5 +59,9 @@ static myGlobalData *instance = nil;
 //    else
 //        return TRUE;
 //}
+
+- (BOOL) isDbg {
+    return isDbgMode;
+}
 
 @end

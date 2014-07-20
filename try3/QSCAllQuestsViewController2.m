@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 #import "QSCQuest.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+WebCache.h"
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
@@ -65,6 +66,8 @@
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
     
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    
     if (titlesFromJson.count>0) {
         //draw progrees:
         UIApplication* app = [UIApplication sharedApplication];
@@ -79,6 +82,11 @@
             myUtilities *myUtils = [[myUtilities alloc] init];
             NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
             
+            int jDbg = 1;
+            if (myGD.isDbg)
+                jDbg = CELLS_2_DUPLICATE_4_DEBUG;
+            
+            for (int jjj=0; jjj<jDbg; jjj++) {
             for (int i=0; i<titlesFromJson.count; i++) {
                 //parsing hebrew buisness
                 NSString* questTitle = [myUtils parseString2Hebrew:titlesFromJson[i]];
@@ -146,6 +154,7 @@
                         [self updateTable];
                     }
                 });
+            }
             }
         });
     } else {
@@ -258,7 +267,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.quests count];
+    myGlobalData *myGD = [[myGlobalData alloc] init];
+    int jDbg = 1 + CELLS_2_DUPLICATE_4_DEBUG*(myGD.isDbg);
+    return ([self.quests count])*jDbg;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -266,7 +277,9 @@
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestCell"];
     static NSString *CellIdentifier = @"QuestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    QSCQuest *quest = [self.quests objectAtIndex:indexPath.row];
+
+    //for debug
+    QSCQuest *quest = [self.quests objectAtIndex:(indexPath.row % self.quests.count)];
 
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
     nameLabel.text = quest.name;
@@ -310,10 +323,20 @@
 
     [cell addSubview:ratingLabel];
     
-    UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 20.0, 60.0, 60.0)];
-    questImg.image = quest.img;   
+    // Here we use the new provided setImageWithURL: method to load the web image
+    //[cell.imageView sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
+//                   placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
+    
+  UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 20.0, 60.0, 60.0)];
+    [questImg sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
+                placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
+    
+    questImg.image = quest.img;
     questImg.layer.cornerRadius = 30.0f;
     questImg.clipsToBounds = YES;
+    //cell.imageView.frame = CGRectMake(10.0, 20.0, 60.0, 60.0);
+//    cell.imageView.layer.cornerRadius = 30.0f;
+//    cell.imageView.clipsToBounds = YES;
 
     [cell addSubview:questImg];
     
