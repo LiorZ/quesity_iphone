@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="381" y="-1404"/>
         </scene>
-        <!--All Quests View Controller2 - All Quests-->
+        <!--All Quests View Controller2 - Select Quest-->
         <scene sceneID="r9s-VO-DF3">
             <objects>
                 <tableViewController id="GfD-mB-Jwr" customClass="QSCAllQuestsViewController2" sceneMemberID="viewController">
@@ -101,7 +101,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Quests" image="first" id="Szw-5V-KG1"/>
-                    <navigationItem key="navigationItem" title="All Quests" id="uL4-A6-KaG">
+                    <navigationItem key="navigationItem" title="Select Quest" id="uL4-A6-KaG">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="9cC-8N-KYi">
                             <connections>
                                 <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="flipHorizontal" id="36X-5Y-mwK"/>
@@ -198,69 +198,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="webStuff2" destination="XCX-wn-S0n" id="RQD-Pu-eIM"/>
-                        <segue destination="16z-JD-Ptj" kind="modal" identifier="showMapSegue" id="oUe-Zd-Zpe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95o-nn-dea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1827" y="-1110"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7IC-vX-kBe">
-            <objects>
-                <navigationController storyboardIdentifier="mapView" definesPresentationContext="YES" id="16z-JD-Ptj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xag-XD-vLn">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="RdP-Jx-o6Z" kind="relationship" relationship="rootViewController" id="WF5-rD-b08"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qYW-72-M1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2307" y="-1821"/>
-        </scene>
-        <!--Cmap View Controller-->
-        <scene sceneID="Eqx-6H-nqb">
-            <objects>
-                <viewController id="RdP-Jx-o6Z" customClass="QSCmapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CZA-eF-MgM"/>
-                        <viewControllerLayoutGuide type="bottom" id="OCc-91-kv4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NyU-3b-uHE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BxO-EA-s65">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BxO-EA-s65" firstAttribute="leading" secondItem="NyU-3b-uHE" secondAttribute="leading" id="1sY-Xj-Pa6"/>
-                            <constraint firstAttribute="trailing" secondItem="BxO-EA-s65" secondAttribute="trailing" id="KT0-gG-0Vr"/>
-                            <constraint firstAttribute="bottom" secondItem="BxO-EA-s65" secondAttribute="bottom" id="Yf6-Rs-Xxn"/>
-                            <constraint firstItem="BxO-EA-s65" firstAttribute="top" secondItem="CZA-eF-MgM" secondAttribute="bottom" constant="1" id="jIR-Wd-pZ7"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="J50-63-7Yf">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ywL-bO-B7t">
-                            <connections>
-                                <segue destination="kOt-pi-Mrw" kind="unwind" unwindAction="returnToStepOne:" id="Vga-MJ-JKr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="myMAp" destination="BxO-EA-s65" id="scT-JS-MiU"/>
-                        <segue destination="kOt-pi-Mrw" kind="unwind" identifier="returnToStepOne" unwindAction="returnToStepOne:" id="Vba-Al-ahe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="efa-1n-bpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="kOt-pi-Mrw" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2725" y="-1809"/>
         </scene>
         <!--Finish PageVC-->
         <scene sceneID="Lxt-HL-14j">
@@ -826,7 +768,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="36X-5Y-mwK"/>
         <segue reference="pOB-Zh-P2E"/>
+        <segue reference="36X-5Y-mwK"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,6 @@
 #import "myGlobalData.h"
 #import "buttonView.h"
 #import "QSCFinishPageVC.h"
-#import "QSCmapViewController.h"
 #import "multiQuestion.h"
 #import "IBActionSheet.h"
 
@@ -436,32 +435,15 @@
             [self goToNextPage];
         }
     } else if (popup.tag==2) {
-//        NSString *opt1 =  @"הצג מפה";
 //        NSString *opt3 =  @"צא מהקווסט";
 //        NSString *opt4 =  @"cheat and skip page. ha!";
 //        NSString *opt5 =  @"cheat and go to the end. ha ha!";
 
         if (buttonIndex==0) {
-//            NSLog(@"Show map!");
-            [self segueToMap:nil];
-//        } else if (buttonIndex==1) {
-//            NSLog(@"Restart quest!");
-//
-//            self.currPage = [self findFirst];
-//            self.currHintsAvailable = [_quest.allowedHints integerValue];
-//            NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
-//            [self saveDict:questStatePath];
-//            
-//            NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
-//            self.currQType = [self string2PageType:currQTypeString];
-//            
-//            [self createWebViewWithHTML];
-//            [self updateHintButtonStatus];
-        } else if (buttonIndex==1){
-//            NSLog(@"Exit quest!");
+            //NSLog(@"Exit quest!");
             
             [self back:nil];
-        }  else if ((buttonIndex==2) && isDbgMode) {
+        }  else if ((buttonIndex==1) && isDbgMode) {
 //            NSLog(@"go to next page!");
 
             //there might be more than one link...
@@ -480,7 +462,7 @@
                 [self popToCheat];
             }
             
-        } else if ((buttonIndex==3) && isDbgMode) {
+        } else if ((buttonIndex==2) && isDbgMode) {
 //            NSLog(@"Finish quest!");
             
             [self segueToFinish];
@@ -516,10 +498,6 @@
     }
 }
 
-- (IBAction)segueToMap: (id)sender
-{
-    [self performSegueWithIdentifier:@"showMapSegue" sender:self];
-}
 
 - (IBAction)returnToStepOne:(UIStoryboardSegue *)segue {
 //    NSLog(@"And now we are back.");
@@ -531,14 +509,6 @@
     vc.quest = self.quest;
     
     [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"showMapSegue"]) {
-        QSCFinishPageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapView"];
-       [self presentViewController:vc animated:YES completion:nil];
-    }
 }
 
 
@@ -671,8 +641,6 @@
 
 - (IBAction)didPressButtonMore:(id)sender {
     
-    NSString *opt1 = NSLocalizedString(@"Show Map",nil);
-//    NSString *opt2 = NSLocalizedString(@"Start Over", nil);
     NSString *opt3 = NSLocalizedString(@"Leave Quest",nil);
     NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
     NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
@@ -683,13 +651,13 @@
                                             delegate: self
                                    cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
                               destructiveButtonTitle: nil
-                                   otherButtonTitles: opt1, opt3, opt4, opt5, nil];
+                                   otherButtonTitles: opt3, opt4, opt5, nil];
     } else {
         popup = [[UIActionSheet alloc] initWithTitle: nil
                                             delegate: self
                                    cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
                               destructiveButtonTitle: nil
-                                   otherButtonTitles: opt1, opt3, nil];
+                                   otherButtonTitles: opt3, nil];
     }
     
     popup.tag = 2;

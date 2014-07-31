@@ -54,7 +54,6 @@
 		78B56409194C6D4C007B2A32 /* enter_text_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B56406194C6D4C007B2A32 /* enter_text_pressed.png */; };
 		78B5640A194C6D4C007B2A32 /* options_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B56407194C6D4C007B2A32 /* options_pressed.png */; };
 		78B5640E194C70C3007B2A32 /* main_screen_iphone5 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 78B5640D194C70C3007B2A32 /* main_screen_iphone5 (1).png */; };
-		78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */; };
 		78BB4EC41927DD6100713EBB /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC11927DD6100713EBB /* AMTagListView.m */; };
 		78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC31927DD6100713EBB /* AMTagView.m */; };
 		78BB4EC8192950EA00713EBB /* QSCratingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB4EC7192950EA00713EBB /* QSCratingViewController.m */; };
@@ -195,8 +194,6 @@
 		78B56406194C6D4C007B2A32 /* enter_text_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_text_pressed.png; path = ../../../../../../Dropbox/Quesity/Graphics/kalsky/fragments/enter_text_pressed.png; sourceTree = "<group>"; };
 		78B56407194C6D4C007B2A32 /* options_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = options_pressed.png; path = ../../../../../../Dropbox/Quesity/Graphics/kalsky/fragments/options_pressed.png; sourceTree = "<group>"; };
 		78B5640D194C70C3007B2A32 /* main_screen_iphone5 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_screen_iphone5 (1).png"; path = "../../../../../../Downloads/main_screen_iphone5 (1).png"; sourceTree = "<group>"; };
-		78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCmapViewController.h; sourceTree = "<group>"; };
-		78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCmapViewController.m; sourceTree = "<group>"; };
 		78BB4EC01927DD6100713EBB /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
 		78BB4EC11927DD6100713EBB /* AMTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagListView.m; sourceTree = "<group>"; };
 		78BB4EC21927DD6100713EBB /* AMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagView.h; sourceTree = "<group>"; };
@@ -596,8 +593,6 @@
 				78C24F6E194C7CFC00CD3A44 /* QSCAboutVC.m */,
 				783759E3193F6C01007C0BB9 /* Localizable.strings */,
 				78B56403194BC026007B2A32 /* finishStuff */,
-				78BB4EBC1927B19A00713EBB /* QSCmapViewController.h */,
-				78BB4EBD1927B19A00713EBB /* QSCmapViewController.m */,
 				78D4AE2B19218A4900821E9A /* QSCopeningScreen.h */,
 				78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */,
 				78A7624A18DDADD00098DDD8 /* QSCpage.h */,
@@ -806,7 +801,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78DD31EF197C26ED0044959A /* UIView+WebCacheOperation.m in Sources */,
-				78BB4EBE1927B19A00713EBB /* QSCmapViewController.m in Sources */,
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
 				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
 				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,
