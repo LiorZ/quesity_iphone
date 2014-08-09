@@ -12,8 +12,8 @@
 @interface QSCQuest : NSObject
 
 @property NSString *name;
-@property (nonatomic, copy) NSNumber *durationD;
-@property (nonatomic, copy) NSNumber *gamesPlayed;
+//@property (nonatomic, copy) NSNumber *durationD;
+//@property (nonatomic, copy) NSNumber *gamesPlayed;
 @property (nonatomic, copy) NSString *durationT;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *questId;

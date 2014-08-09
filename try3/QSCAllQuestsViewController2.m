@@ -53,14 +53,14 @@
 - (void) parseJson2Quests:(NSArray *)json {
     NSArray* titlesFromJson = [json valueForKey:@"title"];
     NSArray* timesFromJson = [json valueForKey:@"time"];
-    NSArray* distsFromJson = [json valueForKey:@"distance"];
-    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
+//    NSArray* distsFromJson = [json valueForKey:@"distance"];
+//    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
     NSArray* idFromJson = [json valueForKey:@"_id"];
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
-    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
+//    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
     NSArray* tagsFromJson = [json valueForKey:@"tags"];
     
     //update quests:
@@ -97,14 +97,14 @@
                 QSCQuest *quest = [[QSCQuest alloc] init];
                 quest.name = questTitle.copy;
                 quest.description = questDescription.copy;
-                quest.durationD = distsFromJson[i];
-                quest.gamesPlayed = gamesPlayedFromJson[i];
+//                quest.durationD = distsFromJson[i];
+//                quest.gamesPlayed = gamesPlayedFromJson[i];
                 
                 int minutes = round([timesFromJson[i] intValue] / 60);
                 int seconds = round([timesFromJson[i] intValue] % 60);
                 
                 quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-                quest.rating = [ratingsFromJson[i] floatValue];
+//                quest.rating = [ratingsFromJson[i] floatValue];
                 
                 quest.questId = idFromJson[i];
                 
@@ -249,7 +249,7 @@
     
     [self loadInitialData];
         
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
 
 }
 
@@ -284,50 +284,45 @@
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
     nameLabel.text = quest.name;
     
-//    UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
-//    //quest.durationD = distsFromJson[i];
-//    //quest.durationT = timesFromJson[i];
-//    gameLabel.text = [NSString stringWithFormat:@"Distance: %@ km, Time: %@",quest.durationD,quest.durationT];
-    
-    UILabel *distLabel = (UILabel *)[cell viewWithTag:110];
-    distLabel.text = [NSString stringWithFormat:@"%@",quest.durationD];
+//    UILabel *distLabel = (UILabel *)[cell viewWithTag:110];
+//    distLabel.text = [NSString stringWithFormat:@"%@",quest.durationD];
 
     UILabel *durLabel = (UILabel *)[cell viewWithTag:120];
     durLabel.text = [NSString stringWithFormat:@"%@",quest.durationT];
     
-    UILabel *gamesPlayedLabel = (UILabel *)[cell viewWithTag:130];
-    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@",quest.gamesPlayed];
+//    UILabel *gamesPlayedLabel = (UILabel *)[cell viewWithTag:130];
+//    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@",quest.gamesPlayed];
     
-    //rating stuff:
-    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(80.0, 30.0, 80.0, 40.0)];
-    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
-    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
-    rv.contentMode = UIViewContentModeScaleAspectFill;
-    rv.maxRating = 5;
-    rv.minRating = 1;
-    rv.rating = quest.rating;
-    rv.editable = NO;
-    rv.halfRatings = NO;
-    rv.floatRatings = YES;
-    
+//    //rating stuff:
+//    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(80.0, 30.0, 80.0, 40.0)];
+//    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
+//    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
+//    rv.contentMode = UIViewContentModeScaleAspectFill;
+//    rv.maxRating = 5;
+//    rv.minRating = 1;
+//    rv.rating = quest.rating;
+//    rv.editable = NO;
+//    rv.halfRatings = NO;
+//    rv.floatRatings = YES;
+//    
     if (indexPath.row % 2 ==0) {
         cell.backgroundColor = QUESITY_COLOR_TABLE_EVEN;
     } else {
         cell.backgroundColor = QUESITY_COLOR_TABLE_ODD;
     }
     
-    [cell addSubview:rv];
+//    [cell addSubview:rv];
 
-    UILabel *ratingLabel = (UILabel *)[cell viewWithTag:140];
-    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",quest.rating];
+//    UILabel *ratingLabel = (UILabel *)[cell viewWithTag:140];
+//    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",quest.rating];
 
-    [cell addSubview:ratingLabel];
+//    [cell addSubview:ratingLabel];
     
     // Here we use the new provided setImageWithURL: method to load the web image
     //[cell.imageView sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
 //                   placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
     
-  UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 20.0, 60.0, 60.0)];
+  UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 15.0, 60.0, 60.0)];
     [questImg sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
                 placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
     
@@ -340,12 +335,12 @@
 
     [cell addSubview:questImg];
     
-    myUtilities *myUtils = [[myUtilities alloc] init];
+//    myUtilities *myUtils = [[myUtilities alloc] init];
 //    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
 //    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
 
-    [myUtils drawLine1:CGRectMake(150.f, 50.f, 1.f, 40.f) toView:cell];
-    [myUtils drawLine1:CGRectMake(210.f, 50.f, 1.f, 40.f) toView:cell];
+//    [myUtils drawLine1:CGRectMake(150.f, 50.f, 1.f, 40.f) toView:cell];
+//    [myUtils drawLine1:CGRectMake(210.f, 50.f, 1.f, 40.f) toView:cell];
     
     return cell;
     
