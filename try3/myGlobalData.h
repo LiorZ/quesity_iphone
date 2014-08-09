@@ -24,10 +24,12 @@
 #define QUESITY_COLOR_BG_IMG [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]
 #define QUESITY_COLOR_TAGS [UIColor colorWithRed:225/255.0f green:88/255.0f blue:34/255.0f alpha:1.0f]
 
-#define TIMEOUT_FOR_CONNECTION 28.0
+#define TIMEOUT_FOR_CONNECTION 28
 
 //#define isDbgMode YES
 #define isDbgMode NO
+
+#define isPreCacheQuest YES
 
 //macro for localization
 #define NSLocalizedString(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]

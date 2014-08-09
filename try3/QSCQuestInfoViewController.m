@@ -26,6 +26,9 @@
 @property QSCQuest *questToShow;
 @property BOOL gotJsonSuccefully;
 @property BOOL isStartOver;
+@property NSInteger pageNum;
+@property NSInteger pageNums;
+@property UIWebView *wv;
 @end
 
 @implementation QSCQuestInfoViewController
@@ -294,9 +297,6 @@
 //    [self.segmentedControl1 setSelectedSegmentIndex:0 animated:YES];
     
     //IMAGES LOADING PROGRESS:
-    
-    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
-    
     //draw progrees:
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
@@ -315,6 +315,7 @@
     if ([_quest.imagesLinks count]==1)
         _quest.imagesLinks = [[NSArray alloc] initWithObjects:_quest.imagesLinks[0],_quest.imagesLinks[0],nil];
     
+    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
     dispatch_async(imageLoadingQueue, ^{
         NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
@@ -431,18 +432,84 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) loadPage:(NSInteger)pageNum {
+    //load page. on finish, load next. until no more
+    
+    //create the string concatenated
+    NSMutableString *html = [NSMutableString stringWithString: @"<html><body style='padding:0; margin:0'>"];
+    
+    //continue building the string
+    if (self.content[pageNum] == Nil)
+        [html appendString:@"first, please log in?"];
+    else
+        [html appendString:self.content[pageNum]];
+    [html appendString:@"</body></html>"];
+    
+    html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"<p>" withString:@""]];
+    html = [NSMutableString stringWithString:[html stringByReplacingOccurrencesOfString:@"</p>" withString:@""]];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(showMsgAndGoBack) userInfo:nil repeats:NO];
+    [self.wv loadHTMLString:[html description] baseURL:nil];
+
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)theWebView
+{
+    [self.timer invalidate];
+    self.hud.progress = self.pageNum*1.0/self.pageNums;
+    [self.view bringSubviewToFront:self.hud];
+    
+    self.pageNum++;
+    NSLog(@"loaded %d (out of %d)", self.pageNum, self.pageNums);
+    
+    if (self.pageNum<self.pageNums) {
+        [self loadPage:self.pageNum];
+    } else {
+        //keep the hud on top
+        [self.view bringSubviewToFront:self.hud];
+        
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+    }
+}
+
+
+- (void)loadQuestsAndGo {
+
+    if (!isPreCacheQuest)
+        [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+    else {
+        self.pageNums = [self.content count];
+        self.wv = [[UIWebView alloc] init];
+        self.wv.delegate = self;
+        
+        //IMAGES LOADING PROGRESS:
+        //draw progrees:
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = YES;
+        
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+        self.hud.labelText = @"Loading Quest ...";
+        
+        [self loadPage:0];
+    }
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 0) {
         if (buttonIndex ==0) {
             self.isStartOver = YES;
-//            NSLog(@"button: %d = Start Over",buttonIndex);
-            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+            //            NSLog(@"button: %d = Start Over",buttonIndex);
         } else {
             self.isStartOver = NO;
-//            NSLog(@"button: %d = Resume",buttonIndex);
-            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+            //            NSLog(@"button: %d = Resume",buttonIndex);
         }
+        [self loadQuestsAndGo];
     } else if (alertView.tag == 42) {
         [self dismissViewControllerAnimated:YES completion:nil];
         //[self popViewControllerAnimated:YES];
@@ -491,15 +558,15 @@
 //                NSLog(@"what to do?");
             } else {
                 self.isStartOver = YES;
-                [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+                [self loadQuestsAndGo];
             }
         } else {
             self.isStartOver = YES;
-            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+            [self loadQuestsAndGo];
         }
     } else {
         self.isStartOver = YES;
-        [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        [self loadQuestsAndGo];
     }
 
 }
