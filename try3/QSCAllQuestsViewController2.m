@@ -100,10 +100,18 @@
 //                quest.durationD = distsFromJson[i];
 //                quest.gamesPlayed = gamesPlayedFromJson[i];
                 
-                int minutes = round([timesFromJson[i] intValue] / 60);
-                int seconds = round([timesFromJson[i] intValue] % 60);
+                //int minutes = round([timesFromJson[i] intValue] / 60);
+                //int seconds = round([timesFromJson[i] intValue] % 60);
                 
-                quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+                //quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+                
+                NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+                if ([language isEqualToString:@"he"]) {
+                    quest.durationT = [NSString stringWithFormat:@"%d דקות", [timesFromJson[i] intValue]];
+                } else {
+                    quest.durationT = [NSString stringWithFormat:@"%d minutes", [timesFromJson[i] intValue]];
+                }
+                
 //                quest.rating = [ratingsFromJson[i] floatValue];
                 
                 quest.questId = idFromJson[i];
@@ -251,6 +259,30 @@
         
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
 
+    //a lot of code, just to put an image on the navigation bar
+    float delta2center = 70;
+    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(delta2center+0, 0, 300, 30)];
+    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(delta2center+40, 0, 300, 30)];
+
+    title.text = NSLocalizedString(@"Select Quest", nil);
+    [title setTextColor:QUESITY_COLOR_FONT];
+    [title setFont:[UIFont boldSystemFontOfSize:20.0]];
+    
+    [title setBackgroundColor:[UIColor clearColor]];
+    UIImage *image = [UIImage imageNamed:@"search.png"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    
+    myImageView.frame = CGRectMake(delta2center+0, 0, 30, 30);
+//    myImageView.layer.cornerRadius = 5.0;
+//    myImageView.layer.masksToBounds = YES;
+//    myImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    myImageView.layer.borderWidth = 0.1;
+    
+    [myView addSubview:title];
+    [myView setBackgroundColor:[UIColor  clearColor]];
+    [myView addSubview:myImageView];
+    self.navigationItem.titleView = myView;
+    
 }
 
 
@@ -283,6 +315,9 @@
 
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
     nameLabel.text = quest.name;
+    
+    UILabel *museumLabel = (UILabel *)[cell viewWithTag:1001];
+    museumLabel.text = quest.startLoc.street;
     
 //    UILabel *distLabel = (UILabel *)[cell viewWithTag:110];
 //    distLabel.text = [NSString stringWithFormat:@"%@",quest.durationD];

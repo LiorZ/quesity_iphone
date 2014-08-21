@@ -26,6 +26,7 @@
 @property QSCQuest *questToShow;
 @property BOOL gotJsonSuccefully;
 @property BOOL isStartOver;
+@property BOOL stopLoading;
 @property NSInteger pageNum;
 @property NSInteger pageNums;
 @property UIWebView *wv;
@@ -135,6 +136,21 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (self.isMovingFromParentViewController) {
+        NSLog(@"No patiance. navigating away.");
+        self.stopLoading = YES;
+        
+        //stop stuff that might be running
+        [self.timer invalidate];
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -142,6 +158,7 @@
     self.isStartOver = YES;
     self.goOnQuestButton.enabled = NO;
     self.loadedAllImages = NO;
+    self.stopLoading = NO;
     
     //done in viewDidAppear
     //self.gotJsonSuccefully = NO;
@@ -177,7 +194,7 @@
     
     UILabel *distLabel = (UILabel *)[self.view viewWithTag:210];
 //    distLabel.text = [NSString stringWithFormat:@"%@ km / %@ hr",_quest.durationD, _quest.durationT];
-    distLabel.text = [NSString stringWithFormat:@"%@ hr", _quest.durationT];
+    distLabel.text = [NSString stringWithFormat:@"%@", _quest.durationT];
     
 //
 //    UILabel *gamesPlayedLabel = (UILabel *)[self.view viewWithTag:220];
@@ -455,29 +472,36 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
-    [self.timer invalidate];
-    self.hud.progress = self.pageNum*1.0/self.pageNums;
-    [self.view bringSubviewToFront:self.hud];
-    
-    self.pageNum++;
-    NSLog(@"loaded %d (out of %d)", self.pageNum, self.pageNums);
-    
-    if (self.pageNum<self.pageNums) {
-        [self loadPage:self.pageNum];
-    } else {
-        //keep the hud on top
+    //for the case the user presses back in the middle of the loading
+    if (!self.stopLoading) {
+        
+        [self.timer invalidate];
+        
+        self.hud.progress = self.pageNum*1.0/self.pageNums;
         [self.view bringSubviewToFront:self.hud];
         
-        UIApplication* app = [UIApplication sharedApplication];
-        app.networkActivityIndicatorVisible = NO;
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.pageNum++;
+        NSLog(@"loaded %d (out of %d)", self.pageNum, self.	pageNums);
         
-        [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        if (self.pageNum<self.pageNums) {
+            [self loadPage:self.pageNum];
+        } else {
+            //keep the hud on top
+            [self.view bringSubviewToFront:self.hud];
+            
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = NO;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+        }
     }
 }
 
 
 - (void)loadQuestsAndGo {
+
+    self.goOnQuestButton.enabled = NO;
 
     if (!isPreCacheQuest)
         [self performSegueWithIdentifier:@"goOnQuest" sender:self];

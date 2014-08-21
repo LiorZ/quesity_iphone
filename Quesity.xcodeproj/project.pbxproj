@@ -101,6 +101,9 @@
 		78DD31EF197C26ED0044959A /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD31DF197C26ED0044959A /* UIView+WebCacheOperation.m */; };
 		78DD31F1197C36660044959A /* logo_temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DD31F0197C36660044959A /* logo_temp.png */; };
 		78DD31F3197C393C0044959A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DD31F2197C393C0044959A /* ImageIO.framework */; };
+		78DD31FE19A679FC0044959A /* main_screen_iphone5_withMuseum.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DD31FD19A679FC0044959A /* main_screen_iphone5_withMuseum.png */; };
+		78DD320119A68C4D0044959A /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DD31FF19A68C4D0044959A /* clock.png */; };
+		78DD320219A68C4D0044959A /* marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DD320019A68C4D0044959A /* marker.png */; };
 		78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */; };
 		78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84418AD79290034E3A4 /* Foundation.framework */; };
 		78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E84618AD79290034E3A4 /* CoreGraphics.framework */; };
@@ -267,6 +270,9 @@
 		78DD31DF197C26ED0044959A /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		78DD31F0197C36660044959A /* logo_temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_temp.png; sourceTree = "<group>"; };
 		78DD31F2197C393C0044959A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		78DD31FD19A679FC0044959A /* main_screen_iphone5_withMuseum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_screen_iphone5_withMuseum.png; sourceTree = "<group>"; };
+		78DD31FF19A68C4D0044959A /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		78DD320019A68C4D0044959A /* marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker.png; sourceTree = "<group>"; };
 		78EC8BCE18B1540B00901F4D /* QSCQuestInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuestInfoViewController.h; sourceTree = "<group>"; };
 		78EC8BCF18B1540B00901F4D /* QSCQuestInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuestInfoViewController.m; sourceTree = "<group>"; };
 		78F0E84118AD79290034E3A4 /* Quesity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quesity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,6 +471,9 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78DD31FD19A679FC0044959A /* main_screen_iphone5_withMuseum.png */,
+				78DD31FF19A68C4D0044959A /* clock.png */,
+				78DD320019A68C4D0044959A /* marker.png */,
 				783759F21943216B007C0BB9 /* mainButtonsHeb */,
 				783759E51943213D007C0BB9 /* mainButtonsEng */,
 				78D4AE27192188DF00821E9A /* favorites.png */,
@@ -730,6 +739,7 @@
 				78D4AE191921531800821E9A /* continue.png in Resources */,
 				783759EC1943213D007C0BB9 /* button_about_eng.png in Resources */,
 				78D4AE1F1921566500821E9A /* options.png in Resources */,
+				78DD31FE19A679FC0044959A /* main_screen_iphone5_withMuseum.png in Resources */,
 				783759D9193F5DD5007C0BB9 /* Roboto-Thin.ttf in Resources */,
 				78D4AE0E191D488E00821E9A /* map-pin.png in Resources */,
 				78B5640E194C70C3007B2A32 /* main_screen_iphone5 (1).png in Resources */,
@@ -757,6 +767,7 @@
 				78D4AE17192152BC00821E9A /* menu.png in Resources */,
 				78C24F6C194C768600CD3A44 /* continue_img_pressed.png in Resources */,
 				78BEDC7318ADAB7B004E9156 /* 1StarSmall.png in Resources */,
+				78DD320219A68C4D0044959A /* marker.png in Resources */,
 				78B56409194C6D4C007B2A32 /* enter_text_pressed.png in Resources */,
 				783759EF1943213D007C0BB9 /* button_find_quest_eng_pressed.png in Resources */,
 				783759D5193F5DD5007C0BB9 /* yehudaclm-light-webfont.ttf in Resources */,
@@ -774,6 +785,7 @@
 				783759F11943213D007C0BB9 /* button_my_quests_eng_pressed.png in Resources */,
 				78BEDC7118ADAB7B004E9156 /* 1Star.png in Resources */,
 				78BEDC7218ADAB7B004E9156 /* 1Star@2x.png in Resources */,
+				78DD320119A68C4D0044959A /* clock.png in Resources */,
 				783759E1193F6C01007C0BB9 /* Localizable.strings in Resources */,
 				78D4AE1B192154F400821E9A /* arrived.png in Resources */,
 				78D4AE1D1921563500821E9A /* enter-text.png in Resources */,
