@@ -48,6 +48,7 @@
 }
 
 - (void) createWebViewWithHTML{
+    
     //create the string
     NSMutableString *html = [NSMutableString stringWithString: @"<html><body style='padding:0; margin:0'>"];
 
@@ -82,9 +83,30 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
-//    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
+    [self slideWebView:theWebView withSlideIN:YES];
+    //    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
 }
 
+- (void) slideWebView: (UIWebView *)theWebView withSlideIN:(BOOL)isSlideIn
+{
+    CGRect frameInside = CGRectMake(0, 20, 320, theWebView.frame.size.height);
+    CGRect frameOutsideLeft = CGRectMake(-320, 20, 320, theWebView.frame.size.height);
+    CGRect frameOutsideRight = CGRectMake(320, 20, 320, theWebView.frame.size.height);
+    
+    if (isSlideIn) {
+        theWebView.frame = frameOutsideLeft;
+        [UIView animateWithDuration:TIME_SLIDE_DELAY
+                         animations:^{
+                             theWebView.frame = frameInside;
+                         }];
+    } else {
+        theWebView.frame = frameInside;
+        [UIView animateWithDuration:TIME_SLIDE_DELAY
+                         animations:^{
+                             theWebView.frame = frameOutsideRight;
+                         }];
+    }
+}
 
 - (NSUInteger) findFirst {
     return [self.is_first indexOfObjectIdenticalTo:@(YES)];
@@ -138,20 +160,6 @@
     }
 }
 
-//- (void) initMultiQuestionView: (NSArray *)links {
-//
-////    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//
-//    self.mqv = [[multiQuestion multiQuestionView] initWithlinks:links];
-//    self.mqv.center = self.view.center;
-//    
-////    UITapGestureRecognizer *singleFingerTapLeft =
-////    [[UITapGestureRecognizer alloc] initWithTarget:self
-////                                            action:@selector(didPressButtonMore:)];
-////    [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
-//    
-//    [self.view addSubview:self.mqv];
-//}
 
 - (void) createButtons {
     
@@ -210,6 +218,7 @@
     [self.view addSubview:self.buttonRight];
     
 }
+
 
 - (void)viewDidLoad
 {
@@ -282,7 +291,7 @@
 
 //    [locationManager startUpdatingLocation];
 //    [self->locationManager startUpdatingLocation];
-
+    
     [super viewDidLoad];
         
 }
@@ -332,9 +341,14 @@
     
     //NSLog(@"link to next page %@",self.linkBeingProcessed);
 //    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
-    
-    [self createWebViewWithHTML];
-    [self updateHintButtonStatus];
+
+    [self slideWebView:webStuff2 withSlideIN:NO];
+
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TIME_SLIDE_DELAY * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self createWebViewWithHTML];
+        [self updateHintButtonStatus];
+    });
 }
 
 

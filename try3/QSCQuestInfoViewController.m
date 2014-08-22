@@ -44,21 +44,12 @@
 
 - (void)getJson
 {
-//    NSHTTPCookie *cookie;
-//    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-//    NSLog(@"num of cookies: %d", cookieJar.cookies.count);
-//    for (cookie in [cookieJar cookies]) {
-        //NSLog(@"%@", cookie);
-//        NSLog(@"spesifically, the value is: %@",cookie.value);
-//    }
-    
     NSURL *questURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/pages", SITEURL_QUEST, _quest.questId]];
 
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:questURL];
         [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
     });
-    
 }
 
 - (void) parseJson2Quest:(NSArray *)json {
@@ -129,9 +120,6 @@
     if (!self.gotJsonSuccefully) {
         [self getJson];
     } else {
-        //user was signed in. he logged out and got back to the view. need to retrive json (in fact, deleting it)
-//        myGlobalData *myGD = [[myGlobalData alloc] init];
-//        if ((!myGD.isLoggedIn))
         [self getJson];
     }
 }
@@ -160,10 +148,6 @@
     self.loadedAllImages = NO;
     self.stopLoading = NO;
     
-    //done in viewDidAppear
-    //self.gotJsonSuccefully = NO;
-    //[self getJson];
-    
     //cancel the swipe gesture that pops to the previous view...
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -190,67 +174,15 @@
 
     [self.view addSubview:tagListView];
     
-//    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
     UILabel *distLabel = (UILabel *)[self.view viewWithTag:210];
-//    distLabel.text = [NSString stringWithFormat:@"%@ km / %@ hr",_quest.durationD, _quest.durationT];
     distLabel.text = [NSString stringWithFormat:@"%@", _quest.durationT];
-    
-//
-//    UILabel *gamesPlayedLabel = (UILabel *)[self.view viewWithTag:220];
-//    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ played",_quest.gamesPlayed];
-//    if ([language isEqualToString:@"he"]) {
-//        gamesPlayedLabel.text = [NSString stringWithFormat:@"%@ כבר שיחקו",_quest.gamesPlayed];
-//    }
-
-//    UILabel *ratingLabel = (UILabel *)[self.view viewWithTag:230];
-//    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",_quest.rating];
-
-//    //rating stuff:
-//    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(230.0, 260.0, 80.0, 40.0)];
-//    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
-//    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
-//    rv.contentMode = UIViewContentModeScaleAspectFill;
-//    rv.maxRating = 5;
-//    rv.minRating = 1;
-//    rv.rating = _quest.rating;
-//    rv.editable = NO;
-//    rv.halfRatings = NO;
-//    rv.floatRatings = YES;
-//    [self.view addSubview:rv];
+   
+    UILabel *museumLabel = (UILabel *)[self.view viewWithTag:225];
+    museumLabel.text = _quest.startLoc.street;
     
     //SEGMENTED CONTROL
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-// float lowerPartHeight = screenBounds.size.height-(290+yDelta);
     float lowerPartHeight = screenBounds.size.height-(290+yDelta);
-   
-//    
-//    // Minimum code required to use the segmented control with the default styling.
-//    self.segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"Description", nil), NSLocalizedString(@"Map", nil),  NSLocalizedString(@"Reviews", nil)]];
-//    self.segmentedControl1.frame = CGRectMake(0, 250 + yDelta, 320, 40);
-//    self.segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-//    self.segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-//    self.segmentedControl1.backgroundColor = [UIColor clearColor];
-//    self.segmentedControl1.tag = 3;
-//
-//    __weak typeof(self) weakSelf = self;
-//    [self.segmentedControl1 setIndexChangeBlock:^(NSInteger index) {
-//        [weakSelf.scrollView1 scrollRectToVisible:CGRectMake(320 * index, 0, 320, lowerPartHeight + 40) animated:YES];
-//    }];
-//    
-//    [self.view addSubview:self.segmentedControl1];
-//    
-//    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 290 + yDelta, 320, lowerPartHeight)];
-//    //self.scrollView1.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-//    self.scrollView1.backgroundColor = [UIColor clearColor];
-//    self.scrollView1.pagingEnabled = YES;
-//    self.scrollView1.showsHorizontalScrollIndicator = NO;
-//    self.scrollView1.contentSize = CGSizeMake(960, screenBounds.size.height-(290+yDelta));
-//    self.scrollView1.delegate = self;
-//    [self.scrollView1 scrollRectToVisible:CGRectMake(320, 0, 320, lowerPartHeight) animated:NO];
-//    self.scrollView1.scrollEnabled = NO;
-//
-//    [self.view addSubview:self.scrollView1];
     
     myUtilities *myUtils = [[myUtilities alloc] init];
     
@@ -273,45 +205,7 @@
     //pass the string to the webview
     [webView1 loadHTMLString:[html description] baseURL:nil];
     webView1.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    [self.scrollView1 addSubview:webView1];
     [self.view addSubview:webView1];
-    
-//    //MAP:
-//    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(320, 0, 320, lowerPartHeight)];
-//    self.mapView.delegate = self;
-//    
-//    locationManager = [[CLLocationManager alloc] init];
-//    [locationManager setDelegate:self];
-//    
-//    [locationManager setDistanceFilter:kCLDistanceFilterNone];
-//    [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-//    //[self.mapView setShowsUserLocation:YES];
-//    
-//    double lat = [_quest.startLoc.lat doubleValue];
-//    double lng = [_quest.startLoc.lng doubleValue];
-//    //double rad = [_quest.startLoc.rad doubleValue];
-//    
-//    CLLocationCoordinate2D startPos = CLLocationCoordinate2DMake(lat, lng);
-//    MKPointAnnotation *startAnnotation = [[MKPointAnnotation alloc] init];
-//    startAnnotation.coordinate= startPos;
-//    startAnnotation.title = [NSString stringWithFormat:@"%@",_quest.name];
-//    startAnnotation.subtitle = [NSString stringWithFormat:@"%@",_quest.startLoc.street];
-//    [self.mapView addAnnotation:startAnnotation];
-//    
-//    //MKUserLocation *userLocation = self.mapView.userLocation;
-//    //NSLog(@"user loc:[%f,%f]",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-//    [self zoomToFitMapAnnotations:self.mapView];
-//    
-//    [self.scrollView1 addSubview:self.mapView];
-//    
-//    //REVIEWS:
-//    
-//    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(640, 0, 320, lowerPartHeight)];
-//    [self setApperanceForLabel:label3];
-//    label3.text = NSLocalizedString(@"No reviews yet ...", nil);
-//    [self.scrollView1 addSubview:label3];
-//    
-//    [self.segmentedControl1 setSelectedSegmentIndex:0 animated:YES];
     
     //IMAGES LOADING PROGRESS:
     //draw progrees:

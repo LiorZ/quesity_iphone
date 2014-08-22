@@ -14,6 +14,8 @@
 #import "multiQuestion.h"
 #import "IBActionSheet.h"
 
+#define TIME_SLIDE_DELAY 0.25
+
 @class QSCpage;
 @protocol QSCpageDelegate <NSObject>
 - (void)QSCpageDidSave:(QSCpage *)controller;
