@@ -213,7 +213,8 @@
 - (void) stopSpinning {
     [self.timer invalidate];
     [self.refreshControl endRefreshing];
-
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error connecting to network", nil)
                                                     message:NSLocalizedString(@"Please try again with an active internet connection.",nil)
                                                    delegate:self
