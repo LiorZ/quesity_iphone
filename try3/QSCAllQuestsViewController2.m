@@ -141,7 +141,7 @@
                     
                     if (titlesFromJson.count==self.quests.count) {
                         app.networkActivityIndicatorVisible = NO;
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                         [self updateTable];
                     }
                 });
@@ -243,11 +243,9 @@
     self.refreshControl = refresh;
     
     //if just got into the app:
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     self.hud.labelText = @"Loading Quests...";
-    [self getJson];
-    //else
-    //    [self loadInitialData];
+    [self.navigationController.view bringSubviewToFront:self.hud];
     
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
 
@@ -274,8 +272,10 @@
     [myView setBackgroundColor:[UIColor  clearColor]];
     [myView addSubview:myImageView];
     self.navigationItem.titleView = myView;
-    
-//    [self getJson];
+
+    [self getJson];
+    //else
+    //    [self loadInitialData];
     
     
 }
