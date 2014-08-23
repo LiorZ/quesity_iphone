@@ -13,6 +13,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myData"];
+
     self.window.backgroundColor = QUESITY_COLOR_BG_IMG;
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

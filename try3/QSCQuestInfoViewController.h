@@ -11,10 +11,10 @@
 #import "QSCpage.h"
 #import <MapKit/MapKit.h>
 #import "HMSegmentedControl.h"
-//#import <CoreLocation/CoreLocation.h>
 #import "POHorizontalList.h"
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
 
+#define PAGES_TO_PRELOAD 3
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate> {
     CLLocationManager *locationManager;
@@ -26,7 +26,6 @@
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property IBOutlet UIPageControl *pageControl;
 @property IBOutlet QSCQuest *quest;
-//@property IBOutlet NSString *GoStraightToQuest;
 @property (nonatomic, copy) NSArray *content;
 @property (nonatomic, copy) NSArray *linksToOthers;
 @property (nonatomic, copy) NSArray *pagesHints;

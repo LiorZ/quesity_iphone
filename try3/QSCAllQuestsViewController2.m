@@ -61,7 +61,7 @@
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
 //    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
-    NSArray* tagsFromJson = [json valueForKey:@"tags"];
+//    NSArray* tagsFromJson = [json valueForKey:@"tags"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -97,13 +97,6 @@
                 QSCQuest *quest = [[QSCQuest alloc] init];
                 quest.name = questTitle.copy;
                 quest.description = questDescription.copy;
-//                quest.durationD = distsFromJson[i];
-//                quest.gamesPlayed = gamesPlayedFromJson[i];
-                
-                //int minutes = round([timesFromJson[i] intValue] / 60);
-                //int seconds = round([timesFromJson[i] intValue] % 60);
-                
-                //quest.durationT = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
                 
                 NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
                 if ([language isEqualToString:@"he"]) {
@@ -111,8 +104,6 @@
                 } else {
                     quest.durationT = [NSString stringWithFormat:@"%d minutes", [timesFromJson[i] intValue]];
                 }
-                
-//                quest.rating = [ratingsFromJson[i] floatValue];
                 
                 quest.questId = idFromJson[i];
                 
@@ -126,14 +117,6 @@
                 quest.imagesLinks  = imagesLinksFromJson[i];
                 
                 quest.allowedHints = allowedHintsFromJson[i];
-
-                //remove '_'from tags:
-                NSMutableArray *tags1 =[NSMutableArray arrayWithArray:tagsFromJson[i]];
-                for (int j=0; j< tags1.count; j++) {
-                    NSString *str = tags1[j];
-                    tags1[j] = [str stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-                }
-                quest.tags = [NSArray arrayWithArray:tags1];
                 
                 //LOADING IMAGE:
                 NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
@@ -158,7 +141,7 @@
                     
                     if (titlesFromJson.count==self.quests.count) {
                         app.networkActivityIndicatorVisible = NO;
-//                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self updateTable];
                     }
                 });
@@ -241,6 +224,10 @@
     [alert show];
 }
 
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [self loadInitialData];
+//}
 
 - (void)viewDidLoad
 {
@@ -255,8 +242,13 @@
              forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
     
-    [self loadInitialData];
-        
+    //if just got into the app:
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = @"Loading Quests...";
+    [self getJson];
+    //else
+    //    [self loadInitialData];
+    
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
 
     //a lot of code, just to put an image on the navigation bar
@@ -282,6 +274,9 @@
     [myView setBackgroundColor:[UIColor  clearColor]];
     [myView addSubview:myImageView];
     self.navigationItem.titleView = myView;
+    
+//    [self getJson];
+    
     
 }
 

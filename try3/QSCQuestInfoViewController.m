@@ -15,7 +15,6 @@
 #import "MBProgressHUD.h"
 #import "myGlobalData.h"
 #import "myUtilities.h"
-#import "AMTagListView.h"
 #import "TPFloatRatingView.h"
 
 @interface QSCQuestInfoViewController ()
@@ -29,6 +28,7 @@
 @property BOOL stopLoading;
 @property NSInteger pageNum;
 @property NSInteger pageNums;
+@property NSInteger pagesLoaded;
 @property UIWebView *wv;
 @end
 
@@ -116,6 +116,9 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
+    if (self.pagesLoaded == self.pageNums)
+        self.pageNum = 0;
+    
     //user wasn't signed in. he logged in and got back to the view. need to retrive json.
     if (!self.gotJsonSuccefully) {
         [self getJson];
@@ -166,14 +169,6 @@
         yDelta = 0.0f+48.f;
     }
     
-    //TAGS and quest stat:
-    //[[AMTagListView appearance] setTagColor:QUESITY_COLOR_TAGS];
-    AMTagListView *tagListView = [[AMTagListView alloc] initWithFrame:CGRectMake(0, 250 + yDelta - 58.f, 200.f, 60.f)];
-
-    [tagListView addTags:_quest.tags];
-
-    [self.view addSubview:tagListView];
-    
     UILabel *distLabel = (UILabel *)[self.view viewWithTag:210];
     distLabel.text = [NSString stringWithFormat:@"%@", _quest.durationT];
    
@@ -215,7 +210,7 @@
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     //hud.mode = MBProgressHUDModeDeterminate;
-    self.hud.labelText = @"Loading Quest ...";
+    self.hud.labelText = @"Loading...";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(showMsgAndGoBack) userInfo:nil repeats:NO];
     
     //load images async:
@@ -371,23 +366,42 @@
         
         [self.timer invalidate];
         
-        self.hud.progress = self.pageNum*1.0/self.pageNums;
+        self.hud.progress = self.pageNum*1.0/PAGES_TO_PRELOAD;
         [self.view bringSubviewToFront:self.hud];
         
         self.pageNum++;
+        self.pagesLoaded++;
         NSLog(@"loaded %d (out of %d)", self.pageNum, self.	pageNums);
         
-        if (self.pageNum<self.pageNums) {
+//        if (self.pageNum<self.pageNums) {
+//            [self loadPage:self.pageNum];
+//        } else {
+//            [self.view bringSubviewToFront:self.hud];
+//            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            
+//            UIApplication* app = [UIApplication sharedApplication];
+//            app.networkActivityIndicatorVisible = NO;
+//            self.pageNum = 0;
+//        }
+        
+        if (self.pagesLoaded<PAGES_TO_PRELOAD) {
             [self loadPage:self.pageNum];
         } else {
+            if (self.pagesLoaded==PAGES_TO_PRELOAD) {
+                [self.view bringSubviewToFront:self.hud];
+                [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
+            
             //keep the hud on top
-            [self.view bringSubviewToFront:self.hud];
-            
-            UIApplication* app = [UIApplication sharedApplication];
-            app.networkActivityIndicatorVisible = NO;
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            [self performSegueWithIdentifier:@"goOnQuest" sender:self];
+            if (self.pageNum<self.pageNums) {
+                [self loadPage:self.pageNum];
+            } else {
+                UIApplication* app = [UIApplication sharedApplication];
+                app.networkActivityIndicatorVisible = NO;
+                self.pageNum = 0;
+            }
         }
     }
 }
@@ -396,7 +410,8 @@
 - (void)loadQuestsAndGo {
 
     self.goOnQuestButton.enabled = NO;
-
+    self.pagesLoaded = 0;
+    
     if (!isPreCacheQuest)
         [self performSegueWithIdentifier:@"goOnQuest" sender:self];
     else {

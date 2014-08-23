@@ -13,8 +13,10 @@
 #import "buttonView.h"
 #import "multiQuestion.h"
 #import "IBActionSheet.h"
+#import "Resources/MBProgressHUD/MBProgressHUD.h"
 
 #define TIME_SLIDE_DELAY 0.25
+#define TIME_CHECKING_ANSWER 1.5
 
 @class QSCpage;
 @protocol QSCpageDelegate <NSObject>
@@ -42,6 +44,8 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBOutlet NSArray *pagesId;
 @property IBOutlet NSArray *pagesQType;
 @property BOOL isStartOver;
+@property BOOL isOnFirstPage;
+@property MBProgressHUD *hud;
 
 //@property NSTimer *timer;
 

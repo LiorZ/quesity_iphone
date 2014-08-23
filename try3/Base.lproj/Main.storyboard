@@ -95,7 +95,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EsQ-Ca-kJI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dqc-fw-KpR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="210" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.5 ק&quot;מ / 1 שעה" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-tA-dV2">
@@ -210,7 +210,7 @@
                                     <color key="titleColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6t2-9W-VNP" kind="modal" modalTransitionStyle="crossDissolve" id="VNK-a2-lyD"/>
+                                    <segue destination="7c2-dr-GLU" kind="modal" modalTransitionStyle="crossDissolve" id="lgO-RM-cxd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-1b-sTk">
@@ -273,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWm-5q-OEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2307" y="-1110"/>
+            <point key="canvasLocation" x="2251" y="-1118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="633-CJ-8P5">
@@ -745,7 +745,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pOB-Zh-P2E"/>
-        <segue reference="vDQ-V8-Khv"/>
+        <segue reference="AAa-Rv-uem"/>
+        <segue reference="Ugv-JC-5eV"/>
+        <segue reference="lgO-RM-cxd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Resources/MBProgressHUD/MBProgressHUD.h"
+
 
 #define CELLS_2_DUPLICATE_4_DEBUG 5
 
@@ -15,5 +17,7 @@
 
 @property NSTimer *timer;
 //@property UIRefreshControl *rc;
+
+@property MBProgressHUD *hud;
 
 @end

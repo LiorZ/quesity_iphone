@@ -72,18 +72,24 @@
     
     //pass the string to the webview
     [webStuff2 loadHTMLString:[html description] baseURL:nil];
-
+    
     [self updateButtonMiddleImage];
     
     //save progress:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
     [self saveDict:questStatePath];
+
+    [self slideWebView:webStuff2 withSlideIN:NO];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TIME_SLIDE_DELAY * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    });
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
-    [self slideWebView:theWebView withSlideIN:YES];
+    if (!self.isOnFirstPage) //no need to slide in on first page
+        [self slideWebView:theWebView withSlideIN:YES];
     //    NSLog(@"5. contentSize: %f",webStuff2.scrollView.contentSize.height);
 }
 
@@ -224,6 +230,7 @@
 {
     self.navigationItem.hidesBackButton = YES;
     
+    self.isOnFirstPage = YES;
     //remove margin at bottom
     //self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -333,6 +340,7 @@
 
 
 - (void) goToNextPage {
+    self.isOnFirstPage = NO;
     NSUInteger nextPage = [self findID:[self parseJsonOfLinks:self.linkBeingProcessed]];
     self.currPage = nextPage;
 
@@ -342,21 +350,17 @@
     //NSLog(@"link to next page %@",self.linkBeingProcessed);
 //    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
 
-    [self slideWebView:webStuff2 withSlideIN:NO];
-
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TIME_SLIDE_DELAY * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self createWebViewWithHTML];
-        [self updateHintButtonStatus];
-    });
+    [self createWebViewWithHTML];
+    [self updateHintButtonStatus];
 }
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
     if (alertView.tag == 0) {
+
         NSString *ans1 = [[alertView textFieldAtIndex:0] text];
-//        NSLog(@"Entered: %@",ans1);
+        //        NSLog(@"Entered: %@",ans1);
         
         NSInteger ans = -1;
         for (int i=0; i<self.currCorrectAnswers.count; i++) {
@@ -366,19 +370,28 @@
             }
         }
         
-        if (ans>-1) {
-            NSArray *links = self.linksToOthers[self.currPage];
-            self.linkBeingProcessed = links[ans];
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Checking Answer...",nil);
+
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TIME_CHECKING_ANSWER * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            [self goToNextPage];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong answer",nil)
-                                                            message:NSLocalizedString(@"Wrong answer! :( try again.", nil)
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+            if (ans>-1) {
+                NSArray *links = self.linksToOthers[self.currPage];
+                self.linkBeingProcessed = links[ans];
+                
+                [self goToNextPage];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong answer",nil)
+                                                                message:NSLocalizedString(@"Wrong answer! :( try again.", nil)
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        });
+        
     } else if (alertView.tag == 1) {
 
     }
