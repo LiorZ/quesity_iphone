@@ -14,6 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myData"];
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedImagesDict"];
 
     self.window.backgroundColor = QUESITY_COLOR_BG_IMG;
     

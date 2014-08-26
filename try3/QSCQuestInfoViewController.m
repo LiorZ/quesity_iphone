@@ -18,7 +18,6 @@
 #import "TPFloatRatingView.h"
 
 @interface QSCQuestInfoViewController ()
-@property (nonatomic, strong) UIScrollView *scrollView1;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl1;
 @property NSMutableArray *imgs;
 @property UIActivityIndicatorView *indicator;
@@ -30,12 +29,12 @@
 @property NSInteger pageNums;
 @property NSInteger pagesLoaded;
 @property UIWebView *wv;
+@property NSInteger picsAdded;
+//@property float imagesH;
 @end
 
 @implementation QSCQuestInfoViewController
-@synthesize scrollView = _scrollView;
 @synthesize imageArray;
-@synthesize pageControl = _pageControl;
 @synthesize quest = _quest;
 @synthesize content;
 @synthesize is_first;
@@ -131,7 +130,7 @@
     [super viewWillDisappear:animated];
     
     if (self.isMovingFromParentViewController) {
-        NSLog(@"No patiance. navigating away.");
+        //NSLog(@"No patiance. navigating away.");
         self.stopLoading = YES;
         
         //stop stuff that might be running
@@ -142,8 +141,107 @@
     }
 }
 
+
+- (void)addImgToSubview: (NSArray *)inputArray {
+    
+    UIImage *img = [inputArray objectAtIndex:0];
+    int idx = [[inputArray objectAtIndex:1] intValue]-1;
+
+    //CGFloat xOrigin = idx * self.view.frame.size.width;
+    CGFloat xOrigin = idx * 320;
+    UIImageView *image = [[UIImageView alloc] initWithFrame:
+                          CGRectMake(xOrigin, IMAGE_Y_START, 320, IMAGE_H)];
+    image.image = img;
+    image.contentMode = UIViewContentModeScaleAspectFill;
+    image.clipsToBounds = YES;
+
+    [self.scrollView1 addSubview:image];
+
+    self.picsAdded++;
+    
+    if (self.picsAdded==_quest.imagesLinks.count-1) {
+        self.loadedAllImages = YES;
+        
+        //set the scroll view content size
+        self.scrollView1.contentSize = CGSizeMake(320 * (_quest.imagesLinks.count-1), IMAGE_H);
+
+        //add the scrollview to this view
+        [self.view addSubview:self.scrollView1];
+        
+        [self.view bringSubviewToFront:self.myPageControl];
+        self.myPageControl.currentPage = 0;
+        self.myPageControl.numberOfPages = _picsAdded;
+
+        self.imgsTimer = [NSTimer scheduledTimerWithTimeInterval:TIME_TO_SWITCH_IMAGE
+                                                          target:self
+                                                        selector:@selector(scrollToNextImg)
+                                                        userInfo:nil
+                                                         repeats:YES];
+        
+        [self.timer invalidate];
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = NO;
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    }
+    
+}
+
+
+- (void) setImagesScrollView
+{
+    //add the scrollview to the view
+    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IMAGE_Y_START, 320, IMAGE_H)];
+    self.scrollView1.pagingEnabled = YES;
+    self.scrollView1.contentSize = CGSizeMake(([_quest.imagesLinks count]-1)*320, IMAGE_H);
+    
+    self.scrollView1.delegate = self;
+    self.scrollView1.showsHorizontalScrollIndicator = NO;
+    
+    [self.scrollView1 setAlwaysBounceVertical:NO];
+    
+    [self.navigationController.view bringSubviewToFront:self.hud];
+    //[self.scrollView1 bringSubviewToFront:self.hud];
+
+    //in case there's no images (except for the quest image) then duplicate it for the quest info
+    if ([_quest.imagesLinks count]==1)
+        _quest.imagesLinks = [[NSArray alloc] initWithObjects:_quest.imagesLinks[0],_quest.imagesLinks[0],nil];
+    
+    NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    
+    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
+    //we start from 1 instead of 0 because the first image is for the "quest icon"
+    for (NSInteger i = 1; i < [_quest.imagesLinks count]; i++) {
+        NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
+        //NSLog(@"fileName: %@",imgName);
+        
+        NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
+        //NSLog(@"path: %@",pathForImg);
+        
+        dispatch_async(imageLoadingQueue, ^{
+            UIImage *img;
+            if (pathForImg!=nil) {
+                img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+            } else {
+                img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+                
+                [myUtils saveImage:img
+                      withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
+                       inDirectory:documentsDirectoryPath];
+                
+                [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
+            }
+            [self performSelectorOnMainThread:@selector(addImgToSubview:)
+                                   withObject:@[img,[NSNumber numberWithInt:i]]
+                                waitUntilDone:YES];
+        });
+    }
+}
+
 - (void)viewDidLoad
 {
+   
     [super viewDidLoad];
 
     self.isStartOver = YES;
@@ -207,71 +305,18 @@
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
     
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
 
     //hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Loading...";
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(showMsgAndGoBack) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION
+                                                  target:self
+                                                selector:@selector(showMsgAndGoBack)
+                                                userInfo:nil
+                                                 repeats:NO];
     
-    //load images async:
-    picsList = [[NSMutableArray alloc] init];
-    NSString *stam = @"";
-    
-    //in case there's no images (except for the quest image) then duplicate it for the quest info
-    if ([_quest.imagesLinks count]==1)
-        _quest.imagesLinks = [[NSArray alloc] initWithObjects:_quest.imagesLinks[0],_quest.imagesLinks[0],nil];
-    
-    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
-    dispatch_async(imageLoadingQueue, ^{
-        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        
-        //we start from 1 instead of 0 because the first image is for the "quest icon"
-        for (int i = 1; i < [_quest.imagesLinks count]; i++) {
-            NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
-            //NSLog(@"fileName: %@",imgName);
-            
-            NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
-            //NSLog(@"path: %@",pathForImg);
-            
-            UIImage *img;
-            if (pathForImg!=nil) {
-                img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
-            } else {
-                img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
-                
-                [myUtils saveImage:img
-                      withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
-                       inDirectory:documentsDirectoryPath];
-                
-                [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
-            }
-            
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ListItem *item = [[ListItem alloc] initWithFrame:CGRectZero image:img text:@""];
-                [picsList addObject:item];
-                //hud.progress = picsList.count*1.0/_quest.imagesLinks.count;
-                if (picsList.count==_quest.imagesLinks.count-1) {
-                    POHorizontalList *list;
-                    list = [[POHorizontalList alloc] initWithFrame:CGRectMake(0.0, 35.0, 320.0, 180.0) title:stam items:picsList];
-                    [self.view addSubview:list];
-
-                    //keep the hud on top
-                    [self.view bringSubviewToFront:self.hud];
-                    
-                    self.loadedAllImages = YES;
-
-                    if (self.gotJsonSuccefully) {
-                        [self.timer invalidate];
-                        app.networkActivityIndicatorVisible = NO;
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    }
-                }
-            });
-        }
-    });
+    [self setImagesScrollView];
 }
-
 
 - (void) showMsgAndGoBack {
 
@@ -304,26 +349,44 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    CGFloat pageWidth = scrollView.frame.size.width;
-    NSInteger page = scrollView.contentOffset.x / pageWidth;
+//    CGFloat pageWidth = scrollView.frame.size.width;
+//    NSInteger page = scrollView.contentOffset.x / pageWidth;
+//    
+//    // Update the page control
+//    self.myPageControl.currentPage = page;
     
-    [self.segmentedControl1 setSelectedSegmentIndex:page animated:YES];
+    //[self.segmentedControl1 setSelectedSegmentIndex:page animated:YES];
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.imgsTimer invalidate];
+}
+
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
 }
 
+-(void) scrollToNextImg {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.scrollView1.frame.size.width;
+    int page = floor((self.scrollView1.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    int totPages = _quest.imagesLinks.count-1;
+    int nextPage = (page+1)%totPages;
+    [self.scrollView1 setContentOffset:CGPointMake(nextPage*320, self.scrollView1.contentOffset.y) animated:YES];
+
+    self.myPageControl.currentPage = nextPage;
+}
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
     // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
+    CGFloat pageWidth = self.scrollView1.frame.size.width;
+    int page = floor((self.scrollView1.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.myPageControl.currentPage = page;
 }
 
 - (void)didReceiveMemoryWarning
@@ -371,7 +434,7 @@
         
         self.pageNum++;
         self.pagesLoaded++;
-        NSLog(@"loaded %d (out of %d)", self.pageNum, self.	pageNums);
+        //NSLog(@"loaded %ld (out of %d)", (long)self.pageNum, self.pageNums);
         
 //        if (self.pageNum<self.pageNums) {
 //            [self loadPage:self.pageNum];

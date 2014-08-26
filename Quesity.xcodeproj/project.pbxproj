@@ -45,8 +45,6 @@
 		78A7626018E6E5A00098DDD8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7625F18E6E5A00098DDD8 /* MapKit.framework */; };
 		78A7626318E6EAC20098DDD8 /* QSCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626218E6EAC20098DDD8 /* QSCLocation.m */; };
 		78A7626518E6F9160098DDD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7626418E6F9160098DDD8 /* CoreLocation.framework */; };
-		78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626818E7177A0098DDD8 /* ListItem.m */; };
-		78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7626A18E7177A0098DDD8 /* POHorizontalList.m */; };
 		78B563FB194B33BB007B2A32 /* multiQuestion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B563FA194B33BB007B2A32 /* multiQuestion.xib */; };
 		78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B563FD194B3587007B2A32 /* multiQuestion.m */; };
 		78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B56401194BB396007B2A32 /* IBActionSheet.m */; };
@@ -181,11 +179,6 @@
 		78A7626118E6EAC20098DDD8 /* QSCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCLocation.h; sourceTree = "<group>"; };
 		78A7626218E6EAC20098DDD8 /* QSCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCLocation.m; sourceTree = "<group>"; };
 		78A7626418E6F9160098DDD8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		78A7626718E7177A0098DDD8 /* ListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListItem.h; sourceTree = "<group>"; };
-		78A7626818E7177A0098DDD8 /* ListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListItem.m; sourceTree = "<group>"; };
-		78A7626918E7177A0098DDD8 /* POHorizontalList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalList.h; sourceTree = "<group>"; };
-		78A7626A18E7177A0098DDD8 /* POHorizontalList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POHorizontalList.m; sourceTree = "<group>"; };
-		78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POHorizontalListDelegate.h; sourceTree = "<group>"; };
 		78B563FA194B33BB007B2A32 /* multiQuestion.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = multiQuestion.xib; sourceTree = "<group>"; };
 		78B563FC194B3587007B2A32 /* multiQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multiQuestion.h; sourceTree = "<group>"; };
 		78B563FD194B3587007B2A32 /* multiQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = multiQuestion.m; sourceTree = "<group>"; };
@@ -331,7 +324,6 @@
 				783759C4193F5DD5007C0BB9 /* fonts */,
 				78BB4EBF1927DD6100713EBB /* AMTagListView */,
 				7835423118E887E500EF6659 /* MBProgressHUD */,
-				78A7626618E7177A0098DDD8 /* POHorizontalList */,
 				78A7626118E6EAC20098DDD8 /* QSCLocation.h */,
 				78A7626218E6EAC20098DDD8 /* QSCLocation.m */,
 				78C24F72194C84CA00CD3A44 /* about (1).html */,
@@ -407,18 +399,6 @@
 			);
 			name = HMSegmentedControl4;
 			path = HMSegmentedControl3;
-			sourceTree = "<group>";
-		};
-		78A7626618E7177A0098DDD8 /* POHorizontalList */ = {
-			isa = PBXGroup;
-			children = (
-				78A7626718E7177A0098DDD8 /* ListItem.h */,
-				78A7626818E7177A0098DDD8 /* ListItem.m */,
-				78A7626918E7177A0098DDD8 /* POHorizontalList.h */,
-				78A7626A18E7177A0098DDD8 /* POHorizontalList.m */,
-				78A7626B18E7177A0098DDD8 /* POHorizontalListDelegate.h */,
-			);
-			path = POHorizontalList;
 			sourceTree = "<group>";
 		};
 		78B563FF194BB396007B2A32 /* IBActionSheet */ = {
@@ -804,7 +784,6 @@
 			files = (
 				78DD31EF197C26ED0044959A /* UIView+WebCacheOperation.m in Sources */,
 				786B35B218C11F29002DA234 /* QSCQuest.m in Sources */,
-				78A7626C18E7177A0098DDD8 /* ListItem.m in Sources */,
 				788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */,
 				78D4AE301923F98A00821E9A /* QSCFinishPageVC.m in Sources */,
 				78F0E85518AD79290034E3A4 /* QSCAppDelegate.m in Sources */,
@@ -831,7 +810,6 @@
 				78DD31EC197C26ED0044959A /* UIImage+WebP.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
-				78A7626D18E7177A0098DDD8 /* POHorizontalList.m in Sources */,
 				78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */,
 				78DD31EE197C26ED0044959A /* UIImageView+WebCache.m in Sources */,
 				78DD31E5197C26ED0044959A /* SDWebImageDownloader.m in Sources */,

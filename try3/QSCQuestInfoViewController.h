@@ -11,20 +11,21 @@
 #import "QSCpage.h"
 #import <MapKit/MapKit.h>
 #import "HMSegmentedControl.h"
-#import "POHorizontalList.h"
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
 
 #define PAGES_TO_PRELOAD 3
+#define IMAGE_Y_START 30
+#define IMAGE_H 225
+#define TIME_TO_SWITCH_IMAGE 5
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate> {
     CLLocationManager *locationManager;
     IBOutlet MKMapView *mapView;
-    NSMutableArray *picsList;
 }
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView1;
+
 @property (nonatomic, strong) NSMutableArray *imageArray;
-@property IBOutlet UIPageControl *pageControl;
 @property IBOutlet QSCQuest *quest;
 @property (nonatomic, copy) NSArray *content;
 @property (nonatomic, copy) NSArray *linksToOthers;
@@ -35,8 +36,10 @@
 @property MBProgressHUD *hud;
 @property BOOL loadedAllImages;
 @property NSTimer *timer;
+@property NSTimer *imgsTimer;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIPageControl *myPageControl;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *goOnQuestButton;
 

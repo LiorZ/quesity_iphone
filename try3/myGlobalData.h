@@ -13,6 +13,7 @@
 #define SITEURL_QUEST      [SITEURL stringByAppendingString:@"quest/"]
 #define SITEURL_ALL_QUESTS [SITEURL stringByAppendingString:@"all_quests"]
 #define QUESITY_COLOR  [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:1.0f]
+#define QUESITY_COLOR_PC  [UIColor colorWithRed:73/255.0f green:138/255.0f blue:128/255.0f alpha:0.2f] //pagecontroller
 
 #define QUESITY_COLOR_FONT [UIColor colorWithRed:16/255.0f green:62/255.0f blue:65/255.0f alpha:1.0f]
 #define QUESITY_COLOR_BG   [UIColor colorWithRed:97/255.0f green:162/255.0f blue:190/255.0f alpha:1.0f]
