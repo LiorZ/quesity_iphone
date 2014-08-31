@@ -150,7 +150,7 @@
     //CGFloat xOrigin = idx * self.view.frame.size.width;
     CGFloat xOrigin = idx * 320;
     UIImageView *image = [[UIImageView alloc] initWithFrame:
-                          CGRectMake(xOrigin, IMAGE_Y_START, 320, IMAGE_H)];
+                          CGRectMake(xOrigin, 0, 320, IMAGE_H)];
     image.image = img;
     image.contentMode = UIViewContentModeScaleAspectFill;
     image.clipsToBounds = YES;
@@ -232,9 +232,20 @@
                 
                 [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
             }
-            [self performSelectorOnMainThread:@selector(addImgToSubview:)
-                                   withObject:@[img,[NSNumber numberWithInt:i]]
-                                waitUntilDone:YES];
+            if (img!=nil) {
+                [self performSelectorOnMainThread:@selector(addImgToSubview:)
+                                       withObject:@[img,[NSNumber numberWithInt:i]]
+                                    waitUntilDone:YES];
+            }
+//            } else {
+//                [self.timer invalidate];
+//                [self showMsgAndGoBack];
+//                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+//                                                              target:self
+//                                                            selector:@selector(showMsgAndGoBack)
+//                                                            userInfo:nil
+//                                                             repeats:NO];
+//            }
         });
     }
 }
@@ -276,6 +287,8 @@
     //SEGMENTED CONTROL
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     float lowerPartHeight = screenBounds.size.height-(290+yDelta);
+    
+    //_imagesH = 0.4*screenBounds.size.height;
     
     myUtilities *myUtils = [[myUtilities alloc] init];
     
@@ -324,6 +337,7 @@
 
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error connecting to network", nil)
