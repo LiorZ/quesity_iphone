@@ -234,7 +234,7 @@
             }
             if (img!=nil) {
                 [self performSelectorOnMainThread:@selector(addImgToSubview:)
-                                       withObject:@[img,[NSNumber numberWithInt:i]]
+                                       withObject:@[img,[NSNumber numberWithInt:(int)i]]
                                     waitUntilDone:YES];
             }
 //            } else {
@@ -387,7 +387,7 @@
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.scrollView1.frame.size.width;
     int page = floor((self.scrollView1.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    int totPages = _quest.imagesLinks.count-1;
+    int totPages = (int)_quest.imagesLinks.count-1;
     int nextPage = (page+1)%totPages;
     [self.scrollView1 setContentOffset:CGPointMake(nextPage*320, self.scrollView1.contentOffset.y) animated:YES];
 
