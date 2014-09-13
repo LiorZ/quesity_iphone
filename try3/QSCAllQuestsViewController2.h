@@ -12,11 +12,18 @@
 
 #define CELLS_2_DUPLICATE_4_DEBUG 5
 
-@interface QSCAllQuestsViewController2 : UITableViewController 
+@interface QSCAllQuestsViewController2 : UITableViewController <UISearchBarDelegate>
+
 //@property (weak, nonatomic) IBOutlet UIImageView *imgOfCell;
+
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (strong, nonatomic) NSMutableArray* filteredTableData;
 
 @property NSTimer *timer;
 //@property UIRefreshControl *rc;
+
+@property UISearchBar *mySearchBar;
 
 @property MBProgressHUD *hud;
 

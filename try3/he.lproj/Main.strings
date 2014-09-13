@@ -90,7 +90,7 @@
 "StY-TM-aiC.title" = "צא לקווסט!";
 
 /* Class = "IBUITabBarItem"; title = "All Quests"; ObjectID = "Szw-5V-KG1"; */
-"Szw-5V-KG1.title" = "מצא קווסט";
+"Szw-5V-KG1.title" = "";
 
 /* Class = "IBUILabel"; text = "כל הכבוד !"; ObjectID = "WOh-FO-y3q"; */
 "WOh-FO-y3q.text" = "כל הכבוד !";

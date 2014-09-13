@@ -6,6 +6,8 @@
   Copyright (c) 2014 igor. All rights reserved.
 */
 
+"Select Quest" = "בחר קווסט";
+
 //buttons:
 "Continue" = "המשך";
 "Arrived" = "הגעתי";
@@ -25,7 +27,7 @@
 "OK" = "אישור";
 "answer"= "";
 "Cancel"= "ביטול";
-"You are not at the right location... Try again."= "!אינכם נמצאים במקום הנכון. נסו שוב";
+"You are not at the right location... Try again."= "אינכם נמצאים במקום הנכון. נסו שוב";
 "resume or start over?" = "נראה כי התחלת לשחק בקווסט זה בעבר. האם ברצונך לשוב לאותה נקודה?";
 "Start Over" = "התחל מחדש";
 "Resume" = "המשך בקווסט";

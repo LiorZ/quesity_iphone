@@ -19,6 +19,7 @@
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
+@property BOOL isFiltered;
 @end
 
 @implementation QSCAllQuestsViewController2
@@ -39,29 +40,29 @@
     NSArray* json = [[NSUserDefaults standardUserDefaults] valueForKey: @"myData"];
     [self parseJson2Quests:json];
     
-//    for (NSString* family in [UIFont familyNames])
-//    {
-//        NSLog(@"%@", family);
-//        
-//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-//        {
-//            NSLog(@"  %@", name);
-//        }
-//    }
+    //    for (NSString* family in [UIFont familyNames])
+    //    {
+    //        NSLog(@"%@", family);
+    //
+    //        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+    //        {
+    //            NSLog(@"  %@", name);
+    //        }
+    //    }
 }
 
 - (void) parseJson2Quests:(NSArray *)json {
     NSArray* titlesFromJson = [json valueForKey:@"title"];
     NSArray* timesFromJson = [json valueForKey:@"time"];
-//    NSArray* distsFromJson = [json valueForKey:@"distance"];
-//    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
+    //    NSArray* distsFromJson = [json valueForKey:@"distance"];
+    //    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
     NSArray* idFromJson = [json valueForKey:@"_id"];
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
-//    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
-//    NSArray* tagsFromJson = [json valueForKey:@"tags"];
+    //    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
+    //    NSArray* tagsFromJson = [json valueForKey:@"tags"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -73,8 +74,8 @@
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;
         
-//        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        self.hud.labelText = @"Loading...";
+        //        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //        self.hud.labelText = @"Loading...";
         
         dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
         
@@ -87,65 +88,65 @@
                 jDbg = CELLS_2_DUPLICATE_4_DEBUG;
             
             for (int jjj=0; jjj<jDbg; jjj++) {
-            for (int i=0; i<titlesFromJson.count; i++) {
-                //parsing hebrew buisness
-                NSString* questTitle = [myUtils parseString2Hebrew:titlesFromJson[i]];
-                NSString* questDescription = [myUtils parseString2Hebrew:descriptionFromJson[i]];
-                
-                //NSLog(@"Output = %@", questTitle);
-                
-                QSCQuest *quest = [[QSCQuest alloc] init];
-                quest.name = questTitle.copy;
-                quest.description = questDescription.copy;
-                
-                NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-                if ([language isEqualToString:@"he"]) {
-                    quest.durationT = [NSString stringWithFormat:@"%d דקות", [timesFromJson[i] intValue]];
-                } else {
-                    quest.durationT = [NSString stringWithFormat:@"%d minutes", [timesFromJson[i] intValue]];
-                }
-                
-                quest.questId = idFromJson[i];
-                
-                quest.startLoc = [[QSCLocation alloc] init];
-                quest.startLoc.lat = [locationsFromJson[i] objectForKey:@"lat"];
-                quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
-                quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
-                quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
-                
-                quest.imagesLinks = [[NSArray alloc] init];
-                quest.imagesLinks  = imagesLinksFromJson[i];
-                
-                quest.allowedHints = allowedHintsFromJson[i];
-                
-                //LOADING IMAGE:
-                NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
-                NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
-                
-                UIImage *img;
-                if (pathForImg!=nil) {
-                    img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
-                } else {
-                    img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:quest.imagesLinks[0]]]];
+                for (int i=0; i<titlesFromJson.count; i++) {
+                    //parsing hebrew buisness
+                    NSString* questTitle = [myUtils parseString2Hebrew:titlesFromJson[i]];
+                    NSString* questDescription = [myUtils parseString2Hebrew:descriptionFromJson[i]];
                     
-                    [myUtils saveImage:img
-                          withFileName:[NSString stringWithFormat:@"%@_%@", quest.questId, imgName]
-                           inDirectory:documentsDirectoryPath];
+                    //NSLog(@"Output = %@", questTitle);
                     
-                    [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    quest.img = img;
-                    [self.quests addObject:quest];
+                    QSCQuest *quest = [[QSCQuest alloc] init];
+                    quest.name = questTitle.copy;
+                    quest.description = questDescription.copy;
                     
-                    if (titlesFromJson.count==self.quests.count) {
-                        app.networkActivityIndicatorVisible = NO;
-                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                        [self updateTable];
+                    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+                    if ([language isEqualToString:@"he"]) {
+                        quest.durationT = [NSString stringWithFormat:@"%d דקות", [timesFromJson[i] intValue]];
+                    } else {
+                        quest.durationT = [NSString stringWithFormat:@"%d minutes", [timesFromJson[i] intValue]];
                     }
-                });
-            }
+                    
+                    quest.questId = idFromJson[i];
+                    
+                    quest.startLoc = [[QSCLocation alloc] init];
+                    quest.startLoc.lat = [locationsFromJson[i] objectForKey:@"lat"];
+                    quest.startLoc.lng = [locationsFromJson[i] objectForKey:@"lng"];
+                    quest.startLoc.rad = [locationsFromJson[i] objectForKey:@"radius"];
+                    quest.startLoc.street = [locationsFromJson[i] objectForKey:@"street"];
+                    
+                    quest.imagesLinks = [[NSArray alloc] init];
+                    quest.imagesLinks  = imagesLinksFromJson[i];
+                    
+                    quest.allowedHints = allowedHintsFromJson[i];
+                    
+                    //LOADING IMAGE:
+                    NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
+                    NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
+                    
+                    UIImage *img;
+                    if (pathForImg!=nil) {
+                        img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                    } else {
+                        img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:quest.imagesLinks[0]]]];
+                        
+                        [myUtils saveImage:img
+                              withFileName:[NSString stringWithFormat:@"%@_%@", quest.questId, imgName]
+                               inDirectory:documentsDirectoryPath];
+                        
+                        [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        quest.img = img;
+                        [self.quests addObject:quest];
+                        
+                        if (titlesFromJson.count==self.quests.count) {
+                            app.networkActivityIndicatorVisible = NO;
+                            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                            [self updateTable];
+                        }
+                    });
+                }
             }
         });
     } else {
@@ -156,9 +157,9 @@
                                               otherButtonTitles:nil];
         alert.tag = 42;
         [alert show];
-//        self.emptyHud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-//        [self.emptyHud setMode:MBProgressHUDModeText];
-//        self.emptyHud.labelText = @"Pull down to refresh";
+        //        self.emptyHud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        //        [self.emptyHud setMode:MBProgressHUDModeText];
+        //        self.emptyHud.labelText = @"Pull down to refresh";
     }
 }
 
@@ -167,9 +168,9 @@
     //parse out the json data
     NSError* error;
     if (responseData!=nil) {
-
+        
         [self.timer invalidate];
-
+        
         NSArray* json = [NSJSONSerialization
                          JSONObjectWithData:responseData
                          options:kNilOptions
@@ -187,11 +188,11 @@
     //self.quests = [[NSMutableArray alloc] init];
     [self.tableView reloadData];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-
+    
     [self.refreshControl endRefreshing];
-
-//    if (self.isEmptyList)
-//        [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self.emptyHud];
+    
+    //    if (self.isEmptyList)
+    //        [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self.emptyHud];
 }
 
 - (void)getJson
@@ -206,8 +207,8 @@
     });
     
     [self performSelector:@selector(updateTable)
-          withObject:nil
-          afterDelay:TIMEOUT_FOR_CONNECTION];
+               withObject:nil
+               afterDelay:TIMEOUT_FOR_CONNECTION];
 }
 
 - (void) stopSpinning {
@@ -225,14 +226,46 @@
     [alert show];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.mySearchBar.hidden = NO;
+}
+
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{
-//    [self loadInitialData];
+//    CGRect rect = _searchBar.frame;
+//    rect.origin.y = MIN(0, scrollView.contentOffset.y);
+//    _searchBar.frame = rect;
 //}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.mySearchBar = [[UISearchBar alloc]
+                        initWithFrame:CGRectMake(0.0, 20.0, self.view.bounds.size.width,44.0)];
+	self.mySearchBar.delegate = self;
+	self.mySearchBar.barTintColor = QUESITY_COLOR_BG;
+    self.mySearchBar.placeholder = NSLocalizedString(@"Select Quest", nil);
+	[self.navigationController.view addSubview: self.mySearchBar];
+    
+    self.mySearchBar.hidden = NO;
+    
+//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
+//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
+//    searchBarView.autoresizingMask = 0;
+//    searchBar.delegate = self;
+//    [searchBarView addSubview:searchBar];
+//    self.navigationItem.titleView = searchBarView;
+    
+    //    self.tableView.frame = CGRectMake(0.0, 64.0, 320, 120);
+    //    self.edgesForExtendedLayout = UIRectEdgeNone;
+    //
+    //    [self.tableView setContentInset:UIEdgeInsetsMake(64,
+    //                                                     self.tableView.contentInset.left,
+    //                                                     self.tableView.contentInset.bottom,
+    //                                                     self.tableView.contentInset.right)];
     
     //pull to refresh control:
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -240,7 +273,7 @@
     refresh.tintColor = [UIColor whiteColor];
     [refresh addTarget:self
                 action:@selector(getJson)
-             forControlEvents:UIControlEventValueChanged];
+      forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
     
     //if just got into the app:
@@ -249,31 +282,26 @@
     [self.navigationController.view bringSubviewToFront:self.hud];
     
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
-
+    
     //a lot of code, just to put an image on the navigation bar
-    float delta2center = 70;
-    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(delta2center+0, 0, 300, 30)];
-    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(delta2center+40, 0, 300, 30)];
-
-    title.text = NSLocalizedString(@"Select Quest", nil);
-    [title setTextColor:QUESITY_COLOR_FONT];
-    [title setFont:[UIFont boldSystemFontOfSize:20.0]];
+//    float delta2center = 70;
+    //UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(delta2center+0, 0, 300, 30)];
+    //UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(delta2center+40, 0, 300, 30)];
     
-    [title setBackgroundColor:[UIColor clearColor]];
-    UIImage *image = [UIImage imageNamed:@"search.png"];
-    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+//    title.text = NSLocalizedString(@"Select Quest", nil);
+//    [title setTextColor:QUESITY_COLOR_FONT];
+//    [title setFont:[UIFont boldSystemFontOfSize:20.0]];
+//    
+//    [title setBackgroundColor:[UIColor clearColor]];
+//    UIImage *image = [UIImage imageNamed:@"search.png"];
+//    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+//    myImageView.frame = CGRectMake(delta2center+0, 0, 30, 30);
     
-    myImageView.frame = CGRectMake(delta2center+0, 0, 30, 30);
-//    myImageView.layer.cornerRadius = 5.0;
-//    myImageView.layer.masksToBounds = YES;
-//    myImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    myImageView.layer.borderWidth = 0.1;
+    //[myView addSubview:title];
+    //[myView setBackgroundColor:[UIColor  clearColor]];
+    //[myView addSubview:myImageView];
+    //self.navigationItem.titleView = myView;
     
-    [myView addSubview:title];
-    [myView setBackgroundColor:[UIColor  clearColor]];
-    [myView addSubview:myImageView];
-    self.navigationItem.titleView = myView;
-
     [self getJson];
     //else
     //    [self loadInitialData];
@@ -297,7 +325,15 @@
 {
     myGlobalData *myGD = [[myGlobalData alloc] init];
     int jDbg = 1 + CELLS_2_DUPLICATE_4_DEBUG*(myGD.isDbg);
-    return ([self.quests count])*jDbg;
+    
+    int rowCount;
+    if(self.isFiltered) {
+        rowCount = _filteredTableData.count;
+    } else {
+        rowCount = ([self.quests count])*jDbg;
+    }
+    
+    return rowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -305,76 +341,71 @@
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestCell"];
     static NSString *CellIdentifier = @"QuestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    //for debug
-    QSCQuest *quest = [self.quests objectAtIndex:(indexPath.row % self.quests.count)];
-
+    
+    QSCQuest *quest;
+    if (_isFiltered) {
+        quest = [_filteredTableData objectAtIndex:(indexPath.row % self.quests.count)];
+    } else {
+        quest = [self.quests objectAtIndex:(indexPath.row % self.quests.count)];
+    }
+    
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
     nameLabel.text = quest.name;
     
     UILabel *museumLabel = (UILabel *)[cell viewWithTag:1001];
     museumLabel.text = quest.startLoc.street;
     
-//    UILabel *distLabel = (UILabel *)[cell viewWithTag:110];
-//    distLabel.text = [NSString stringWithFormat:@"%@",quest.durationD];
-
     UILabel *durLabel = (UILabel *)[cell viewWithTag:120];
     durLabel.text = [NSString stringWithFormat:@"%@",quest.durationT];
     
-//    UILabel *gamesPlayedLabel = (UILabel *)[cell viewWithTag:130];
-//    gamesPlayedLabel.text = [NSString stringWithFormat:@"%@",quest.gamesPlayed];
-    
-//    //rating stuff:
-//    TPFloatRatingView *rv = [[TPFloatRatingView alloc] initWithFrame:CGRectMake(80.0, 30.0, 80.0, 40.0)];
-//    rv.emptySelectedImage = [UIImage imageNamed:@"star-empty"];
-//    rv.fullSelectedImage = [UIImage imageNamed:@"star-full"];
-//    rv.contentMode = UIViewContentModeScaleAspectFill;
-//    rv.maxRating = 5;
-//    rv.minRating = 1;
-//    rv.rating = quest.rating;
-//    rv.editable = NO;
-//    rv.halfRatings = NO;
-//    rv.floatRatings = YES;
-//    
     if (indexPath.row % 2 ==0) {
         cell.backgroundColor = QUESITY_COLOR_TABLE_EVEN;
     } else {
         cell.backgroundColor = QUESITY_COLOR_TABLE_ODD;
     }
     
-//    [cell addSubview:rv];
-
-//    UILabel *ratingLabel = (UILabel *)[cell viewWithTag:140];
-//    ratingLabel.text = [NSString stringWithFormat:@"(%.1f)",quest.rating];
-
-//    [cell addSubview:ratingLabel];
     
-    // Here we use the new provided setImageWithURL: method to load the web image
-    //[cell.imageView sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
-//                   placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
-    
-  UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 15.0, 60.0, 60.0)];
+    UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 15.0, 60.0, 60.0)];
     [questImg sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
                 placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
     
     questImg.image = quest.img;
     questImg.layer.cornerRadius = 30.0f;
     questImg.clipsToBounds = YES;
-    //cell.imageView.frame = CGRectMake(10.0, 20.0, 60.0, 60.0);
-//    cell.imageView.layer.cornerRadius = 30.0f;
-//    cell.imageView.clipsToBounds = YES;
-
-    [cell addSubview:questImg];
     
-//    myUtilities *myUtils = [[myUtilities alloc] init];
-//    [cell addSubview:[myUtils drawLine:CGRectMake(150.f, 50.f, 1.f, 40.f)]];
-//    [cell addSubview:[myUtils drawLine:CGRectMake(210.f, 50.f, 1.f, 40.f)]];
-
-//    [myUtils drawLine1:CGRectMake(150.f, 50.f, 1.f, 40.f) toView:cell];
-//    [myUtils drawLine1:CGRectMake(210.f, 50.f, 1.f, 40.f) toView:cell];
+    [cell addSubview:questImg];
     
     return cell;
     
+}
+
+//thanks to http://code-ninja.org/blog/2012/01/08/ios-quick-tip-filtering-a-uitableview-with-a-search-bar/
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if(text.length == 0)
+    {
+        _isFiltered = FALSE;
+        [self.mySearchBar performSelector:@selector(resignFirstResponder)
+                               withObject:nil
+                               afterDelay:0];
+    }
+    else
+    {
+        _isFiltered = true;
+        _filteredTableData = [[NSMutableArray alloc] init];
+        
+        for (QSCQuest* q in self.quests)
+        {
+            NSRange nameRange = [q.name rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [q.startLoc.street rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(nameRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            {
+                [_filteredTableData addObject:q];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -384,7 +415,18 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         QSCQuestInfoViewController *destViewController = segue.destinationViewController;
+        
+        if (_isFiltered) {
+            destViewController.quest = [_filteredTableData objectAtIndex:indexPath.row];
+        } else {
+            destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+        }
         destViewController.quest = [self.quests objectAtIndex:indexPath.row];
+
+        self.mySearchBar.hidden = YES;
+        [self.mySearchBar performSelector:@selector(resignFirstResponder)
+                               withObject:nil
+                               afterDelay:0];
 
         UIApplication* app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;

@@ -6,6 +6,8 @@
   Copyright (c) 2014 igor. All rights reserved.
 */
 
+"Select Quest" = "Select Quest";
+
 //buttons:
 "Continue" = "Continue";
 "Arrived" = "Arrived";

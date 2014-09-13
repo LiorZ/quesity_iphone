@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="381" y="-1404"/>
         </scene>
-        <!--All Quests View Controller2 - Select Quest-->
+        <!--All Quests View Controller2 - All Quests-->
         <scene sceneID="r9s-VO-DF3">
             <objects>
                 <tableViewController id="GfD-mB-Jwr" customClass="QSCAllQuestsViewController2" sceneMemberID="viewController">
@@ -80,7 +80,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Quests" image="first" id="Szw-5V-KG1"/>
-                    <navigationItem key="navigationItem" title="Select Quest" id="uL4-A6-KaG"/>
+                    <navigationItem key="navigationItem" id="uL4-A6-KaG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-eF-odU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
