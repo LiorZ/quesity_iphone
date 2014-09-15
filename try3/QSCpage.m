@@ -231,6 +231,8 @@
     self.navigationItem.hidesBackButton = YES;
     
     self.isOnFirstPage = YES;
+    
+    _pagesStack = [[QSCStack alloc] init];
     //remove margin at bottom
     //self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -340,6 +342,15 @@
 
 
 - (void) goToNextPage {
+
+    if (self.currQType==page_STATIC) {
+        [_pagesStack push:[NSNumber numberWithInteger:self.currPage]];
+        //NSLog(@"pushed.");
+    } else {
+        [_pagesStack clear];
+        //NSLog(@"cleared.");
+    }
+    
     self.isOnFirstPage = NO;
     NSUInteger nextPage = [self findID:[self parseJsonOfLinks:self.linkBeingProcessed]];
     self.currPage = nextPage;
@@ -453,6 +464,35 @@
     [newPopup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
+- (void) skipAPage {
+    //there might be more than one link...
+    NSArray *links = self.linksToOthers[self.currPage];
+    
+    if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
+        if ([links count]==0) {
+            [self segueToFinish];
+        }
+    }
+    
+    if (links.count==1) {
+        self.linkBeingProcessed = links[0];
+        [self goToNextPage];
+    } else if (links.count!=0){
+        [self popToCheat];
+    }
+}
+
+- (void) goOnePageBack {
+    self.currPage = [[_pagesStack pop] integerValue];
+    //NSLog(@"popped.");
+
+    NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
+    self.currQType = [self string2PageType:currQTypeString];
+    
+    [self createWebViewWithHTML];
+    [self updateHintButtonStatus];
+}
+
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
         if (buttonIndex!=[self.linksToOthers[self.currPage] count]) {
@@ -462,37 +502,63 @@
             [self goToNextPage];
         }
     } else if (popup.tag==2) {
+//        NSString *opt2 =  @"back to previous page";
 //        NSString *opt3 =  @"צא מהקווסט";
 //        NSString *opt4 =  @"cheat and skip page. ha!";
 //        NSString *opt5 =  @"cheat and go to the end. ha ha!";
 
-        if (buttonIndex==0) {
-            //NSLog(@"Exit quest!");
-            
-            [self back:nil];
-        }  else if ((buttonIndex==1) && isDbgMode) {
-//            NSLog(@"go to next page!");
+        if (isDbgMode) {
+            if (_pagesStack.count>0) {
+                //opt2, opt3, opt4, opt5, nil
+                if (buttonIndex==0) {
+                    //NSLog(@"one page back!");
+                    [self goOnePageBack];
 
-            //there might be more than one link...
-            NSArray *links = self.linksToOthers[self.currPage];
-            
-            if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
-                if ([links count]==0) {
+                } else if (buttonIndex==1) {
+                    //NSLog(@"Exit quest!");
+                    [self back:nil];
+                
+                } else if (buttonIndex==2) {
+                    //NSLog(@"go to next page!");
+                    [self skipAPage];
+                
+                } else if (buttonIndex==3) {
+                    //NSLog(@"Finish quest!");
+                    [self segueToFinish];
+                }
+            } else {
+                //opt3, opt4, opt5, nil
+                if (buttonIndex==0) {
+                    //NSLog(@"Exit quest!");
+                    [self back:nil];
+                
+                } else if (buttonIndex==1) {
+                    //NSLog(@"go to next page!");
+                    [self skipAPage];
+                    
+                } else if (buttonIndex==2) {
+                    //NSLog(@"Finish quest!");
                     [self segueToFinish];
                 }
             }
-            
-            if (links.count==1) {
-                self.linkBeingProcessed = links[0];
-                [self goToNextPage];
-            } else if (links.count!=0){
-                [self popToCheat];
+        } else {
+            if (_pagesStack.count>0) {
+                //opt2, opt3, nil
+                if (buttonIndex==0) {
+                    //NSLog(@"one page back!");
+                    [self goOnePageBack];
+                    
+                } else if (buttonIndex==1) {
+                    //NSLog(@"Exit quest!");
+                    [self back:nil];
+                }
+            } else {
+                //opt3, nil
+                if (buttonIndex==0) {
+                    //NSLog(@"Exit quest!");
+                    [self back:nil];
+                }
             }
-            
-        } else if ((buttonIndex==2) && isDbgMode) {
-//            NSLog(@"Finish quest!");
-            
-            [self segueToFinish];
         }
     } else if (popup.tag==3) {
         NSArray *hintsForThisPage = self.pagesHints[self.currPage];
@@ -547,9 +613,11 @@
     if (self.currQType==page_STATIC /*|| self.currQType==page_LOCATION || self.currQType==page_OPEN_QUESTION*/) {
         if ([links count]==0) {
             [self segueToFinish];
+            NSLog(@"Should hide button back?"); //TODO
         } else {
             self.linkBeingProcessed = links[0];
             [self goToNextPage];
+            
         }
     } else {
         //get (and print, ha ha ha) correct answers
@@ -668,23 +736,40 @@
 
 - (IBAction)didPressButtonMore:(id)sender {
     
+    NSString *opt2 = NSLocalizedString(@"Back to previous page",nil);
     NSString *opt3 = NSLocalizedString(@"Leave Quest",nil);
     NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
     NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
     
     UIActionSheet *popup;
     if (isDbgMode) {
-        popup = [[UIActionSheet alloc] initWithTitle: nil
-                                            delegate: self
-                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                              destructiveButtonTitle: nil
-                                   otherButtonTitles: opt3, opt4, opt5, nil];
+        if (_pagesStack.count>0) {
+            popup = [[UIActionSheet alloc] initWithTitle: nil
+                                                delegate: self
+                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                                  destructiveButtonTitle: nil
+                                       otherButtonTitles: opt2, opt3, opt4, opt5, nil];
+        } else {
+            popup = [[UIActionSheet alloc] initWithTitle: nil
+                                                delegate: self
+                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                                  destructiveButtonTitle: nil
+                                       otherButtonTitles: opt3, opt4, opt5, nil];
+        }
     } else {
-        popup = [[UIActionSheet alloc] initWithTitle: nil
-                                            delegate: self
-                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                              destructiveButtonTitle: nil
-                                   otherButtonTitles: opt3, nil];
+        if (_pagesStack.count>0) {
+            popup = [[UIActionSheet alloc] initWithTitle: nil
+                                                delegate: self
+                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                                  destructiveButtonTitle: nil
+                                       otherButtonTitles: opt2, opt3, nil];
+        } else {
+            popup = [[UIActionSheet alloc] initWithTitle: nil
+                                                delegate: self
+                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                                  destructiveButtonTitle: nil
+                                       otherButtonTitles: opt3, nil];
+        }
     }
     
     popup.tag = 2;

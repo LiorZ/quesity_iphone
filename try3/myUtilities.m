@@ -186,15 +186,20 @@
 }
 
 - (BOOL)isRTL: (NSString *)str {
-    int c = [[str lowercaseString] characterAtIndex:0];
-    
-    if (c>=97 && c<=122) {
-//        NSLog(@"English");
-        return NO;
+    if (str.length>0) {
+        int c = [[str lowercaseString] characterAtIndex:0];
+        
+        if (c>=97 && c<=122) {
+            //        NSLog(@"English");
+            return NO;
+        } else {
+            //        NSLog(@"Not English");
+            return YES;
+        }
     } else {
-//        NSLog(@"Not English");
         return YES;
     }
+    
 }
 
 

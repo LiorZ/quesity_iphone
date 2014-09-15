@@ -40,6 +40,7 @@
 		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 788B1B8318E77A86007F2789 /* HMSegmentedControl.m */; };
+		78A10C9719C62F5E0095AB63 /* QSCStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A10C9619C62F5E0095AB63 /* QSCStack.m */; };
 		78A7624C18DDADD00098DDD8 /* QSCpage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7624B18DDADD00098DDD8 /* QSCpage.m */; };
 		78A7625718E4CACE0098DDD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7625618E4CACE0098DDD8 /* QuartzCore.framework */; };
 		78A7626018E6E5A00098DDD8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A7625F18E6E5A00098DDD8 /* MapKit.framework */; };
@@ -172,6 +173,8 @@
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
 		788B1B8218E77A86007F2789 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		788B1B8318E77A86007F2789 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		78A10C9519C62F5E0095AB63 /* QSCStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSCStack.h; path = ../QSCStack.h; sourceTree = "<group>"; };
+		78A10C9619C62F5E0095AB63 /* QSCStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QSCStack.m; path = ../QSCStack.m; sourceTree = "<group>"; };
 		78A7624A18DDADD00098DDD8 /* QSCpage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCpage.h; sourceTree = "<group>"; };
 		78A7624B18DDADD00098DDD8 /* QSCpage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCpage.m; sourceTree = "<group>"; };
 		78A7625618E4CACE0098DDD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -326,6 +329,8 @@
 				7835423118E887E500EF6659 /* MBProgressHUD */,
 				78A7626118E6EAC20098DDD8 /* QSCLocation.h */,
 				78A7626218E6EAC20098DDD8 /* QSCLocation.m */,
+				78A10C9519C62F5E0095AB63 /* QSCStack.h */,
+				78A10C9619C62F5E0095AB63 /* QSCStack.m */,
 				78C24F72194C84CA00CD3A44 /* about (1).html */,
 			);
 			path = Resources;
@@ -811,6 +816,7 @@
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
 				78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */,
+				78A10C9719C62F5E0095AB63 /* QSCStack.m in Sources */,
 				78DD31EE197C26ED0044959A /* UIImageView+WebCache.m in Sources */,
 				78DD31E5197C26ED0044959A /* SDWebImageDownloader.m in Sources */,
 				7835423918EDF47A00EF6659 /* KeychainItemWrapper.m in Sources */,

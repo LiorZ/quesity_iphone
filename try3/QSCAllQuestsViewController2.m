@@ -16,6 +16,8 @@
 #import "QSCQuest.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
+#import <CoreLocation/CoreLocation.h>
+
 
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
@@ -54,15 +56,11 @@
 - (void) parseJson2Quests:(NSArray *)json {
     NSArray* titlesFromJson = [json valueForKey:@"title"];
     NSArray* timesFromJson = [json valueForKey:@"time"];
-    //    NSArray* distsFromJson = [json valueForKey:@"distance"];
-    //    NSArray* ratingsFromJson = [json valueForKey:@"rating"];
     NSArray* descriptionFromJson = [json valueForKey:@"description"];
     NSArray* idFromJson = [json valueForKey:@"_id"];
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
-    //    NSArray* gamesPlayedFromJson = [json valueForKey:@"games_played"];
-    //    NSArray* tagsFromJson = [json valueForKey:@"tags"];
     
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
@@ -120,22 +118,26 @@
                     quest.allowedHints = allowedHintsFromJson[i];
                     
                     //LOADING IMAGE:
-                    NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
-                    NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
-                    
                     UIImage *img;
-                    if (pathForImg!=nil) {
-                        img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                    if (quest.imagesLinks.count>0) {
+                        NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
+                        NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
+                        
+                        if (pathForImg!=nil) {
+                            img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                        } else {
+                            img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:quest.imagesLinks[0]]]];
+                            
+                            [myUtils saveImage:img
+                                  withFileName:[NSString stringWithFormat:@"%@_%@", quest.questId, imgName]
+                                   inDirectory:documentsDirectoryPath];
+                            
+                            [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
+                        }
                     } else {
-                        img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:quest.imagesLinks[0]]]];
-                        
-                        [myUtils saveImage:img
-                              withFileName:[NSString stringWithFormat:@"%@_%@", quest.questId, imgName]
-                               inDirectory:documentsDirectoryPath];
-                        
-                        [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
+                        img = [UIImage imageNamed:@"logo_temp.png"];
                     }
-                    
+                
                     dispatch_async(dispatch_get_main_queue(), ^{
                         quest.img = img;
                         [self.quests addObject:quest];
@@ -143,6 +145,8 @@
                         if (titlesFromJson.count==self.quests.count) {
                             app.networkActivityIndicatorVisible = NO;
                             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+
+                            //[self sortByDistance];
                             [self updateTable];
                         }
                     });
@@ -162,6 +166,26 @@
         //        self.emptyHud.labelText = @"Pull down to refresh";
     }
 }
+
+
+//- (void) sortByDistance {
+//    
+//    NSArray *rawData = [NSArray arrayWithContentsOfFile:pathDoc];
+//    
+//    rawData = [rawData sortedArrayUsingComparator: ^(id a, id b) {
+//        
+//        CLLocationDistance dist_a= [[a objectsForKey:@"coordinate"] distanceFromLocation: userPosition];
+//        CLLocationDistance dist_b= [[b objectsForKey:@"coordinate"] distanceFromLocation: userPosition];
+//        if ( dist_a < dist_b ) {
+//            return (NSComparisonResult)NSOrderedAscending;
+//        } else if ( dist_a > dist_b) {
+//            return (NSComparisonResult)NSOrderedDescending;
+//        } else {
+//            return (NSComparisonResult)NSOrderedSame;
+//        }
+//    }
+//    
+//}
 
 
 - (void)fetchedData:(NSData *)responseData {

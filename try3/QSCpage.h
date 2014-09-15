@@ -14,6 +14,7 @@
 #import "multiQuestion.h"
 #import "IBActionSheet.h"
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
+#import "QSCStack.h"
 
 #define TIME_SLIDE_DELAY 0.25
 #define TIME_CHECKING_ANSWER 1.5
@@ -47,6 +48,8 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property BOOL isOnFirstPage;
 @property MBProgressHUD *hud;
 
+
+
 //@property NSTimer *timer;
 
 @property NSUInteger currPage;
@@ -56,7 +59,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property NSArray *linkBeingProcessed;
 @property BOOL displayedNotCorrectMessages;
 @property NSUInteger currHintsAvailable;
-
+@property QSCStack *pagesStack;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webStuff2;
 
