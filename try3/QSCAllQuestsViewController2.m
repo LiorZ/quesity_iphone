@@ -41,16 +41,6 @@
     //loading quests
     NSArray* json = [[NSUserDefaults standardUserDefaults] valueForKey: @"myData"];
     [self parseJson2Quests:json];
-    
-    //    for (NSString* family in [UIFont familyNames])
-    //    {
-    //        NSLog(@"%@", family);
-    //
-    //        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-    //        {
-    //            NSLog(@"  %@", name);
-    //        }
-    //    }
 }
 
 - (void) parseJson2Quests:(NSArray *)json {
@@ -230,9 +220,9 @@
         [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
     });
     
-    [self performSelector:@selector(updateTable)
-               withObject:nil
-               afterDelay:TIMEOUT_FOR_CONNECTION];
+//    [self performSelector:@selector(updateTable)
+//               withObject:nil
+//               afterDelay:TIMEOUT_FOR_CONNECTION];
 }
 
 - (void) stopSpinning {
@@ -292,14 +282,6 @@
     
     self.mySearchBar.hidden = NO;
     
-    //    self.tableView.frame = CGRectMake(0.0, 64.0, 320, 120);
-    //    self.edgesForExtendedLayout = UIRectEdgeNone;
-    //
-    //    [self.tableView setContentInset:UIEdgeInsetsMake(64,
-    //                                                     self.tableView.contentInset.left,
-    //                                                     self.tableView.contentInset.bottom,
-    //                                                     self.tableView.contentInset.right)];
-    
     //pull to refresh control:
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -316,29 +298,7 @@
     
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
     
-    //a lot of code, just to put an image on the navigation bar
-//    float delta2center = 70;
-    //UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(delta2center+0, 0, 300, 30)];
-    //UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(delta2center+40, 0, 300, 30)];
-    
-//    title.text = NSLocalizedString(@"Select Quest", nil);
-//    [title setTextColor:QUESITY_COLOR_FONT];
-//    [title setFont:[UIFont boldSystemFontOfSize:20.0]];
-//    
-//    [title setBackgroundColor:[UIColor clearColor]];
-//    UIImage *image = [UIImage imageNamed:@"search.png"];
-//    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
-//    myImageView.frame = CGRectMake(delta2center+0, 0, 30, 30);
-    
-    //[myView addSubview:title];
-    //[myView setBackgroundColor:[UIColor  clearColor]];
-    //[myView addSubview:myImageView];
-    //self.navigationItem.titleView = myView;
-    
     [self getJson];
-    //else
-    //    [self loadInitialData];
-    
     
 }
 

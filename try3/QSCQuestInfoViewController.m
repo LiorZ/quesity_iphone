@@ -131,7 +131,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (self.isMovingFromParentViewController) {
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         //NSLog(@"No patiance. navigating away.");
         self.stopLoading = YES;
         
@@ -422,15 +422,12 @@
     self.myPageControl.currentPage = page;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)QSCpageDidSave:(QSCpage *)controller
-{
+- (void)QSCpageDidSave:(QSCpage *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
