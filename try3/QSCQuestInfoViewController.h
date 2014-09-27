@@ -15,7 +15,8 @@
 
 #define PAGES_TO_PRELOAD 3
 #define IMAGE_Y_START 60
-#define IMAGE_H (320/1.62)
+
+//#define IMAGE_H (320/1.62)
 #define TIME_TO_SWITCH_IMAGE 5
 
 @interface QSCQuestInfoViewController : UIViewController <UIScrollViewDelegate, QSCpageDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate> {

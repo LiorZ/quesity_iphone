@@ -95,9 +95,12 @@
 
 - (void) slideWebView: (UIWebView *)theWebView withSlideIN:(BOOL)isSlideIn
 {
-    CGRect frameInside = CGRectMake(0, 20, 320, theWebView.frame.size.height);
-    CGRect frameOutsideLeft = CGRectMake(-320, 20, 320, theWebView.frame.size.height);
-    CGRect frameOutsideRight = CGRectMake(320, 20, 320, theWebView.frame.size.height);
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    int w = screenBounds.size.width;
+    
+    CGRect frameInside = CGRectMake(0, 20, w, theWebView.frame.size.height);
+    CGRect frameOutsideLeft = CGRectMake(-w, 20, w, theWebView.frame.size.height);
+    CGRect frameOutsideRight = CGRectMake(w, 20, w, theWebView.frame.size.height);
     
     if (isSlideIn) {
         theWebView.frame = frameOutsideLeft;
@@ -137,7 +140,8 @@
 
 - (void) updateHintButtonStatus {
 //    NSLog(@"hints num on page: %d (hints left: %d)",[self.pagesHints[self.currPage] count],self.currHintsAvailable);
-    if ([self.pagesHints[self.currPage] count]==0 || self.currHintsAvailable<1) {
+    NSArray *ph = self.pagesHints[self.currPage];
+    if ([ph count]==0 || self.currHintsAvailable<1) {
         [self.buttonRight.buttonText setEnabled:FALSE];
         [self.buttonRight setUserInteractionEnabled:NO];
     } else {
@@ -186,8 +190,11 @@
     [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
     
     UITapGestureRecognizer *singleFingerTapLeft =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                            action:@selector(didPressButtonMore:)];
     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(didPressButtonMore:)];
+                                            action:@selector(didPressButtonMore2:)];
+    
     [self.buttonLeft addGestureRecognizer:singleFingerTapLeft];
     
     [self.view addSubview:self.buttonLeft];
@@ -495,7 +502,8 @@
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (popup.tag==1) {
-        if (buttonIndex!=[self.linksToOthers[self.currPage] count]) {
+        NSArray *lto = self.linksToOthers[self.currPage];
+        if (buttonIndex!=[lto count]) {
 //            NSLog(@"Chose: %@",self.currCorrectAnswers[buttonIndex]);
             NSArray *links = self.linksToOthers[self.currPage];
             self.linkBeingProcessed = links[buttonIndex];
@@ -528,15 +536,15 @@
                 }
             } else {
                 //opt3, opt4, opt5, nil
-                if (buttonIndex==0) {
+                if (buttonIndex==1) {
                     //NSLog(@"Exit quest!");
                     [self back:nil];
                 
-                } else if (buttonIndex==1) {
+                } else if (buttonIndex==2) {
                     //NSLog(@"go to next page!");
                     [self skipAPage];
                     
-                } else if (buttonIndex==2) {
+                } else if (buttonIndex==3) {
                     //NSLog(@"Finish quest!");
                     [self segueToFinish];
                 }
@@ -554,7 +562,7 @@
                 }
             } else {
                 //opt3, nil
-                if (buttonIndex==0) {
+                if (buttonIndex==1) {
                     //NSLog(@"Exit quest!");
                     [self back:nil];
                 }
@@ -734,45 +742,39 @@
     [self.delegate QSCpageDidSave:self];
 }
 
-- (IBAction)didPressButtonMore:(id)sender {
-    
+- (IBAction)didPressButtonMore2:(id)sender {
     NSString *opt2 = NSLocalizedString(@"Back to previous page",nil);
     NSString *opt3 = NSLocalizedString(@"Leave Quest",nil);
     NSString *opt4 = NSLocalizedString(@"Skip to the next page. Ha!",nil);
     NSString *opt5 = NSLocalizedString(@"Skip to the the end. Ha Ha!",nil);
-    
-    UIActionSheet *popup;
+
+    IBActionSheet *popup;
     if (isDbgMode) {
-        if (_pagesStack.count>0) {
-            popup = [[UIActionSheet alloc] initWithTitle: nil
-                                                delegate: self
-                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                                  destructiveButtonTitle: nil
-                                       otherButtonTitles: opt2, opt3, opt4, opt5, nil];
-        } else {
-            popup = [[UIActionSheet alloc] initWithTitle: nil
-                                                delegate: self
-                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                                  destructiveButtonTitle: nil
-                                       otherButtonTitles: opt3, opt4, opt5, nil];
+        popup = [[IBActionSheet alloc] initWithTitle: nil
+                                            delegate: self
+                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                              destructiveButtonTitle: nil
+                                   otherButtonTitles: opt2, opt3, opt4, opt5, nil];
+
+        if (_pagesStack.count==0) {
+            [popup setButtonTextColor:[UIColor grayColor] forButtonAtIndex:0];
         }
     } else {
-        if (_pagesStack.count>0) {
-            popup = [[UIActionSheet alloc] initWithTitle: nil
-                                                delegate: self
-                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                                  destructiveButtonTitle: nil
-                                       otherButtonTitles: opt2, opt3, nil];
-        } else {
-            popup = [[UIActionSheet alloc] initWithTitle: nil
-                                                delegate: self
-                                       cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
-                                  destructiveButtonTitle: nil
-                                       otherButtonTitles: opt3, nil];
+
+        popup = [[IBActionSheet alloc] initWithTitle: nil
+                                            delegate: self
+                                   cancelButtonTitle: NSLocalizedString(@"Cancel", nil)
+                              destructiveButtonTitle: nil
+                                   otherButtonTitles: opt2, opt3, nil];
+
+        if (_pagesStack.count==0) {
+            [popup setButtonTextColor:[UIColor grayColor] forButtonAtIndex:0];
         }
     }
     
+    //[popup showInView:self.view];
     popup.tag = 2;
+    
     [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 

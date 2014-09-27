@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property BOOL isOnFirstPage;
 @property MBProgressHUD *hud;
 
-
+@property IBActionSheet *specialMoreMenu;
 
 //@property NSTimer *timer;
 

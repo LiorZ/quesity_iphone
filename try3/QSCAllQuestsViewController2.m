@@ -262,6 +262,22 @@
 //    _searchBar.frame = rect;
 //}
 
+-(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self.mySearchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.mySearchBar.text = nil;
+    
+    _isFiltered = NO;
+    [self updateTable];
+    
+    //hide cancel button
+    [self.mySearchBar setShowsCancelButton:NO animated:YES];
+    
+    [self.mySearchBar resignFirstResponder];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -271,17 +287,10 @@
 	self.mySearchBar.delegate = self;
 	self.mySearchBar.barTintColor = QUESITY_COLOR_BG;
     self.mySearchBar.placeholder = NSLocalizedString(@"Select Quest", nil);
+
 	[self.navigationController.view addSubview: self.mySearchBar];
     
     self.mySearchBar.hidden = NO;
-    
-//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, 320.0, 44.0)];
-//    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
-//    searchBarView.autoresizingMask = 0;
-//    searchBar.delegate = self;
-//    [searchBarView addSubview:searchBar];
-//    self.navigationItem.titleView = searchBarView;
     
     //    self.tableView.frame = CGRectMake(0.0, 64.0, 320, 120);
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -352,9 +361,9 @@
     
     int rowCount;
     if(self.isFiltered) {
-        rowCount = _filteredTableData.count;
+        rowCount = (int)_filteredTableData.count;
     } else {
-        rowCount = ([self.quests count])*jDbg;
+        rowCount = (int)([self.quests count])*jDbg;
     }
     
     return rowCount;
@@ -383,9 +392,9 @@
     durLabel.text = [NSString stringWithFormat:@"%@",quest.durationT];
     
     if (indexPath.row % 2 ==0) {
-        cell.backgroundColor = QUESITY_COLOR_TABLE_EVEN;
+        cell.backgroundColor = QUESITY_COLOR_TABLE_EVEN_NOALPHA;
     } else {
-        cell.backgroundColor = QUESITY_COLOR_TABLE_ODD;
+        cell.backgroundColor = QUESITY_COLOR_TABLE_ODD_NOALPHA;
     }
     
     
@@ -408,10 +417,12 @@
 {
     if(text.length == 0)
     {
+//        [self.mySearchBar setShowsCancelButton:NO animated:YES];
+
         _isFiltered = FALSE;
-        [self.mySearchBar performSelector:@selector(resignFirstResponder)
-                               withObject:nil
-                               afterDelay:0];
+//        [self.mySearchBar performSelector:@selector(resignFirstResponder)
+//                               withObject:nil
+//                               afterDelay:0];
     }
     else
     {

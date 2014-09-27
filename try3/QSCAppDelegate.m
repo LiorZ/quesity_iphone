@@ -50,6 +50,9 @@
     
     [[UINavigationBar appearance] setTintColor:QUESITY_COLOR_FONT];
     [[UINavigationBar appearance] setBarTintColor:QUESITY_COLOR_BG];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

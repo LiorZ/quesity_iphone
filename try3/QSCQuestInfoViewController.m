@@ -30,6 +30,8 @@
 @property NSInteger pagesLoaded;
 @property UIWebView *wv;
 @property NSInteger picsAdded;
+
+@property float imageH;
 //@property float imagesH;
 @end
 
@@ -144,13 +146,16 @@
 
 - (void)addImgToSubview: (NSArray *)inputArray {
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    int w = screenBounds.size.width;
+    
     UIImage *img = [inputArray objectAtIndex:0];
     int idx = [[inputArray objectAtIndex:1] intValue]-1;
 
     //CGFloat xOrigin = idx * self.view.frame.size.width;
-    CGFloat xOrigin = idx * 320;
+    CGFloat xOrigin = idx * w;
     UIImageView *image = [[UIImageView alloc] initWithFrame:
-                          CGRectMake(xOrigin, 0, 320, IMAGE_H)];
+                          CGRectMake(xOrigin, 0, w, _imageH)];
     image.image = img;
     image.contentMode = UIViewContentModeScaleAspectFill;
     image.clipsToBounds = YES;
@@ -163,7 +168,7 @@
         self.loadedAllImages = YES;
         
         //set the scroll view content size
-        self.scrollView1.contentSize = CGSizeMake(320 * (_quest.imagesLinks.count-1), IMAGE_H);
+        self.scrollView1.contentSize = CGSizeMake(w * (_quest.imagesLinks.count-1), _imageH);
 
         //add the scrollview to this view
         [self.view addSubview:self.scrollView1];
@@ -171,6 +176,9 @@
         [self.view bringSubviewToFront:self.myPageControl];
         self.myPageControl.currentPage = 0;
         self.myPageControl.numberOfPages = _picsAdded;
+        if (_quest.imagesLinks.count<=2) {
+            self.myPageControl.hidden = YES;
+        }
 
         self.imgsTimer = [NSTimer scheduledTimerWithTimeInterval:TIME_TO_SWITCH_IMAGE
                                                           target:self
@@ -189,10 +197,13 @@
 
 - (void) setImagesScrollView
 {
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    int w = screenBounds.size.width;
+    
     //add the scrollview to the view
-    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IMAGE_Y_START, 320, IMAGE_H)];
+    self.scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IMAGE_Y_START, w, _imageH)];
     self.scrollView1.pagingEnabled = YES;
-    self.scrollView1.contentSize = CGSizeMake(([_quest.imagesLinks count]-1)*320, IMAGE_H);
+    self.scrollView1.contentSize = CGSizeMake(([_quest.imagesLinks count]-1)*w, _imageH);
     
     self.scrollView1.delegate = self;
     self.scrollView1.showsHorizontalScrollIndicator = NO;
@@ -253,6 +264,9 @@
 - (void)viewDidLoad
 {
    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    _imageH = screenBounds.size.width/1.62;
+
     [super viewDidLoad];
 
     self.isStartOver = YES;
@@ -285,7 +299,7 @@
     museumLabel.text = _quest.startLoc.street;
     
     //SEGMENTED CONTROL
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    //CGRect screenBounds = [[UIScreen mainScreen] bounds];
     float lowerPartHeight = screenBounds.size.height-(290+yDelta);
     
     //_imagesH = 0.4*screenBounds.size.height;
@@ -294,7 +308,7 @@
     
     //DESCRIPTION VIEW:
     
-    UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, 318, 320, lowerPartHeight+40)];
+    UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, screenBounds.size.width - 2, screenBounds.size.width, lowerPartHeight+40)];
     
     NSMutableString *html;
     if ([myUtils isRTL:_quest.description])
@@ -384,12 +398,17 @@
 }
 
 -(void) scrollToNextImg {
+    
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.scrollView1.frame.size.width;
     int page = floor((self.scrollView1.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     int totPages = (int)_quest.imagesLinks.count-1;
     int nextPage = (page+1)%totPages;
-    [self.scrollView1 setContentOffset:CGPointMake(nextPage*320, self.scrollView1.contentOffset.y) animated:YES];
+
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    int w = screenBounds.size.width;
+    
+    [self.scrollView1 setContentOffset:CGPointMake(nextPage*w, self.scrollView1.contentOffset.y) animated:YES];
 
     self.myPageControl.currentPage = nextPage;
 }

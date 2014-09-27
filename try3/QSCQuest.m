@@ -9,5 +9,5 @@
 #import "QSCQuest.h"
 
 @implementation QSCQuest
-
+    @synthesize description;
 @end
