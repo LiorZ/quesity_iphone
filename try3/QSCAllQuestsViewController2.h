@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
 
 
 #define CELLS_2_DUPLICATE_4_DEBUG 5
 
-@interface QSCAllQuestsViewController2 : UITableViewController <UISearchBarDelegate>
+@interface QSCAllQuestsViewController2 : UITableViewController <UISearchBarDelegate, CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+    CLLocation *userPosition;
+}
 
 //@property (weak, nonatomic) IBOutlet UIImageView *imgOfCell;
 

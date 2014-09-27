@@ -41,7 +41,17 @@
    
     [super viewDidLoad];
 
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
     // Do any additional setup after loading the view.
+}
+
+-(void)dismissKeyboard {
+    [self.opinion resignFirstResponder];
 }
 
 - (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
@@ -62,12 +72,6 @@
 }
 
 #pragma mark - textViewDelegate
-
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    //hides keyboard when another part of layout was touched
-//    [self.view endEditing:YES];
-//    [super touchesBegan:touches withEvent:event];
-//}
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {

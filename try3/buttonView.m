@@ -21,6 +21,26 @@
 }
 
 
+-(void) setHighlighted:(BOOL)highlighted {
+    if(highlighted) {
+        self.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundColor = QUESITY_COLOR_BG;
+    }
+    [super setHighlighted:highlighted];
+}
+
+
+-(void) setSelected:(BOOL)selected {
+    if(selected) {
+        self.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundColor = QUESITY_COLOR_BG;
+    }
+    [super setSelected:selected];
+}
+
+
 - (id) initWithBorders: (BOOL)borders {
 
     self = [super init];
@@ -54,7 +74,9 @@
     [self addSubview:topView];
     
     return self;
+
 }
+
 
 + (id)buttonView
 {

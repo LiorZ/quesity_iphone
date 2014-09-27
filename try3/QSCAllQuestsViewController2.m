@@ -136,7 +136,9 @@
                             app.networkActivityIndicatorVisible = NO;
                             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
 
-                            //[self sortByDistance];
+                            if (userPosition!=nil) {
+                                [self sortByDistance];
+                            }
                             [self updateTable];
                         }
                     });
@@ -158,24 +160,31 @@
 }
 
 
-//- (void) sortByDistance {
-//    
-//    NSArray *rawData = [NSArray arrayWithContentsOfFile:pathDoc];
-//    
-//    rawData = [rawData sortedArrayUsingComparator: ^(id a, id b) {
-//        
-//        CLLocationDistance dist_a= [[a objectsForKey:@"coordinate"] distanceFromLocation: userPosition];
-//        CLLocationDistance dist_b= [[b objectsForKey:@"coordinate"] distanceFromLocation: userPosition];
-//        if ( dist_a < dist_b ) {
-//            return (NSComparisonResult)NSOrderedAscending;
-//        } else if ( dist_a > dist_b) {
-//            return (NSComparisonResult)NSOrderedDescending;
-//        } else {
-//            return (NSComparisonResult)NSOrderedSame;
-//        }
-//    }
-//    
-//}
+- (void) sortByDistance {
+    
+    NSArray *rawData = self.quests;
+    
+    NSArray *sortedData = [rawData sortedArrayUsingComparator: ^(id a, id b) {
+        QSCQuest *qa = a;
+        CLLocation *la = [[CLLocation alloc] initWithLatitude:[qa.startLoc.lat doubleValue] longitude:[qa.startLoc.lng doubleValue]];
+        
+        QSCQuest *qb = b;
+        CLLocation *lb = [[CLLocation alloc] initWithLatitude:[qb.startLoc.lat doubleValue] longitude:[qb.startLoc.lng doubleValue]];
+
+        CLLocationDistance dist_a= [la distanceFromLocation: userPosition];
+        CLLocationDistance dist_b= [lb distanceFromLocation: userPosition];
+        if ( dist_a < dist_b ) {
+            return (NSComparisonResult)NSOrderedAscending;
+        } else if ( dist_a > dist_b) {
+            return (NSComparisonResult)NSOrderedDescending;
+        } else {
+            return (NSComparisonResult)NSOrderedSame;
+        }
+    }  ];
+    self.quests = [NSMutableArray arrayWithArray:sortedData];
+    
+}
+               
 
 
 - (void)fetchedData:(NSData *)responseData {
@@ -268,9 +277,20 @@
     [self.mySearchBar resignFirstResponder];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    userPosition = [locations lastObject];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    [locationManager startUpdatingLocation];
     
     self.mySearchBar = [[UISearchBar alloc]
                         initWithFrame:CGRectMake(0.0, 20.0, self.view.bounds.size.width,44.0)];
@@ -416,9 +436,9 @@
         } else {
             destViewController.quest = [self.quests objectAtIndex:indexPath.row];
         }
-        destViewController.quest = [self.quests objectAtIndex:indexPath.row];
 
         self.mySearchBar.hidden = YES;
+        self.mySearchBar.showsCancelButton = NO;
         [self.mySearchBar performSelector:@selector(resignFirstResponder)
                                withObject:nil
                                afterDelay:0];

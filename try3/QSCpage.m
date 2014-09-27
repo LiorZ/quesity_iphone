@@ -171,6 +171,32 @@
 }
 
 
+//-(void)buttonNormal:(id)sender {
+//    switch([sender tag]) {
+//        case 1000:
+//            self.buttonLeft.backgroundColor = QUESITY_COLOR_BG;
+//            break;
+//        case 1001:
+//            self.buttonMiddle.backgroundColor = QUESITY_COLOR_BG;
+//            break;
+//        default:
+//            break;
+//    }
+//}
+//
+//-(void)buttonHighlight:(id)sender {
+//    switch([sender tag]) {
+//        case 1000:
+//            self.buttonLeft.backgroundColor = [UIColor whiteColor];
+//            break;
+//        case 1001:
+//            self.buttonMiddle.backgroundColor = [UIColor whiteColor];
+//            break;
+//        default:
+//            break;
+//    }
+//}
+
 - (void) createButtons {
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -189,9 +215,11 @@
 
     [self.buttonLeft.img setImage:[UIImage imageNamed:@"menu.png"]];
     
+//    [self.buttonLeft addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+//    [self.buttonLeft addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+    self.buttonLeft.tag = 1000;
+
     UITapGestureRecognizer *singleFingerTapLeft =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                            action:@selector(didPressButtonMore:)];
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(didPressButtonMore2:)];
     
@@ -206,6 +234,13 @@
     self.buttonMiddle.buttonText.font = [UIFont fontWithName:NSLocalizedString(@"Andada-Regular",nil) size:18];
          
     [self.buttonMiddle.img setImage:[UIImage imageNamed:@"continue.png"]];
+    self.buttonMiddle.tag = 1001;
+//    [self.buttonMiddle addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+//    [self.buttonMiddle addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+
+//    [self.buttonMiddle addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+//    [self.buttonMiddle addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UITapGestureRecognizer *singleFingerTapMiddle =
     [[UITapGestureRecognizer alloc] initWithTarget:self
