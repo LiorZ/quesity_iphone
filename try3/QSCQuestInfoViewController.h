@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import "HMSegmentedControl.h"
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
+#import "QSCPlayer.h"
 
 #define PAGES_TO_PRELOAD 3
 #define IMAGE_Y_START 60
@@ -38,6 +39,9 @@
 @property BOOL loadedAllImages;
 @property NSTimer *timer;
 @property NSTimer *imgsTimer;
+
+@property QSCPlayer *player;
+@property NSString *codeBought;
 
 @property (nonatomic,retain) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIPageControl *myPageControl;

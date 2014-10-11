@@ -15,6 +15,7 @@
 {    
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"myData"];
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedImagesDict"];
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playerData"];
 
     self.window.backgroundColor = QUESITY_COLOR_BG_IMG;
     

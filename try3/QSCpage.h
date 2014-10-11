@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 
 @property IBActionSheet *specialMoreMenu;
 
-//@property NSTimer *timer;
+@property NSTimer *timer;
 
 @property NSUInteger currPage;
 @property pageType currQType; //location, open_question, question (multiple choice), static

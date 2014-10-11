@@ -51,7 +51,11 @@
     NSArray* locationsFromJson = [json valueForKey:@"starting_location"];
     NSArray* imagesLinksFromJson = [json valueForKey:@"images"];
     NSArray* allowedHintsFromJson = [json valueForKey:@"allowed_hints"];
+    NSArray* codeReqFromJson = [json valueForKey:@"access_restriction"];
     
+    //save quests Ids (NO NEED)
+    //[[NSUserDefaults standardUserDefaults] setObject:idFromJson forKey:@"questsIds"];
+
     //update quests:
     self.quests = [[NSMutableArray alloc] init];
     
@@ -107,9 +111,23 @@
                     
                     quest.allowedHints = allowedHintsFromJson[i];
                     
+                    //quest.codeReq = CODE_REQ_code;
+
+                    NSString *codeReqStr = codeReqFromJson[i];
+                    if ([quest.questId isEqualToString:@"53faf4d0e84372020025549c"])
+                        quest.codeReq = CODE_REQ_code;
+                    else {
+                        if ([codeReqStr isEqualToString:@"free"])
+                            quest.codeReq = CODE_REQ_free;
+                        else if ([codeReqStr isEqualToString:@"code"])
+                            quest.codeReq = CODE_REQ_code;
+                        else
+                            quest.codeReq = CODE_REQ_inApp;
+                    }
+                    
                     //LOADING IMAGE:
                     UIImage *img;
-                    if (quest.imagesLinks.count>0) {
+                    if (quest.imagesLinks && quest.imagesLinks.count>0) {
                         NSString *imgName = [myUtils getFileFromPath:quest.imagesLinks[0]];
                         NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:quest.questId];
                         
@@ -125,7 +143,7 @@
                             [myUtils addPathForSavedImage:imgName withQuestId:quest.questId];
                         }
                     } else {
-                        img = [UIImage imageNamed:@"logo_temp.png"];
+                        img = [UIImage imageNamed:@"no_image_found.jpg"];
                     }
                 
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -188,11 +206,12 @@
 
 
 - (void)fetchedData:(NSData *)responseData {
+
+    [self.timer invalidate];
+    
     //parse out the json data
     NSError* error;
     if (responseData!=nil) {
-        
-        [self.timer invalidate];
         
         NSArray* json = [NSJSONSerialization
                          JSONObjectWithData:responseData
@@ -220,6 +239,8 @@
 
 - (void)getJson
 {
+    [locationManager startUpdatingLocation];
+
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CONNECTION target:self selector:@selector(stopSpinning) userInfo:nil repeats:NO];
@@ -377,11 +398,15 @@
         cell.backgroundColor = QUESITY_COLOR_TABLE_ODD_NOALPHA;
     }
     
-    
     UIImageView *questImg = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 15.0, 60.0, 60.0)];
-    [questImg sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
-                placeholderImage:[UIImage imageNamed:@"logo_temp.png"]];
-    
+
+    //check there are images:
+    if (quest.imagesLinks && [quest.imagesLinks count] >0) {
+        [questImg sd_setImageWithURL:[NSURL URLWithString:quest.imagesLinks[0]]
+                    placeholderImage:[UIImage imageNamed:@"no_image_found.jpg"]];
+    } else {
+        quest.img = [UIImage imageNamed:@"no_image_found.jpg"];
+    }
     questImg.image = quest.img;
     questImg.layer.cornerRadius = 30.0f;
     questImg.clipsToBounds = YES;

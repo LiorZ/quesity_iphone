@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Resources/QSCLocation.h"
+#import "myGlobalData.h"
 
 @interface QSCQuest : NSObject
 
@@ -18,6 +19,7 @@
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *questId;
 @property (nonatomic, copy) NSNumber *allowedHints;
+@property CODE_REQ codeReq;
 //@property (nonatomic, copy) NSArray *tags;
 //typedef struct {
 //    int *lng;

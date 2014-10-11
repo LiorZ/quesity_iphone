@@ -16,6 +16,7 @@
 #import "myGlobalData.h"
 #import "myUtilities.h"
 #import "TPFloatRatingView.h"
+#import "QSCPlayer.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl1;
@@ -164,7 +165,7 @@
 
     self.picsAdded++;
     
-    if (self.picsAdded==_quest.imagesLinks.count-1) {
+    if ((self.picsAdded==_quest.imagesLinks.count-1) || (!_quest.imagesLinks || _quest.imagesLinks.count==0)){
         self.loadedAllImages = YES;
         
         //set the scroll view content size
@@ -221,43 +222,50 @@
     
     myUtilities *myUtils = [[myUtilities alloc] init];
     
-    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
-    //we start from 1 instead of 0 because the first image is for the "quest icon"
-    for (NSInteger i = 1; i < [_quest.imagesLinks count]; i++) {
-        NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
-        //NSLog(@"fileName: %@",imgName);
-        
-        NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
-        //NSLog(@"path: %@",pathForImg);
-        
-        dispatch_async(imageLoadingQueue, ^{
-            UIImage *img;
-            if (pathForImg!=nil) {
-                img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
-            } else {
-                img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
-                
-                [myUtils saveImage:img
-                      withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
-                       inDirectory:documentsDirectoryPath];
-                
-                [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
-            }
-            if (img!=nil) {
-                [self performSelectorOnMainThread:@selector(addImgToSubview:)
-                                       withObject:@[img,[NSNumber numberWithInt:(int)i]]
-                                    waitUntilDone:YES];
-            }
-//            } else {
-//                [self.timer invalidate];
-//                [self showMsgAndGoBack];
-//                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
-//                                                              target:self
-//                                                            selector:@selector(showMsgAndGoBack)
-//                                                            userInfo:nil
-//                                                             repeats:NO];
-//            }
-        });
+    if (_quest.imagesLinks && [_quest.imagesLinks count]>0) {
+        dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
+        //we start from 1 instead of 0 because the first image is for the "quest icon"
+        for (NSInteger i = 1; i < [_quest.imagesLinks count]; i++) {
+            NSString *imgName = [myUtils getFileFromPath:_quest.imagesLinks[i]];
+            //NSLog(@"fileName: %@",imgName);
+            
+            NSString *pathForImg = [myUtils getPathForSavedImage:imgName withQuestId:_quest.questId];
+            //NSLog(@"path: %@",pathForImg);
+            
+            dispatch_async(imageLoadingQueue, ^{
+                UIImage *img;
+                if (pathForImg!=nil) {
+                    img = [myUtils loadImage:pathForImg inDirectory:documentsDirectoryPath];
+                } else {
+                    img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_quest.imagesLinks[i]]]];
+                    
+                    [myUtils saveImage:img
+                          withFileName:[NSString stringWithFormat:@"%@_%@", _quest.questId, imgName]
+                           inDirectory:documentsDirectoryPath];
+                    
+                    [myUtils addPathForSavedImage:imgName withQuestId:_quest.questId];
+                }
+                if (img!=nil) {
+                    [self performSelectorOnMainThread:@selector(addImgToSubview:)
+                                           withObject:@[img,[NSNumber numberWithInt:(int)i]]
+                                        waitUntilDone:YES];
+                }
+                //            } else {
+                //                [self.timer invalidate];
+                //                [self showMsgAndGoBack];
+                //                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                //                                                              target:self
+                //                                                            selector:@selector(showMsgAndGoBack)
+                //                                                            userInfo:nil
+                //                                                             repeats:NO];
+                //            }
+            });
+        }
+    } else {
+        UIImage *img = [UIImage imageNamed:@"no_image_found.jpg"];
+        [self performSelectorOnMainThread:@selector(addImgToSubview:)
+                               withObject:@[img,[NSNumber numberWithInt:(int)1]]
+                            waitUntilDone:YES];
     }
 }
 
@@ -278,6 +286,11 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
+    
+    //buying quest stuff:
+    _player = [[QSCPlayer alloc] initWithLoad];
+    if (![_player isBoughtQuests:_quest.questId] && (_quest.codeReq!=CODE_REQ_free))
+        self.goOnQuestButton.title = NSLocalizedString(@"Enter Code", nil);
     
     //self.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
@@ -454,10 +467,10 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
+    [self.timer invalidate];
+
     //for the case the user presses back in the middle of the loading
     if (!self.stopLoading) {
-        
-        [self.timer invalidate];
         
         self.hud.progress = self.pageNum*1.0/PAGES_TO_PRELOAD;
         [self.view bringSubviewToFront:self.hud];
@@ -482,6 +495,7 @@
             [self loadPage:self.pageNum];
         } else {
             if (self.pagesLoaded==PAGES_TO_PRELOAD) {
+                [self.imgsTimer invalidate];
                 [self.view bringSubviewToFront:self.hud];
                 [self performSegueWithIdentifier:@"goOnQuest" sender:self];
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -505,9 +519,11 @@
     self.goOnQuestButton.enabled = NO;
     self.pagesLoaded = 0;
     
-    if (!isPreCacheQuest)
+    if (!isPreCacheQuest) {
+        [self.imgsTimer invalidate];
+        [self.timer invalidate];
         [self performSegueWithIdentifier:@"goOnQuest" sender:self];
-    else {
+    } else {
         self.pageNums = [self.content count];
         self.wv = [[UIWebView alloc] init];
         self.wv.delegate = self;
@@ -526,6 +542,56 @@
 }
 
 
+- (void) checkCode:(NSString *)code2check {
+        NSDictionary *dict2check = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             code2check, @"code",
+                             nil];
+        
+        NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+        
+        NSError *error1;
+        NSData *postdata = [NSJSONSerialization dataWithJSONObject:dict2check options:0 error:&error1];
+        NSString *fullURL = SITEURL_VALIDATE_CODE;
+        
+        NSURL *url = [NSURL URLWithString:fullURL];
+        NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:postdata];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        
+        NSHTTPURLResponse* response;
+        NSError* error = nil;
+        
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        int responseCode = (int)[response statusCode];
+    
+//        NSDictionary *fields = [response allHeaderFields];
+//        NSLog(@"the response code is:%d, with %d headers",responseCode, fields.count);
+    
+        if (responseCode==200) {
+            //it's valid!
+            
+//            NSHTTPCookie *cookie1;
+//            NSHTTPCookieStorage *storage1 = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//            for (cookie1 in [storage1 cookies]) {
+//                [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
+//            }
+            
+            [_player addQuestToBoughtQuests:_quest.questId];
+            self.goOnQuestButton.title = NSLocalizedString(@"Go On Quest!", nil);
+            [self goOnQuestStuff];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
+                                                            message:NSLocalizedString(@"badCode", nil)
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 0) {
         if (buttonIndex ==0) {
@@ -539,6 +605,12 @@
     } else if (alertView.tag == 42) {
         [self dismissViewControllerAnimated:YES completion:nil];
         //[self popViewControllerAnimated:YES];
+    } else if (alertView.tag == 1234) {
+        if (buttonIndex == 1) { //not cancel
+            //let's check the code
+            _codeBought = [[alertView textFieldAtIndex:0] text];
+            [self checkCode: _codeBought];
+        }
     }
 }
 
@@ -547,16 +619,80 @@
 }
 
 
+- (void) registerGame {
+    NSString *siteStr = [NSString stringWithFormat:@"quest/%@/game/new",_quest.questId];
+    NSString *siteUrl = [SITEURL stringByAppendingString:siteStr];
+    NSURL *url = [NSURL URLWithString:siteUrl];
 
-- (IBAction)didGoingOnAQuest:(id)sender {
+    NSDateFormatter *formatter;
+    NSString        *dateString;
     
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+    
+    dateString = [formatter stringFromDate:[NSDate date]];
+    
+    //{date_started: <CURRENT_DATE>, account_id:<ACCOUNT_ID>, code:<IF RELEVANT>}
+    NSDictionary *gameDict;
+    if (_quest.codeReq==CODE_REQ_code) {
+        gameDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                    dateString, @"date_started",
+                    [_player getName], @"account_id",
+                    _codeBought, @"code",
+                    nil];
+    } else {
+        gameDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                    dateString, @"date_started",
+                    [_player getName], @"account_id",
+                    nil];
+    }
+    
+    //NSLog(@"%@",gameDict);
+
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSHTTPCookie *cookie1;
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    NSString *playerCookieValue = _player.getCookieValue;
+    //NSLog(@"playerCookieValue: %@",playerCookieValue);
+    for (cookie1 in [cookieStorage cookies]) {
+        //NSLog(@"value: %@", cookie1.value);
+        NSString *trimmedPlayerValue = [playerCookieValue substringWithRange:NSMakeRange(12, [cookie1.value length])];
+        //NSLog(@"trimmedPlayerValue: %@", trimmedPlayerValue);
+
+        if ([cookie1.value isEqualToString:trimmedPlayerValue])
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
+    }
+    
+    NSError *error1;
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:gameDict options:0 error:&error1];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postdata];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSHTTPURLResponse* response;
+    NSError* error = nil;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    int code = (int)[response statusCode];
+    NSLog(@"the response code for new game is:%d",code);
+    
+//    NSDictionary *fields = [response allHeaderFields];
+//    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+}
+
+- (void) goOnQuestStuff {
+
+    [self registerGame];
     ////// maybe there is a saved state:
     //path of quest state:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
     
     //loading quest state:
     NSDictionary* stateDict = [[NSUserDefaults standardUserDefaults] objectForKey: questStatePath];
-//    NSLog(@"loaded state dict: %@",stateDict);
+    //    NSLog(@"loaded state dict: %@",stateDict);
     
     //check whether exists
     if (stateDict!=nil) {
@@ -567,9 +703,9 @@
         if (continueOnPage!=nil && hintsLeft!=nil) {
             
             NSUInteger currPage = [self findFirst];
-
+            
             if (![self.pagesId[currPage] isEqualToString:continueOnPage]) {
-
+                
                 //ask question (and check):
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
                                                                  message:NSLocalizedString(@"resume or start over?", nil)
@@ -581,7 +717,7 @@
                 alert.tag = 0;
                 [alert show];
                 
-//                NSLog(@"what to do?");
+                //                NSLog(@"what to do?");
             } else {
                 self.isStartOver = YES;
                 [self loadQuestsAndGo];
@@ -594,7 +730,32 @@
         self.isStartOver = YES;
         [self loadQuestsAndGo];
     }
+}
 
+- (IBAction)didGoingOnAQuest:(id)sender {
+    
+    if ([_player isBoughtQuests:_quest.questId])
+        [self goOnQuestStuff];
+
+    else if (_quest.codeReq==CODE_REQ_free) {
+        [_player addQuestToBoughtQuests:_quest.questId];
+        [self goOnQuestStuff];
+    
+    } else {
+        //ask question (and check):
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"This quest requires a code",nil)
+                                                         message:NSLocalizedString(@"accessCodeRequest", nil)
+                                                        delegate:self
+                                               cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                               otherButtonTitles:NSLocalizedString(@"Go On Quest!",nil), nil];
+        
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField * alertTextField = [alert textFieldAtIndex:0];
+        alertTextField.placeholder = NSLocalizedString(@"Access code",nil);
+        alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+        alert.tag = 1234;
+        [alert show];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -32,6 +32,10 @@
 "Start Over" = "התחל מחדש";
 "Resume" = "המשך בקווסט";
 
+"This quest requires a code" = "לקווסט זה דרוש קוד כניסה";
+"accessCodeRequest" = "באפשרותך לקנות קוד בקופה.";
+"Access code" = "קוד כניסה";
+
 //menu:
 "Show Map" = "הצג מפה";
 "Start Over" = "התחל מחדש";
@@ -68,11 +72,14 @@
 "A user with this email already exists."= "אימייל זה קיים כבר במערכת";
 "Please try again with an active internet connection." = "לאפליקציה דרוש חיבור אינטרנט פעיל";
 "Error connecting to network" = "שגיאה בעת החיבור לרשת";
+"badCode" = "קוד הכניסה אינו נכון.";
 
 "No reviews yet ..." = "אין ביקורות עדיין ...";
 
 //titles:
 "Select Quest" = "בחר קווסט";
+"Go On Quest!" = "צא לקווסט!";
+"Enter Code" = "הכנסת קוד";
 
 //other:
 "Checking Answer..." = "בודק את התשובה";

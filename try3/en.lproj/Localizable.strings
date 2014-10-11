@@ -31,7 +31,9 @@
 "resume or start over?" = "You have started playing this quest before. Would you like to resume or start over?";
 "Start Over" = "Start Over";
 "Resume" = "Resume";
-
+"This quest requires a code" = "This quest requires a code";
+"accessCodeRequest" = "You can purchase an access code from the cashier.";
+"Access code" = "Access code";
 
 //menu:
 "Show Map" = "Show Map";
@@ -69,11 +71,14 @@
 "A user with this email already exists."= "A user with this email already exists.";
 "Please try again with an active internet connection." = "Please try again with an active internet connection.";
 "Error connecting to network" = "Error connecting to network";
+"badCode" = "The code you entered is either invalid or has already been used.";
 
 "No reviews yet ..." = "No reviews yet ...";
 
 //titles:
 "Select Quest" = "Select Quest";
+"Go On Quest!" = "Go On Quest!";
+"Enter Code" = "Enter Code";
 
 //other:
 "Checking Answer..." = "Checking Answer...";

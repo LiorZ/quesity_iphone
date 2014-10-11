@@ -81,6 +81,10 @@
 		78D4AE2A1921895800821E9A /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4AE291921895800821E9A /* about.png */; };
 		78D4AE2D19218A4900821E9A /* QSCopeningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */; };
 		78D4AE301923F98A00821E9A /* QSCFinishPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */; };
+		78D7E13C19E6C0040013DA53 /* QSCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D7E13B19E6C0040013DA53 /* QSCPlayer.m */; };
+		78D7E13E19E96A700013DA53 /* no_image_found.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78D7E13D19E96A700013DA53 /* no_image_found.jpg */; };
+		78D7E14119E972E40013DA53 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D7E14019E972E40013DA53 /* CustomIOS7AlertView.m */; };
+		78D7E14319E973DD0013DA53 /* security_guards.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D7E14219E973DD0013DA53 /* security_guards.png */; };
 		78DD31E0197C26ED0044959A /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD31C0197C26ED0044959A /* MKAnnotationView+WebCache.m */; };
 		78DD31E1197C26ED0044959A /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD31C2197C26ED0044959A /* NSData+ImageContentType.m */; };
 		78DD31E2197C26ED0044959A /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD31C4197C26ED0044959A /* SDImageCache.m */; };
@@ -227,6 +231,12 @@
 		78D4AE2C19218A4900821E9A /* QSCopeningScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCopeningScreen.m; sourceTree = "<group>"; };
 		78D4AE2E1923F98900821E9A /* QSCFinishPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCFinishPageVC.h; sourceTree = "<group>"; };
 		78D4AE2F1923F98A00821E9A /* QSCFinishPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCFinishPageVC.m; sourceTree = "<group>"; };
+		78D7E13A19E6C0040013DA53 /* QSCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCPlayer.h; sourceTree = "<group>"; };
+		78D7E13B19E6C0040013DA53 /* QSCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCPlayer.m; sourceTree = "<group>"; };
+		78D7E13D19E96A700013DA53 /* no_image_found.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_image_found.jpg; sourceTree = "<group>"; };
+		78D7E13F19E972E40013DA53 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
+		78D7E14019E972E40013DA53 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
+		78D7E14219E973DD0013DA53 /* security_guards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security_guards.png; sourceTree = "<group>"; };
 		78DD31BF197C26ED0044959A /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		78DD31C0197C26ED0044959A /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		78DD31C1197C26ED0044959A /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -327,6 +337,8 @@
 				783759C4193F5DD5007C0BB9 /* fonts */,
 				78BB4EBF1927DD6100713EBB /* AMTagListView */,
 				7835423118E887E500EF6659 /* MBProgressHUD */,
+				78D7E13F19E972E40013DA53 /* CustomIOS7AlertView.h */,
+				78D7E14019E972E40013DA53 /* CustomIOS7AlertView.m */,
 				78A7626118E6EAC20098DDD8 /* QSCLocation.h */,
 				78A7626218E6EAC20098DDD8 /* QSCLocation.m */,
 				78A10C9519C62F5E0095AB63 /* QSCStack.h */,
@@ -450,6 +462,8 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78D7E13D19E96A700013DA53 /* no_image_found.jpg */,
+				78D7E14219E973DD0013DA53 /* security_guards.png */,
 				78DD31FD19A679FC0044959A /* main_screen_iphone5_withMuseum.png */,
 				78DD31FF19A68C4D0044959A /* clock.png */,
 				78DD320019A68C4D0044959A /* marker.png */,
@@ -574,6 +588,8 @@
 				7835423818EDF47A00EF6659 /* KeychainItemWrapper.m */,
 				786B35B018C11F29002DA234 /* QSCQuest.h */,
 				786B35B118C11F29002DA234 /* QSCQuest.m */,
+				78D7E13A19E6C0040013DA53 /* QSCPlayer.h */,
+				78D7E13B19E6C0040013DA53 /* QSCPlayer.m */,
 				78F0E85318AD79290034E3A4 /* QSCAppDelegate.h */,
 				78F0E85418AD79290034E3A4 /* QSCAppDelegate.m */,
 				78F0E85618AD79290034E3A4 /* Main.storyboard */,
@@ -767,8 +783,10 @@
 				783759FA1943216B007C0BB9 /* button_about_pressed.png in Resources */,
 				783759D2193F5DD5007C0BB9 /* Alef-regular.ttf in Resources */,
 				783759D6193F5DD5007C0BB9 /* Old-Rubber-Stamp.ttf in Resources */,
+				78D7E13E19E96A700013DA53 /* no_image_found.jpg in Resources */,
 				783759FE1943216B007C0BB9 /* button_my_quests_pressed.png in Resources */,
 				78C24F73194C84CA00CD3A44 /* about (1).html in Resources */,
+				78D7E14319E973DD0013DA53 /* security_guards.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +817,7 @@
 				78EC8BD018B1540C00901F4D /* QSCQuestInfoViewController.m in Sources */,
 				7835423418E887E500EF6659 /* MBProgressHUD.m in Sources */,
 				78B563FE194B3587007B2A32 /* multiQuestion.m in Sources */,
+				78D7E14119E972E40013DA53 /* CustomIOS7AlertView.m in Sources */,
 				78DD31EB197C26ED0044959A /* UIImage+MultiFormat.m in Sources */,
 				78BB4EC51927DD6100713EBB /* AMTagView.m in Sources */,
 				78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */,
@@ -813,6 +832,7 @@
 				78DD31E2197C26ED0044959A /* SDImageCache.m in Sources */,
 				78DD31E7197C26ED0044959A /* SDWebImageManager.m in Sources */,
 				78DD31EC197C26ED0044959A /* UIImage+WebP.m in Sources */,
+				78D7E13C19E6C0040013DA53 /* QSCPlayer.m in Sources */,
 				78F0E85E18AD79290034E3A4 /* QSCSecondViewController.m in Sources */,
 				7835423D18EFFDAC00EF6659 /* TPFloatRatingView.m in Sources */,
 				78B56402194BB396007B2A32 /* IBActionSheet.m in Sources */,
