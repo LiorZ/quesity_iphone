@@ -190,20 +190,6 @@
                                 <color key="textColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fup-rb-VUo">
-                                <rect key="frame" x="60" y="508" width="200" height="40"/>
-                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="SMx-Xx-Tk3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Finish">
-                                    <color key="titleColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="7c2-dr-GLU" kind="modal" modalTransitionStyle="crossDissolve" id="lgO-RM-cxd"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-1b-sTk">
                                 <rect key="frame" x="0.0" y="74" width="320" height="40"/>
                                 <constraints>
@@ -231,6 +217,20 @@
                                 <color key="textColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fup-rb-VUo">
+                                <rect key="frame" x="60" y="508" width="200" height="40"/>
+                                <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SMx-Xx-Tk3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" red="0.10102818700000001" green="0.27945631380000002" blue="0.15419931310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7c2-dr-GLU" kind="modal" identifier="fromFinishToAllQuests" modalTransitionStyle="crossDissolve" id="lgO-RM-cxd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -423,6 +423,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fVP-Nf-coM"/>
+        <segue reference="lgO-RM-cxd"/>
     </inferredMetricsTieBreakers>
 </document>

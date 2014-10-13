@@ -12,6 +12,7 @@
 #import "TPFloatRatingView.h"
 #import "QSCratingViewController.h"
 #import "QSCPlayer.h"
+#import "QSCAllQuestsViewController2.h"
 
 @interface QSCFinishPageVC ()
 
@@ -149,7 +150,11 @@
         QSCratingViewController *destViewController = [[segue.destinationViewController viewControllers] firstObject];
         destViewController.startWithOpinion = self.opinion;
         destViewController.startWithRating = [NSNumber numberWithFloat:self.rv.rating];
+    
     }
+//    else if ([segue.identifier isEqualToString:@"fromFinishToAllQuests"]) {
+//        QSCAllQuestsViewController2 *destViewController = [segue destinationViewController];
+//    {
 }
 
 

@@ -17,6 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
 #import <CoreLocation/CoreLocation.h>
+#import "QSCFinishPageVC.h"
 
 
 @interface QSCAllQuestsViewController2 ()
@@ -276,12 +277,6 @@
     self.mySearchBar.hidden = NO;
 }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    CGRect rect = _searchBar.frame;
-//    rect.origin.y = MIN(0, scrollView.contentOffset.y);
-//    _searchBar.frame = rect;
-//}
 
 -(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self.mySearchBar setShowsCancelButton:YES animated:YES];
@@ -299,9 +294,34 @@
     [self.mySearchBar resignFirstResponder];
 }
 
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    //hide cancel button
+    [self.mySearchBar setShowsCancelButton:NO animated:YES];
+
+    [self.mySearchBar resignFirstResponder];
+}
+
+- (void) searchBarChangeSearchButtonTitle {
+    // Set the return key and keyboard appearance of the search bar
+    for (UIView *searchBarSubview in [self.navigationController.view subviews]) {
+        
+        if ([searchBarSubview conformsToProtocol:@protocol(UITextInputTraits)]) {
+            
+            @try {
+                [(UITextField *)searchBarSubview setReturnKeyType:UIReturnKeyDone];
+//                [(UITextField *)searchBarSubview setKeyboardAppearance:UIKeyboardAppearanceAlert];
+            }
+            @catch (NSException * e) {
+                // ignore exception
+            }
+        }
+    }
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     userPosition = [locations lastObject];
 }
+
 
 
 - (void)viewDidLoad
@@ -319,10 +339,11 @@
 	self.mySearchBar.delegate = self;
 	self.mySearchBar.barTintColor = QUESITY_COLOR_BG;
     self.mySearchBar.placeholder = NSLocalizedString(@"Select Quest", nil);
-
+    
 	[self.navigationController.view addSubview: self.mySearchBar];
     
     self.mySearchBar.hidden = NO;
+    [self searchBarChangeSearchButtonTitle];
     
     //pull to refresh control:
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -333,15 +354,22 @@
       forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
     
-    //if just got into the app:
-    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    self.hud.labelText = @"Loading Quests...";
-    [self.navigationController.view bringSubviewToFront:self.hud];
-    
     self.view.backgroundColor = QUESITY_COLOR_BG;//[UIColor clearColor];
-    
-    [self getJson];
-    
+
+    //no need to refresh list if came from finish
+    if (![[self presentingViewController] isMemberOfClass:[QSCFinishPageVC class]]) {
+        //if just got into the app:
+        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        self.hud.labelText = @"Loading Quests...";
+        [self.navigationController.view bringSubviewToFront:self.hud];
+        
+        [self getJson];
+    } else { //after finish, turn it off
+        [self loadInitialData];
+        
+        UIApplication* app = [UIApplication sharedApplication];
+        app.networkActivityIndicatorVisible = NO;
+    }
 }
 
 
