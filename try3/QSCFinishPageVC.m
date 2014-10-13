@@ -11,6 +11,7 @@
 #import "myUtilities.h"
 #import "TPFloatRatingView.h"
 #import "QSCratingViewController.h"
+#import "QSCPlayer.h"
 
 @interface QSCFinishPageVC ()
 
@@ -72,13 +73,60 @@
     
 }
 
+- (void) sendReview: (QSCPlayer *)player {
+    NSString *siteStr = [NSString stringWithFormat:@"quest/%@/review",_quest.questId];
+    NSString *siteUrl = [SITEURL stringByAppendingString:siteStr];
+    NSURL *url = [NSURL URLWithString:siteUrl];
+    
+    //account_id: <ACCOUNT_ID>, review_text: <TEXT REVIEW>, rating: <# STARS>, game_id: <ID OF GAME>
+    NSDictionary *reviewDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               self.opinion, @"review_text",
+                               [player getName], @"account_id",
+                               self.rv.rating, @"rating",
+                               _quest.gameStartId, @"game_id",
+                               nil];
+    
+    //NSLog(@"%@",reviewDic);
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSHTTPCookie *cookie1;
+    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    NSString *playerCookieValue = player.getCookieValue;
+    for (cookie1 in [cookieStorage cookies]) {
+        NSString *trimmedPlayerValue = [playerCookieValue substringWithRange:NSMakeRange(12, [cookie1.value length])];
+        
+        if ([cookie1.value isEqualToString:trimmedPlayerValue])
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
+    }
+    
+    NSError *error1;
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:reviewDic options:0 error:&error1];
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postdata];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSHTTPURLResponse* response;
+    NSError* error = nil;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    int code = (int)[response statusCode];
+    NSLog(@"the response code for the sent review is: %d",code);
+}
+
+
 - (IBAction)returnToFinishPage:(UIStoryboardSegue *)segue {
     QSCratingViewController* sourceViewController = segue.sourceViewController;
 
     self.rv.rating = sourceViewController.rv.rating;
     self.opinion = sourceViewController.opinion.text;
     
-//    NSLog(@"And now we are again on finish page.");
+    //buying quest stuff:
+    QSCPlayer *player = [[QSCPlayer alloc] initWithLoad];
+    [self sendReview: player];
+    
+    //    NSLog(@"And now we are again on finish page.");
 }
 
 #pragma mark - TPFloatRatingViewDelegate

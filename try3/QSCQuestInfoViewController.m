@@ -17,6 +17,7 @@
 #import "myUtilities.h"
 #import "TPFloatRatingView.h"
 #import "QSCPlayer.h"
+#import "CustomIOS7AlertView.h"
 
 @interface QSCQuestInfoViewController ()
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl1;
@@ -583,6 +584,15 @@
             [self goOnQuestStuff];
         }
         else {
+//            CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
+//            [alert setButtonTitles:[NSMutableArray arrayWithObjects:NSLocalizedString(@"OK", nil), nil]];
+//
+//            UIImageView *errImgView = [[UIImageView alloc] init];
+//            UIImage *errImg = [UIImage imageNamed:@"security_guards.png"];
+//            [errImgView setImage:errImg];
+//            
+//            [alert setContainerView:errImgView];
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry...", nil)
                                                             message:NSLocalizedString(@"badCode", nil)
                                                            delegate:nil
@@ -628,7 +638,7 @@
     NSString        *dateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
     
     dateString = [formatter stringFromDate:[NSDate date]];
     
@@ -636,13 +646,13 @@
     NSDictionary *gameDict;
     if (_quest.codeReq==CODE_REQ_code) {
         gameDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    dateString, @"date_started",
+//                    dateString, @"date_started",
                     [_player getName], @"account_id",
                     _codeBought, @"code",
                     nil];
     } else {
         gameDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    dateString, @"date_started",
+//                    dateString, @"date_started",
                     [_player getName], @"account_id",
                     nil];
     }
@@ -675,12 +685,24 @@
     NSHTTPURLResponse* response;
     NSError* error = nil;
     
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     int code = (int)[response statusCode];
-    NSLog(@"the response code for new game is:%d",code);
     
 //    NSDictionary *fields = [response allHeaderFields];
 //    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+    
+    //get game start id:
+    NSError *error2;
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error2];
+    if (!error2) {
+        _quest.gameStartId = [jsonDict objectForKey:@"_id"];
+        NSLog(@"the response code for new game is:%d with startId: %@",code, _quest.gameStartId);
+    }else{
+        NSLog(@"%@",error2.localizedDescription);
+    }
+    
 }
 
 - (void) goOnQuestStuff {

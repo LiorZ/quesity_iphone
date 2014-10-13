@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSString *questId;
 @property (nonatomic, copy) NSNumber *allowedHints;
 @property CODE_REQ codeReq;
+@property (nonatomic, copy) NSString *gameStartId;
 //@property (nonatomic, copy) NSArray *tags;
 //typedef struct {
 //    int *lng;
