@@ -28,7 +28,7 @@
     NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
     
     for (int i=0; i<len; i++) {
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length]) % [letters length]]];
+        [randomString appendFormat: @"%C", [letters characterAtIndex: (int)arc4random_uniform((int)[letters length]) % (int)[letters length]]];
     }
     
     return [randomString stringByAppendingString:@"_iphone@email.com"];
@@ -68,7 +68,7 @@
     int code = (int)[response statusCode];
 
     NSDictionary *fields = [response allHeaderFields];
-    NSLog(@"the response code is:%d, with %d headers",code, fields.count);
+    NSLog(@"the response code is:%d, with %lu headers",code, (unsigned long)fields.count);
     
     //NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     //NSLog(@"%@",responseString);

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 igor. All rights reserved.
 //
 #define SITEURL @"http://quesity.herokuapp.com/"
-//#define SITEURL @"http://192.168.209.129:8080/"//http://192.168.209.128:8080/"
+//#define SITEURL @"http://192.168.209.129:8080/"
 
 //#define SITEURL_LOGIN      [SITEURL stringByAppendingString:@"app/login/local/"]
 #define SITEURL_VALIDATE_CODE   [SITEURL stringByAppendingString:@"app/validate_code"]

@@ -700,7 +700,7 @@
         _quest.gameStartId = [jsonDict objectForKey:@"_id"];
         NSLog(@"the response code for new game is:%d with startId: %@",code, _quest.gameStartId);
     }else{
-        NSLog(@"%@",error2.localizedDescription);
+        NSLog(@"my log: %@",error2.localizedDescription);
     }
     
 }

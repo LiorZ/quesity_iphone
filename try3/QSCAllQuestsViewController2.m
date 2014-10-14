@@ -116,16 +116,16 @@
                     //quest.codeReq = CODE_REQ_code;
 
                     NSString *codeReqStr = codeReqFromJson[i];
-                    if ([quest.questId isEqualToString:@"53faf4d0e84372020025549c"])
+//                    if ([quest.questId isEqualToString:@"53faf4d0e84372020025549c"])
+//                        quest.codeReq = CODE_REQ_code;
+//                    else {
+                    if ([codeReqStr isEqualToString:@"free"])
+                        quest.codeReq = CODE_REQ_free;
+                    else if ([codeReqStr isEqualToString:@"code"])
                         quest.codeReq = CODE_REQ_code;
-                    else {
-                        if ([codeReqStr isEqualToString:@"free"])
-                            quest.codeReq = CODE_REQ_free;
-                        else if ([codeReqStr isEqualToString:@"code"])
-                            quest.codeReq = CODE_REQ_code;
-                        else
-                            quest.codeReq = CODE_REQ_inApp;
-                    }
+                    else
+                        quest.codeReq = CODE_REQ_inApp;
+//                    }
                     
                     //LOADING IMAGE:
                     UIImage *img;
@@ -224,6 +224,8 @@
         [self parseJson2Quests:json];
         
         [[NSUserDefaults standardUserDefaults] setObject:json forKey:@"myData"];
+    } else {
+        [self stopSpinning];
     }
 }
 

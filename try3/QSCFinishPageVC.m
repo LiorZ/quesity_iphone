@@ -80,14 +80,22 @@
     NSURL *url = [NSURL URLWithString:siteUrl];
     
     //account_id: <ACCOUNT_ID>, review_text: <TEXT REVIEW>, rating: <# STARS>, game_id: <ID OF GAME>
+    NSString *playerName = [player getName];
+    
     NSDictionary *reviewDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                                self.opinion, @"review_text",
-                               [player getName], @"account_id",
-                               self.rv.rating, @"rating",
-                               _quest.gameStartId, @"game_id",
-                               nil];
+                               playerName, @"account_id",
+                               [NSNumber numberWithFloat:self.rv.rating], @"rating",
+                               _quest.gameStartId, @"game_id", nil];
     
-    //NSLog(@"%@",reviewDic);
+// also works:
+//    NSDictionary *reviewDic = @{@"account_id" : playerName,
+//                                 @"review_text" : self.opinion,
+//                                 @"rating" : [NSNumber numberWithFloat:self.rv.rating],
+//                                 @"game_id" : _quest.gameStartId};
+    
+    
+//    NSLog(@"%@",reviewDic);
     
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSHTTPCookie *cookie1;
