@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 UserInterfaceState.xcuserstate
 build
 *.pbxuser
@@ -8,3 +9,13 @@ build
 *~.xib 
 .DS_Store 
 xcuserdata/
+=======
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control?
+#
+# Pods/
+
+>>>>>>> f3373977dd2c2029804e3ee1519de65ea360ac5c
