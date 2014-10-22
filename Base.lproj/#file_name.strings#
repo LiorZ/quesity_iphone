@@ -1,0 +1,174 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "02a-gY-Pqs"; */
+"02a-gY-Pqs.title" = "Back";
+
+/* Class = "IBUITableViewController"; title = "My Quests"; ObjectID = "0HU-gw-h6O"; */
+"0HU-gw-h6O.title" = "My Quests";
+
+/* Class = "IBUITabBarItem"; title = "My Quests"; ObjectID = "2If-eD-m2r"; */
+"2If-eD-m2r.title" = "My Quests";
+
+/* Class = "IBUILabel"; text = "ame"; ObjectID = "6qq-QX-n2Z"; */
+"6qq-QX-n2Z.text" = "Name";
+
+/* Class = "IBUIButton"; normalTitle = "Forgot my password"; ObjectID = "7bU-S3-YDn"; */
+"7bU-S3-YDn.normalTitle" = "Forgot my password";
+
+/* Class = "IBUILabel"; text = "Km"; ObjectID = "8IB-1b-R6t"; */
+"8IB-1b-R6t.text" = "Km";
+
+/* Class = "IBUIButton"; normalTitle = "Login"; ObjectID = "9Av-UR-6fv"; */
+"9Av-UR-6fv.normalTitle" = "Login";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "9cC-8N-KYi"; */
+"9cC-8N-KYi.title" = "Back";
+
+/* Class = "IBUILabel"; text = "Played"; ObjectID = "Agf-NN-Ki0"; */
+"Agf-NN-Ki0.text" = "Played";
+
+/* Class = "IBUILabel"; text = "quest name"; ObjectID = "ApE-4y-ctX"; */
+"ApE-4y-ctX.text" = "quest name";
+
+/* Class = "IBUITabBarItem"; title = "All Quests"; ObjectID = "AxH-Gt-VBg"; */
+"AxH-Gt-VBg.title" = "All Quests";
+
+/* Class = "IBUILabel"; text = "œô­©œô¬ùœô¬÷œô­§œô¬õ"; ObjectID = "CFJ-Oj-vsE"; */
+"CFJ-Oj-vsE.text" = "œô­©œô¬ùœô¬÷œô­§œô¬õ";
+
+/* Class = "IBUILabel"; text = "How was the quest?"; ObjectID = "E55-hZ-YZa"; */
+"E55-hZ-YZa.text" = "How was the quest?";
+
+/* Class = "IBUILabel"; text = "1.5 œô­§\"œô¬þ / 1 œô­©œô­¢œô¬ô"; ObjectID = "ExY-tA-dV2"; */
+"ExY-tA-dV2.text" = "1.5 œô­§\"œô¬þ / 1 œô­©œô­¢œô¬ô";
+
+/* Class = "IBUIButton"; normalTitle = "Finish"; ObjectID = "Fup-rb-VUo"; */
+"Fup-rb-VUo.normalTitle" = "Finish";
+
+/* Class = "IBUIButton"; normalTitle = "Sign Out"; ObjectID = "HtQ-ca-Riw"; */
+"HtQ-ca-Riw.normalTitle" = "Sign Out";
+
+/* Class = "IBUILabel"; text = "You have finished"; ObjectID = "JR3-1b-sTk"; */
+"JR3-1b-sTk.text" = "You have finished";
+
+/* Class = "IBUIButton"; normalTitle = "Register with email"; ObjectID = "JVt-Bl-9Uz"; */
+"JVt-Bl-9Uz.normalTitle" = "Register with email";
+
+/* Class = "IBUILabel"; text = "œô­©œô¬ùœô¬÷œô­§œô¬õ"; ObjectID = "JYh-Pz-94T"; */
+"JYh-Pz-94T.text" = "œô­©œô¬ùœô¬÷œô­§œô¬õ";
+
+/* Class = "IBUILabel"; text = "How was the quest?"; ObjectID = "KUL-Pu-chG"; */
+"KUL-Pu-chG.text" = "How was the quest?";
+
+/* Class = "IBUINavigationItem"; title = "Quest"; ObjectID = "Ldm-fX-FLH"; */
+"Ldm-fX-FLH.title" = "Quest";
+
+/* Class = "IBUILabel"; text = "œô­©œô¬ùœô¬÷œô­§œô¬õ"; ObjectID = "MzA-f0-2bb"; */
+"MzA-f0-2bb.text" = "œô­©œô¬ùœô¬÷œô­§œô¬õ";
+
+/* Class = "IBUIButton"; normalTitle = "         Favorite Quests"; ObjectID = "N04-QI-w45"; */
+"N04-QI-w45.normalTitle" = "         Favorite Quests";
+
+/* Class = "IBUILabel"; text = "œô¬þœô­¨œô¬÷œô­§"; ObjectID = "NLX-eM-KUR"; */
+"NLX-eM-KUR.text" = "œô¬þœô­¨œô¬÷œô­§";
+
+/* Class = "IBUIButton"; normalTitle = "Sign In"; ObjectID = "OQ8-3I-SOf"; */
+"OQ8-3I-SOf.normalTitle" = "Sign In";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "PRx-oa-x55"; */
+"PRx-oa-x55.normalTitle" = "Done";
+
+/* Class = "IBUIViewController"; title = "Second"; ObjectID = "QUy-BD-bpt"; */
+"QUy-BD-bpt.title" = "Second";
+
+/* Class = "IBUILabel"; text = "5 œô¬ûœô¬ñœô­¨ œô­©œô¬ùœô¬÷œô­§œô¬õ"; ObjectID = "QhX-s8-aNT"; */
+"QhX-s8-aNT.text" = "5 œô¬ûœô¬ñœô­¨ œô­©œô¬ùœô¬÷œô­§œô¬õ";
+
+/* Class = "IBUITextField"; placeholder = "Email"; ObjectID = "Rbz-15-UeB"; */
+"Rbz-15-UeB.placeholder" = "Email";
+
+/* Class = "IBUIButton"; normalTitle = "        About Quesity"; ObjectID = "S4w-Os-L0X"; */
+"S4w-Os-L0X.normalTitle" = "        About Quesity";
+
+/* Class = "IBUIBarButtonItem"; title = "Go on Quest!"; ObjectID = "StY-TM-aiC"; */
+"StY-TM-aiC.title" = "Go on Quest!";
+
+/* Class = "IBUITabBarItem"; title = "All Quests"; ObjectID = "Szw-5V-KG1"; */
+"Szw-5V-KG1.title" = "All Quests";
+
+/* Class = "IBUILabel"; text = "Congratulations!"; ObjectID = "WOh-FO-y3q"; */
+"WOh-FO-y3q.text" = "Congratulations!";
+
+/* Class = "IBUITabBarItem"; title = "My Quests"; ObjectID = "Yxf-a4-Fu2"; */
+"Yxf-a4-Fu2.title" = "My Quests";
+
+/* Class = "IBUILabel"; text = "œô¬öœô¬þœô¬ÿ"; ObjectID = "b6y-L2-Lqb"; */
+"b6y-L2-Lqb.text" = "œô¬öœô¬þœô¬ÿ";
+
+/* Class = "IBUINavigationController"; title = "My Quests"; ObjectID = "co6-cg-UVJ"; */
+"co6-cg-UVJ.title" = "My Quests";
+
+/* Class = "IBUILabel"; text = "œô­§\"œô¬þ"; ObjectID = "csN-xQ-1Xa"; */
+"csN-xQ-1Xa.text" = "œô­§\"œô¬þ";
+
+/* Class = "IBUILabel"; text = "Hours"; ObjectID = "djF-Lc-gxu"; */
+"djF-Lc-gxu.text" = "Hours";
+
+/* Class = "IBUILabel"; text = "(4.8)"; ObjectID = "eIf-ej-Hq1"; */
+"eIf-ej-Hq1.text" = "(4.8)";
+
+/* Class = "IBUIButton"; normalTitle = "Register"; ObjectID = "ext-f1-bGU"; */
+"ext-f1-bGU.normalTitle" = "Register";
+
+/* Class = "IBUITextField"; placeholder = "How was it?"; ObjectID = "fwY-ey-jla"; */
+"fwY-ey-jla.placeholder" = "How was it?";
+
+/* Class = "IBUIButton"; normalTitle = "Erase allQuest Json"; ObjectID = "g9j-Rn-Apz"; */
+"g9j-Rn-Apz.normalTitle" = "Erase allQuest Json";
+
+/* Class = "IBUIButton"; normalTitle = "       Find Quests"; ObjectID = "ioQ-PO-5K5"; */
+"ioQ-PO-5K5.normalTitle" = "       Find Quests";
+
+/* Class = "IBUILabel"; text = "for testing and debugging:"; ObjectID = "jeW-IX-cIe"; */
+"jeW-IX-cIe.text" = "for testing and debugging:";
+
+/* Class = "IBUILabel"; text = "œô¬öœô¬þœô¬ÿ"; ObjectID = "jfW-ir-2uP"; */
+"jfW-ir-2uP.text" = "œô¬öœô¬þœô¬ÿ";
+
+/* Class = "IBUIButton"; normalTitle = "Erase stored images dict"; ObjectID = "kWw-f5-flK"; */
+"kWw-f5-flK.normalTitle" = "Erase stored images dict";
+
+/* Class = "IBUINavigationItem"; title = "Review"; ObjectID = "lmt-Tv-teo"; */
+"lmt-Tv-teo.title" = "Review";
+
+/* Class = "IBUINavigationItem"; title = "My Quests"; ObjectID = "ltb-ZC-nL5"; */
+"ltb-ZC-nL5.title" = "My Quests";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "lvq-0b-szx"; */
+"lvq-0b-szx.title" = "Back";
+
+/* Class = "IBUILabel"; text = "(4.8)"; ObjectID = "mGK-us-R4q"; */
+"mGK-us-R4q.text" = "(4.8)";
+
+/* Class = "IBUILabel"; text = "œô¬öœô¬þœô¬ÿ"; ObjectID = "mdz-bu-HAh"; */
+"mdz-bu-HAh.text" = "œô¬öœô¬þœô¬ÿ";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "nHp-vB-Y45"; */
+"nHp-vB-Y45.title" = "Back";
+
+/* Class = "IBUILabel"; text = "(4.6)"; ObjectID = "nIo-sc-DK3"; */
+"nIo-sc-DK3.text" = "(4.6)";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "o1x-HO-fiX"; */
+"o1x-HO-fiX.placeholder" = "Password";
+
+/* Class = "IBUIButton"; normalTitle = "Sign In"; ObjectID = "rl7-AG-6Qg"; */
+"rl7-AG-6Qg.normalTitle" = "Sign In";
+
+/* Class = "IBUINavigationItem"; title = "All Quests"; ObjectID = "uL4-A6-KaG"; */
+"uL4-A6-KaG.title" = "All Quests";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "uTI-jc-jvJ"; */
+"uTI-jc-jvJ.text" = "Name";
+
+/* Class = "IBUILabel"; text = "œô¬þœô­¨œô¬÷œô­§"; ObjectID = "wqE-U3-wdb"; */
+"wqE-U3-wdb.text" = "œô¬þœô­¨œô¬÷œô­§";

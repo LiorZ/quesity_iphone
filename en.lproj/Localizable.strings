@@ -1,0 +1,84 @@
+/* 
+  Localizable.strings
+  Quesity
+
+  Created by igor on 6/4/14.
+  Copyright (c) 2014 igor. All rights reserved.
+*/
+
+"Select Quest" = "Select Quest";
+
+//buttons:
+"Continue" = "Continue";
+"Arrived" = "Arrived";
+"Enter Text" = "Enter Text";
+"Choose" = "Choose";
+"Menu" = "Menu";
+"Tactics" = "Tactics";
+
+"Not now" = "No thanks";
+
+//dialog boxes and responses
+"Wrong answer" = "";
+"Wrong answer! :( try again." = "Wrong answer :( try again.";
+"Answer" = "";
+"Enter the answer:" = "Enter the answer:";
+"Choose:" = "Choose:";
+"OK" = "OK";
+"answer" = "";
+"Cancel"= "Cancel";
+"You are not at the right location... Try again."= "You are not at the right location... Try again.";
+"resume or start over?" = "You have started playing this quest before. Would you like to resume or start over?";
+"Start Over" = "Start Over";
+"Resume" = "Resume";
+"This quest requires a code" = "This quest requires a code";
+"accessCodeRequest" = "You can purchase an access code from the cashier.";
+"Access code" = "Access code";
+
+//menu:
+"Show Map" = "Show Map";
+"Start Over" = "Start Over";
+"Leave Quest" = "Leave Quest";
+"Skip to the next page. Ha!" = "Skip to the next page. Ha!";
+"Skip to the the end. Ha Ha!" = "Skip to the the end. Ha Ha!";
+"Back to previous page" = "Back to previous page";
+
+//info controller
+"Description" = "Description";
+"Map" = "Map";
+"Reviews" = "Reviews";
+
+//Font names:
+"Roboto-Light"= "Roboto-Light";
+"Roboto-Thin"= "Roboto-Thin";
+"Roboto-Regular"= "Roboto-Regular";
+"Andada-Regular"= "Andada-Regular";
+
+//main button images:
+"btnFind" = "button_find_quest_eng.png";
+"btnMy" = "button_my_quests_eng.png";
+"btnAbout" = "button_about_eng.png";
+"btnFindPressed" = "button_find_quest_eng_pressed.png";
+"btnMyPressed" = "button_my_quests_eng_pressed.png";
+"btnAboutPressed" = "button_about_eng_pressed.png";
+
+//error messages:
+"Sorry..." = "Sorry...";
+"Something is wrong. Unable to connect." = "Something is wrong. Unable to connect.";
+"Please enter a valid email" = "Please enter a valid email address.";
+"Wrong email or password" = "Wrong email or password.";
+"Please enter a name." = "Please enter a name.";
+"A user with this email already exists."= "A user with this email already exists.";
+"Please try again with an active internet connection." = "Please try again with an active internet connection.";
+"Error connecting to network" = "Error connecting to network";
+"badCode" = "The code you entered is either invalid or has already been used.";
+
+"No reviews yet ..." = "No reviews yet ...";
+
+//titles:
+"Select Quest" = "Select Quest";
+"Go On Quest!" = "Go On Quest!";
+"Enter Code" = "Enter Code";
+
+//other:
+"Checking Answer..." = "Checking Answer...";

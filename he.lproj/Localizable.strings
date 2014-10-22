@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  Quesity
+
+  Created by igor on 6/4/14.
+  Copyright (c) 2014 igor. All rights reserved.
+*/
+
+"Select Quest" = "בחר קווסט";
+
+//buttons:
+"Continue" = "המשך";
+"Arrived" = "הגעתי";
+"Enter Text" = "הכנס טקסט";
+"Choose" = "אפשרויות";
+"Menu" = "תפריט";
+"Tactics" = "גלגלי הצלה";
+
+"Not now" = "בפעם אחרת";
+
+//dialog boxes and responses
+"Wrong answer" = "";
+"Wrong answer! :( try again." = "התשובה שגויה :( נסו שנית.";
+"Answer" = "";
+"Enter the answer:" = "הזינו את התשובה:";
+"Choose:" = "בחרו";
+"OK" = "אישור";
+"answer"= "";
+"Cancel"= "ביטול";
+"You are not at the right location... Try again."= "אינכם נמצאים במקום הנכון. נסו שוב";
+"resume or start over?" = "נראה כי התחלת לשחק בקווסט זה בעבר. האם ברצונך לשוב לאותה נקודה?";
+"Start Over" = "התחל מחדש";
+"Resume" = "המשך בקווסט";
+
+"This quest requires a code" = "לקווסט זה דרוש קוד כניסה";
+"accessCodeRequest" = "באפשרותך לקנות קוד בקופה.";
+"Access code" = "קוד כניסה";
+
+//menu:
+"Show Map" = "הצג מפה";
+"Start Over" = "התחל מחדש";
+"Leave Quest" = "צא מהקווסט";
+"Skip to the next page. Ha!" = "דלג לעמוד הבא. הא!";
+"Skip to the the end. Ha Ha!" = "דלג לסוף. הא הא!";
+"Back to previous page" = "חזרה לעמוד הקודם";
+
+//info controller
+"Description" = "תיאור";
+"Map" = "מפה";
+"Reviews" = "ביקורות";
+
+//Font names:
+"Roboto-Light"= "Alef-Regular";
+"Roboto-Thin"= "Alef-Regular";
+"Roboto-Regular"= "Alef-Regular";
+"Andada-Regular"= "Alef-Bold";
+
+//main button images:
+"btnFind" = "button_find_quest.png";
+"btnMy" = "button_my_quests.png";
+"btnAbout" = "button_about.png";
+"btnFindPressed" = "button_find_quest_pressed.png";
+"btnMyPressed" = "button_my_quests_pressed.png";
+"btnAboutPressed" = "button_about_pressed.png";
+
+//error messages:
+"Sorry..." = "אופס...";
+"Something is wrong. Unable to connect." = "ארעה שגיאה. לא ניתן להתחבר";
+"Please enter a valid email" = "אנא הכניסו כתובת אימייל תקינה";
+"Wrong email or password" = "סיסמא או אימייל שגויים";
+"Please enter a name." = "אנא מלאו את כל השדות.";
+"A user with this email already exists."= "אימייל זה קיים כבר במערכת";
+"Please try again with an active internet connection." = "לאפליקציה דרוש חיבור אינטרנט פעיל";
+"Error connecting to network" = "שגיאה בעת החיבור לרשת";
+"badCode" = "קוד הכניסה אינו נכון.";
+
+"No reviews yet ..." = "אין ביקורות עדיין ...";
+
+//titles:
+"Select Quest" = "בחר קווסט";
+"Go On Quest!" = "צא לקווסט!";
+"Enter Code" = "הכנסת קוד";
+
+//other:
+"Checking Answer..." = "בודק את התשובה";

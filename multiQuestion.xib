@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="multiQuestion">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an option:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-Cm-djT">
+                    <rect key="frame" x="50" y="20" width="141" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qjb-hM-wBD">
+                    <rect key="frame" x="0.0" y="64" width="241" height="210"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHP-gM-Kwu">
+                    <rect key="frame" x="70" y="282" width="101" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.16828639989999999" green="0.62082452970000002" blue="0.67404735329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="AyJ-HZ-MPz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Cancel"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fHP-gM-Kwu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Jg-Jn-6X7"/>
+                <constraint firstItem="fgQ-Cm-djT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="BJJ-jZ-eWJ"/>
+                <constraint firstItem="Qjb-hM-wBD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="L4N-5I-YVa"/>
+                <constraint firstItem="fgQ-Cm-djT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="0.5" id="PLh-cv-m7k"/>
+                <constraint firstItem="fHP-gM-Kwu" firstAttribute="top" secondItem="Qjb-hM-wBD" secondAttribute="bottom" constant="8" symbolic="YES" id="SPw-CN-dke"/>
+                <constraint firstItem="fHP-gM-Kwu" firstAttribute="centerX" secondItem="Qjb-hM-wBD" secondAttribute="centerX" id="Ull-mU-0RY"/>
+                <constraint firstAttribute="bottom" secondItem="fHP-gM-Kwu" secondAttribute="bottom" constant="12" id="XAg-TQ-gbJ"/>
+                <constraint firstItem="Qjb-hM-wBD" firstAttribute="top" secondItem="fgQ-Cm-djT" secondAttribute="bottom" constant="23" id="ahj-Oz-4DX"/>
+                <constraint firstItem="fHP-gM-Kwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="70" id="xcE-dc-uZH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnCancel" destination="fHP-gM-Kwu" id="hup-M9-xOt"/>
+                <outlet property="labeltitle" destination="fgQ-Cm-djT" id="9PF-Ja-TN8"/>
+                <outlet property="tableOptions" destination="Qjb-hM-wBD" id="q4O-O3-RWk"/>
+            </connections>
+        </view>
+    </objects>
+</document>
