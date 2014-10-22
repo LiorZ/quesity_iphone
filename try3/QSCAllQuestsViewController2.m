@@ -112,7 +112,7 @@
                     
                     quest.allowedHints = allowedHintsFromJson[i];
                     
-                    quest.gameStartId = @"";
+                    quest.gameStartId = @"defaultId";
                     //quest.codeReq = CODE_REQ_code;
 
                     NSString *codeReqStr = codeReqFromJson[i];
