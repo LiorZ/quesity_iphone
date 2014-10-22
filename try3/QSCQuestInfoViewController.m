@@ -132,6 +132,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+
+    [self.timer invalidate];
     
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         //NSLog(@"No patiance. navigating away.");
@@ -700,7 +702,7 @@
         _quest.gameStartId = [jsonDict objectForKey:@"_id"];
         NSLog(@"the response code for new game is:%d with startId: %@",code, _quest.gameStartId);
     }else{
-        NSLog(@"my log: %@",error2.localizedDescription);
+        NSLog(@"my log: %@ (i might registered the player on the local server, and not on the true server, or the other way around",error2.localizedDescription);
     }
     
 }
