@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is required to find out where you are</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
@@ -19,15 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014 Quesity Inc. All Rights Reserved.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is required to find out where you are</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Andada-Regular.ttf</string>
