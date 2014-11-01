@@ -487,7 +487,7 @@
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField * alertTextField = [alert textFieldAtIndex:0];
     alertTextField.placeholder = NSLocalizedString(@"answer",nil);
-    [alertTextField setReturnKeyType:UIReturnKeyDone];
+    //[alertTextField setReturnKeyType:UIReturnKeyDone];
     alert.tag = 0;
     [alert show];
 }
