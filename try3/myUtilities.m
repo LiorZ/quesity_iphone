@@ -9,6 +9,10 @@
 #import "myUtilities.h"
 #import "myGlobalData.h"
 
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 @implementation myUtilities
 
 - (NSString *) parseString2Hebrew:(NSString *)str2parse
@@ -25,6 +29,41 @@
     return unesc;
 }
 
+
+/* Google Analytics Stuff */
+- (void) sendScreenToGA : (NSString *)screenName {
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // This screen name value will remain set on the tracker and sent with
+    // hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName value:screenName];
+    
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+- (void) sendEventToGA: (NSString *)category withAction: (NSString *)action withLabel:(NSString *)label {
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
+                                                          action:action
+                                                           label:label
+                                                           value:nil] build]];
+}
+
+- (void) sendPageChangeToGA: (NSString *)label
+           withPagesViewed: (NSNumber *)pagesViewed
+               withPageName: (NSString *)pageName{
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker set:[GAIFields customDimensionForIndex:3]
+           value:pageName];
+
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Quest event"
+                                                          action:@"Page changed"
+                                                           label:label
+                                                           value:pagesViewed] build]];
+}
 
 /* Images Stuff */
 

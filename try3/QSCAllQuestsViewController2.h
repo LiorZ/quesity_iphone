@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Resources/MBProgressHUD/MBProgressHUD.h"
 
-
 #define CELLS_2_DUPLICATE_4_DEBUG 5
 
 @interface QSCAllQuestsViewController2 : UITableViewController <UISearchBarDelegate, CLLocationManagerDelegate> {

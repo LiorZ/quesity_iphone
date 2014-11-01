@@ -34,6 +34,8 @@
 @property (nonatomic, copy) NSArray *pagesHints;
 @property (nonatomic, copy) NSArray *pagesId;
 @property (nonatomic, copy) NSArray *pagesQType;
+@property (nonatomic, copy) NSArray *pagesName;
+
 @property NSArray *is_first;
 @property MBProgressHUD *hud;
 @property BOOL loadedAllImages;

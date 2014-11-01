@@ -5,8 +5,11 @@
 //  Created by igor on 5/9/14.
 //  Copyright (c) 2014 igor. All rights reserved.
 //
-#define SITEURL @"http://quesity.herokuapp.com/"
-//#define SITEURL @"http://192.168.209.129:8080/"
+//#define SITEURL @"http://quesity.herokuapp.com/"
+#define SITEURL @"http://192.168.209.129:8080/"
+
+//#define QUESITY_TRACKER_ID @"UA-47426937-2" //real
+#define QUESITY_TRACKER_ID @"UA-47426937-4" //test
 
 //#define SITEURL_LOGIN      [SITEURL stringByAppendingString:@"app/login/local/"]
 #define SITEURL_VALIDATE_CODE   [SITEURL stringByAppendingString:@"app/validate_code"]

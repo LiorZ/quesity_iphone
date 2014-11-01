@@ -12,6 +12,10 @@
 
 - (NSString *) parseString2Hebrew:(NSString *)str2parse;
 
+- (void) sendScreenToGA: (NSString *)screenName;
+- (void) sendEventToGA: (NSString *)category withAction: (NSString *)action withLabel:(NSString *)label;
+- (void) sendPageChangeToGA: (NSString *)label withPagesViewed: (NSNumber *)pagesViewed withPageName: (NSString *)pageName;
+
 -(UIImage *) getImageFromURL:(NSString *)fileURL;
 -(void) saveImage:(UIImage *)image withFileName:(NSString *)imageName inDirectory:(NSString *)directoryPath;
 -(UIImage *) loadImage:(NSString *)fileName inDirectory:(NSString *)directoryPath;

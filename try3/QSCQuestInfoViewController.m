@@ -62,6 +62,7 @@
     NSArray* pagesHintsFromJson = [json valueForKey:@"hints"];
     NSArray* pagesIdFromJson = [json valueForKey:@"_id"];
     NSArray* pagesQTypeFromJson = [json valueForKey:@"page_type"];
+    NSArray* pageNamesFromJson = [json valueForKey:@"page_name"];
     
     self.content = [[NSArray alloc] init];
     self.content = contentFromJson;
@@ -80,6 +81,9 @@
 
     self.pagesQType = [[NSArray alloc] init];
     self.pagesQType = pagesQTypeFromJson;
+    
+    self.pagesName = [[NSArray alloc] init];
+    self.pagesName = pageNamesFromJson;
     
     if (self.content!=nil) {
         self.gotJsonSuccefully = YES;
@@ -280,6 +284,9 @@
 
     [super viewDidLoad];
 
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [myUtils sendScreenToGA:[@"Quest Properties " stringByAppendingString: _quest.name]];
+    
     self.isStartOver = YES;
     self.goOnQuestButton.enabled = NO;
     self.loadedAllImages = NO;
@@ -319,9 +326,7 @@
     float lowerPartHeight = screenBounds.size.height-(290+yDelta);
     
     //_imagesH = 0.4*screenBounds.size.height;
-    
-    myUtilities *myUtils = [[myUtilities alloc] init];
-    
+        
     //DESCRIPTION VIEW:
     
     UIWebView *webView1 = [[UIWebView alloc] initWithFrame:CGRectMake(0, screenBounds.size.width - 2, screenBounds.size.width, lowerPartHeight+40)];
@@ -804,6 +809,8 @@
         
         qscpage.quest = self.quest;
         qscpage.pagesQType = self.pagesQType;
+
+        qscpage.pagesName = self.pagesName;
 
         qscpage.isStartOver = self.isStartOver;
 

@@ -8,6 +8,7 @@
 
 #import "QSCAppDelegate.h"
 #import "myGlobalData.h"
+#import "GAI.h"
 
 @implementation QSCAppDelegate
 
@@ -38,6 +39,21 @@
     [self changeWindowColor:@"the usual"];
     
     [self.window makeKeyAndVisible];
+    
+    /* google analytics stuff */
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelWarning];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:QUESITY_TRACKER_ID];
+
+    /* end of google analytics stuff */
     
     // Override point for customization after application launch.
     return YES;

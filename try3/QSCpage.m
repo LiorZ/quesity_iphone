@@ -49,6 +49,12 @@
 
 - (void) createWebViewWithHTML{
     
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [myUtils sendPageChangeToGA:_quest.name
+                withPagesViewed:[NSNumber numberWithUnsignedInteger:_pagesViewed]
+                   withPageName:_pagesName[_currPage]];
+    //NSLog(@"sent GA with: name: %@, pagesViewed %d, and pageName: %@",_quest.name, _pagesViewed, _pagesName[_currPage]);
+    
     //create the string
     NSMutableString *html = [NSMutableString stringWithString: @"<html><body style='padding:0; margin:0'>"];
 
@@ -153,7 +159,9 @@
 - (void) saveDefaultDict: (NSString *)questStatePath {
     //only if logged in, got pagesId
     if (self.pagesId!= nil && _quest!=nil) {
-        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : _quest.allowedHints};
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage],
+                                @"pagesViewed" : [NSNumber numberWithInt:(int)0],
+                                @"hintsLeft" : _quest.allowedHints};
         //saving stuff:
         [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
         
@@ -164,7 +172,9 @@
 - (void) saveDict: (NSString *)questStatePath {
     //only if logged in, got pagesId
     if (self.pagesId!= nil && _quest!=nil) {
-        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage], @"hintsLeft" : [NSNumber numberWithInt:(int)self.currHintsAvailable]};
+        NSDictionary *aDict = @{@"continueOnPage" : self.pagesId[self.currPage],
+                                @"pagesViewed" : [NSNumber numberWithInt:(int)self.pagesViewed],
+                                @"hintsLeft" : [NSNumber numberWithInt:(int)self.currHintsAvailable]};
         //saving stuff:
         [[NSUserDefaults standardUserDefaults] setObject:aDict forKey:questStatePath];
     }
@@ -272,6 +282,10 @@
 {
     self.navigationItem.hidesBackButton = YES;
     
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [myUtils sendScreenToGA:[@"Quest Page View " stringByAppendingString: _quest.name]];
+    [myUtils sendEventToGA: @"Quest event" withAction: @"Quest started" withLabel:_quest.name];
+    
     self.isOnFirstPage = YES;
     
     _pagesStack = [[QSCStack alloc] init];
@@ -302,7 +316,8 @@
         if (stateDict!=nil) {
             NSString *continueOnPage = [stateDict objectForKey:@"continueOnPage"];
             NSString *hintsLeft = [stateDict objectForKey:@"hintsLeft"];
-            
+            NSString *pagesViewed = [stateDict objectForKey:@"pagesViewed"];
+
             //check that the questState is "takin"
             if (continueOnPage==nil || hintsLeft==nil) {
                 [self saveDefaultDict:questStatePath];
@@ -312,6 +327,12 @@
             
             self.currHintsAvailable = [[stateDict objectForKey:@"hintsLeft"] integerValue];
             
+            if (pagesViewed == nil) {
+                self.pagesViewed = 0;
+            } else {
+                self.pagesViewed = [pagesViewed integerValue];
+            }
+                
             if (![self.pagesId[self.currPage] isEqualToString:continueOnPage]) {
                 self.currPage = [self findID:continueOnPage];
             }
@@ -348,7 +369,6 @@
 //    [self->locationManager startUpdatingLocation];
     
     [super viewDidLoad];
-        
 }
 
 
@@ -403,6 +423,8 @@
 
     NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
     self.currQType = [self string2PageType:currQTypeString];
+    
+    self.pagesViewed++;
     
     //NSLog(@"link to next page %@",self.linkBeingProcessed);
 //    NSLog(@"%@, which is on index: %d",[self parseJsonOfLinks:self.linkBeingProcessed], nextPage);
@@ -465,6 +487,7 @@
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField * alertTextField = [alert textFieldAtIndex:0];
     alertTextField.placeholder = NSLocalizedString(@"answer",nil);
+    [alertTextField setReturnKeyType:UIReturnKeyDone];
     alert.tag = 0;
     [alert show];
 }
@@ -534,6 +557,8 @@
 
     NSString *currQTypeString = [self.pagesQType objectAtIndex:self.currPage];
     self.currQType = [self string2PageType:currQTypeString];
+    
+    self.pagesViewed--;
     
     [self createWebViewWithHTML];
     [self updateHintButtonStatus];

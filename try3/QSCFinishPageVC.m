@@ -22,6 +22,9 @@
 
 - (void)viewDidLoad
 {
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [myUtils sendEventToGA: @"Quest event" withAction: @"Quest finished" withLabel:_quest.name];
+    
     self.view.backgroundColor = [UIColor clearColor];
 
     //robustness for iphone 4 & 5
@@ -33,7 +36,6 @@
         pushUp = 480-568;
     }
     
-    myUtilities *myUtils = [[myUtilities alloc] init];
     [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, pushUp + 430.f, 300.f, 0.5f)]];
     [self.view addSubview:[myUtils drawLine:CGRectMake(10.f, pushUp + 495.f, 300.f, 0.5f)]];
     

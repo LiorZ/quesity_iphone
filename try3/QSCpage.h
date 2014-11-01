@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBOutlet NSArray *linksToOthers;
 @property IBOutlet NSArray *pagesHints;
 @property IBOutlet NSArray *pagesId;
+@property IBOutlet NSArray *pagesName;
 @property IBOutlet NSArray *pagesQType;
 @property BOOL isStartOver;
 @property BOOL isOnFirstPage;
@@ -52,6 +53,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 
 @property NSTimer *timer;
 
+@property NSUInteger pagesViewed;
 @property NSUInteger currPage;
 @property pageType currQType; //location, open_question, question (multiple choice), static
 @property NSArray *currCorrectAnswers;
