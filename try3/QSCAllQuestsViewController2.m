@@ -19,7 +19,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "QSCFinishPageVC.h"
 
-
 @interface QSCAllQuestsViewController2 ()
 @property NSMutableArray *quests;
 @property BOOL isFiltered;
@@ -325,11 +324,13 @@
 }
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    myUtilities *myUtils = [[myUtilities alloc] init];
+    [myUtils sendScreenToGA:@"Quests List Screen"];
+
     locationManager = [[CLLocationManager alloc] init];
 
     //requestWhenInUseAuthorization, with compatability to ios 7
