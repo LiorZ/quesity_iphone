@@ -331,6 +331,12 @@
     [super viewDidLoad];
     
     locationManager = [[CLLocationManager alloc] init];
+
+    //requestWhenInUseAuthorization, with compatability to ios 7
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
@@ -503,5 +509,6 @@
         app.networkActivityIndicatorVisible = YES;
     }
 }
+
 
 @end
