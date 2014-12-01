@@ -10,13 +10,14 @@
 #import "QSCQuest.h"
 #import "TPFloatRatingView.h"
 
-@interface QSCFinishPageVC : UIViewController <TPFloatRatingViewDelegate>
+@interface QSCFinishPageVC : UIViewController <TPFloatRatingViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 //@property IBOutlet NSString *questTitle;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UILabel *howWasItLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnShare;
 
 @property IBOutlet QSCQuest *quest;
 @property (strong, nonatomic) IBOutlet TPFloatRatingView *rv;

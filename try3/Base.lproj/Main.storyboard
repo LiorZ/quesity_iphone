@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6t2-9W-VNP">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -218,7 +219,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fup-rb-VUo">
-                                <rect key="frame" x="60" y="508" width="200" height="40"/>
+                                <rect key="frame" x="16" y="513" width="112" height="40"/>
                                 <color key="backgroundColor" red="0.3803921569" green="0.63529411759999999" blue="0.74509803919999995" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="SMx-Xx-Tk3"/>
@@ -231,28 +232,50 @@
                                     <segue destination="7c2-dr-GLU" kind="modal" identifier="fromFinishToAllQuests" modalTransitionStyle="crossDissolve" id="lgO-RM-cxd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkM-bF-3yh">
+                                <rect key="frame" x="150" y="512" width="149" height="30"/>
+                                <state key="normal" title="Share on Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressButtonShare:" destination="l0K-Oa-QIa" eventType="touchUpInside" id="jPM-8H-21h"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ניצחתם? שתפו תמונה מההרפתקאה" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yD-G7-EyC">
+                                <rect key="frame" x="139" y="532" width="171" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WOh-FO-y3q" firstAttribute="trailing" secondItem="JR3-1b-sTk" secondAttribute="trailing" id="4X1-En-Zns"/>
+                            <constraint firstItem="8yD-G7-EyC" firstAttribute="centerX" secondItem="UkM-bF-3yh" secondAttribute="centerX" id="1eq-jM-Hh2"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="right" secondItem="JR3-1b-sTk" secondAttribute="right" id="4X1-En-Zns"/>
                             <constraint firstItem="WOh-FO-y3q" firstAttribute="top" secondItem="plS-S5-ddX" secondAttribute="bottom" constant="15" id="91d-P9-86Z"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="mVM-2W-DWX" secondAttribute="centerX" id="Dau-wl-d7M"/>
-                            <constraint firstAttribute="bottom" secondItem="Fup-rb-VUo" secondAttribute="bottom" constant="20" symbolic="YES" id="G0S-jV-gBZ"/>
+                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="mVM-2W-DWX" secondAttribute="centerX" constant="-88" id="Dau-wl-d7M"/>
+                            <constraint firstAttribute="bottom" secondItem="Fup-rb-VUo" secondAttribute="bottom" constant="15" id="G0S-jV-gBZ"/>
+                            <constraint firstItem="8yD-G7-EyC" firstAttribute="top" secondItem="KUL-Pu-chG" secondAttribute="bottom" constant="62" id="KCW-Hh-O49"/>
+                            <constraint firstItem="UkM-bF-3yh" firstAttribute="left" secondItem="Fup-rb-VUo" secondAttribute="right" constant="22" id="PMw-5Z-Bi8"/>
                             <constraint firstItem="ApE-4y-ctX" firstAttribute="top" secondItem="WOh-FO-y3q" secondAttribute="bottom" constant="24" id="QuD-bn-oeP"/>
                             <constraint firstItem="ApE-4y-ctX" firstAttribute="top" secondItem="mVM-2W-DWX" secondAttribute="top" constant="99" id="VeV-VG-neF"/>
-                            <constraint firstItem="JR3-1b-sTk" firstAttribute="leading" secondItem="ApE-4y-ctX" secondAttribute="leading" id="WWJ-27-vpV"/>
-                            <constraint firstItem="KUL-Pu-chG" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" id="XZN-YV-VJO"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="KUL-Pu-chG" secondAttribute="centerX" id="eF4-cp-VUe"/>
-                            <constraint firstItem="WOh-FO-y3q" firstAttribute="leading" secondItem="JR3-1b-sTk" secondAttribute="leading" id="eYs-N9-5ow"/>
+                            <constraint firstItem="JR3-1b-sTk" firstAttribute="left" secondItem="ApE-4y-ctX" secondAttribute="left" id="WWJ-27-vpV"/>
+                            <constraint firstItem="KUL-Pu-chG" firstAttribute="left" secondItem="mVM-2W-DWX" secondAttribute="left" id="XZN-YV-VJO"/>
+                            <constraint firstAttribute="right" secondItem="UkM-bF-3yh" secondAttribute="right" constant="21" id="cVn-b3-wdD"/>
+                            <constraint firstItem="Fup-rb-VUo" firstAttribute="centerX" secondItem="KUL-Pu-chG" secondAttribute="centerX" constant="-88" id="eF4-cp-VUe"/>
+                            <constraint firstItem="8yD-G7-EyC" firstAttribute="bottom" secondItem="Fup-rb-VUo" secondAttribute="bottom" id="eNP-Tp-24r"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="left" secondItem="JR3-1b-sTk" secondAttribute="left" id="eYs-N9-5ow"/>
                             <constraint firstItem="JR3-1b-sTk" firstAttribute="top" secondItem="plS-S5-ddX" secondAttribute="bottom" constant="54" id="elE-uL-afo"/>
-                            <constraint firstItem="WOh-FO-y3q" firstAttribute="leading" secondItem="KUL-Pu-chG" secondAttribute="leading" id="nmT-vz-9KS"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="leading" secondItem="mVM-2W-DWX" secondAttribute="leading" constant="60" id="rqH-49-scr"/>
-                            <constraint firstItem="JR3-1b-sTk" firstAttribute="trailing" secondItem="ApE-4y-ctX" secondAttribute="trailing" id="tST-In-P7P"/>
-                            <constraint firstItem="WOh-FO-y3q" firstAttribute="trailing" secondItem="KUL-Pu-chG" secondAttribute="trailing" id="wMz-gS-mlg"/>
-                            <constraint firstItem="Fup-rb-VUo" firstAttribute="top" secondItem="KUL-Pu-chG" secondAttribute="bottom" constant="38" id="xXv-Va-hKc"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="left" secondItem="KUL-Pu-chG" secondAttribute="left" id="nmT-vz-9KS"/>
+                            <constraint firstItem="Fup-rb-VUo" firstAttribute="left" secondItem="mVM-2W-DWX" secondAttribute="left" constant="16" id="rqH-49-scr"/>
+                            <constraint firstItem="UkM-bF-3yh" firstAttribute="baseline" secondItem="Fup-rb-VUo" secondAttribute="baseline" constant="-8" id="sR4-zB-cdc"/>
+                            <constraint firstItem="JR3-1b-sTk" firstAttribute="right" secondItem="ApE-4y-ctX" secondAttribute="right" id="tST-In-P7P"/>
+                            <constraint firstItem="WOh-FO-y3q" firstAttribute="right" secondItem="KUL-Pu-chG" secondAttribute="right" id="wMz-gS-mlg"/>
+                            <constraint firstItem="Fup-rb-VUo" firstAttribute="top" secondItem="KUL-Pu-chG" secondAttribute="bottom" constant="43" id="xXv-Va-hKc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnShare" destination="UkM-bF-3yh" id="c2i-bT-Gfk"/>
                         <outlet property="finishButton" destination="Fup-rb-VUo" id="Tjx-JV-OWf"/>
                         <outlet property="howWasItLabel" destination="KUL-Pu-chG" id="NVv-uX-ftH"/>
                         <outlet property="titleLabel" destination="WOh-FO-y3q" id="mnK-il-BJW"/>

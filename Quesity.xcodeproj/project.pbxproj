@@ -37,6 +37,7 @@
 		783759FD1943216B007C0BB9 /* button_my_quests.png in Resources */ = {isa = PBXBuildFile; fileRef = 783759F71943216B007C0BB9 /* button_my_quests.png */; };
 		783759FE1943216B007C0BB9 /* button_my_quests_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 783759F81943216B007C0BB9 /* button_my_quests_pressed.png */; };
 		78375A0319432C95007C0BB9 /* UI-4-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78375A0219432C95007C0BB9 /* UI-4-1.png */; };
+		78527FDA1A2A38CB0059AA21 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78527E8C1A2A38C90059AA21 /* FacebookSDK.framework */; };
 		786B35B218C11F29002DA234 /* QSCQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B35B118C11F29002DA234 /* QSCQuest.m */; };
 		786B35B618D780B9002DA234 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 786B35B518D780B9002DA234 /* bg.png */; };
 		788B1B8418E77A86007F2789 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 788B1B8318E77A86007F2789 /* HMSegmentedControl.m */; };
@@ -68,6 +69,8 @@
 		78D1FEB01A052C35002F6076 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D1FEAF1A052C35002F6076 /* libz.dylib */; };
 		78D1FEB41A05367B002F6076 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D1FEB31A05367B002F6076 /* libGoogleAnalyticsServices.a */; };
 		78D1FEB61A0536DE002F6076 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D1FEB51A0536DE002F6076 /* libsqlite3.dylib */; };
+		78D1FEBC1A253414002F6076 /* share_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D1FEBB1A253414002F6076 /* share_facebook.png */; };
+		78D1FEBE1A25341D002F6076 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D1FEBD1A25341D002F6076 /* camera-icon.png */; };
 		78D4ADF4191AED1D00821E9A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D4ADF3191AED1D00821E9A /* logo.png */; };
 		78D4AE0A191D21D000821E9A /* myUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE09191D21D000821E9A /* myUtilities.m */; };
 		78D4AE0C191D23F800821E9A /* myGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4AE0B191D23F800821E9A /* myGlobalData.m */; };
@@ -177,6 +180,7 @@
 		783759F71943216B007C0BB9 /* button_my_quests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_my_quests.png; sourceTree = "<group>"; };
 		783759F81943216B007C0BB9 /* button_my_quests_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_my_quests_pressed.png; sourceTree = "<group>"; };
 		78375A0219432C95007C0BB9 /* UI-4-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI-4-1.png"; sourceTree = "<group>"; };
+		78527E8C1A2A38C90059AA21 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		786B35B018C11F29002DA234 /* QSCQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSCQuest.h; sourceTree = "<group>"; };
 		786B35B118C11F29002DA234 /* QSCQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSCQuest.m; sourceTree = "<group>"; };
 		786B35B518D780B9002DA234 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../bg.png; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 		78D1FEB11A0535D3002F6076 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../../../Downloads/GoogleAnalyticsServicesiOS_3.09/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		78D1FEB31A05367B002F6076 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		78D1FEB51A0536DE002F6076 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		78D1FEBB1A253414002F6076 /* share_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_facebook.png; sourceTree = "<group>"; };
+		78D1FEBD1A25341D002F6076 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		78D4ADF3191AED1D00821E9A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		78D4AE06191D169E00821E9A /* myGlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myGlobalData.h; sourceTree = "<group>"; };
 		78D4AE09191D21D000821E9A /* myUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myUtilities.m; sourceTree = "<group>"; };
@@ -337,6 +343,7 @@
 				78F0E84718AD79290034E3A4 /* CoreGraphics.framework in Frameworks */,
 				78F0E84918AD79290034E3A4 /* UIKit.framework in Frameworks */,
 				78F0E84518AD79290034E3A4 /* Foundation.framework in Frameworks */,
+				78527FDA1A2A38CB0059AA21 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +442,63 @@
 			path = mainButtonsHeb;
 			sourceTree = "<group>";
 		};
+		78527E8B1A2A38C90059AA21 /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				78527E8C1A2A38C90059AA21 /* FacebookSDK.framework */,
+				78527E8D1A2A38C90059AA21 /* FBAudienceNetwork */,
+			);
+			name = FacebookSDK;
+			path = ../../../Documents/FacebookSDK;
+			sourceTree = "<group>";
+		};
+		78527E8D1A2A38C90059AA21 /* FBAudienceNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				78527E8E1A2A38C90059AA21 /* Samples */,
+			);
+			path = FBAudienceNetwork;
+			sourceTree = "<group>";
+		};
+		78527E8E1A2A38C90059AA21 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				78527E8F1A2A38C90059AA21 /* AdUnitsSample */,
+				78527E911A2A38C90059AA21 /* NativeAdSample */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
+		78527E8F1A2A38C90059AA21 /* AdUnitsSample */ = {
+			isa = PBXGroup;
+			children = (
+				78527E901A2A38C90059AA21 /* AdUnitsSample */,
+			);
+			path = AdUnitsSample;
+			sourceTree = "<group>";
+		};
+		78527E901A2A38C90059AA21 /* AdUnitsSample */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdUnitsSample;
+			sourceTree = "<group>";
+		};
+		78527E911A2A38C90059AA21 /* NativeAdSample */ = {
+			isa = PBXGroup;
+			children = (
+				78527E921A2A38C90059AA21 /* NativeAdSample */,
+			);
+			path = NativeAdSample;
+			sourceTree = "<group>";
+		};
+		78527E921A2A38C90059AA21 /* NativeAdSample */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NativeAdSample;
+			sourceTree = "<group>";
+		};
 		788B1B8118E77A86007F2789 /* HMSegmentedControl4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +553,8 @@
 		78BEDC5818ADAB7B004E9156 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				78D1FEBD1A25341D002F6076 /* camera-icon.png */,
+				78D1FEBB1A253414002F6076 /* share_facebook.png */,
 				78D7E13D19E96A700013DA53 /* no_image_found.jpg */,
 				78D7E14219E973DD0013DA53 /* security_guards.png */,
 				78DD31FD19A679FC0044959A /* main_screen_iphone5_withMuseum.png */,
@@ -608,6 +674,7 @@
 		78F0E84318AD79290034E3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78527E8B1A2A38C90059AA21 /* FacebookSDK */,
 				78D1FEB51A0536DE002F6076 /* libsqlite3.dylib */,
 				78D1FEB31A05367B002F6076 /* libGoogleAnalyticsServices.a */,
 				78D1FEB11A0535D3002F6076 /* libGoogleAnalyticsServices.a */,
@@ -787,6 +854,7 @@
 				78B5640E194C70C3007B2A32 /* main_screen_iphone5 (1).png in Resources */,
 				783759F01943213D007C0BB9 /* button_my_quests_eng.png in Resources */,
 				783759ED1943213D007C0BB9 /* button_about_eng_pressed.png in Resources */,
+				78D1FEBE1A25341D002F6076 /* camera-icon.png in Resources */,
 				78BEDC7418ADAB7B004E9156 /* 1StarSmall@2x.png in Resources */,
 				783759F91943216B007C0BB9 /* button_about.png in Resources */,
 				78F0E86018AD792A0034E3A4 /* Images.xcassets in Resources */,
@@ -816,6 +884,7 @@
 				783759FB1943216B007C0BB9 /* button_find_quest.png in Resources */,
 				783759FC1943216B007C0BB9 /* button_find_quest_pressed.png in Resources */,
 				78D4AE2A1921895800821E9A /* about.png in Resources */,
+				78D1FEBC1A253414002F6076 /* share_facebook.png in Resources */,
 				78B56408194C6D4C007B2A32 /* arrived_pressed.png in Resources */,
 				78D4AE1019203DDD00821E9A /* tactics.png in Resources */,
 				7835424418F015F000EF6659 /* star-empty.png in Resources */,
@@ -1037,16 +1106,19 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/igor/Box\\ Sync/try1/try3",
+					"/Users/igor/\"Box Sync\"/try1/try3",
+					/Users/igor/Documents/FacebookSDK,
+					/Users/igor/Documents/FacebookSDK/FBAudienceNetwork,
+					/Users/igor/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "try3/Quesity-Prefix.pch";
 				INFOPLIST_FILE = "try3/Quesity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					/Users/igor/Downloads/GoogleAnalyticsServicesiOS_3.09,
-					"$(PROJECT_DIR)",
+					"\\$(PROJECT_DIR)\\/**",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Quesity;
@@ -1065,16 +1137,19 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/igor/Box\\ Sync/try1/try3",
+					"/Users/igor/\"Box Sync\"/try1/try3",
+					/Users/igor/Documents/FacebookSDK,
+					/Users/igor/Documents/FacebookSDK/FBAudienceNetwork,
+					/Users/igor/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "try3/Quesity-Prefix.pch";
 				INFOPLIST_FILE = "try3/Quesity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					/Users/igor/Downloads/GoogleAnalyticsServicesiOS_3.09,
-					"$(PROJECT_DIR)",
+					"\\$(PROJECT_DIR)\\/**",
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Quesity;

@@ -14,6 +14,8 @@
 #import "QSCPlayer.h"
 #import "QSCAllQuestsViewController2.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 @interface QSCFinishPageVC ()
 
 @end
@@ -75,6 +77,46 @@
     
     
 }
+
+- (IBAction)didPressButtonShare:(id)sender {
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithPhotos]) {
+        // Open the image picker and set this class as the delegate
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [imagePicker setDelegate:self];
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    } else {
+        // The user doesn't have the Facebook for iOS app installed.  You
+        // may be able to use a fallback.
+    }
+}
+
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    FBPhotoParams *params = [[FBPhotoParams alloc] init];
+    
+    // Note that params.photos can be an array of images.  In this example
+    // we only use a single image, wrapped in an array.
+    params.photos = @[img];
+    
+    [FBDialogs presentShareDialogWithPhotoParams:params
+                                     clientState:nil
+                                         handler:^(FBAppCall *call,
+                                                   NSDictionary *results,
+                                                   NSError *error) {
+                                             if (error) {
+                                                 NSLog(@"Error: %@",
+                                                       error.description);
+                                             } else {
+                                                 NSLog(@"Success!");
+                                             }
+                                         }];
+}
+
 
 - (void) sendReview: (QSCPlayer *)player {
     NSString *siteStr = [NSString stringWithFormat:@"quest/%@/review",_quest.questId];

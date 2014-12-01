@@ -24,7 +24,7 @@
 - (void)QSCpageDidSave:(QSCpage *)controller;
 @end
 
-@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate, IBActionSheetDelegate>
+@interface QSCpage : UIViewController<CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate, IBActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 {
     CLLocationManager *locationManager;
     CLLocation *currentLocation;
@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property IBActionSheet *specialMoreMenu;
 
 @property NSTimer *timer;
+@property NSTimer *timerCameraBtn;
 
 @property NSUInteger pagesViewed;
 @property NSUInteger currPage;
@@ -68,6 +69,8 @@ typedef NS_ENUM(NSInteger, pageType) {
 @property buttonView *buttonLeft;
 @property buttonView *buttonMiddle;
 @property buttonView *buttonRight;
+
+@property buttonView *buttonCamera;
 
 //@property multiQuestion *mqv;
 

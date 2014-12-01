@@ -8,8 +8,8 @@
 #define SITEURL @"http://quesity.herokuapp.com/"
 //#define SITEURL @"http://192.168.209.129:8080/"
 
-#define QUESITY_TRACKER_ID @"UA-47426937-2" //real
-//#define QUESITY_TRACKER_ID @"UA-47426937-4" //test
+//#define QUESITY_TRACKER_ID @"UA-47426937-2" //real
+#define QUESITY_TRACKER_ID @"UA-47426937-4" //test
 
 //#define SITEURL_LOGIN      [SITEURL stringByAppendingString:@"app/login/local/"]
 #define SITEURL_VALIDATE_CODE   [SITEURL stringByAppendingString:@"app/validate_code"]
@@ -31,9 +31,13 @@
 #define QUESITY_COLOR_TAGS [UIColor colorWithRed:225/255.0f green:88/255.0f blue:34/255.0f alpha:1.0f]
 
 #define TIMEOUT_FOR_CONNECTION 28
+#define TIMEOUT_FOR_CAMERA_BUTTON 3.5
 
-//#define isDbgMode YES
-#define isDbgMode NO
+#define CAMERA_BTN_ALPHA 0.55
+#define CAMERA_BTN_BG_ALPHA 0.95
+
+#define isDbgMode YES
+//#define isDbgMode NO
 
 #define isPreCacheQuest YES
 

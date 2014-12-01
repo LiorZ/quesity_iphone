@@ -8,7 +8,9 @@
 
 #import "QSCAppDelegate.h"
 #import "myGlobalData.h"
+
 #import "GAI.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation QSCAppDelegate
 

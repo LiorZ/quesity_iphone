@@ -17,6 +17,7 @@
 #import "QSCFinishPageVC.h"
 #import "multiQuestion.h"
 #import "IBActionSheet.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation QSCpage
 @synthesize webStuff2;
@@ -81,6 +82,11 @@
     
     [self updateButtonMiddleImage];
     
+//    UITapGestureRecognizer *singleFingerTap4Camera = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                             action:@selector(didTapOnWebView:)];
+//    
+//    [self.webStuff2 addGestureRecognizer:singleFingerTap4Camera];
+    
     //save progress:
     NSString *questStatePath = [NSString stringWithFormat:@"%@_questState",_quest.questId];
     [self saveDict:questStatePath];
@@ -91,6 +97,32 @@
     });
 }
 
+//the following methid is needed in order to get gestures in web view
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
+- (IBAction)didTapOnWebView:(id)sender {
+    _buttonCamera.hidden = NO;
+//    [self.view bringSubviewToFront:_buttonCamera];
+
+    _timerCameraBtn = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_FOR_CAMERA_BUTTON
+                                                       target:self
+                                                     selector:@selector(hideCameraBtn)
+                                                     userInfo:nil
+                                                      repeats:YES];
+}
+
+- (void) hideCameraBtn {
+    _buttonCamera.hidden = YES;
+    [_timerCameraBtn invalidate];
+}
 
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
@@ -368,9 +400,65 @@
 //    [locationManager startUpdatingLocation];
 //    [self->locationManager startUpdatingLocation];
     
+//    // Create the overlay view just like you have it...
+//    UIView *overlay = [[UIView alloc] initWithFrame:parentView.frame];
+//    overlay.backgroundColor = [UIColor blackColor];
+//    overlay.alpha = 0.6;
+//    
+//    // Continue adding this to the parent view
+//    [parentView addSubview:overlay];
+    
     [super viewDidLoad];
+    
+    // Create the button
+    _buttonCamera = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+
+    [_buttonCamera setFrame:CGRectMake(screenBounds.size.width-55, 100, 45.0, 45.0)];
+    [_buttonCamera setImage:[UIImage imageNamed:@"camera-icon.png"] forState:UIControlStateNormal];
+    //[_buttonCamera setBackgroundColor:[UIColor clearColor]];
+    [_buttonCamera setBackgroundColor:[UIColor colorWithWhite:0.85 alpha:CAMERA_BTN_BG_ALPHA]];
+    _buttonCamera.alpha = CAMERA_BTN_ALPHA;
+    _buttonCamera.layer.cornerRadius = 10;
+    _buttonCamera.clipsToBounds = YES;
+
+    _buttonCamera.hidden = YES;
+    [_buttonCamera addTarget:self action:@selector(takeAPicture) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *singleFingerTap4Camera = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(didTapOnWebView:)];
+    singleFingerTap4Camera.delegate = self;
+    [self.webStuff2 addGestureRecognizer:singleFingerTap4Camera];
+    
+    [self.view addSubview:_buttonCamera];
+    
+    [self didTapOnWebView:self];
 }
 
+- (void) takeAPicture {
+    // Create image picker controller
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    
+    // Set source to the camera
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        imagePicker.showsCameraControls = YES;
+    }
+    else
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    }
+
+    // Delegate is self
+    imagePicker.delegate = self;
+    
+    //imagePicker.allowsEditing = YES;
+    
+    // Show image picker
+    [self presentViewController:imagePicker animated:YES completion:NULL];
+}
 
 - (NSString *) parseJsonOfLinks:(NSArray *)links {
     return [links valueForKey:@"links_to_page"];
@@ -872,5 +960,49 @@
     [popup showInView:[UIApplication sharedApplication].keyWindow];
     
 }
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    UIAlertView *alert;
+    
+    // Unable to save the image
+    if (error) {
+        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"Unable to save image to Photo Album."
+                                          delegate:nil
+                                 cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    } else { // All is well
+        alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                           message:@"Image saved to Photo Album."
+                                          delegate:nil
+                                 cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+//        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong answer",nil)
+//                                           message:NSLocalizedString(@"Wrong answer! :( try again.", nil)
+//                                          delegate:nil
+//                                 cancelButtonTitle:NSLocalizedString(@"OK",nil)
+//                                 otherButtonTitles:nil];
+    }
+    [alert show];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //NSLog(@"imageInfo: %@",info);
+    //took a picture
+    // Access the uncropped image from info dictionary
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // Save image
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
